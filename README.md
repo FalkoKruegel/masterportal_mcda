@@ -20,5 +20,3 @@ The Masterportal is a project by [Geowerkstatt Hamburg](https://www.hamburg.de/g
 * [Community board (Developer forum and issue tracker)](https://trello.com/c/qajdXkMa/110-willkommen)
 
 [![Sauce Test Status](https://app.eu-central-1.saucelabs.com/buildstatus/geodatenanwendungen_gv.hamburg.de)](https://app.eu-central-1.saucelabs.com/builds/dfd7abc54af1493091fbeef1b6b48ca6)
-
-## Hallo Erik, das ist ein neus Textelement im Masterportalcode, der auf den Branch Feature_LayerandLayout hochgeladen werden soll.
