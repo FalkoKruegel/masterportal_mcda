@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+
+### Own ignore rules
+
+# Rhistory-Files
+*.Rhistory
+
+# files to big to handel for gitHub
+portal/test_portal/resources/dvan_layers/dvan_pop_2019.geojson
