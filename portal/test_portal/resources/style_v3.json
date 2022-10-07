@@ -10,8 +10,8 @@
 				},
 				"style":{
 					"type":"circle",
-					"circleRadius":5,
-					"circleFillColor":[0,100,100,1],
+					"circleRadius":10,
+					"circleFillColor":[255,0,0,1],
 					"legendValue":"Hausarzt"
 				}
 			},

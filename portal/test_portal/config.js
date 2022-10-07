@@ -7,9 +7,9 @@ const Config = {
         urls: [
             {
                 "bezeichnung": "common:modules.footer.designation",
-                "url": "https://geoinfo.hamburg.de/",
+                "url": "https://www.lgln.niedersachsen.de/",
                 "alias": "Landesbetrieb Geoinformation und Vermessung",
-                "alias_mobil": "LGV"
+                "alias_mobil": "LGLN"
             }
         ],
         showVersion: true
