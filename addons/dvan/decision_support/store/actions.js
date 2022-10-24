@@ -1,6 +1,6 @@
 const actions = {
-    async initialize() {
-
+    initialize () {
+        return 1;
     }
 };
 

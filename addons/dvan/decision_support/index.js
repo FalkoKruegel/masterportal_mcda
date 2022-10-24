@@ -3,5 +3,5 @@ import store from "./store";
 
 export default {
     component: component,
-    store: store,
+    store: store
 };
