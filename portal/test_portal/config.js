@@ -24,7 +24,8 @@ const Config = {
     mouseHover: {
         numFeaturesToShow: 2,
         infoText: "(weitere Objekte. Bitte zoomen.)"
-    }
+    },
+    addons: ["DecisionSupport"],
 };
 
 // conditional export to make config readable by e2e tests
