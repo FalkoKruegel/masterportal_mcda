@@ -38,6 +38,15 @@
 			"tree": {
 				"name": "Themen"
 			},
+			"utilities": {
+				"name": "Räumliche Analysen",
+				"icon": "bi-compass",
+				"children": {
+					"decisionSupport": {
+						"name": "Entscheidungsunterstützung"
+					}	
+				}
+			},
 			"tools": {
 				"name": "Werkzeuge",
 				"children": {
