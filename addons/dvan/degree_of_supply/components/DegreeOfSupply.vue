@@ -55,7 +55,7 @@ export default {
 
 <template lang="html">
     <ToolTemplate
-        :title="'Grad der Versorgung'"
+        :title="'Tool für den Grad der Versorgung'"
         :icon="icon"
         :active="active"
         :render-to-window="renderToWindow"
