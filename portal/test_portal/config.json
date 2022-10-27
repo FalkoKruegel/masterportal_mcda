@@ -14,11 +14,11 @@
       "visibleVector": {},
       "tree": {},
 			"startZoomLevel": 9,
-			"placeholder": "Suche nach: - Adresse - Aktiven WFS"
+			"placeholder": "Suche nach: Adressen oder aktiven WFS"
 		},
 		"mapView": {
 			"backgroundImage": "./resources/img/backgroundCanvas.jpeg",
-			"startCenter": [520010, 5932500],
+			"startCenter": [550377, 5803085],
 			"options": [
 				{"resolution":120.1457976146026,"scale":500000,"zoomLevel":-1},
 				{"resolution":66.14579761460263,"scale":250000,"zoomLevel":0}, 
@@ -94,6 +94,24 @@
 						{
 							"name": "Masterportal",
 							"url": "https://masterportal.org"
+						}
+					],
+					"staticlinks2": [
+						{
+							"name": "TUD Geoinformatik",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/geoinformatik"
+						}
+					],
+					"staticlinks3": [
+						{
+							"name": "TUD Landmanagement",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/gi/lm"
+						}
+					],
+					"staticlinks4": [
+						{
+							"name": "Forschungsprojekt WENNDANN",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/gi/lm/forschung/drittmittelprojekte-1/wenndann-weiterentwicklung-des-daseinsvorsorgeatlas-niedersachsen"
 						}
 					]
 				}
