@@ -44,7 +44,13 @@
 				"children": {
 					"decisionSupport": {
 						"name": "Entscheidungsunterstützung"
-					}	
+					},
+					"accessibilitiesLgln": {
+						"name": "Erreichbarkeiten"
+					},
+					"degreeOfSupply": {
+						"name": "Grad der Versorgung"
+					}
 				}
 			},
 			"tools": {
