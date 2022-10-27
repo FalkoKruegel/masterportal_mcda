@@ -1,4 +1,4 @@
-import component from "./components/Accessibilities.vue";
+import component from "./components/AccessibilitiesLgln.vue";
 import store from "./store";
 
 export default {

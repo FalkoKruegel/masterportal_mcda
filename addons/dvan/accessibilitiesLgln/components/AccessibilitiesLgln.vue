@@ -5,12 +5,12 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
 export default {
-    name: "Accessibilities",
+    name: "AccessibilitiesLgln",
     components: {
         ToolTemplate
     },
     computed: {
-        ...mapGetters("Tools/Accessibilities", Object.keys(getters))
+        ...mapGetters("Tools/AccessibilitiesLgln", Object.keys(getters))
     },
     created () {
         this.$on("close", this.close);
@@ -26,10 +26,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions("Tools/Accessibilities", [
+        ...mapActions("Tools/AccessibilitiesLgln", [
             "initialize"
         ]),
-        ...mapMutations("Tools/Accessibilities", [
+        ...mapMutations("Tools/AccessibilitiesLgln", [
             "setActive"
         ]),
 
@@ -43,7 +43,7 @@ export default {
             // TODO replace trigger when Menu is migrated
             // set the backbone model to active false for changing CSS class in menu (menu/desktop/tool/view.toggleIsActiveClass)
             // else the menu-entry for this tool is always highlighted
-            const model = Radio.request("ModelList", "getModelByAttributes", {id: this.$store.state.Tools.Accessibilities.id});
+            const model = Radio.request("ModelList", "getModelByAttributes", {id: this.$store.state.Tools.AccessibilitiesLgln.id});
 
             if (model) {
                 model.set("isActive", false);

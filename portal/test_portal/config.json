@@ -45,7 +45,7 @@
 					"decisionSupport": {
 						"name": "Entscheidungsunterstützung"
 					},
-					"accessibilities": {
+					"accessibilitiesLgln": {
 						"name": "Erreichbarkeiten"
 					},
 					"degreeOfSupply": {

@@ -1,7 +1,7 @@
 const state = {
     // mandatory
     active: false,
-    id: "Accessibilities",
+    id: "AccessibilitiesLgln",
     // mandatory defaults for config.json parameters
     name: "Erreichbarkeiten",
     icon: "bi-geo-alt-fill",
