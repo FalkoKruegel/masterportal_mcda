@@ -44,7 +44,10 @@
 				"children": {
 					"decisionSupport": {
 						"name": "Entscheidungsunterstützung"
-					}	
+					},
+					"accessibilities": {
+						"name": "Erreichbarkeiten"
+					}
 				}
 			},
 			"tools": {
