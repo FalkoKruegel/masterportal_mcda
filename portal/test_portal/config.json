@@ -47,6 +47,9 @@
 					},
 					"accessibilities": {
 						"name": "Erreichbarkeiten"
+					},
+					"degreeOfSupply": {
+						"name": "Grad der Versorgung"
 					}
 				}
 			},

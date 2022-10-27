@@ -8,5 +8,10 @@
         "type": "tool",
         "vue": true,
         "path": "dvan/accessibilities"
+    },
+    "DegreeOfSupply": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/degree_of_supply"
     }
 }
