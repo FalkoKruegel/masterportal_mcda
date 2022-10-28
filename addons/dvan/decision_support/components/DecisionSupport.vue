@@ -1,13 +1,29 @@
 
 <script>
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
+import AccordionItem from "./AccordionItem.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
 export default {
     name: "DecisionSupport",
     components: {
-        ToolTemplate
+        ToolTemplate,
+        AccordionItem,
+    },
+    data() {
+        return {
+            steps: {
+                0: false,
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+                6: false,
+                7: false,
+            },
+        }
     },
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
@@ -48,6 +64,17 @@ export default {
             if (model) {
                 model.set("isActive", false);
             }
+        },
+
+        openStep(index) {
+            if (this.steps[index] === true) {
+                this.steps[index] = false;
+                return;
+            }
+            for (let i in this.steps) {
+                this.steps[i] = false;
+            }
+            this.steps[index] = true;
         }
     }
 };
@@ -68,223 +95,65 @@ export default {
                 id="decisionSupportAccordion"
                 class="accordion accordion-flush full-window"
             >
-                <div class="accordion-item">
-                    <h2
-                        id="step1-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step1-content"
-                            aria-expanded="false"
-                            aria-controls="step1-content"
-                        >
-                            Schritt 1: Tools zur Entscheidungsunterstützung
-                        </button>
-                    </h2>
-                    <div
-                        id="step1-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step1-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step2-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step2-content"
-                            aria-expanded="false"
-                            aria-controls="step2-content"
-                        >
-                            Schritt 2: Untersuchungsgebiet
-                        </button>
-                    </h2>
-                    <div
-                        id="step2-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step2-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step3-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step3-content"
-                            aria-expanded="false"
-                            aria-controls="step3-content"
-                            :disabled="true"
-                        >
-                            Schritt 3: Relevante Infrastrukturen
-                        </button>
-                    </h2>
-                    <div
-                        id="step3-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step3-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step4-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step4-content"
-                            aria-expanded="false"
-                            aria-controls="step4-content"
-                        >
-                            Schritt 4: Infrastrukturparameter
-                        </button>
-                    </h2>
-                    <div
-                        id="step4-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step4-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step5-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step5-content"
-                            aria-expanded="false"
-                            aria-controls="step5-content"
-                        >
-                            Schritt 5: Erreichbarkeit
-                        </button>
-                    </h2>
-                    <div
-                        id="step5-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step5-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step6-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step6-content"
-                            aria-expanded="false"
-                            aria-controls="step6-content"
-                        >
-                            Schritt 6: Gewichtung
-                        </button>
-                    </h2>
-                    <div
-                        id="step6-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step6-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step7-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step7-content"
-                            aria-expanded="false"
-                            aria-controls="step7-content"
-                        >
-                            Schritt 7: Zusammenfassung und Berechnung
-                        </button>
-                    </h2>
-                    <div
-                        id="step7-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step7-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2
-                        id="step8-header"
-                        class="accordion-header"
-                    >
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#step8-content"
-                            aria-expanded="true"
-                            aria-controls="step8-content"
-                        >
-                            Schritt 8: Ergebnisse
-                        </button>
-                    </h2>
-                    <div
-                        id="step8-content"
-                        class="accordion-collapse collapse"
-                        aria-labelledby="step8-header"
-                        data-bs-parent="#decisionSupportAccordion"
-                    >
-                        <div class="accordion-body">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </div>
-                    </div>
-                </div>
+                <AccordionItem
+                    title="Schritt 1: Tools zur Entscheidungsunterstützung"
+                    status="valid"
+                    :opened="steps[0]"
+                    @click="openStep(0)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 2: Untersuchungsgebiet"
+                    status="invalid"
+                    :opened="steps[1]"
+                    @click="openStep(1)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 3: Relevante Infrastrukturen"
+                    status="deactivated"
+                    :opened="steps[2]"
+                    @click="openStep(2)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 4: Infrastrukturparameter"
+                    :opened="steps[3]"
+                    @click="openStep(3)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 5: Erreichbarkeit"
+                    :opened="steps[4]"
+                    @click="openStep(4)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 6: Gewichtung"
+                    :opened="steps[5]"
+                    @click="openStep(5)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 7: Zusammenfassung und Berechnung"
+                    :opened="steps[6]"
+                    @click="openStep(6)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
+                <AccordionItem
+                    title="Schritt 8: Ergebnisse"
+                    :opened="steps[7]"
+                    @click="openStep(7)"
+                >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </AccordionItem>
             </div>
         </template>
     </ToolTemplate>
@@ -294,18 +163,6 @@ export default {
 .accordion {
     --bs-accordion-btn-padding-x: 10px;
     --bs-accordion-btn-padding-y: 10px;
-}
-
-h2#step1-header button {
-    background-color: rgba($color: lightgreen, $alpha: 0.3);
-}
-
-h2#step2-header button {
-    background-color: rgba($color: red, $alpha: 0.3);
-}
-
-h2#step3-header button {
-    background-color: rgba($color: lightgrey, $alpha: 0.3);
 }
 
 .full-window {
