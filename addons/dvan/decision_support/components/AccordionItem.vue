@@ -1,86 +1,99 @@
 <script>
 
+/**
+ * sleep function
+ * @param {Number} ms number of milliseconds to sleep
+ * @returns {Promise} void promise
+ */
+function sleep (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export default {
     name: "AccordionItem",
     components: {
     },
-    props: [
-        "title",
-        "opened",
-        "status",
-    ],
+    props: {
+        "title": {
+            type: String,
+            default: ""
+        },
+        "opened": Boolean,
+        "status": {
+            type: String,
+            default: ""
+        }
+    },
     emits: [
         "click"
     ],
-    data() {
+    data () {
         return {
             buttonClasses: [],
             contentClasses: [],
             height: null,
-            collapsing: false,
-        }
+            collapsing: false
+        };
     },
     computed: {
-        buttonStyle() {
+        buttonStyle () {
             if (this.status === "deactivated") {
-                return { 'background-color': "rgba(220,220,220,0.3)" };
+                return {"background-color": "rgba(220,220,220,0.3)"};
             }
             if (this.status === "valid") {
-                return { 'background-color': 'rgba(144,228,144,0.3)' };
+                return {"background-color": "rgba(144,228,144,0.3)"};
             }
             if (this.status === "invalid") {
-                return { 'background-color': "rgba(255,0,0,0.3)" };
+                return {"background-color": "rgba(255,0,0,0.3)"};
             }
             return {};
         },
-        contentStyle() {
+        contentStyle () {
             if (this.height !== null) {
-                return `height: ${this.height}px;`
+                return `height: ${this.height}px;`;
             }
-            return ''
+            return "";
         }
     },
     watch: {
-        async opened(newVal, oldVal) {
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
+        async opened (newVal) {
             if (newVal === true) {
-                this.buttonClasses = ['accordion-button']
+                this.buttonClasses = ["accordion-button"];
             }
             else {
-                this.buttonClasses = ['accordion-button', 'collapsed']
+                this.buttonClasses = ["accordion-button", "collapsed"];
             }
-            this.contentClasses = ['accordion-collapse', 'collapsing']
-            if (newVal == false) 
-            this.height = newVal == false ? this.$refs.content.scrollHeight : null
-            this.collapsing = true
-            await sleep(5)
-            this.height = newVal == true ? this.$refs.content.scrollHeight : null
-            await sleep(200)
-            this.collapsing = false
+            this.contentClasses = ["accordion-collapse", "collapsing"];
+            this.height = newVal === false ? this.$refs.content.scrollHeight : null;
+            this.collapsing = true;
+            await sleep(5);
+            this.height = newVal === true ? this.$refs.content.scrollHeight : null;
+            await sleep(200);
+            this.collapsing = false;
             if (newVal === true) {
-                this.contentClasses = ['accordion-collapse', 'collapse', 'show']
+                this.contentClasses = ["accordion-collapse", "collapse", "show"];
             }
             else {
-                this.contentClasses = ['accordion-collapse', 'collapse']
+                this.contentClasses = ["accordion-collapse", "collapse"];
             }
         }
     },
-    mounted() {
+    mounted () {
         if (this.opened) {
-            this.buttonClasses = ['accordion-button']
-            this.contentClasses = ['accordion-collapse', 'collapse', 'show']
+            this.buttonClasses = ["accordion-button"];
+            this.contentClasses = ["accordion-collapse", "collapse", "show"];
         }
         else {
-            this.buttonClasses = ['accordion-button', 'collapsed']
-            this.contentClasses = ['accordion-collapse', 'collapse']
+            this.buttonClasses = ["accordion-button", "collapsed"];
+            this.contentClasses = ["accordion-collapse", "collapse"];
         }
     },
     methods: {
-        buttonClick() {
-            if (this.collapsing) return
-            this.$emit('click');
+        buttonClick () {
+            if (this.collapsing) {
+                return;
+            }
+            this.$emit("click");
         }
     }
 };
@@ -90,7 +103,6 @@ export default {
     <div class="accordion-item">
         <h2
             class="accordion-header"
-            @click="buttonClick()"
         >
             <button
                 ref="button"
@@ -98,6 +110,7 @@ export default {
                 type="button"
                 :style="buttonStyle"
                 :disabled="status==='deactivated'"
+                @click="buttonClick()"
             >
                 {{ title }}
             </button>
@@ -108,7 +121,7 @@ export default {
             :style="contentStyle"
         >
             <div class="accordion-body">
-                <slot></slot>
+                <slot />
             </div>
         </div>
     </div>

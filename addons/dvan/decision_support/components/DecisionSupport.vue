@@ -9,9 +9,9 @@ export default {
     name: "DecisionSupport",
     components: {
         ToolTemplate,
-        AccordionItem,
+        AccordionItem
     },
-    data() {
+    data () {
         return {
             steps: {
                 0: false,
@@ -21,9 +21,9 @@ export default {
                 4: false,
                 5: false,
                 6: false,
-                7: false,
-            },
-        }
+                7: false
+            }
+        };
     },
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
@@ -66,12 +66,12 @@ export default {
             }
         },
 
-        openStep(index) {
+        openStep (index) {
             if (this.steps[index] === true) {
                 this.steps[index] = false;
                 return;
             }
-            for (let i in this.steps) {
+            for (const i in this.steps) {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
