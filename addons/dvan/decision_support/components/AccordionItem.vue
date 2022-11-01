@@ -23,7 +23,7 @@ export default {
             type: String,
             default: ""
         },
-        //indicate if current item is the first one in a accordion-menu
+        // indicate if current item is the first one in a accordion-menu
         "firstItem": Boolean,
         "lastItem": Boolean
     },
@@ -100,11 +100,11 @@ export default {
             }
             this.$emit("click");
         },
-        //if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
+        // if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
         backButton () {
             this.$emit("backClick");
         },
-        //if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
+        // if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
         forwardButton () {
             this.$emit("forwardClick");
         }
@@ -139,7 +139,7 @@ export default {
             <!--footer contains two buttons which emit forward and back events to navigate between different items-->
             <!--buttons are connected to firstItem and lastItem attribute to disable the buttons if necessary-->
             <footer>
-                <div 
+                <div
                     class="container"
                 >
                     <div
@@ -148,11 +148,11 @@ export default {
                         <div
                             class="col text-start"
                         >
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 class="btn btn-outline-primary btn-sm"
-                                @click="backButton()"
                                 :disabled="firstItem"
+                                @click="backButton()"
                             >
                                 Zurück
                             </button>
@@ -160,11 +160,11 @@ export default {
                         <div
                             class="col text-end"
                         >
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 class="btn btn-outline-primary btn-sm"
-                                @click="forwardButton()"
                                 :disabled="lastItem"
+                                @click="forwardButton()"
                             >
                                 Weiter
                             </button>
