@@ -25,7 +25,9 @@ export default {
         }
     },
     emits: [
-        "click"
+        "click",
+        "backClick",
+        "forwardClick"
     ],
     data () {
         return {
@@ -94,6 +96,12 @@ export default {
                 return;
             }
             this.$emit("click");
+        },
+        backButton () {
+            this.$emit("backClick");
+        },
+        forwardButton () {
+            this.$emit("forwardClick");
         }
     }
 };
@@ -136,6 +144,7 @@ export default {
                             <button 
                                 type="button" 
                                 class="btn btn-outline-primary btn-sm"
+                                @click="backButton()"
                             >
                                 Zurück
                             </button>
@@ -146,6 +155,7 @@ export default {
                             <button 
                                 type="button" 
                                 class="btn btn-outline-primary btn-sm"
+                                @click="forwardButton()"
                             >
                                 Weiter
                             </button>
