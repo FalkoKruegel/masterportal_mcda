@@ -99,7 +99,7 @@ export default {
                     title="Schritt 1: Tools zur Entscheidungsunterstützung"
                     status="valid"
                     :opened="steps[0]"
-                    first-item="true"
+                    :first-item="true"
                     @click="openStep(0)"
                     @forwardClick="openStep(1)"
                 >
@@ -164,7 +164,7 @@ export default {
                 <AccordionItem
                     title="Schritt 8: Ergebnisse"
                     :opened="steps[7]"
-                    last-item="true"
+                    :last-item="true"
                     @click="openStep(7)"
                     @backClick="openStep(6)"
                 >

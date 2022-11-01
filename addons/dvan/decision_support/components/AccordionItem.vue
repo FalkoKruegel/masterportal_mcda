@@ -23,7 +23,7 @@ export default {
             type: String,
             default: ""
         },
-        //indicate if current item is the first or the last one in a accordion-menu
+        //indicate if current item is the first one in a accordion-menu
         "firstItem": Boolean,
         "lastItem": Boolean
     },
