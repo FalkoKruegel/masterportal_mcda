@@ -123,6 +123,36 @@ export default {
             <div class="accordion-body">
                 <slot />
             </div>
+            <footer>
+                <div 
+                    class="container"
+                >
+                    <div
+                        class="row mb-2"
+                    >
+                        <div
+                            class="col text-start"
+                        >
+                            <button 
+                                type="button" 
+                                class="btn btn-outline-primary btn-sm"
+                            >
+                                Zurück
+                            </button>
+                        </div>
+                        <div
+                            class="col text-end"
+                        >
+                            <button 
+                                type="button" 
+                                class="btn btn-outline-primary btn-sm"
+                            >
+                                Weiter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </template>
