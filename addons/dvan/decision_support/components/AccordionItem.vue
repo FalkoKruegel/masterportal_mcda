@@ -97,9 +97,11 @@ export default {
             }
             this.$emit("click");
         },
+        //if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
         backButton () {
             this.$emit("backClick");
         },
+        //if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
         forwardButton () {
             this.$emit("forwardClick");
         }
@@ -131,6 +133,7 @@ export default {
             <div class="accordion-body">
                 <slot />
             </div>
+            <!--footer contains two buttons which emit forward and back events to navigate between different items-->
             <footer>
                 <div 
                     class="container"
