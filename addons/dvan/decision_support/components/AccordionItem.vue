@@ -22,7 +22,10 @@ export default {
         "status": {
             type: String,
             default: ""
-        }
+        },
+        //indicate if current item is the first or the last one in a accordion-menu
+        "firstItem": Boolean,
+        "lastItem": Boolean
     },
     emits: [
         "click",
@@ -134,6 +137,7 @@ export default {
                 <slot />
             </div>
             <!--footer contains two buttons which emit forward and back events to navigate between different items-->
+            <!--buttons are connected to firstItem and lastItem attribute to disable the buttons if necessary-->
             <footer>
                 <div 
                     class="container"
@@ -148,6 +152,7 @@ export default {
                                 type="button" 
                                 class="btn btn-outline-primary btn-sm"
                                 @click="backButton()"
+                                :disabled="firstItem"
                             >
                                 Zurück
                             </button>
@@ -159,6 +164,7 @@ export default {
                                 type="button" 
                                 class="btn btn-outline-primary btn-sm"
                                 @click="forwardButton()"
+                                :disabled="lastItem"
                             >
                                 Weiter
                             </button>
