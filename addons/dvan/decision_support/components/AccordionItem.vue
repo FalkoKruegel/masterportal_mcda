@@ -140,40 +140,38 @@ export default {
             </div>
             <!--footer contains two buttons which emit forward and back events to navigate between different items-->
             <!--buttons are connected to firstItem and lastItem attribute to disable the buttons if necessary-->
-            <footer>
+            <div
+                class="container"
+            >
                 <div
-                    class="container"
+                    class="row mb-2"
                 >
                     <div
-                        class="row mb-2"
+                        class="col text-start"
                     >
-                        <div
-                            class="col text-start"
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            :disabled="firstLastItem==='first'"
+                            @click="backButton()"
                         >
-                            <button
-                                type="button"
-                                class="btn btn-outline-primary btn-sm"
-                                :disabled="firstLastItem==='first'"
-                                @click="backButton()"
-                            >
-                                Zurück
-                            </button>
-                        </div>
-                        <div
-                            class="col text-end"
+                            Zurück
+                        </button>
+                    </div>
+                    <div
+                        class="col text-end"
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            :disabled="firstLastItem==='last'"
+                            @click="forwardButton()"
                         >
-                            <button
-                                type="button"
-                                class="btn btn-outline-primary btn-sm"
-                                :disabled="firstLastItem==='last'"
-                                @click="forwardButton()"
-                            >
-                                Weiter
-                            </button>
-                        </div>
+                            Weiter
+                        </button>
                     </div>
                 </div>
-            </footer>
+            </div>
         </div>
     </div>
 </template>
