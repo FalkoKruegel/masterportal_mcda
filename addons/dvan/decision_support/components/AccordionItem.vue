@@ -23,9 +23,11 @@ export default {
             type: String,
             default: ""
         },
-        // indicate if current item is the first one in a accordion-menu
-        "firstItem": Boolean,
-        "lastItem": Boolean
+        // indicate if current item is the first (value: "first") or last (value: "last") one in a accordion-menu
+        "firstLastItem": {
+            type: String,
+            default: ""
+        }
     },
     emits: [
         "click",
@@ -151,7 +153,7 @@ export default {
                             <button
                                 type="button"
                                 class="btn btn-outline-primary btn-sm"
-                                :disabled="firstItem"
+                                :disabled="firstLastItem==='first'"
                                 @click="backButton()"
                             >
                                 Zurück
@@ -163,7 +165,7 @@ export default {
                             <button
                                 type="button"
                                 class="btn btn-outline-primary btn-sm"
-                                :disabled="lastItem"
+                                :disabled="firstLastItem==='last'"
                                 @click="forwardButton()"
                             >
                                 Weiter
