@@ -22,10 +22,17 @@ export default {
         "status": {
             type: String,
             default: ""
+        },
+        // indicate if current item is the first (value: "first") or last (value: "last") one in a accordion-menu
+        "firstLastItem": {
+            type: String,
+            default: ""
         }
     },
     emits: [
-        "click"
+        "click",
+        "backClick",
+        "forwardClick"
     ],
     data () {
         return {
@@ -94,6 +101,14 @@ export default {
                 return;
             }
             this.$emit("click");
+        },
+        // if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
+        backButton () {
+            this.$emit("backClick");
+        },
+        // if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
+        forwardButton () {
+            this.$emit("forwardClick");
         }
     }
 };
@@ -122,6 +137,40 @@ export default {
         >
             <div class="accordion-body">
                 <slot />
+            </div>
+            <!--following div contains two buttons which emit forward and back events to navigate between different items-->
+            <!--buttons are connected to firstLastItem attribute to disable the buttons if necessary-->
+            <div
+                class="container"
+            >
+                <div
+                    class="row mb-2"
+                >
+                    <div
+                        class="col text-start"
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            :disabled="firstLastItem==='first'"
+                            @click="backButton()"
+                        >
+                            Zurück
+                        </button>
+                    </div>
+                    <div
+                        class="col text-end"
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            :disabled="firstLastItem==='last'"
+                            @click="forwardButton()"
+                        >
+                            Weiter
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
