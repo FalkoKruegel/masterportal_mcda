@@ -138,8 +138,8 @@ export default {
             <div class="accordion-body">
                 <slot />
             </div>
-            <!--footer contains two buttons which emit forward and back events to navigate between different items-->
-            <!--buttons are connected to firstItem and lastItem attribute to disable the buttons if necessary-->
+            <!--following div contains two buttons which emit forward and back events to navigate between different items-->
+            <!--buttons are connected to firstLastItem attribute to disable the buttons if necessary-->
             <div
                 class="container"
             >
