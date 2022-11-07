@@ -1,0 +1,179 @@
+{
+	"Portalconfig": {
+    "treeType": "custom",
+		"searchBar": {
+			"komoot": {
+        "minChars": 3,
+        "serviceId": "11",
+        "limit": 20,
+        "lang": "de",
+        "lat": 53.6,
+        "lon": 10.0,
+        "bbox": "9.6,53.3,10.4,53.8"
+    },
+      "visibleVector": {},
+      "tree": {},
+			"startZoomLevel": 9,
+			"placeholder": "Suche nach: Adressen oder aktiven WFS"
+		},
+		"mapView": {
+			"backgroundImage": "./resources/img/backgroundCanvas.jpeg",
+			"startCenter": [550377, 5803085],
+			"options": [
+				{"resolution":120.1457976146026,"scale":500000,"zoomLevel":-1},
+				{"resolution":66.14579761460263,"scale":250000,"zoomLevel":0}, 
+				{"resolution":26.458319045841044,"scale":100000,"zoomLevel":1}, 
+				{"resolution":15.874991427504629,"scale":60000,"zoomLevel":2}, 
+				{"resolution": 10.583327618336419,"scale":40000,"zoomLevel":3}, 
+				{"resolution":5.2916638091682096,"scale":20000,"zoomLevel":4}, 
+				{"resolution":2.6458319045841048,"scale":10000,"zoomLevel":5}, 
+				{"resolution":1.3229159522920524,"scale":5000,"zoomLevel":6}, 
+				{"resolution":0.6614579761460262,"scale":2500,"zoomLevel":7}, 
+				{"resolution":0.2645831904584105,"scale": 1000,"zoomLevel":8}, 
+				{"resolution":0.13229159522920521,"scale":500,"zoomLevel":9}],
+			"extent": [310000.0, 5700000.0, 625000.4, 6000000.0],
+			"startZoomLevel": 0
+		},
+		"menu": {
+			"tree": {
+				"name": "Themen"
+			},
+			"utilities": {
+				"name": "Räumliche Analysen",
+				"icon": "bi-compass",
+				"children": {
+					"decisionSupport": {
+						"name": "Entscheidungsunterstützung"
+					},
+					"accessibilitiesLgln": {
+						"name": "Erreichbarkeiten"
+					},
+					"degreeOfSupply": {
+						"name": "Grad der Versorgung"
+					}
+				}
+			},
+			"tools": {
+				"name": "Werkzeuge",
+				"children": {
+					"gfi": {
+						"name": "Informationen abfragen",
+						"active": true
+					},	
+					"scaleSwitcher": {
+						"name": "translate#common:menu.tools.scaleSwitcher",
+						"icon": "bi-arrows-angle-contract",
+						"renderToWindow": true
+					},
+					"coordToolkit": {
+						"name": "Koordinaten"
+					},
+					"measure": {
+						"name": "Strecke / Fläche messen"
+					},
+					"draw": {
+						"name": "Zeichnen / Schreiben"
+					},
+					"fileImport": {
+            			"name": "Datei Import"
+					},
+					"saveSelection": {
+						"name": "Auswahl speichern"
+					}
+				}
+			},
+			"legend": {
+				"name": "Legende",
+				"showCollapseAllButton":true,
+				"showLegend": false
+			},
+			"info": {
+				"name": "Informationen",
+				"children": {
+					"staticlinks": [
+						{
+							"name": "Masterportal",
+							"url": "https://masterportal.org"
+						}
+					],
+					"staticlinks2": [
+						{
+							"name": "TUD Geoinformatik",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/geoinformatik"
+						}
+					],
+					"staticlinks3": [
+						{
+							"name": "TUD Landmanagement",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/gi/lm"
+						}
+					],
+					"staticlinks4": [
+						{
+							"name": "Forschungsprojekt WENNDANN",
+							"url": "https://tu-dresden.de/bu/umwelt/geo/gi/lm/forschung/drittmittelprojekte-1/wenndann-weiterentwicklung-des-daseinsvorsorgeatlas-niedersachsen"
+						}
+					]
+				}
+			}
+		},
+		"controls": {
+			"zoom": true,
+			"orientation": {
+				"zoomMode": "always"
+			},
+			"attributions": true,
+			"mousePosition": true
+		}
+	},
+	"Themenconfig": {
+		"Hintergrundkarten": {
+			"Layer": [
+        {
+          "id": "10",
+          "visibility": true
+        }
+			]
+		},
+		"Fachdaten": {
+			"Ordner":[
+				{
+				"Titel":"Ärzte",
+				"Layer":
+					[
+						{
+						"id":"13",
+						"styleId":"physicianStyle",
+						"visibility": false,
+						"name":"Ärzte Oldenburg"
+						},
+						{
+						"id":"12",
+						"name":"Ärzte Niedersachsen",
+						"visibility":false,
+						"styleId":"arzt_krankenhaus"
+						}						
+					]
+				},
+				{
+				"Titel":"Bevölkerung",
+				"Layer":
+					[
+						{
+						"id":"14",
+						"styleId":"populationEWGesamt",
+						"visibility":false,
+						"name":"Bevölkerung Oldenburg"
+						},
+						{
+						"id":"11",
+						"styleId":"populationEWGesamt",
+						"visibility":false,
+						"name":"Bevölkerung Niedersachsen"
+						}
+					]
+				}
+			]
+		}
+	}
+}

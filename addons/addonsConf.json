@@ -1,0 +1,17 @@
+{
+    "DecisionSupport": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/decision_support"
+    },
+    "AccessibilitiesLgln": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/accessibilitiesLgln"
+    },
+    "DegreeOfSupply": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/degree_of_supply"
+    }
+}
