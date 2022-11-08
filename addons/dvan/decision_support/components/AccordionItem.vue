@@ -83,6 +83,7 @@ export default {
             else {
                 this.contentClasses = ["accordion-collapse", "collapse"];
             }
+            this.height = null;
         }
     },
     mounted () {
