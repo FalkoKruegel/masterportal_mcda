@@ -49,6 +49,15 @@ export default {
                 >
                     Zurück
                 </button>
+                <!--following button is a dummy button for use cases in the future like loading old configurations-->
+                <button
+                    v-if="firstLastItem == 'first'"
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    disabled="true"
+                >
+                    Einstellungen laden
+                </button>
             </div>
             <div
                 class="col text-end"
@@ -60,6 +69,15 @@ export default {
                     @click="forwardButton()"
                 >
                     Weiter
+                </button>
+                <!--following button is a dummy button for use cases in the future like starting the calculations when all user-input is valid-->
+                <button
+                    v-if="firstLastItem == 'last'"
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    disabled="true"
+                >
+                    Analyse starten
                 </button>
             </div>
         </div>
