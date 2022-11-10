@@ -36,7 +36,7 @@ export default {
         class="container"
     >
         <div
-            class="row mb-2"
+            class="row mb-2 footer-row"
         >
             <div
                 class="col text-start"
@@ -83,3 +83,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.footer-row {
+    margin-top: 1rem;
+}
+</style>
