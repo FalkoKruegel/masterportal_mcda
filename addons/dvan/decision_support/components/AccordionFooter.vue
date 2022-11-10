@@ -1,12 +1,12 @@
 
 <script>
-import AccordionFooter from "./AccordionFooter.vue";
 
 export default {
     name: "AccordionFooter",
     components: {
     },
     props: {
+        // prop firstLastItem indicates if footer belongs to the first or the last item of an accordion
         "firstLastItem": {
             type: String,
             default: ""
@@ -31,7 +31,7 @@ export default {
 
 <template lang="html">
     <!--following div contains two buttons which emit forward and back events to navigate between different items-->
-    <!--buttons are connected to firstLastItem attribute to disable the buttons if necessary-->
+    <!--buttons are connected to firstLastItem attribute via v-if which only allows rendering if footer does not belong to the first or last item of an accordion-->
     <div
         class="container"
     >
@@ -45,7 +45,6 @@ export default {
                     v-if="firstLastItem !== 'first'"
                     type="button"
                     class="btn btn-outline-primary btn-sm"
-                    :disabled="firstLastItem==='first'"
                     @click="backButton()"
                 >
                     Zurück
@@ -55,9 +54,9 @@ export default {
                 class="col text-end"
             >
                 <button
+                    v-if="firstLastItem !== 'last'"
                     type="button"
                     class="btn btn-outline-primary btn-sm"
-                    :disabled="firstLastItem==='last'"
                     @click="forwardButton()"
                 >
                     Weiter

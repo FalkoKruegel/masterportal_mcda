@@ -1,7 +1,5 @@
 <script>
 
-import AccordionFooter from "./AccordionFooter.vue";
-
 /**
  * sleep function
  * @param {Number} ms number of milliseconds to sleep
@@ -14,7 +12,6 @@ function sleep (ms) {
 export default {
     name: "AccordionItem",
     components: {
-        AccordionFooter
     },
     props: {
         "title": {
@@ -25,17 +22,10 @@ export default {
         "status": {
             type: String,
             default: ""
-        },
-        // indicate if current item is the first (value: "first") or last (value: "last") one in a accordion-menu
-        "firstLastItem": {
-            type: String,
-            default: ""
         }
     },
     emits: [
         "click",
-        "backClick",
-        "forwardClick"
     ],
     data () {
         return {
@@ -105,14 +95,6 @@ export default {
                 return;
             }
             this.$emit("click");
-        },
-        // if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
-        backButton () {
-            this.$emit("backClick");
-        },
-        // if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
-        forwardButton () {
-            this.$emit("forwardClick");
         }
     }
 };
@@ -142,8 +124,6 @@ export default {
             <div class="accordion-body">
                 <slot />
             </div>
-            <AccordionFooter>
-            </AccordionFooter>
         </div>
     </div>
 </template>
