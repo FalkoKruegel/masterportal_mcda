@@ -1,5 +1,7 @@
 <script>
 
+import AccordionFooter from "./AccordionFooter.vue";
+
 /**
  * sleep function
  * @param {Number} ms number of milliseconds to sleep
@@ -12,6 +14,7 @@ function sleep (ms) {
 export default {
     name: "AccordionItem",
     components: {
+        AccordionFooter
     },
     props: {
         "title": {
@@ -139,40 +142,8 @@ export default {
             <div class="accordion-body">
                 <slot />
             </div>
-            <!--following div contains two buttons which emit forward and back events to navigate between different items-->
-            <!--buttons are connected to firstLastItem attribute to disable the buttons if necessary-->
-            <div
-                class="container"
-            >
-                <div
-                    class="row mb-2"
-                >
-                    <div
-                        class="col text-start"
-                    >
-                        <button
-                            type="button"
-                            class="btn btn-outline-primary btn-sm"
-                            :disabled="firstLastItem==='first'"
-                            @click="backButton()"
-                        >
-                            Zurück
-                        </button>
-                    </div>
-                    <div
-                        class="col text-end"
-                    >
-                        <button
-                            type="button"
-                            class="btn btn-outline-primary btn-sm"
-                            :disabled="firstLastItem==='last'"
-                            @click="forwardButton()"
-                        >
-                            Weiter
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <AccordionFooter>
+            </AccordionFooter>
         </div>
     </div>
 </template>
