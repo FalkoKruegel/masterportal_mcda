@@ -4,6 +4,8 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import {getDummyLayer} from "./util.js";
+import mapCollection from "/src/core/maps/mapCollection.js";
 
 export default {
     name: "DecisionSupport",
@@ -26,7 +28,11 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+        ...mapGetters("Maps", [
+            "getLayerById",
+            "getLayers"
+        ])
     },
     created () {
         this.$on("close", this.close);
@@ -44,6 +50,11 @@ export default {
     methods: {
         ...mapActions("Tools/DecisionSupport", [
             "initialize"
+        ]),
+        ...mapMutations("Maps", [
+            "addLayerToMap",
+            "removeLayerFromMap",
+            "setLayerVisibility"
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
@@ -75,6 +86,23 @@ export default {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
+        },
+
+        openWMS () {
+            // this.getLayers.getArray().forEach(layer => {
+            //     console.log(layer.get("id"));
+            // });
+            const layer = getDummyLayer();
+
+            this.addLayerToMap(layer);
+            layer.setVisible(true);
+        },
+
+        closeWMS () {
+            const layer = this.getLayerById({layerId: "dummy"});
+
+            this.removeLayerFromMap(layer);
+            mapCollection.getMap("2D").removeLayer(layer);
         }
     }
 };
@@ -168,6 +196,18 @@ export default {
                     @click="openStep(7)"
                     @backClick="openStep(6)"
                 >
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="openWMS()"
+                    >
+                        Open WMS
+                    </button>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="closeWMS()"
+                    >
+                        Close WMS
+                    </button>
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                 </AccordionItem>
             </div>
