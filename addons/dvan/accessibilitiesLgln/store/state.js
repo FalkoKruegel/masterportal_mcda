@@ -4,7 +4,7 @@ const state = {
     id: "AccessibilitiesLgln",
     // mandatory defaults for config.json parameters
     name: "Erreichbarkeiten",
-    icon: "bi-geo-alt-fill",
+    icon: "bi-rainbow",
     renderToWindow: false,
     resizableWindow: true,
     isVisibleInMenu: true,
