@@ -25,7 +25,7 @@ export default {
         }
     },
     emits: [
-        "click",
+        "click"
     ],
     data () {
         return {

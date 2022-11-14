@@ -107,8 +107,7 @@ export default {
                     <AccordionFooter
                         first-last-item="first"
                         @forwardClick="openStep(1)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Untersuchungsgebiet"
@@ -120,8 +119,7 @@ export default {
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 3: Relevante Infrastrukturen"
@@ -133,8 +131,7 @@ export default {
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 4: Infrastrukturparameter"
@@ -145,8 +142,7 @@ export default {
                     <AccordionFooter
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Erreichbarkeit"
@@ -157,8 +153,7 @@ export default {
                     <AccordionFooter
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Gewichtung"
@@ -169,8 +164,7 @@ export default {
                     <AccordionFooter
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 7: Zusammenfassung und Berechnung"
@@ -181,8 +175,7 @@ export default {
                     <AccordionFooter
                         @backClick="openStep(5)"
                         @forwardClick="openStep(7)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 8: Ergebnisse"
@@ -193,8 +186,7 @@ export default {
                     <AccordionFooter
                         first-last-item="last"
                         @backClick="openStep(6)"
-                    >
-                    </AccordionFooter>
+                    />
                 </AccordionItem>
             </div>
         </template>

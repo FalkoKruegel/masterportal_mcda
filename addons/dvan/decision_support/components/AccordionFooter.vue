@@ -12,7 +12,7 @@ export default {
             default: ""
         }
     },
-    emits:[
+    emits: [
         "backClick",
         "forwardClick"
     ],
@@ -51,7 +51,7 @@ export default {
                 </button>
                 <!--following button is a dummy button for use cases in the future like loading old configurations-->
                 <button
-                    v-if="firstLastItem == 'first'"
+                    v-if="firstLastItem === 'first'"
                     type="button"
                     class="btn btn-outline-primary btn-sm"
                     disabled="true"
@@ -73,7 +73,7 @@ export default {
                 <!--following button is a dummy button for use cases in the future like starting the calculations when all user-input is valid-->
                 <!--There should be an attribute to steer the disabled option of the button. Users should only be allowed to click the button if all input data is valid-->
                 <button
-                    v-if="firstLastItem == 'last'"
+                    v-if="firstLastItem === 'last'"
                     type="button"
                     class="btn btn-outline-primary btn-sm"
                     disabled="true"
