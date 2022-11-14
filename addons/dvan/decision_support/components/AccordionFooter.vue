@@ -71,6 +71,7 @@ export default {
                     Weiter
                 </button>
                 <!--following button is a dummy button for use cases in the future like starting the calculations when all user-input is valid-->
+                <!--There should be an attribute to steer the disabled option of the button. Users should only be allowed to click the button if all input data is valid-->
                 <button
                     v-if="firstLastItem == 'last'"
                     type="button"
