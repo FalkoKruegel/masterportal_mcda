@@ -28,7 +28,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     created () {
         this.$on("close", this.close);
