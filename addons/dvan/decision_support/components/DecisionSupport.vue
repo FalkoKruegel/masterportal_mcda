@@ -4,8 +4,8 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
-import {getDummyLayer} from "./util.js";
-import mapCollection from "/src/core/maps/mapCollection.js";
+import {addLayer, removeLayer} from "../util/map_util.js";
+import {getDummyLayer} from "../util/dummy_layer.js";
 
 export default {
     name: "DecisionSupport",
@@ -29,10 +29,6 @@ export default {
     },
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
-        ...mapGetters("Maps", [
-            "getLayerById",
-            "getLayers"
-        ])
     },
     created () {
         this.$on("close", this.close);
@@ -50,11 +46,6 @@ export default {
     methods: {
         ...mapActions("Tools/DecisionSupport", [
             "initialize"
-        ]),
-        ...mapMutations("Maps", [
-            "addLayerToMap",
-            "removeLayerFromMap",
-            "setLayerVisibility"
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
@@ -89,20 +80,13 @@ export default {
         },
 
         openWMS () {
-            // this.getLayers.getArray().forEach(layer => {
-            //     console.log(layer.get("id"));
-            // });
             const layer = getDummyLayer();
 
-            this.addLayerToMap(layer);
-            layer.setVisible(true);
+            addLayer(layer);
         },
 
         closeWMS () {
-            const layer = this.getLayerById({layerId: "dummy"});
-
-            this.removeLayerFromMap(layer);
-            mapCollection.getMap("2D").removeLayer(layer);
+            removeLayer("dummy");
         }
     }
 };
