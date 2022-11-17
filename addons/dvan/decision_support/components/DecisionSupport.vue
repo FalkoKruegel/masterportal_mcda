@@ -2,6 +2,7 @@
 <script>
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
+import AccordionFooter from "./AccordionFooter.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -9,7 +10,8 @@ export default {
     name: "DecisionSupport",
     components: {
         ToolTemplate,
-        AccordionItem
+        AccordionItem,
+        AccordionFooter
     },
     data () {
         return {
@@ -99,76 +101,92 @@ export default {
                     title="Schritt 1: Tools zur Entscheidungsunterstützung"
                     status="valid"
                     :opened="steps[0]"
-                    first-last-item="first"
                     @click="openStep(0)"
-                    @forwardClick="openStep(1)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        first-last-item="first"
+                        @forwardClick="openStep(1)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Untersuchungsgebiet"
                     status="invalid"
                     :opened="steps[1]"
                     @click="openStep(1)"
-                    @backClick="openStep(0)"
-                    @forwardClick="openStep(2)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @forwardClick="openStep(2)"
+                        @backClick="openStep(0)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 3: Relevante Infrastrukturen"
                     status="deactivated"
                     :opened="steps[2]"
                     @click="openStep(2)"
-                    @backClick="openStep(1)"
-                    @forwardClick="openStep(3)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @forwardClick="openStep(3)"
+                        @backClick="openStep(1)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 4: Infrastrukturparameter"
                     :opened="steps[3]"
                     @click="openStep(3)"
-                    @backClick="openStep(2)"
-                    @forwardClick="openStep(4)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @backClick="openStep(2)"
+                        @forwardClick="openStep(4)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Erreichbarkeit"
                     :opened="steps[4]"
                     @click="openStep(4)"
-                    @backClick="openStep(3)"
-                    @forwardClick="openStep(5)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @backClick="openStep(3)"
+                        @forwardClick="openStep(5)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Gewichtung"
                     :opened="steps[5]"
                     @click="openStep(5)"
-                    @backClick="openStep(4)"
-                    @forwardClick="openStep(6)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @backClick="openStep(4)"
+                        @forwardClick="openStep(6)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 7: Zusammenfassung und Berechnung"
                     :opened="steps[6]"
                     @click="openStep(6)"
-                    @backClick="openStep(5)"
-                    @forwardClick="openStep(7)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        @backClick="openStep(5)"
+                        @forwardClick="openStep(7)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 8: Ergebnisse"
                     :opened="steps[7]"
-                    first-last-item="last"
                     @click="openStep(7)"
-                    @backClick="openStep(6)"
                 >
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccordionFooter
+                        first-last-item="last"
+                        @backClick="openStep(6)"
+                    />
                 </AccordionItem>
             </div>
         </template>
