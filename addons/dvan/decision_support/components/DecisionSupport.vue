@@ -4,8 +4,8 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
-import {addLayer, removeLayer} from "../util/map_util.js";
-import {getDummyLayer} from "../util/dummy_layer.js";
+import {getDummyLayer} from "../utils/dummy_layer.js";
+import {addLayer, removeLayer} from "../utils/map.js";
 
 export default {
     name: "DecisionSupport",

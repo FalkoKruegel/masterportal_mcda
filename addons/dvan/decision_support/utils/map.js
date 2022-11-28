@@ -1,66 +1,43 @@
 import store from "/src/app-store";
 import * as bridge from "/src/core/layers/RadioBridge.js";
+import {addTreeEntry, closeTreeEntry} from "./tree_entry.js";
+import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 
 /**
  * adds Layer to Map
  * @param {any} layer layer to be added
+ * @param {function} legend_func function returning list of legend items
  * @returns {void}
  */
 function addLayer (layer) {
     store.dispatch("Maps/addLayer", layer);
-    const style = getStyleModelById("schoolStyle"),
-        legendinfo = style.getLegendInfos(),
-        legend = ["Point"];
 
-    layer.setStyle((feature) => {
-        return style.createStyle(feature, false);
-    });
-    style.createLegendInfo([]);
+    addLegendEntry(layer.get("id"), layer.get("name"), layer.get("legend"));
 
-    legendinfo.forEach(async element => {
-        const l = {},
-            img = element.styleObject.getStyle().getImage().getImage(1);
+    addTreeEntry(layer.get("id"), layer.get("name"), {
+        onTransparency: (value) => {
+            const opacity = (100 - value) / 100;
 
-        let png = null;
-
-        if (typeof img.toBlob !== "function") {
-            png = img.src;
-        }
-        else {
-            png = URL.createObjectURL(await canvasToPNG(img));
-        }
-        l.name = element.label;
-        l.graphic = png;
-        legend.push(l);
-    });
-    store.dispatch("Legend/addLegend", {
-        id: layer.get("id"),
-        name: "test",
-        legend: legend
+            layer.setOpacity(opacity);
+        },
+        onZIndex: (value) => layer.setZIndex(value),
+        onVisibile: (value) => layer.setVisible(value),
+        onClose: () => removeLayer(layer.get("id"))
     });
 }
 
 /**
- * converts a canvas to image/png blob
- * @param {any} canvas canvas to be converted
- * @returns {any} image blob
- */
-async function canvasToPNG (canvas) {
-    return new Promise(resolve => canvas.toBlob((blob) => resolve(blob), "image/png"));
-}
-
-/**
- * removes layer from map
- * @param {string} id layer id
+ * removes layer (and legend/tree entry) from map
+ * @param {*} id layer id
  * @returns {void}
  */
 function removeLayer (id) {
+    closeTreeEntry(id);
+    closeLegendEntry(id);
+
     const layer = getLayerById(id);
 
-    if (layer !== undefined) {
-        store.commit("Maps/removeLayerFromMap", layer);
-        store.dispatch("Legend/removeLegend", id);
-    }
+    store.commit("Maps/removeLayerFromMap", layer);
 }
 
 /**
@@ -137,4 +114,4 @@ function getStyleModelById (id) {
     return bridge.getStyleModelById(id);
 }
 
-export {addLayer, removeLayer, getLayerById, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener};
+export {addLayer, getLayerById, removeLayer, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener};
