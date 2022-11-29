@@ -10,6 +10,10 @@ import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
  * @returns {void}
  */
 function addLayer (layer) {
+    if (getLayerById(layer.get("id")) !== undefined) {
+        removeLayer(layer.get("id"));
+    }
+
     store.dispatch("Maps/addLayer", layer);
 
     addLegendEntry(layer.get("id"), layer.get("name"), layer.get("legend"));

@@ -1,7 +1,9 @@
 import store from "/src/app-store";
 import * as bridge from "/src/core/layers/RadioBridge.js";
-import {Radio} from "backbone";
 import {getLayerById} from "./map.js";
+import {Radio} from "backbone";
+
+let count = 100;
 
 const onTransparencyChanged = {},
     onZIndexChanged = {},
@@ -17,39 +19,38 @@ Radio.channel("ModelList").on({
         }
     },
     "moveModelInTree": (model, movement) => {
-        for (const id in onZIndexChanged) {
-            if (model.get("id") === id) {
-                onZIndexChanged[id](model.get("selectionIDX") + movement);
-            }
+        if (model.get("id") in onZIndexChanged) {
+            onZIndexChanged[model.get("id")](model.get("selectionIDX") + movement);
         }
     },
     "selectedChanged": (model, value) => {
-        for (const id in onVisibileChanged) {
-            if (model.get("id") === id) {
-                if (model.get("isSelected") === true) {
-                    onVisibileChanged[id](value);
-                }
-            }
+        if (model.get("id") in onVisibileChanged && model.get("isSelected") === true) {
+            onVisibileChanged[model.get("id")](value);
         }
     },
     "updateSelection": (model) => {
-        for (const id in onCloseChanged) {
-            if (model.get("id") === id) {
-                if (model.get("isSelected") === false) {
-                    Radio.trigger("ModelList", "removeModelsById", id);
-                    const layer = getLayerById(id);
-
-                    store.commit("Maps/removeLayerFromMap", layer);
-                    onCloseChanged[id](false);
-                    removeEventListener("transparency", id);
-                    removeEventListener("zindex", id);
-                    removeEventListener("visibile", id);
-                    removeEventListener("close", id);
-                }
-            }
+        if (model === undefined) {
+            return;
+        }
+        if (model.get("id") in onCloseChanged && model.get("isSelected") === false) {
+            close(model.get("id"));
         }
     }
 });
+
+/**
+ * closes entry
+ * @param {*} id model id
+ * @returns {void}
+ */
+function close (id) {
+    const onClose = onCloseChanged[id];
+
+    closeTreeEntry(id.replace("_m", ""));
+    if (onClose !== undefined) {
+        onClose(false);
+    }
+}
 
 /**
  * adds event listener to listen on tree-item events
@@ -95,8 +96,8 @@ function removeEventListener (event, id) {
 }
 
 /**
- * closes a tree entry
- * @param {*} id layer id
+ * close a tree entry (does not trigger onClose)
+ * @param {*} id id of tree entry/layer
  * @returns {void}
  */
 function closeTreeEntry (id) {
@@ -104,8 +105,19 @@ function closeTreeEntry (id) {
         model = Radio.request("ModelList", "getModelByAttributes", {id: model_id});
 
     if (model !== undefined) {
-        model.set("isSelected", false);
-        Radio.trigger("ModelList", "selectedChanged", model, false);
+        removeEventListener("transparency", model_id);
+        removeEventListener("zindex", model_id);
+        removeEventListener("visibile", model_id);
+        removeEventListener("close", model_id);
+
+        const coll = Radio.request("ModelList", "getCollection"),
+            filtered = coll.filter(item => item.id !== model_id),
+            layer = getLayerById(model_id);
+
+        coll.set(filtered);
+        Radio.trigger("ModelList", "updateSelection");
+
+        store.commit("Maps/removeLayerFromMap", layer);
     }
 }
 
@@ -118,7 +130,6 @@ function closeTreeEntry (id) {
  */
 function addTreeEntry (id, name, {onClose, onTransparency, onZIndex, onVisibile}) {
     const model_id = id + "_m",
-
         attr = {
             id: model_id,
             name: name,
@@ -128,7 +139,7 @@ function addTreeEntry (id, name, {onClose, onTransparency, onZIndex, onVisibile}
             isSelected: true,
             features: [],
             hitTolerance: 0,
-            parentId: "",
+            parentId: "SelectedLayer",
             isNeverVisibleInTree: false,
             isRemovable: true,
             isSettingVisible: true,
@@ -141,11 +152,13 @@ function addTreeEntry (id, name, {onClose, onTransparency, onZIndex, onVisibile}
             showSettings: true
         };
 
-    closeTreeEntry(model_id);
+    close(model_id);
 
     Radio.trigger("ModelList", "addModel", attr);
     Radio.trigger("ModelList", "updateLayerView");
     Radio.trigger("ModelList", "updateSelection");
+    Radio.trigger("ModelList", "setModelAttributesById", model_id, {cid: "c" + String(count)});
+    count++;
 
     addEventListener("transparency", model_id, onTransparency);
     addEventListener("zindex", model_id, onZIndex);
