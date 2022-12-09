@@ -6389,5 +6389,113 @@
           }
       }
     ]
+  },
+  {
+    "styleId": "schoolStyle",
+    "rules": [
+      {
+        "conditions": {
+          "properties": {
+            "STYP": 0
+          }
+        },
+        "style": {
+          "type": "circle",
+          "circleRadius": 10,
+          "circleFillColor": [
+            255,
+            0,
+            0,
+            1
+          ],
+          "legendValue": "Hausarzt"
+        }
+      },
+      {
+        "conditions": {
+          "properties": {
+            "STYP": 10
+          }
+        },
+        "style": {
+          "type": "circle",
+          "circleRadius": 5,
+          "circleFillColor": [
+            0,
+            200,
+            200,
+            1
+          ],
+          "legendValue": "Augenarzt"
+        }
+      },
+      {
+        "conditions": {
+          "properties": {
+            "STYP": 20
+          }
+        },
+        "style": {
+          "type": "circle",
+          "circleRadius": 5,
+          "circleFillColor": [
+            0,
+            255,
+            255,
+            1
+          ],
+          "legendValue": "Chirurg oder Orthopäde"
+        }
+      },
+      {
+        "conditions": {
+          "properties": {
+            "STYP": 30
+          }
+        },
+        "style": {
+          "type": "circle",
+          "circleRadius": 5,
+          "circleFillColor": [
+            50,
+            100,
+            100,
+            1
+          ],
+          "legendValue": "HNO-Arzt"
+        }
+      },
+      {
+        "conditions": {
+          "properties": {
+            "STYP": 40
+          }
+        },
+        "style": {
+          "type": "circle",
+          "circleRadius": 5,
+          "circleFillColor": [
+            50,
+            200,
+            200,
+            1
+          ],
+          "legendValue": "Hautarzt"
+        }
+      },
+      {
+        "style": {
+          "type": "circle",
+          "circleRadius": 5,
+          "circleFillColor": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "legendValue": "Sonstige"
+        }
+      }
+    ]
   }
 ]

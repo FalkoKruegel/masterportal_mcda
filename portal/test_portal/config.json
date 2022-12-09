@@ -152,7 +152,21 @@
 						"name":"Ärzte Niedersachsen",
 						"visibility":false,
 						"styleId":"arzt_krankenhaus"
-						}						
+						},
+						{
+							"id": "12",
+							"name": "1",
+							"visibility":false,
+							"isNeverVisibleInTree": true,
+							"styleId": "schoolStyle"
+						},
+						{
+							"id": "12",
+							"name": "2",
+							"visibility":false,
+							"isNeverVisibleInTree": true,
+							"styleId": "physicianStyle"
+						}					
 					]
 				},
 				{
