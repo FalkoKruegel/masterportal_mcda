@@ -158,6 +158,7 @@ function addTreeEntry (id, name, {onClose, onTransparency, onZIndex, onVisibile}
     Radio.trigger("ModelList", "updateLayerView");
     Radio.trigger("ModelList", "updateSelection");
     const model = Radio.request("ModelList", "getModelByAttributes", {id: model_id});
+
     model.cid = "c" + String(count);
     count++;
 
