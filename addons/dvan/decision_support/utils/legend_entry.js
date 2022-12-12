@@ -36,21 +36,21 @@ function addLegendEntry (id, name, legend) {
     }
 
     const showLegend = computed(() => {
-            return store.getters["Legend/showLegend"];
-        }),
+        return store.getters["Legend/showLegend"];
+    });
 
-        unwatch = watch(showLegend, (newVal) => {
-            if (getLayerById(id) === null) {
-                unwatch();
-                return;
-            }
-            if (newVal === true) {
-                func();
-            }
-            if (newVal === false) {
-                store.dispatch("Legend/removeLegend", id);
-            }
-        });
+    const unwatch = watch(showLegend, (newVal) => {
+        if (getLayerById(id) === null) {
+            unwatch();
+            return;
+        }
+        if (newVal === true) {
+            func();
+        }
+        if (newVal === false) {
+            store.dispatch("Legend/removeLegend", id);
+        }
+    });
 }
 
 /**
