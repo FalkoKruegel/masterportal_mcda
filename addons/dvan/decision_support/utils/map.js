@@ -1,5 +1,6 @@
 import store from "/src/app-store";
 import * as bridge from "/src/core/layers/RadioBridge.js";
+import {addTreeEntry, closeTreeEntry} from "./tree_entry.js";
 import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 
 /**
@@ -15,6 +16,17 @@ function addLayer (layer) {
     store.dispatch("Maps/addLayer", layer);
 
     addLegendEntry(layer.get("id"), layer.get("name"), layer.get("legend"));
+
+    addTreeEntry(layer.get("id"), layer.get("name"), {
+        onTransparency: (value) => {
+            const opacity = (100 - value) / 100;
+
+            layer.setOpacity(opacity);
+        },
+        onZIndex: (value) => layer.setZIndex(value),
+        onVisibile: (value) => layer.setVisible(value),
+        onClose: () => removeLayer(layer.get("id"))
+    });
 }
 
 /**
@@ -23,6 +35,7 @@ function addLayer (layer) {
  * @returns {void}
  */
 function removeLayer (id) {
+    closeTreeEntry(id);
     closeLegendEntry(id);
 
     const layer = getLayerById(id);
