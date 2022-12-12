@@ -1,5 +1,6 @@
 import store from "/src/app-store";
 import * as bridge from "/src/core/layers/RadioBridge.js";
+import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 
 /**
  * adds Layer to Map
@@ -12,6 +13,8 @@ function addLayer (layer) {
     }
 
     store.dispatch("Maps/addLayer", layer);
+
+    addLegendEntry(layer.get("id"), layer.get("name"), layer.get("legend"));
 }
 
 /**
@@ -20,6 +23,8 @@ function addLayer (layer) {
  * @returns {void}
  */
 function removeLayer (id) {
+    closeLegendEntry(id);
+
     const layer = getLayerById(id);
 
     store.commit("Maps/removeLayerFromMap", layer);
