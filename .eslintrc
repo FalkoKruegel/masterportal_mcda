@@ -116,7 +116,7 @@
         "no-useless-return": "error",
         "no-var": "error",
         "no-void": "error",
-        "one-var": "error",
+        "one-var": "warn",
         "one-var-declaration-per-line": "error",
         "prefer-const": "error",
         "prefer-numeric-literals": "error",
