@@ -5,6 +5,8 @@ import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
+import {addLayer, removeLayer} from "../utils/map.js";
 
 export default {
     name: "DecisionSupport",
@@ -77,6 +79,36 @@ export default {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
+        },
+
+        openWMS () {
+            const layer = getWMSLayer();
+
+            addLayer(layer);
+        },
+
+        closeWMS () {
+            removeLayer("wms");
+        },
+
+        openDummy () {
+            const layer = getDummyLayer();
+
+            addLayer(layer);
+        },
+
+        closeDummy () {
+            removeLayer("dummy");
+        },
+
+        openDummy2 () {
+            const layer = getDummyLayer2();
+
+            addLayer(layer);
+        },
+
+        closeDummy2 () {
+            removeLayer("dummy2");
         }
     }
 };
@@ -182,6 +214,44 @@ export default {
                     :opened="steps[7]"
                     @click="openStep(7)"
                 >
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="openWMS()"
+                    >
+                        Open WMS
+                    </button>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="closeWMS()"
+                    >
+                        Close WMS
+                    </button>
+                    <br>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="openDummy()"
+                    >
+                        Open Dummy
+                    </button>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="closeDummy()"
+                    >
+                        Close Dummy
+                    </button>
+                    <br>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="openDummy2()"
+                    >
+                        Open Dummy2
+                    </button>
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        @click="closeDummy2()"
+                    >
+                        Close Dummy2
+                    </button>
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                     <AccordionFooter
                         first-last-item="last"
