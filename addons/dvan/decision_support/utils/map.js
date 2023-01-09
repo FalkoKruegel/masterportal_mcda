@@ -6,7 +6,6 @@ import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 /**
  * adds Layer to Map
  * @param {any} layer layer to be added
- * @param {function} legend_func function returning list of legend items
  * @returns {void}
  */
 function addLayer (layer) {

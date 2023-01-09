@@ -5,10 +5,10 @@ import {Radio} from "backbone";
 
 let count = 100;
 
-const onTransparencyChanged = {},
-    onZIndexChanged = {},
-    onVisibileChanged = {},
-    onCloseChanged = {};
+const onTransparencyChanged = {};
+const onZIndexChanged = {};
+const onVisibileChanged = {};
+const onCloseChanged = {};
 
 Radio.channel("ModelList").on({
     "transparencyChanged": () => {
@@ -101,8 +101,8 @@ function removeEventListener (event, id) {
  * @returns {void}
  */
 function closeTreeEntry (id) {
-    const model_id = id + "_m",
-        model = Radio.request("ModelList", "getModelByAttributes", {id: model_id});
+    const model_id = id + "_m";
+    const model = Radio.request("ModelList", "getModelByAttributes", {id: model_id});
 
     if (model !== undefined) {
         removeEventListener("transparency", model_id);
@@ -110,9 +110,9 @@ function closeTreeEntry (id) {
         removeEventListener("visibile", model_id);
         removeEventListener("close", model_id);
 
-        const coll = Radio.request("ModelList", "getCollection"),
-            filtered = coll.filter(item => item.id !== model_id),
-            layer = getLayerById(model_id);
+        const coll = Radio.request("ModelList", "getCollection");
+        const filtered = coll.filter(item => item.id !== model_id);
+        const layer = getLayerById(model_id);
 
         coll.set(filtered);
         Radio.trigger("ModelList", "updateSelection");
@@ -129,35 +129,37 @@ function closeTreeEntry (id) {
  * @returns {void}
  */
 function addTreeEntry (id, name, {onClose, onTransparency, onZIndex, onVisibile}) {
-    const model_id = id + "_m",
-        attr = {
-            id: model_id,
-            name: name,
-            typ: "VectorBase",
-            type: "layer",
-            gfiAttributes: "ignore",
-            isSelected: true,
-            features: [],
-            hitTolerance: 0,
-            parentId: "SelectedLayer",
-            isNeverVisibleInTree: false,
-            isRemovable: true,
-            isSettingVisible: true,
-            isVisibleInMap: true,
-            layerInfoClicked: false,
-            singleBaselayer: false,
-            maxScale: "1000000000",
-            minScale: "0",
-            selectionIDX: 0,
-            showSettings: true
-        };
+    const model_id = id + "_m";
+    const attr = {
+        id: model_id,
+        name: name,
+        typ: "VectorBase",
+        type: "layer",
+        gfiAttributes: "ignore",
+        isSelected: true,
+        features: [],
+        hitTolerance: 0,
+        parentId: "SelectedLayer",
+        isNeverVisibleInTree: false,
+        isRemovable: true,
+        isSettingVisible: true,
+        isVisibleInMap: true,
+        layerInfoClicked: false,
+        singleBaselayer: false,
+        maxScale: "1000000000",
+        minScale: "0",
+        selectionIDX: 0,
+        showSettings: true
+    };
 
     close(model_id);
 
     Radio.trigger("ModelList", "addModel", attr);
     Radio.trigger("ModelList", "updateLayerView");
     Radio.trigger("ModelList", "updateSelection");
-    Radio.trigger("ModelList", "setModelAttributesById", model_id, {cid: "c" + String(count)});
+    const model = Radio.request("ModelList", "getModelByAttributes", {id: model_id});
+
+    model.cid = "c" + String(count);
     count++;
 
     addEventListener("transparency", model_id, onTransparency);

@@ -13,12 +13,12 @@ async function canvasToPNG (canvas) {
  * @returns {*} legend function
  */
 async function getLegendFromStyleModel (style) {
-    const legendinfo = style.getLegendInfos(),
-        legend = [];
+    const legendinfo = style.getLegendInfos();
+    const legend = [];
 
     for (const element of legendinfo) {
-        const l = {},
-            img = element.styleObject.getStyle().getImage().getImage(1);
+        const l = {};
+        const img = element.styleObject.getStyle().getImage().getImage(1);
 
         let png = null;
 

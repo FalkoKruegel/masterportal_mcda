@@ -53,19 +53,19 @@ function getWMSLayer () {
 */
 function getDummyLayer () {
     const format = new GeoJSON({
-            dataProjection: "EPSG:4326",
-            featureProjection: "EPSG:25832"
-        }),
-        features = format.readFeatures(schools),
-        style = getStyleModelById("schoolStyle"),
+        dataProjection: "EPSG:4326",
+        featureProjection: "EPSG:25832"
+    });
+    const features = format.readFeatures(schools);
+    const style = getStyleModelById("schoolStyle");
 
-        layer = new VectorImageLayer({
-            id: "dummy",
-            name: "Dummy Layer",
-            source: new VectorSource({
-                features: features
-            })
-        });
+    const layer = new VectorImageLayer({
+        id: "dummy",
+        name: "Dummy Layer",
+        source: new VectorSource({
+            features: features
+        })
+    });
 
     layer.setStyle((feature) => {
         return style.createStyle(feature, false);
@@ -87,19 +87,19 @@ function getDummyLayer () {
 */
 function getDummyLayer2 () {
     const format = new GeoJSON({
-            dataProjection: "EPSG:4326",
-            featureProjection: "EPSG:25832"
-        }),
-        features = format.readFeatures(schools),
-        style = getStyleModelById("arzt_krankenhaus"),
+        dataProjection: "EPSG:4326",
+        featureProjection: "EPSG:25832"
+    });
+    const features = format.readFeatures(schools);
+    const style = getStyleModelById("arzt_krankenhaus");
 
-        layer = new VectorImageLayer({
-            id: "dummy2",
-            name: "Dummy Layer2",
-            source: new VectorSource({
-                features: features
-            })
-        });
+    const layer = new VectorImageLayer({
+        id: "dummy2",
+        name: "Dummy Layer2",
+        source: new VectorSource({
+            features: features
+        })
+    });
 
     layer.setStyle((feature) => {
         return style.createStyle(feature, false);
