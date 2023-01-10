@@ -153,8 +153,9 @@ export default {
                     text="Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
                     tooltip-text="Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
                 />
-                <br>
-                <p>Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem Link abrufen: [Link]</p>
+                <div class="callout">
+                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem Link abrufen: [Link]
+                </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
     </div>
@@ -164,5 +165,12 @@ export default {
 #selected_infrastructure.accordion {
     --bs-accordion-btn-padding-x: 10px;
     --bs-accordion-btn-padding-y: 2px;
+}
+.callout {
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    background-color: var(--bd-callout-bg, var(--bs-gray-100));
+    border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
 }
 </style>
