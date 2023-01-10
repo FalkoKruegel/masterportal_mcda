@@ -20,10 +20,29 @@ export default {
         "text": {
             type: String,
             default: ""
+        },
+        // status string: [valid, invalid, deactivated]
+        "status": {
+            type: String,
+            default: "default"
         }
     },
     emits: [
     ],
+    computed: {
+        buttonStyle () {
+            if (this.status === "deactivated") {
+                return {"background-color": "rgba(220,220,220,0.3)"};
+            }
+            if (this.status === "valid") {
+                return {"background-color": "rgba(144,228,144,0.3)"};
+            }
+            if (this.status === "invalid") {
+                return {"background-color": "rgba(255,0,0,0.3)"};
+            }
+            return {"background-color": "rgba(206,211,247,0.3)"};
+        }
+    },
     methods: {
     }
 };
@@ -36,8 +55,10 @@ export default {
             class="accordion-header"
         >
             <button
-                class="accordion-button"
+                class="accordion-button collapsed"
                 type="button"
+                :style="buttonStyle"
+                :disabled="status==='deactivated'"
                 data-bs-toggle="collapse"
                 :data-bs-target="'#' + id + 'content'"
                 aria-expanded="false"
