@@ -54,8 +54,8 @@ export default {
             :value="value"
             class="form-check-input"
             type="checkbox"
-            @change="$emit('input', !value)"
             :disabled="disabled"
+            @change="$emit('input', !value)"
         >
         <label
             class="form-check-label"

@@ -29,6 +29,31 @@ export default {
                 }
             }
             return null;
+        },
+
+        localSupplyStatus () {
+            for (const item in this.stepThree.local_supply) {
+                if (this.stepThree.local_supply[item] === true) {
+                    return "valid";
+                }
+            }
+            return "default";
+        },
+        healthStatus () {
+            for (const item in this.stepThree.health) {
+                if (this.stepThree.health[item] === true) {
+                    return "valid";
+                }
+            }
+            return "default";
+        },
+        educationStatus () {
+            for (const item in this.stepThree.education) {
+                if (this.stepThree.education[item] === true) {
+                    return "valid";
+                }
+            }
+            return "default";
         }
     },
     methods: {
@@ -53,6 +78,7 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion_3_1"
                 text="Nahversorgung"
+                :status="localSupplyStatus"
             >
                 <BootstrapCheckbox
                     id="Checkbox_3_1_1"
@@ -76,6 +102,7 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion_3_2"
                 text="Gesundheit"
+                :status="healthStatus"
             >
                 <BootstrapCheckbox
                     id="Checkbox_3_2_1"
@@ -148,9 +175,9 @@ export default {
                     :disabled="checkedPhysician === null || checkedPhysician === 'urologists' ? false : true"
                 />
                 <div
+                    v-if="checkedPhysician !== null"
                     id="Infotext_3_1"
                     class="callout"
-                    v-if="checkedPhysician !== null"
                 >
                     Es kann nur eine Arztgruppe ausgewählt werden
                 </div>
@@ -160,6 +187,7 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion_3_3"
                 text="Bildung"
+                :status="educationStatus"
             >
                 <BootstrapCheckbox
                     id="Checkbox_3_3_1"
@@ -189,7 +217,11 @@ export default {
                     id="Infotext_3_2"
                     class="callout"
                 >
-                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html" target="_blank" rel="noopener noreferrer">Link</a> abrufen.
+                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a
+                        href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >Link</a> abrufen.
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
