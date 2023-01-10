@@ -19,6 +19,15 @@ export default {
         "btnPaddingY": {
             type: String,
             default: "2px"
+        },
+        // padding to accordion content
+        "bodyPaddingX": {
+            type: String,
+            default: "10px"
+        },
+        "bodyPaddingY": {
+            type: String,
+            default: "10px"
         }
     },
     emits: [
@@ -32,7 +41,7 @@ export default {
     <div
         :id="id"
         class="accordion accordion-flush"
-        :style="{ '--bs-accordion-btn-padding-x': btnPaddingX, '--bs-accordion-btn-padding-y': btnPaddingY }"
+        :style="{ '--bs-accordion-btn-padding-x': btnPaddingX, '--bs-accordion-btn-padding-y': btnPaddingY, '--bs-accordion-body-padding-x': bodyPaddingX, '--bs-accordion-body-padding-y': bodyPaddingY }"
     >
         <slot />
     </div>

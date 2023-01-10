@@ -32,8 +32,11 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen<br> wollen:</p>
-        <BootstrapAccordion id="selected_infrastructures">
+        Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen<br> wollen:
+        <BootstrapAccordion
+            id="selected_infrastructures"
+            body-padding-y="5px"
+        >
             <!-- Nahversorgungs Infrastrukturen -->
             <BootstrapAccordionItem
                 id="collapseOne"
@@ -162,10 +165,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-#selected_infrastructure.accordion {
-    --bs-accordion-btn-padding-x: 10px;
-    --bs-accordion-btn-padding-y: 2px;
-}
 .callout {
     padding: 0.5rem;
     margin-top: 0.25rem;
