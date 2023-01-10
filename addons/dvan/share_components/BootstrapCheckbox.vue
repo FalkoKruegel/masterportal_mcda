@@ -25,8 +25,12 @@ export default {
         "tooltipText": {
             type: String,
             default: null
+        },
+        // true if checkbox disabled
+        "disabled": {
+            type: Boolean,
+            default: false
         }
-
     },
     emits: [
         // variable binding for v-model
@@ -51,6 +55,7 @@ export default {
             class="form-check-input"
             type="checkbox"
             @change="$emit('input', !value)"
+            :disabled="disabled"
         >
         <label
             class="form-check-label"

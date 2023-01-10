@@ -17,7 +17,19 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+
+        checkedPhysician () {
+            for (const item in this.stepThree.health) {
+                if (item === "pharmacies" || item === "clinics") {
+                    continue;
+                }
+                if (this.stepThree.health[item] === true) {
+                    return item;
+                }
+            }
+            return null;
+        }
     },
     methods: {
         ...mapActions("Tools/DecisionSupport", [
@@ -79,52 +91,69 @@ export default {
                     id="Checkbox_3_2_3"
                     v-model="stepThree.health.general_physicians"
                     text="Hausärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'general_physicians' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_4"
                     v-model="stepThree.health.paediatricians"
                     text="Kinder- und Jugendärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'paediatricians' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_5"
                     v-model="stepThree.health.ophthalmologists"
                     text="Augenärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'ophthalmologists' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_6"
                     v-model="stepThree.health.surgeons"
                     text="Chirurgen und Orthopäden"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'surgeons' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_7"
                     v-model="stepThree.health.gynaecologists"
                     text="Frauenärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'gynaecologists' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_8"
                     v-model="stepThree.health.dermatologists"
                     text="Hautärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'dermatologists' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_9"
                     v-model="stepThree.health.otolaryngologist"
                     text="HNO-Ärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'otolaryngologist' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_10"
                     v-model="stepThree.health.neurologist"
                     text="Nervenärzte"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'neurologist' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_11"
                     v-model="stepThree.health.psychotherapists"
                     text="Psychotherapeuten"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'psychotherapists' ? false : true"
                 />
                 <BootstrapCheckbox
                     id="Checkbox_3_2_12"
                     v-model="stepThree.health.urologists"
                     text="Urologen"
+                    :disabled="checkedPhysician === null || checkedPhysician === 'urologists' ? false : true"
                 />
+                <div
+                    id="Infotext_3_1"
+                    class="callout"
+                    v-if="checkedPhysician !== null"
+                >
+                    Es kann nur eine Arztgruppe ausgewählt werden
+                </div>
             </BootstrapAccordionItem>
 
             <!-- Bildungs Infrastrukturen -->
@@ -157,7 +186,7 @@ export default {
                     tooltip-text="Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
                 />
                 <div
-                    id="Infotext_3_1"
+                    id="Infotext_3_2"
                     class="callout"
                 >
                     Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html" target="_blank" rel="noopener noreferrer">Link</a> abrufen.
