@@ -160,7 +160,7 @@ export default {
                     id="Infotext_3_1"
                     class="callout"
                 >
-                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem Link abrufen: [Link]
+                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html" target="_blank" rel="noopener noreferrer">Link</a> abrufen.
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
