@@ -3,6 +3,7 @@
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
+import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
@@ -13,7 +14,8 @@ export default {
     components: {
         ToolTemplate,
         AccordionItem,
-        AccordionFooter
+        AccordionFooter,
+        SelectedInfrastructure
     },
     data () {
         return {
@@ -30,7 +32,26 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+
+        statusStepThree () {
+            for (const item in this.stepThree.local_supply) {
+                if (this.stepThree.local_supply[item] === true) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepThree.health) {
+                if (this.stepThree.health[item] === true) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepThree.education) {
+                if (this.stepThree.education[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -155,11 +176,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 3: Relevante Infrastrukturen"
-                    status="deactivated"
+                    :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <SelectedInfrastructure />
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
