@@ -4,6 +4,7 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
+import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
@@ -18,8 +19,10 @@ export default {
         AccordionItem,
         AccordionFooter,
         StartAnalysis,
+        ChooseStudyArea,
         SelectedInfrastructure,
-        SelectedPopulation
+        SelectedPopulation,
+        SelectedInfrastructure
     },
     data () {
         return {
@@ -178,12 +181,12 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 2: Untersuchungsgebiet"
+                    title="Schritt 2: Untersuchungsgebiet wählen"
                     status="invalid"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <ChooseStudyArea />
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
