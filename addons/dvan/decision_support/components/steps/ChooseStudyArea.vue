@@ -41,5 +41,22 @@ export default {
             v-model="stepTwo.ownArea"
             text="Eigene Gebietsselektion"
         />
+        <div
+            v-if="stepTwo.ownArea"
+            id="Callout2_1"
+            class="callout"
+        >
+            Ziehen Sie für die Gebietsselektion ein Kartenfenster auf!
+        </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.callout {
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    background-color: var(--bd-callout-bg, var(--bs-gray-100));
+    border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
+}
+</style>
