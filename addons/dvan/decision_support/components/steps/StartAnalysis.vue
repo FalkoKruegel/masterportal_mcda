@@ -1,8 +1,13 @@
 <script>
-import {mapGetters, mapActions, mapMutations} from "vuex";
+import {mapActions, mapMutations} from "vuex";
 
 export default {
     name: "StartAnalysis",
+    emits: [
+        // emitted events for buttons
+        // there should be another one for loading older analysis
+        "startAnalysis"
+    ],
     data () {
         return {
             loadAnalysis: false
@@ -15,18 +20,13 @@ export default {
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
         ])
-    },
-    emits: [
-        // emitted events for buttons
-        // there should be another one for loading older analysis
-        "startAnalysis"
-    ],
+    }
 };
 </script>
 
 <template lang="html">
     <div>
-        <p>Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.</p> 
+        <p>Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.</p>
         <p>Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden.</p>
         <!--container to adjust position of following buttons-->
         <div
