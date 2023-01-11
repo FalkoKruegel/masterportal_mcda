@@ -159,7 +159,6 @@ export default {
                     @click="openStep(0)"
                 >
                     <StartAnalysis
-                        @loadAnalysis=""
                         @startAnalysis="openStep(1)"
                     />
                 </AccordionItem>
