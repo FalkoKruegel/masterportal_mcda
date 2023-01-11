@@ -158,7 +158,10 @@ export default {
                     :opened="steps[0]"
                     @click="openStep(0)"
                 >
-                    <StartAnalysis />
+                    <StartAnalysis
+                        @loadAnalysis=""
+                        @startAnalysis="openStep(1)"
+                    />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Untersuchungsgebiet"
