@@ -3,6 +3,7 @@
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
+import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
@@ -15,6 +16,7 @@ export default {
         ToolTemplate,
         AccordionItem,
         AccordionFooter,
+        StartAnalysis,
         SelectedInfrastructure
     },
     data () {
@@ -151,16 +153,12 @@ export default {
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
-                    title="Schritt 1: Tools zur Entscheidungsunterstützung"
+                    title="Schritt 1: Analyse starten oder bestehende Analyse laden"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    <AccordionFooter
-                        first-last-item="first"
-                        @forwardClick="openStep(1)"
-                    />
+                    <StartAnalysis />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Untersuchungsgebiet"
