@@ -35,12 +35,14 @@ export default {
             id="Checkbox_2_1"
             v-model="stepTwo.wholeLowerSaxony"
             text="Niedersachsenweite Analyse"
+            :disabled="stepTwo.ownArea"
         />
         <!--there must be a bounding box-tool which is connected with the following checkbox-->
         <BootstrapCheckbox
             id="Checkbox_2_2"
             v-model="stepTwo.ownArea"
             text="Eigene Gebietsselektion"
+            :disabled="stepTwo.wholeLowerSaxony"
         />
         <!--following div will only be rendered if checkbox for own area (above) is checked-->
         <div
