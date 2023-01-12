@@ -57,6 +57,16 @@ export default {
             text="Transportmittel"
             :status="true"
         >
+            <div class="container text-center">
+                <div class="btn-group" role="group" aria-label="Transportmittel">
+                    <input type="radio" class="btn-check" name="options" id="PKW" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="PKW">PKW</label>
+                    <input type="radio" class="btn-check" name="options" id="ÖPNV" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="ÖPNV">ÖPNV</label>
+                    <input type="radio" class="btn-check" name="options" id="Fuß" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="Fuß">Fuß</label>
+                </div>
+            </div>
         </BootstrapAccordionItem>
         <BootstrapAccordionItem
             id="Accordion5_3"
