@@ -13,7 +13,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     methods: {
         ...mapActions("Tools/DecisionSupport", [
