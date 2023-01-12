@@ -1,5 +1,6 @@
 <script>
-import {mapActions, mapMutations} from "vuex";
+import {mapGetters, mapActions, mapMutations} from "vuex";
+import getters from "../../store/getters";
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
 
@@ -12,6 +13,34 @@ export default {
     data () {
         return {
         };
+    },
+    computed: {
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
+
+        localSupplyStatus () {
+            for (const item in this.stepThree.local_supply) {
+                if (this.stepThree.local_supply[item] === true) {
+                    return "valid";
+                }
+            }
+            return "deactivated";
+        },
+        healthStatus () {
+            for (const item in this.stepThree.health) {
+                if (this.stepThree.health[item] === true) {
+                    return "valid";
+                }
+            }
+            return "deactivated";
+        },
+        educationStatus () {
+            for (const item in this.stepThree.education) {
+                if (this.stepThree.education[item] === true) {
+                    return "valid";
+                }
+            }
+            return "deactivated";
+        }
     },
     methods: {
         ...mapActions("Tools/DecisionSupport", [
@@ -54,8 +83,9 @@ export default {
         </BootstrapAccordionItem>
         <BootstrapAccordionItem
             id="Accordion5_2"
+            parent-id="Accordion5"
             text="Transportmittel"
-            :status="true"
+            status="valid"
         >
             <div class="container text-center">
                 <div class="btn-group" role="group" aria-label="Transportmittel">
@@ -70,17 +100,19 @@ export default {
         </BootstrapAccordionItem>
         <BootstrapAccordionItem
             id="Accordion5_3"
+            parent-id="Accordion5"
             text="Schwellwerte Nahversorgung"
-            :status="true"
+            :status="localSupplyStatus"
         >
             <BootstrapAccordion
                 id="Accordion5_3"
+                body-padding-x="5px"
                 body-padding-y="5px"
             >
                 <BootstrapAccordionItem
                     id="Accordion5_3_1"
                     text="Schwellwerte Supermärkte"
-                    :status="true"
+                    status="deactivated"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -237,11 +269,13 @@ export default {
         </BootstrapAccordionItem>
         <BootstrapAccordionItem
             id="Accordion5_4"
+            parent-id="Accordion5"
             text="Schwellwerte Gesundheit"
-            :status="true"
+            :status="healthStatus"
         >
             <BootstrapAccordion
                 id="Accordion5_4"
+                body-padding-x="5px"
                 body-padding-y="5px"
             >
                 <BootstrapAccordionItem
@@ -404,11 +438,13 @@ export default {
         </BootstrapAccordionItem>
         <BootstrapAccordionItem
             id="Accordion5_5"
+            parent-id="Accordion5"
             text="Schwellwerte Bildung"
-            :status="true"
+            :status="educationStatus"
         >
             <BootstrapAccordion
                 id="Accordion5_5"
+                body-padding-x="5px"
                 body-padding-y="5px"
             >
                 <BootstrapAccordionItem
