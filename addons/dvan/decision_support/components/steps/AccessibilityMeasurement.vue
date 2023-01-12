@@ -59,7 +59,7 @@ export default {
         >
             <div class="container text-center">
                 <div class="btn-group" role="group" aria-label="Transportmittel">
-                    <input type="radio" class="btn-check" name="options" id="PKW" autocomplete="off">
+                    <input type="radio" class="btn-check" name="options" id="PKW" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="PKW">PKW</label>
                     <input type="radio" class="btn-check" name="options" id="ÖPNV" autocomplete="off">
                     <label class="btn btn-outline-primary" for="ÖPNV">ÖPNV</label>
@@ -82,18 +82,156 @@ export default {
                     text="Schwellwerte Supermärkte"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_3_2"
                     text="Schwellwerte Discounter"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_3_3"
                     text="Schwellwerte sonstige Lebensmittelgeschäfte"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
             </BootstrapAccordion>
         </BootstrapAccordionItem>
@@ -111,18 +249,156 @@ export default {
                     text="Schwellwerte Apotheken"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_4_2"
                     text="Schwellwerte Hochschulkliniken und Plankrankenhäuser"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_4_3"
                     text="Schwellwerte [VALUE]"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
             </BootstrapAccordion>
         </BootstrapAccordionItem>
@@ -140,24 +416,208 @@ export default {
                     text="Schwellwerte Kindertagesstätten"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_5_2"
                     text="Schwellwerte Primarschulen"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_5_3"
                     text="Schwellwerte Sekundarschulen Bereich I und II, ohne (Fach)Hochschulreife"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_5_4"
                     text="Schwellwerte Sekundarschulen Bereich I und II, mit (Fach)Hochschulreife"
                     :status="true"
                 >
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Sehr gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Gute Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Ausreichende Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-7 text-start">
+                                Mangelhafte Versorgungslage bis
+                            </div>
+                            <div class="col-3 text-end">
+                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                            </div>
+                            <div class="col text-start">
+                                min
+                            </div>
+                        </div>
+                    </div>
                 </BootstrapAccordionItem>
             </BootstrapAccordion>
         </BootstrapAccordionItem>
