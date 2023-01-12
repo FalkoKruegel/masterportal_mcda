@@ -8,6 +8,7 @@ import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
+import AccessibilityMeasurement from "./steps/AccessibilityMeasurement.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
@@ -24,7 +25,8 @@ export default {
         SelectedInfrastructure,
         SelectedPopulation,
         InfrastructureWeighting,
-        SettingsSummary
+        SettingsSummary,
+        AccessibilityMeasurement
     },
     data () {
         return {
@@ -243,11 +245,11 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 5: Erreichbarkeit"
+                    title="Schritt 5: Erreichbarkeitsberechnung"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccessibilityMeasurement />
                     <AccordionFooter
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
