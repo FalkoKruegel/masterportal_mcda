@@ -45,11 +45,9 @@ export default {
 
         statusStepTwo () {
             if (this.stepTwo.wholeLowerSaxony || this.stepTwo.ownArea) {
-                return "valid"
+                return "valid";
             }
-            else {
-                return "invalid"
-            }
+            return "invalid";
         },
         statusStepThree () {
             for (const item in this.stepThree.local_supply) {
