@@ -41,6 +41,14 @@ export default {
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
+        statusStepTwo () {
+            if (this.stepTwo.wholeLowerSaxony || this.stepTwo.ownArea) {
+                return "valid"
+            }
+            else {
+                return "invalid"
+            }
+        },
         statusStepThree () {
             for (const item in this.stepThree.local_supply) {
                 if (this.stepThree.local_supply[item] === true) {
@@ -182,7 +190,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Untersuchungsgebiet wählen"
-                    status="invalid"
+                    :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
