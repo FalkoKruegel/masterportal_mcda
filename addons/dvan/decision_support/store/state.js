@@ -35,6 +35,24 @@ const state = {
             secondary_1: false,
             secondary_2: false
         }
+    },
+    stepSix: {
+        local_supply: {
+            supermarket: 0,
+            discounter: 0,
+            others: 0
+        },
+        health: {
+            pharmacies: 0,
+            clinics: 0,
+            physicians: 0
+        },
+        education: {
+            nurseries: 0,
+            primary_schools: 0,
+            secondary_1: 0,
+            secondary_2: 0
+        }
     }
 };
 
