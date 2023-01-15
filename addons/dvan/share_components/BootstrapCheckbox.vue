@@ -51,11 +51,11 @@ export default {
     >
         <input
             :id="id"
-            :value="value"
+            :checked="value"
             class="form-check-input"
             type="checkbox"
             :disabled="disabled"
-            @change="$emit('input', !value)"
+            @input="e => $emit('input', e.target.checked)"
         >
         <label
             class="form-check-label"
