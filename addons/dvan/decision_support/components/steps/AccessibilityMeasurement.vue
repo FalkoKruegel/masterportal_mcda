@@ -17,6 +17,7 @@ export default {
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
+        // compute status of Accordion5_3
         localSupplyStatus () {
             for (const item in this.stepThree.local_supply) {
                 if (this.stepThree.local_supply[item] === true) {
@@ -25,6 +26,28 @@ export default {
             }
             return "deactivated";
         },
+        // compute status of Accordion5_3_1
+        supermarketStatus () {
+            if (this.stepThree.local_supply.supermarket === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_3_2
+        discounterStatus () {
+            if (this.stepThree.local_supply.discounter === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_3_3
+        othersStatus () {
+            if (this.stepThree.local_supply.others === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_4
         healthStatus () {
             for (const item in this.stepThree.health) {
                 if (this.stepThree.health[item] === true) {
@@ -33,6 +56,21 @@ export default {
             }
             return "deactivated";
         },
+        // compute status of Accordion5_4_1
+        pharmaciesStatus () {
+            if (this.stepThree.health.pharmacies === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_4_2
+        clinicsStatus () {
+            if (this.stepThree.health.clinics === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_5
         educationStatus () {
             for (const item in this.stepThree.education) {
                 if (this.stepThree.education[item] === true) {
@@ -40,6 +78,34 @@ export default {
                 }
             }
             return "deactivated";
+        },
+        // compute status of Accordion5_5_1
+        nurseriesStatus () {
+            if (this.stepThree.education.nurseries === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_5_2
+        primarySchoolsStatus () {
+            if (this.stepThree.education.primary_schools === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_5_3
+        secondary1Status () {
+            if (this.stepThree.education.secondary_1 === true) {
+                    return "valid";
+                }
+            return "deactivated"
+        },
+        // compute status of Accordion5_5_2
+        secondary2Status () {
+            if (this.stepThree.education.secondary_2 === true) {
+                    return "valid";
+                }
+            return "deactivated"
         }
     },
     methods: {
@@ -112,7 +178,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_3_1"
                     text="Schwellwerte Supermärkte"
-                    status="deactivated"
+                    :status="supermarketStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -164,7 +230,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_3_2"
                     text="Schwellwerte Discounter"
-                    :status="true"
+                    :status="discounterStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -216,7 +282,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_3_3"
                     text="Schwellwerte sonstige Lebensmittelgeschäfte"
-                    :status="true"
+                    :status="othersStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -281,7 +347,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_4_1"
                     text="Schwellwerte Apotheken"
-                    :status="true"
+                    :status="pharmaciesStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -333,7 +399,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_4_2"
                     text="Schwellwerte Hochschulkliniken und Plankrankenhäuser"
-                    :status="true"
+                    :status="clinicsStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -450,7 +516,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_5_1"
                     text="Schwellwerte Kindertagesstätten"
-                    :status="true"
+                    :status="nurseriesStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -502,7 +568,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_5_2"
                     text="Schwellwerte Primarschulen"
-                    :status="true"
+                    :status="primarySchoolsStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -554,7 +620,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_5_3"
                     text="Schwellwerte Sekundarschulen Bereich I und II, ohne (Fach)Hochschulreife"
-                    :status="true"
+                    :status="secondary1Status"
                 >
                     <div class="container">
                         <div class="row align-items-center">
@@ -606,7 +672,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion5_5_4"
                     text="Schwellwerte Sekundarschulen Bereich I und II, mit (Fach)Hochschulreife"
-                    :status="true"
+                    :status="secondary2Status"
                 >
                     <div class="container">
                         <div class="row align-items-center">
