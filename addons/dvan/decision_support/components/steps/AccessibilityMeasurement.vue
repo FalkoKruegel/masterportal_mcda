@@ -170,7 +170,7 @@ export default {
     <div>
         <p>Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.</p>
         <p>Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden. </p>
-    <BootstrapAccordion
+        <BootstrapAccordion
         id="Accordion5"
         body-padding-y="5px"
     >
@@ -202,11 +202,11 @@ export default {
         >
             <div class="container text-center">
                 <div class="btn-group" role="group" aria-label="Transportmittel">
-                    <input type="radio" class="btn-check" name="options" id="PKW" autocomplete="off" checked>
+                    <input type="radio" class="btn-check" name="options" id="PKW" v-model="stepFive.transport" value="pkw">
                     <label class="btn btn-outline-primary" for="PKW">PKW</label>
-                    <input type="radio" class="btn-check" name="options" id="ÖPNV" autocomplete="off">
+                    <input type="radio" class="btn-check" name="options" id="ÖPNV" v-model="stepFive.transport" value="public_transport">
                     <label class="btn btn-outline-primary" for="ÖPNV">ÖPNV</label>
-                    <input type="radio" class="btn-check" name="options" id="Fuß" autocomplete="off">
+                    <input type="radio" class="btn-check" name="options" id="Fuß" v-model="stepFive.transport" value="foot">
                     <label class="btn btn-outline-primary" for="Fuß">Fuß</label>
                 </div>
             </div>
@@ -233,7 +233,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.supermarket.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -244,7 +244,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.supermarket.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -255,7 +255,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.supermarket.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -266,7 +266,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.supermarket.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -285,7 +285,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.discounter.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -296,7 +296,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.discounter.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -307,7 +307,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.discounter.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -318,7 +318,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.discounter.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -337,7 +337,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.others.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -348,7 +348,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.others.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -359,7 +359,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.others.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -370,7 +370,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.local_supply.others.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -402,7 +402,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.pharmacies.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -413,7 +413,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.pharmacies.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -424,7 +424,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.pharmacies.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -435,7 +435,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.pharmacies.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -454,7 +454,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.clinics.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -465,7 +465,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.clinics.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -476,7 +476,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.clinics.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -487,7 +487,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.clinics.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -506,7 +506,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.physicians.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -517,7 +517,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.physicians.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -528,7 +528,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.physicians.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -539,7 +539,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.health.physicians.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -571,7 +571,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.nurseries.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -582,7 +582,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.nurseries.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -593,7 +593,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.nurseries.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -604,7 +604,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.nurseries.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -623,7 +623,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.primary_schools.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -634,7 +634,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.primary_schools.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -645,7 +645,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.primary_schools.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -656,7 +656,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.primary_schools.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -675,7 +675,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_1.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -686,7 +686,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_1.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -697,7 +697,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_1.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -708,7 +708,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_1.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -727,7 +727,7 @@ export default {
                                 Sehr gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="5" name="veryGood" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_2.very_good" name="veryGood" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -738,7 +738,7 @@ export default {
                                 Gute Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="10" name="good" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_2.good" name="good" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -749,7 +749,7 @@ export default {
                                 Ausreichende Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="25" name="satisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_2.sufficient" name="sufficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
@@ -760,7 +760,7 @@ export default {
                                 Mangelhafte Versorgungslage bis
                             </div>
                             <div class="col-3 text-end">
-                                <input type="number" step="1" min="0" max="40" value="30" name="notSatisfying" class="form-control">
+                                <input type="number" step="1" min="0" max="40" v-model="stepFive.education.secondary_2.deficient" name="deficient" class="form-control">
                             </div>
                             <div class="col text-start">
                                 min
