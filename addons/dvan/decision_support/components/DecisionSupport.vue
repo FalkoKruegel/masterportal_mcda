@@ -5,7 +5,6 @@ import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
-import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
@@ -248,11 +247,10 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Gewichtung"
-                    :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
-                    <InfrastructureWeighting />
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                     <AccordionFooter
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
