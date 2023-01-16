@@ -5,6 +5,7 @@ import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
+import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
@@ -19,6 +20,7 @@ export default {
         AccordionFooter,
         StartAnalysis,
         SelectedInfrastructure,
+        InfrastructureWeighting
         SelectedPopulation
     },
     data () {
@@ -56,6 +58,19 @@ export default {
             }
             return "invalid";
         },
+        statusStepSix () {
+            for (const item in this.stepSix.local_supply) {
+                if (this.stepSix.local_supply[item] !== 0) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepSix.health) {
+                if (this.stepSix.health[item] !== 0) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepSix.education) {
+                if (this.stepSix.education[item] !== 0) {
         statusStepFour () {
             for (const item in this.stepFour.standard) {
                 if (this.stepFour.standard[item] === true) {
@@ -226,10 +241,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Gewichtung"
+                    :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <InfrastructureWeighting />
                     <AccordionFooter
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
