@@ -70,6 +70,15 @@ export default {
                 }
             return "deactivated"
         },
+        // compute status of Accordion5_4_3
+        physiciansStatus () {
+            for (const item in this.stepThree.health) {
+                if ((item !== "pharmacies") && (item !== "clinics") && (this.stepThree.health[item] === true)) {
+                    return "valid";
+                }
+            }
+            return "deactivated";
+        },
         // compute status of Accordion5_5
         educationStatus () {
             for (const item in this.stepThree.education) {
@@ -106,6 +115,44 @@ export default {
                     return "valid";
                 }
             return "deactivated"
+        },
+        // compute name of physician in Accordion5_4_3
+        physicianName () {
+            for (const item in this.stepThree.health) {
+                if (item != "pharmacies" & item != "clinics" & this.stepThree.health[item] === true) {
+                    if (item === "general_physicians") {
+                        return "Schwellwert Hausärzte"
+                    }
+                    if (item === "paediatricians") {
+                        return "Schwellwert Kinder- und Jugendärzte"
+                    }
+                    if (item === "ophthalmologists") {
+                        return "Schwellwert Augenärzte"
+                    }
+                    if (item === "surgeons") {
+                        return "Schwellwert Chirurgen und Orthopäden"
+                    }
+                    if (item === "gynaecologists") {
+                        return "Schwellwert Frauenärzte"
+                    }
+                    if (item === "dermatologists") {
+                        return "Schwellwert Hautärzte"
+                    }
+                    if (item === "otolaryngologist") {
+                        return "Schwellwert HNO-Ärzte"
+                    }
+                    if (item === "neurologist") {
+                        return "Schwellwert Nervenärzte"
+                    }
+                    if (item === "psychotherapists") {
+                        return "Schwellwert Psychotherapeuten"
+                    }
+                    if (item === "urologists") {
+                        return "Schwellwert Urologen"
+                    }
+                }
+            }
+            return "Schwellwert Arzttyp";
         }
     },
     methods: {
@@ -450,8 +497,8 @@ export default {
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion5_4_3"
-                    text="Schwellwerte [VALUE]"
-                    :status="true"
+                    :text="physicianName"
+                    :status="physiciansStatus"
                 >
                     <div class="container">
                         <div class="row align-items-center">
