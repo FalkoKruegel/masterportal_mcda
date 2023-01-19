@@ -290,7 +290,6 @@ export default {
                                             max="40"
                                             name="veryGood"
                                             class="form-control"
-                                            aria-describedby="input5_3_1_1_min"
                                         >
                                     </label>
                                 </div>
