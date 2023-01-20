@@ -9,6 +9,10 @@ const state = {
     resizableWindow: true,
     isVisibleInMenu: true,
     deactivateGFI: false,
+    stepTwo: {
+        wholeLowerSaxony: false,
+        ownArea: false
+    },
     stepThree: {
         local_supply: {
             supermarket: false,
