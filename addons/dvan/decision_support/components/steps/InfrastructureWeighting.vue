@@ -1,6 +1,7 @@
 <script>
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
+import BootstrapRangeSlider from "../../../share_components/BootstrapRangeSlider.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 
@@ -8,7 +9,8 @@ export default {
     name: "InfrastructureWeighting",
     components: {
         BootstrapAccordion,
-        BootstrapAccordionItem
+        BootstrapAccordionItem,
+        BootstrapRangeSlider
     },
     data () {
         return {
@@ -130,45 +132,27 @@ export default {
                 text="Gewichtung Nahversorgung"
                 :status="localSupplyStatus"
             >
-                <label
-                    for="Range6_1_1"
-                    class="form-label"
-                >
-                    Supermärkte
-                </label>
-                <input
+                <BootstrapRangeSlider
                     id="Range6_1_1"
                     v-model="stepSix.local_supply.supermarket"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.local_supply.supermarket === false"
                 >
-                <label
-                    for="Range6_1_2"
-                    class="form-label"
-                >
-                    Discounter
-                </label>
-                <input
+                    Supermärkte
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_1_2"
                     v-model="stepSix.local_supply.discounter"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.local_supply.discounter === false"
                 >
-                <label
-                    for="Range6_1_3"
-                    class="form-label"
-                >
-                    sonstige Lebensmittelgeschäfte
-                </label>
-                <input
+                    Discounter
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_1_3"
                     v-model="stepSix.local_supply.others"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.local_supply.others === false"
                 >
+                    sonstige Lebensmittelgeschäfte
+                </BootstrapRangeSlider>
             </BootstrapAccordionItem>
 
             <!-- Gesundheits Infrastrukturen -->
@@ -177,45 +161,27 @@ export default {
                 text="Gewichtung Gesundheit"
                 :status="healthStatus"
             >
-                <label
-                    for="Range6_2_1"
-                    class="form-label"
-                >
-                    Apotheken
-                </label>
-                <input
+                <BootstrapRangeSlider
                     id="Range6_2_1"
                     v-model="stepSix.health.pharmacies"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.health.pharmacies === false"
                 >
-                <label
-                    for="Range6_2_2"
-                    class="form-label"
-                >
-                    Hochschulkliniken und Plankrankenhäuser
-                </label>
-                <input
+                    Apotheken
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_2_2"
                     v-model="stepSix.health.clinics"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.health.clinics === false"
                 >
-                <label
-                    for="Range6_2_3"
-                    class="form-label"
-                >
-                    {{ checkedPhysician }}
-                </label>
-                <input
+                    Hochschulkliniken und Plankrankenhäuser
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_2_3"
                     v-model="stepSix.health.physicians"
-                    type="range"
-                    class="form-range"
                     :disabled="checkedPhysician === null"
                 >
+                    {{ checkedPhysician }}
+                </BootstrapRangeSlider>
             </BootstrapAccordionItem>
 
             <!-- Bildungs Infrastrukturen -->
@@ -224,58 +190,34 @@ export default {
                 text="Gewichtung Bildung"
                 :status="educationStatus"
             >
-                <label
-                    for="Range6_3_1"
-                    class="form-label"
-                >
-                    Kindertagesstätten
-                </label>
-                <input
+                <BootstrapRangeSlider
                     id="Range6_3_1"
                     v-model="stepSix.education.nurseries"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.education.nurseries === false"
                 >
-                <label
-                    for="Range6_3_2"
-                    class="form-label"
-                >
-                    Primärschulen
-                </label>
-                <input
+                    Kindertagesstätten
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_3_2"
                     v-model="stepSix.education.primary_schools"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.education.primary_schools === false"
                 >
-                <label
-                    for="Range6_3_3"
-                    class="form-label"
-                >
-                    Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife
-                </label>
-                <input
+                    Primärschulen
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_3_3"
                     v-model="stepSix.education.secondary_1"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.education.secondary_1 === false"
                 >
-                <label
-                    for="Range6_3_4"
-                    class="form-label"
-                >
-                    Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife
-                </label>
-                <input
+                    Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife
+                </BootstrapRangeSlider>
+                <BootstrapRangeSlider
                     id="Range6_3_4"
                     v-model="stepSix.education.secondary_2"
-                    type="range"
-                    class="form-range"
                     :disabled="stepThree.education.secondary_2 === false"
                 >
+                    Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife
+                </BootstrapRangeSlider>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
     </div>
