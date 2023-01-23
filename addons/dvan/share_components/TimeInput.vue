@@ -51,12 +51,12 @@ export default {
                 <input
                     :id="id"
                     :value="value"
-                    @input="e => $emit('input', e.target.value)"
                     type="number"
                     step="1"
                     :min="minTime"
                     :max="maxTime"
                     class="form-control"
+                    @input="e => $emit('input', e.target.value)"
                 >
             </label>
         </div>
