@@ -272,7 +272,6 @@ export default {
                         <div
                             class="container"
                         >
-                            Minuten fuer sehr gute Versorgung Supermaerkte{{ stepFive.local_supply.supermarket.very_good }}
                             <TimeInput
                                 id="input5_3_1_1"
                                 v-model="stepFive.local_supply.supermarket.very_good"
@@ -280,105 +279,27 @@ export default {
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_1_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_1_2"
-                                            v-model="stepFive.local_supply.supermarket.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_1_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_1_3"
-                                            v-model="stepFive.local_supply.supermarket.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_1_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_1_4"
-                                            v-model="stepFive.local_supply.supermarket.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_3_1_2"
+                                v-model="stepFive.local_supply.supermarket.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_3_1_3"
+                                v-model="stepFive.local_supply.supermarket.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_3_1_4"
+                                v-model="stepFive.local_supply.supermarket.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -389,138 +310,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_2_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_2_1"
-                                            v-model="stepFive.local_supply.discounter.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_2_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_2_2"
-                                            v-model="stepFive.local_supply.discounter.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_2_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_2_3"
-                                            v-model="stepFive.local_supply.discounter.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_2_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_2_4"
-                                            v-model="stepFive.local_supply.discounter.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_3_2_1"
+                                v-model="stepFive.local_supply.discounter.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_3_2_2"
+                                v-model="stepFive.local_supply.discounter.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_3_2_3"
+                                v-model="stepFive.local_supply.discounter.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_3_2_4"
+                                v-model="stepFive.local_supply.discounter.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -531,138 +348,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_3_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_3_1"
-                                            v-model="stepFive.local_supply.others.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_3_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_3_2"
-                                            v-model="stepFive.local_supply.others.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_3_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_3_3"
-                                            v-model="stepFive.local_supply.others.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_3_3_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_3_4"
-                                            v-model="stepFive.local_supply.others.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_3_3_1"
+                                v-model="stepFive.local_supply.others.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_3_3_2"
+                                v-model="stepFive.local_supply.others.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_3_3_3"
+                                v-model="stepFive.local_supply.others.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_3_3_4"
+                                v-model="stepFive.local_supply.others.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
@@ -686,138 +399,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_1_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_1_1"
-                                            v-model="stepFive.health.pharmacies.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_1_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_1_2"
-                                            v-model="stepFive.health.pharmacies.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_1_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_1_3"
-                                            v-model="stepFive.health.pharmacies.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_1_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_1_4"
-                                            v-model="stepFive.health.pharmacies.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_4_1_1"
+                                v-model="stepFive.health.pharmacies.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_4_1_2"
+                                v-model="stepFive.health.pharmacies.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_4_1_3"
+                                v-model="stepFive.health.pharmacies.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_4_1_4"
+                                v-model="stepFive.health.pharmacies.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -828,138 +437,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_2_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_2_1"
-                                            v-model="stepFive.health.clinics.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_2_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_2_2"
-                                            v-model="stepFive.health.clinics.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_2_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_2_3"
-                                            v-model="stepFive.health.clinics.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_2_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_2_4"
-                                            v-model="stepFive.health.clinics.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_4_2_1"
+                                v-model="stepFive.health.clinics.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_4_2_2"
+                                v-model="stepFive.health.clinics.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_4_2_3"
+                                v-model="stepFive.health.clinics.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_4_2_4"
+                                v-model="stepFive.health.clinics.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -970,138 +475,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_3_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_3_1"
-                                            v-model="stepFive.health.physicians.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_3_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_3_2"
-                                            v-model="stepFive.health.physicians.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_3_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_3_3"
-                                            v-model="stepFive.health.physicians.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_4_3_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_4_3_4"
-                                            v-model="stepFive.health.physicians.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_4_3_1"
+                                v-model="stepFive.health.physicians.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_4_3_2"
+                                v-model="stepFive.health.physicians.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_4_3_3"
+                                v-model="stepFive.health.physicians.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_4_3_4"
+                                v-model="stepFive.health.physicians.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
@@ -1125,138 +526,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_1_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_1_1"
-                                            v-model="stepFive.education.nurseries.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_1_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_1_2"
-                                            v-model="stepFive.education.nurseries.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_1_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_1_3"
-                                            v-model="stepFive.education.nurseries.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_1_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_1_4"
-                                            v-model="stepFive.education.nurseries.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_5_1_1"
+                                v-model="stepFive.education.nurseries.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_5_1_2"
+                                v-model="stepFive.education.nurseries.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_5_1_3"
+                                v-model="stepFive.education.nurseries.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_5_1_4"
+                                v-model="stepFive.education.nurseries.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -1267,138 +564,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_2_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_2_1"
-                                            v-model="stepFive.education.primary_schools.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_2_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_2_2"
-                                            v-model="stepFive.education.primary_schools.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_2_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_2_3"
-                                            v-model="stepFive.education.primary_schools.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_2_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_2_4"
-                                            v-model="stepFive.education.primary_schools.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_5_2_1"
+                                v-model="stepFive.education.primary_schools.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_5_2_2"
+                                v-model="stepFive.education.primary_schools.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_5_2_3"
+                                v-model="stepFive.education.primary_schools.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_5_2_4"
+                                v-model="stepFive.education.primary_schools.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -1409,138 +602,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_3_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_3_1"
-                                            v-model="stepFive.education.secondary_1.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_3_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_3_2"
-                                            v-model="stepFive.education.secondary_1.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_3_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_3_3"
-                                            v-model="stepFive.education.secondary_1.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_3_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_3_4"
-                                            v-model="stepFive.education.secondary_1.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_5_3_1"
+                                v-model="stepFive.education.secondary_1.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_5_3_2"
+                                v-model="stepFive.education.secondary_1.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_5_3_3"
+                                v-model="stepFive.education.secondary_1.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_5_3_4"
+                                v-model="stepFive.education.secondary_1.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                     <BootstrapAccordionItem
@@ -1551,138 +640,34 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_4_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_4_1"
-                                            v-model="stepFive.education.secondary_2.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Gute Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_4_2"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_4_2"
-                                            v-model="stepFive.education.secondary_2.good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="good"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Ausreichende Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_4_3"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_4_3"
-                                            v-model="stepFive.education.secondary_2.sufficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="sufficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div
-                                    class="col-7 text-start"
-                                >
-                                    Mangelhafte Versorgungslage bis
-                                </div>
-                                <div
-                                    class="col-3 text-end"
-                                >
-                                    <label
-                                        for="input5_5_4_4"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_5_4_4"
-                                            v-model="stepFive.education.secondary_2.deficient"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="deficient"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            <TimeInput
+                                id="input5_5_4_1"
+                                v-model="stepFive.education.secondary_2.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Sehr gute"
+                            />
+                            <TimeInput
+                                id="input5_5_4_2"
+                                v-model="stepFive.education.secondary_2.good"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Gute"
+                            />
+                            <TimeInput
+                                id="input5_5_4_3"
+                                v-model="stepFive.education.secondary_2.sufficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Ausreichende"
+                            />
+                            <TimeInput
+                                id="input5_5_4_4"
+                                v-model="stepFive.education.secondary_2.deficient"
+                                :max-time="40"
+                                :min-time="0"
+                                supply-category="Mangelhafte"
+                            />
                         </div>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
