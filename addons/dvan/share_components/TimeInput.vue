@@ -9,6 +9,18 @@ export default {
         "value": {
             type: Number,
             default: 5
+        },
+        "id": {
+            type: String,
+            default: ""
+        },
+        "maxTime": {
+            type: Number,
+            default: 40
+        },
+        "minTime": {
+            type: Number,
+            default: 0
         }
     },
     emits: [
@@ -28,17 +40,17 @@ export default {
         </div>
         <div class="col-3 text-end">
             <label
-                for="input5_3_1_1"
+                :for="id"
                 class="col-form-label"
             >
                 <input
-                    id="input5_3_1_1"
-                    v-model="stepFive.local_supply.supermarket.very_good"
+                    :id="id"
+                    :value="value"
+                    @input="e => $emit('input', e.target.checked)"
                     type="number"
                     step="1"
-                    min="0"
-                    max="40"
-                    name="veryGood"
+                    :min="minTime"
+                    :max="maxTime"
                     class="form-control"
                 >
             </label>
