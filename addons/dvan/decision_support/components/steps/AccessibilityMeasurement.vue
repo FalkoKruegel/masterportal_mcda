@@ -3,12 +3,14 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
+import TimeInput from "../../../share_components/TimeInput.vue";
 
 export default {
     name: "AccessibilityMeasurement",
     components: {
         BootstrapAccordion,
-        BootstrapAccordionItem
+        BootstrapAccordionItem,
+        TimeInput
     },
     data () {
         return {
@@ -270,35 +272,13 @@ export default {
                         <div
                             class="container"
                         >
-                            <div
-                                class="row align-items-center"
-                            >
-                                <div class="col-7 text-start">
-                                    Sehr gute Versorgungslage bis
-                                </div>
-                                <div class="col-3 text-end">
-                                    <label
-                                        for="input5_3_1_1"
-                                        class="col-form-label"
-                                    >
-                                        <input
-                                            id="input5_3_1_1"
-                                            v-model="stepFive.local_supply.supermarket.very_good"
-                                            type="number"
-                                            step="1"
-                                            min="0"
-                                            max="40"
-                                            name="veryGood"
-                                            class="form-control"
-                                        >
-                                    </label>
-                                </div>
-                                <div
-                                    class="col text-start"
-                                >
-                                    min
-                                </div>
-                            </div>
+                            Minuten fuer sehr gute Versorgung Supermaerkte{{ stepFive.local_supply.supermarket.very_good }}
+                            <TimeInput
+                                id="input5_3_1_1"
+                                v-model="stepFive.local_supply.supermarket.very_good"
+                                :max-time="40"
+                                :min-time="0"
+                            />
                             <div
                                 class="row align-items-center"
                             >

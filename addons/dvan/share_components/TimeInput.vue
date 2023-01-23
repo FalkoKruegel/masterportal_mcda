@@ -7,8 +7,8 @@ export default {
     props: {
         // variable binding for v-model
         "value": {
-            type: Number,
-            default: 5
+            type: String,
+            default: ""
         },
         "id": {
             type: String,
@@ -16,30 +16,11 @@ export default {
         },
         "maxTime": {
             type: Number,
-            default: 40
+            default: null
         },
         "minTime": {
             type: Number,
-            default: 0
-        }
-    },
-    computed: {
-        // this computed property is directly copied fromvue-documentation. It should ensure that all listeners from parent-components work
-        inputListeners () {
-            var vm = this;
-            // `Object.assign` merges objects together to form a new object
-            return Object.assign({},
-                // We add all the listeners from the parent
-                this.$listeners,
-                // Then we can add custom listeners or override the
-                // behavior of some listeners.
-                {
-                    // This ensures that the component works with v-model
-                    input: function (event) {
-                        vm.$emit('input', event.target.value)
-                    }
-                }
-            )
+            default: null
         }
     },
     emits: [
@@ -65,7 +46,7 @@ export default {
                 <input
                     :id="id"
                     :value="value"
-                    @input="inputListeners"
+                    @input="e => $emit('input', e.target.value)"
                     type="number"
                     step="1"
                     :min="minTime"
