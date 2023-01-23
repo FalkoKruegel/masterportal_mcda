@@ -278,6 +278,7 @@ export default {
                                 v-model="stepFive.local_supply.supermarket.very_good"
                                 :max-time="40"
                                 :min-time="0"
+                                supply-category="Sehr gute"
                             />
                             <div
                                 class="row align-items-center"

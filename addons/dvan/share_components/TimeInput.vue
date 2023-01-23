@@ -21,6 +21,11 @@ export default {
         "minTime": {
             type: Number,
             default: null
+        },
+        // one of "Sehr gute", "Gute", "Ausreichende", "Mangelhafte"
+        "supplyCategory": {
+            type: String,
+            default: ""
         }
     },
     emits: [
@@ -36,7 +41,7 @@ export default {
         class="row align-items-center"
     >
         <div class="col-7 text-start">
-            Sehr gute Versorgungslage bis
+            {{ supplyCategory }} Versorgungslage bis
         </div>
         <div class="col-3 text-end">
             <label
