@@ -83,68 +83,68 @@ const state = {
         transport: "pkw",
         local_supply: {
             supermarket: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             discounter: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             others: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             }
         },
         health: {
             pharmacies: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             clinics: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             physicians: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             }
         },
         education: {
             nurseries: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             primary_schools: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             secondary_1: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             },
             secondary_2: {
-                very_good: "5",
-                good: "10",
-                sufficient: "25",
-                deficient: "30"
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
             }
         }
     }
