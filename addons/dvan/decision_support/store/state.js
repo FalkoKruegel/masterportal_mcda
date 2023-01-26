@@ -82,7 +82,6 @@ const state = {
         // either "pkw", "public_transport", or "foot". "pkw" is default
         transport: "pkw",
         local_supply: {
-            status: "deactivated",
             supermarket: {
                 very_good: "0",
                 good: "0",
@@ -103,7 +102,6 @@ const state = {
             }
         },
         health: {
-            status: "deactivated",
             pharmacies: {
                 very_good: "0",
                 good: "0",
@@ -124,7 +122,6 @@ const state = {
             }
         },
         education: {
-            status: "deactivated",
             nurseries: {
                 very_good: "0",
                 good: "0",

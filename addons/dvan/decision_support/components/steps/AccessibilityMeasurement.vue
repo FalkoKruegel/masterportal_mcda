@@ -22,14 +22,11 @@ export default {
         // compute status of Accordion5_3
         localSupplyStatus () {
             if (this.supermarketStatus === "deactivated" && this.discounterStatus === "deactivated" && this.othersStatus === "deactivated") {
-                this.stepFive.local_supply.status = "deactivated";
-                return "deactivated";
+                return "deactivated"
             }
             if (this.supermarketStatus === "invalid" || this.discounterStatus === "invalid" || this.othersStatus === "invalid") {
-                this.stepFive.local_supply.status = "invalid";
                 return "invalid"
             }
-            this.stepFive.local_supply.status = "valid";
             return "valid";
         },
         // compute status of Accordion5_3_1
@@ -71,14 +68,11 @@ export default {
         // compute status of Accordion5_4
         healthStatus () {
             if (this.pharmaciesStatus === "deactivated" && this.clinicsStatus === "deactivated" && this.physiciansStatus === "deactivated") {
-                this.stepFive.health.status = "deactivated";
                 return "deactivated"
             }
             if (this.pharmaciesStatus === "invalid" || this.clinicsStatus === "invalid" || this.physiciansStatus === "invalid") {
-                this.stepFive.health.status = "invalid";
                 return "invalid"
             }
-            this.stepFive.health.status = "valid";
             return "valid";
         },
         // compute status of Accordion5_4_1
@@ -122,14 +116,11 @@ export default {
         // compute status of Accordion5_5
         educationStatus () {
             if (this.nurseriesStatus === "deactivated" && this.primarySchoolsStatus === "deactivated" && this.secondary1Status === "deactivated" && this.secondary2Status === "deactivated") {
-                this.stepFive.education.status = "deactivated";
                 return "deactivated"
             }
             if (this.nurseriesStatus === "invalid" || this.primarySchoolsStatus === "invalid" || this.secondary1Status === "invalid" || this.secondary2Status === "invalid") {
-                this.stepFive.education.status = "invalid";
                 return "invalid"
             }
-            this.stepFive.education.status = "valid";
             return "valid";
         },
         // compute status of Accordion5_5_1

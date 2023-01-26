@@ -255,7 +255,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Erreichbarkeitsberechnung"
-                    :status="statusStepFive"
+                    status="valid"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
