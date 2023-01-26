@@ -21,16 +21,22 @@ export default {
 
         // compute status of Accordion5_3
         localSupplyStatus () {
-            for (const item in this.stepThree.local_supply) {
-                if (this.stepThree.local_supply[item] === true) {
-                    return "valid";
-                }
+            if (this.supermarketStatus === "deactivated" && this.discounterStatus === "deactivated" && this.othersStatus === "deactivated") {
+                return "deactivated"
             }
-            return "deactivated";
+            if (this.supermarketStatus === "invalid" || this.discounterStatus === "invalid" || this.othersStatus === "invalid") {
+                return "invalid"
+            }
+            return "valid";
         },
         // compute status of Accordion5_3_1
         supermarketStatus () {
             if (this.stepThree.local_supply.supermarket === true) {
+                for (const timeItem in this.stepFive.local_supply.supermarket) {
+                    if (parseInt(this.stepFive.local_supply.supermarket[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -38,6 +44,11 @@ export default {
         // compute status of Accordion5_3_2
         discounterStatus () {
             if (this.stepThree.local_supply.discounter === true) {
+                for (const timeItem in this.stepFive.local_supply.discounter) {
+                    if (parseInt(this.stepFive.local_supply.discounter[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -45,22 +56,33 @@ export default {
         // compute status of Accordion5_3_3
         othersStatus () {
             if (this.stepThree.local_supply.others === true) {
+                for (const timeItem in this.stepFive.local_supply.others) {
+                    if (parseInt(this.stepFive.local_supply.others[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
         },
         // compute status of Accordion5_4
         healthStatus () {
-            for (const item in this.stepThree.health) {
-                if (this.stepThree.health[item] === true) {
-                    return "valid";
-                }
+            if (this.pharmaciesStatus === "deactivated" && this.clinicsStatus === "deactivated" && this.physiciansStatus === "deactivated") {
+                return "deactivated"
             }
-            return "deactivated";
+            if (this.pharmaciesStatus === "invalid" || this.clinicsStatus === "invalid" || this.physiciansStatus === "invalid") {
+                return "invalid"
+            }
+            return "valid";
         },
         // compute status of Accordion5_4_1
         pharmaciesStatus () {
             if (this.stepThree.health.pharmacies === true) {
+                for (const timeItem in this.stepFive.health.pharmacies) {
+                    if (parseInt(this.stepFive.health.pharmacies[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -68,6 +90,11 @@ export default {
         // compute status of Accordion5_4_2
         clinicsStatus () {
             if (this.stepThree.health.clinics === true) {
+                for (const timeItem in this.stepFive.health.clinics) {
+                    if (parseInt(this.stepFive.health.clinics[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -76,6 +103,11 @@ export default {
         physiciansStatus () {
             for (const item in this.stepThree.health) {
                 if ((item !== "pharmacies") && (item !== "clinics") && (this.stepThree.health[item] === true)) {
+                    for (const timeItem in this.stepFive.health.physicians) {
+                        if (parseInt(this.stepFive.health.physicians[timeItem]) === 0) {
+                            return "invalid"
+                        }
+                    }
                     return "valid";
                 }
             }
@@ -83,16 +115,22 @@ export default {
         },
         // compute status of Accordion5_5
         educationStatus () {
-            for (const item in this.stepThree.education) {
-                if (this.stepThree.education[item] === true) {
-                    return "valid";
-                }
+            if (this.nurseriesStatus === "deactivated" && this.primarySchoolsStatus === "deactivated" && this.secondary1Status === "deactivated" && this.secondary2Status === "deactivated") {
+                return "deactivated"
             }
-            return "deactivated";
+            if (this.nurseriesStatus === "invalid" || this.primarySchoolsStatus === "invalid" || this.secondary1Status === "invalid" || this.secondary2Status === "invalid") {
+                return "invalid"
+            }
+            return "valid";
         },
         // compute status of Accordion5_5_1
         nurseriesStatus () {
             if (this.stepThree.education.nurseries === true) {
+                for (const timeItem in this.stepFive.education.nurseries) {
+                    if (parseInt(this.stepFive.education.nurseries[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -100,6 +138,11 @@ export default {
         // compute status of Accordion5_5_2
         primarySchoolsStatus () {
             if (this.stepThree.education.primary_schools === true) {
+                for (const timeItem in this.stepFive.education.primary_schools) {
+                    if (parseInt(this.stepFive.education.primary_schools[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -107,6 +150,11 @@ export default {
         // compute status of Accordion5_5_3
         secondary1Status () {
             if (this.stepThree.education.secondary_1 === true) {
+                for (const timeItem in this.stepFive.education.secondary_1) {
+                    if (parseInt(this.stepFive.education.secondary_1[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
@@ -114,6 +162,11 @@ export default {
         // compute status of Accordion5_5_2
         secondary2Status () {
             if (this.stepThree.education.secondary_2 === true) {
+                for (const timeItem in this.stepFive.education.secondary_2) {
+                    if (parseInt(this.stepFive.education.secondary_2[timeItem]) === 0) {
+                        return "invalid"
+                    }
+                }
                 return "valid";
             }
             return "deactivated";
