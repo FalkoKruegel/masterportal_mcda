@@ -217,6 +217,37 @@ export default {
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
         ])
+    },
+    watch: {
+        // these watchers should ensure that the values of the time slots make sense together
+        // this functionality is only implemented for the supermarkets yet.
+        // Maybe there is a better alternative to implement this than using watchers
+        'stepFive.local_supply.supermarket.very_good': function () {
+            if (parseInt(this.stepFive.local_supply.supermarket.good) <= parseInt(this.stepFive.local_supply.supermarket.very_good)) {
+                this.stepFive.local_supply.supermarket.good = (parseInt(this.stepFive.local_supply.supermarket.very_good) + 1).toString()
+            }
+        },
+        'stepFive.local_supply.supermarket.good': function () {
+            if (parseInt(this.stepFive.local_supply.supermarket.sufficient) <= parseInt(this.stepFive.local_supply.supermarket.good)) {
+                this.stepFive.local_supply.supermarket.sufficient = (parseInt(this.stepFive.local_supply.supermarket.good) + 1).toString()
+            }
+            if (parseInt(this.stepFive.local_supply.supermarket.good) <= parseInt(this.stepFive.local_supply.supermarket.very_good)) {
+                this.stepFive.local_supply.supermarket.very_good = (parseInt(this.stepFive.local_supply.supermarket.good) - 1).toString()
+            }
+        },
+        'stepFive.local_supply.supermarket.sufficient': function () {
+            if (parseInt(this.stepFive.local_supply.supermarket.deficient) <= parseInt(this.stepFive.local_supply.supermarket.sufficient)) {
+                this.stepFive.local_supply.supermarket.deficient = (parseInt(this.stepFive.local_supply.supermarket.sufficient) + 1).toString()
+            }
+            if (parseInt(this.stepFive.local_supply.supermarket.sufficient) <= parseInt(this.stepFive.local_supply.supermarket.good)) {
+                this.stepFive.local_supply.supermarket.good = (parseInt(this.stepFive.local_supply.supermarket.sufficient) - 1).toString()
+            }
+        },
+        'stepFive.local_supply.supermarket.deficient': function () {
+            if (parseInt(this.stepFive.local_supply.supermarket.deficient) <= parseInt(this.stepFive.local_supply.supermarket.sufficient)) {
+                this.stepFive.local_supply.supermarket.sufficient = (parseInt(this.stepFive.local_supply.supermarket.deficient) - 1).toString()
+            }
+        }
     }
 };
 </script>
