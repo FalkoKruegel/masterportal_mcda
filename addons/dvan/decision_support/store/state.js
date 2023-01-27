@@ -36,6 +36,26 @@ const state = {
             secondary_2: false
         }
     },
+    stepFour: {
+        standard: {
+            first: false,
+            second: false,
+            third: false,
+            fourth: false,
+            fifth: false,
+            sixth: false,
+            seventh: false
+        },
+        kita: {
+            first: false,
+            second: false,
+            third: false,
+            fourth: false,
+            fifth: false,
+            sixth: false,
+            seventh: false
+        }
+    },
     stepSix: {
         local_supply: {
             supermarket: 0,

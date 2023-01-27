@@ -6,6 +6,7 @@ import AccordionFooter from "./AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
+import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
@@ -19,6 +20,7 @@ export default {
         AccordionFooter,
         StartAnalysis,
         SelectedInfrastructure,
+        SelectedPopulation,
         InfrastructureWeighting
     },
     data () {
@@ -51,6 +53,19 @@ export default {
             }
             for (const item in this.stepThree.education) {
                 if (this.stepThree.education[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        },
+        statusStepFour () {
+            for (const item in this.stepFour.standard) {
+                if (this.stepFour.standard[item] === true) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepFour.kita) {
+                if (this.stepFour.kita[item] === true) {
                     return "valid";
                 }
             }
@@ -207,11 +222,12 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 4: Infrastrukturparameter"
+                    title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
+                    :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <SelectedPopulation />
                     <AccordionFooter
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
