@@ -56,6 +56,7 @@ export default {
         >
             <button
                 class="accordion-button collapsed"
+                :class="{'collapsed': status==='deactivated'}"
                 type="button"
                 :style="buttonStyle"
                 :disabled="status==='deactivated'"
@@ -70,6 +71,7 @@ export default {
         <div
             :id="id + 'content'"
             class="accordion-collapse collapse"
+            :style="{'display': status==='deactivated' ? 'none' : null}"
             :aria-labelledby="id + 'header'"
             :data-bs-parent="'#' + parentId"
         >
