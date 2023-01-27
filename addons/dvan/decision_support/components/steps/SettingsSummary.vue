@@ -95,7 +95,7 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+        <p>Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:</p>
         <BootstrapAccordion
             id="Accordion_7"
             body-padding-y="5px"
@@ -217,7 +217,8 @@ export default {
             </BootstrapAccordionItem>
         </BootstrapAccordion>
         <br>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+        <p>Klicken Sie auf "Weiter" um die Berechnung zu starten oder auf "Zurück" um Einstellungen anzupassen</p>
+        <p>Die Berechnung steht nach wenigen Momenten zur Verfügung.</p>
     </div>
 </template>
 
