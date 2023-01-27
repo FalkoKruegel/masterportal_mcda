@@ -107,6 +107,11 @@ export default {
                 :status="localSupplyStatus"
             >
                 <div class="card">
+                    <div class="card-header">
+                        <span class="text">Infrastruktur</span>
+                        <span class="value">An/<br>Aus</span>
+                        <span class="value">Gewicht</span>
+                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <span class="text">Supermärkte</span>
@@ -114,7 +119,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.supermarket ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.local_supply.supermarket}}%</span>
+                            <span class="value">{{ stepSix.local_supply.supermarket }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Discounter</span>
@@ -122,7 +127,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.discounter ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.local_supply.discounter}}%</span>
+                            <span class="value">{{ stepSix.local_supply.discounter }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">sonstige Lebensmittelgeschäfte</span>
@@ -130,7 +135,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.others ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.local_supply.others}}%</span>
+                            <span class="value">{{ stepSix.local_supply.others }}%</span>
                         </li>
                     </ul>
                 </div>
@@ -143,6 +148,11 @@ export default {
                 :status="healthStatus"
             >
                 <div class="card">
+                    <div class="card-header">
+                        <span class="text">Infrastruktur</span>
+                        <span class="value">An/<br>Aus</span>
+                        <span class="value">Gewicht</span>
+                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <span class="text">Apotheken</span>
@@ -150,7 +160,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.health.pharmacies ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.health.pharmacies}}%</span>
+                            <span class="value">{{ stepSix.health.pharmacies }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Hochschulkliniken und Plankrankenhäuser</span>
@@ -158,7 +168,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.health.clinics ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.health.clinics}}%</span>
+                            <span class="value">{{ stepSix.health.clinics }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">{{ checkedPhysician }}</span>
@@ -166,7 +176,7 @@ export default {
                                 class="icon"
                                 v-html="checkedPhysician !== 'Ärzte' ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.health.physicians}}%</span>
+                            <span class="value">{{ stepSix.health.physicians }}%</span>
                         </li>
                     </ul>
                 </div>
@@ -179,6 +189,11 @@ export default {
                 :status="educationStatus"
             >
                 <div class="card">
+                    <div class="card-header">
+                        <span class="text">Infrastruktur</span>
+                        <span class="value">An/<br>Aus</span>
+                        <span class="value">Gewicht</span>
+                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <span class="text">Kindertagesstätten</span>
@@ -186,7 +201,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.nurseries ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.education.nurseries}}%</span>
+                            <span class="value">{{ stepSix.education.nurseries }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Primärschulen</span>
@@ -194,7 +209,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.primary_schools ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.education.primary_schools}}%</span>
+                            <span class="value">{{ stepSix.education.primary_schools }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Sekundarstufe Bereich 1 & 2; ohne (Fach)Hochschulreife</span>
@@ -202,7 +217,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.secondary_1 ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.education.secondary_1}}%</span>
+                            <span class="value">{{ stepSix.education.secondary_1 }}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Sekundarstufe Bereich 1 & 2; mit (Fach)Hochschulreife</span>
@@ -210,7 +225,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.secondary_2 ? checkIcon : xIcon"
                             />
-                            <span class="value">{{stepSix.education.secondary_2}}%</span>
+                            <span class="value">{{ stepSix.education.secondary_2 }}%</span>
                         </li>
                     </ul>
                 </div>
@@ -225,23 +240,32 @@ export default {
 <style lang="scss" scoped>
 .card {
     width: 100%;
+    border-radius: 5px;
+}
+.card .card-header {
+    --bs-card-cap-padding-x: 10px;
+    --bs-card-cap-padding-y: 0px;
 }
 .list-group .list-group-item {
     --bs-list-group-item-padding-x: 10px;
 }
 .text {
     display: inline-block;
-    width: calc(100% - 90px);
+    width: calc(100% - 100px);
+    vertical-align: middle;
 }
 .icon {
     position: relative;
     top: -2px;
     display: inline-block;
-    width: 40px;
+    width: 45px;
+    text-align: center;
+    vertical-align: middle;
 }
 .value {
     display: inline-block;
-
-    width: 40px;
+    text-align: center;
+    width: 45px;
+    vertical-align: middle;
 }
 </style>
