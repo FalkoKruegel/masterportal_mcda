@@ -114,7 +114,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.supermarket ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.local_supply.supermarket}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Discounter</span>
@@ -122,7 +122,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.discounter ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.local_supply.discounter}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">sonstige Lebensmittelgeschäfte</span>
@@ -130,7 +130,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.local_supply.others ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.local_supply.others}}%</span>
                         </li>
                     </ul>
                 </div>
@@ -150,7 +150,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.health.pharmacies ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.health.pharmacies}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Hochschulkliniken und Plankrankenhäuser</span>
@@ -158,7 +158,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.health.clinics ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.health.clinics}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">{{ checkedPhysician }}</span>
@@ -166,7 +166,7 @@ export default {
                                 class="icon"
                                 v-html="checkedPhysician !== 'Ärzte' ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.health.physicians}}%</span>
                         </li>
                     </ul>
                 </div>
@@ -186,7 +186,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.nurseries ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.education.nurseries}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Primärschulen</span>
@@ -194,7 +194,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.primary_schools ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.education.primary_schools}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Sekundarstufe Bereich 1 & 2; ohne (Fach)Hochschulreife</span>
@@ -202,7 +202,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.secondary_1 ? checkIcon : xIcon"
                             />
-                            <span class="value">baz</span>
+                            <span class="value">{{stepSix.education.secondary_1}}%</span>
                         </li>
                         <li class="list-group-item">
                             <span class="text">Sekundarstufe Bereich 1 & 2; mit (Fach)Hochschulreife</span>
@@ -210,7 +210,7 @@ export default {
                                 class="icon"
                                 v-html="stepThree.education.secondary_2 ? checkIcon : xIcon"
                             />
-                            <span class="value">100%</span>
+                            <span class="value">{{stepSix.education.secondary_2}}%</span>
                         </li>
                     </ul>
                 </div>
