@@ -100,15 +100,6 @@ export default {
                 }
             }
             return "invalid";
-        },
-        statusStepFive () {
-            if (this.stepFive.local_supply.status === "deactivated" && this.stepFive.health.status === "deactivated" && this.stepFive.education.status === "deactivated") {
-                return "invalid"
-            }
-            if (this.stepFive.local_supply.status === "invalid" || this.stepFive.health.status === "invalid" || this.stepFive.education.status === "invalid") {
-                return "invalid"
-            }
-            return "valid";
         }
     },
     created () {
@@ -268,6 +259,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Gewichtung"
+                    :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
