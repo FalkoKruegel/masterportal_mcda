@@ -9,6 +9,10 @@ const state = {
     resizableWindow: true,
     isVisibleInMenu: true,
     deactivateGFI: false,
+    stepTwo: {
+        wholeLowerSaxony: false,
+        ownArea: false
+    },
     stepThree: {
         local_supply: {
             supermarket: false,
@@ -72,6 +76,76 @@ const state = {
             primary_schools: 0,
             secondary_1: 0,
             secondary_2: 0
+        }
+    },
+    stepFive: {
+        // either "pkw", "public_transport", or "foot". "pkw" is default
+        transport: "pkw",
+        local_supply: {
+            supermarket: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            discounter: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            others: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            }
+        },
+        health: {
+            pharmacies: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            clinics: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            physicians: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            }
+        },
+        education: {
+            nurseries: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            primary_schools: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            secondary_1: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            },
+            secondary_2: {
+                very_good: "0",
+                good: "0",
+                sufficient: "0",
+                deficient: "0"
+            }
         }
     }
 };

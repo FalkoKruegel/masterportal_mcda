@@ -4,9 +4,11 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "./AccordionItem.vue";
 import AccordionFooter from "./AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
+import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
-import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
+import AccessibilityMeasurement from "./steps/AccessibilityMeasurement.vue";
+import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
@@ -20,8 +22,10 @@ export default {
         AccordionItem,
         AccordionFooter,
         StartAnalysis,
+        ChooseStudyArea,
         SelectedInfrastructure,
         SelectedPopulation,
+        AccessibilityMeasurement,
         InfrastructureWeighting,
         SettingsSummary
     },
@@ -42,6 +46,12 @@ export default {
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
+        statusStepTwo () {
+            if (this.stepTwo.wholeLowerSaxony || this.stepTwo.ownArea) {
+                return "valid";
+            }
+            return "invalid";
+        },
         statusStepThree () {
             for (const item in this.stepThree.local_supply) {
                 if (this.stepThree.local_supply[item] === true) {
@@ -200,12 +210,12 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 2: Untersuchungsgebiet"
-                    status="invalid"
+                    title="Schritt 2: Untersuchungsgebiet wählen"
+                    :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <ChooseStudyArea />
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
@@ -236,11 +246,12 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 5: Erreichbarkeit"
+                    title="Schritt 5: Erreichbarkeitsberechnung"
+                    status="valid"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AccessibilityMeasurement />
                     <AccordionFooter
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
