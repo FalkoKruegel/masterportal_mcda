@@ -83,6 +83,20 @@ export default {
             }
             return "invalid";
         },
+        statusStepFive () {
+            // checking status of local supply
+            for (const item in this.stepThree.local_supply) {
+                if (this.stepThree.local_supply[item] === true) {
+                    for (const timeItem in this.stepFive.local_supply[item]) {
+                        if (this.stepFive.local_supply[item][timeItem] <= 0) {
+                            return "invalid"
+                        }
+                    }
+                }
+            }
+           
+            return "valid"
+        },
         statusStepSix () {
             for (const item in this.stepSix.local_supply) {
                 if (this.stepSix.local_supply[item] !== 0) {
@@ -247,7 +261,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Erreichbarkeitsberechnung"
-                    status="valid"
+                    :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
