@@ -94,6 +94,19 @@ export default {
                     }
                 }
             }
+            // checking status of health
+            for (let item in this.stepThree.health) {
+                if (this.stepThree.health[item] === true) {
+                    if ((item !== "pharmacies") && (item !== "clinics")) {
+                        item = "physicians"
+                    }
+                    for (const timeItem in this.stepFive.health[item]) {
+                        if (this.stepFive.health[item][timeItem] <= 0) {
+                            return "invalid"
+                        }
+                    }
+                }
+            }
            
             return "valid"
         },
