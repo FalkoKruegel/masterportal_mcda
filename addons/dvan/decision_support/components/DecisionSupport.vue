@@ -107,6 +107,16 @@ export default {
                     }
                 }
             }
+            // checking status of education
+            for (const item in this.stepThree.education) {
+                if (this.stepThree.education[item] === true) {
+                    for (const timeItem in this.stepFive.education[item]) {
+                        if (this.stepFive.education[item][timeItem] <= 0) {
+                            return "invalid"
+                        }
+                    }
+                }
+            }
            
             return "valid"
         },
