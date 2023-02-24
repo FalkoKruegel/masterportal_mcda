@@ -145,6 +145,15 @@ export default {
                 }
             }
             return "invalid";
+        },
+        statusStepSeven () {
+            if (this.stepSeven.status === "changed") {
+                return "invalid";
+            }
+            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepSix === "valid") {
+                return "valid";
+            }
+            return "invalid";
         }
     },
     created () {
@@ -194,6 +203,10 @@ export default {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
+
+            if (index === 6) {
+                this.stepSeven.status = "unchanged";
+            }
         },
 
         openWMS () {
@@ -316,12 +329,14 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 7: Zusammenfassung der Eingabewerte"
-                    status="valid"
+                    :status="statusStepSeven"
                     :opened="steps[6]"
                     @click="openStep(6)"
                 >
                     <SettingsSummary />
                     <AccordionFooter
+                        forward-text="Analyse starten"
+                        :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
                         @forwardClick="openStep(7)"
                     />

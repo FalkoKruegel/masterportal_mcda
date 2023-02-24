@@ -147,6 +147,9 @@ const state = {
                 deficient: 60
             }
         }
+    },
+    stepSeven: {
+        status: "changed"
     }
 };
 
