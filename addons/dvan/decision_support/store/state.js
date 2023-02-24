@@ -150,6 +150,9 @@ const state = {
     },
     stepSeven: {
         status: "changed"
+    },
+    stepEight: {
+        status: "unfinished"
     }
 };
 
