@@ -70,7 +70,7 @@ async function runAnalysis () {
     request.infrastructures = {};
 
     const stepThree = store.getters["Tools/DecisionSupport/stepThree"];
-    // const stepFive = store.getters["Tools/DecisionSupport/stepFive"];
+    const stepFive = store.getters["Tools/DecisionSupport/stepFive"];
     const stepSix = store.getters["Tools/DecisionSupport/stepSix"];
 
     for (const item in stepThree.local_supply) {
@@ -79,7 +79,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.local_supply[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": [100, 200, 300, 400]
+                "ranges": Object.values(stepFive.local_supply[item]).map(item => item*60)
             };
         }
     }
@@ -92,7 +92,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.health[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": [100, 200, 300, 400]
+                "ranges": Object.values(stepFive.health[item]).map(item => item*60)
             };
         }
     }
@@ -102,7 +102,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.education[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": [100, 200, 300, 400]
+                "ranges": Object.values(stepFive.education[item]).map(item => item*60)
             };
         }
     }
