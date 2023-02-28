@@ -83,6 +83,51 @@ export default {
             }
             return "invalid";
         },
+        statusStepFive () {
+            // helper variable to check if one of the checkboxes in step three has been ticked
+            let infraSelected = false;
+
+            // checking status of local supply
+            for (const item in this.stepThree.local_supply) {
+                if (this.stepThree.local_supply[item] === true) {
+                    infraSelected = true;
+                    for (const timeItem in this.stepFive.local_supply[item]) {
+                        if (this.stepFive.local_supply[item][timeItem] <= 0) {
+                            return "invalid";
+                        }
+                    }
+                }
+            }
+            // checking status of health
+            for (let item in this.stepThree.health) {
+                if (this.stepThree.health[item] === true) {
+                    infraSelected = true;
+                    if ((item !== "pharmacies") && (item !== "clinics")) {
+                        item = "physicians";
+                    }
+                    for (const timeItem in this.stepFive.health[item]) {
+                        if (this.stepFive.health[item][timeItem] <= 0) {
+                            return "invalid";
+                        }
+                    }
+                }
+            }
+            // checking status of education
+            for (const item in this.stepThree.education) {
+                if (this.stepThree.education[item] === true) {
+                    infraSelected = true;
+                    for (const timeItem in this.stepFive.education[item]) {
+                        if (this.stepFive.education[item][timeItem] <= 0) {
+                            return "invalid";
+                        }
+                    }
+                }
+            }
+            if (infraSelected === false) {
+                return "invalid";
+            }
+            return "valid";
+        },
         statusStepSix () {
             for (const item in this.stepSix.local_supply) {
                 if (this.stepSix.local_supply[item] !== 0) {
@@ -247,7 +292,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Erreichbarkeitsberechnung"
-                    status="valid"
+                    :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >

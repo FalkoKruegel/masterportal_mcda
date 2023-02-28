@@ -7,8 +7,8 @@ export default {
     props: {
         // variable binding for v-model
         "value": {
-            type: String,
-            default: ""
+            type: Number,
+            default: 0
         },
         "id": {
             type: String,
@@ -56,7 +56,7 @@ export default {
                     :min="minTime"
                     :max="maxTime"
                     class="form-control"
-                    @input="e => $emit('input', e.target.value)"
+                    @input="e => $emit('input', parseInt(e.target.value))"
                 >
             </label>
         </div>
