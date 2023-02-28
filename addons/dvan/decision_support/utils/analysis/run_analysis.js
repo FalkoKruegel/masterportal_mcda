@@ -1,22 +1,31 @@
 import store from "/src/app-store";
 import {RasterStyle} from "../layers/raster_style";
 import {addLayerModel} from "../map.js";
+import {convertLayerName} from "../util";
 import hospitals from "./hospitals.json";
+import discounter from "./discounter.json";
+import kitas from "./kitas.json";
+import other_supply from "./other_supply.json";
+import physicians from "./physicians.json";
+import primary_schools from "./primary_schools.json";
+import secondary_1 from "./secondary_1.json";
+import secondary_2 from "./secondary_2.json";
+import supermarket from "./supermarket.json";
 
 const features = {};
 
-features.supermarket = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.discounter = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.others = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.supermarket = supermarket.features.map(item => item.geometry.coordinates[0]);
+features.discounter = discounter.features.map(item => item.geometry.coordinates[0]);
+features.others = other_supply.features.map(item => item.geometry.coordinates[0]);
 
 features.pharmacies = hospitals.features.map(item => item.geometry.coordinates[0]);
 features.clinics = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.physicians = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.physicians = physicians.features.map(item => item.geometry.coordinates[0]);
 
-features.nurseries = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.primary_schools = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.secondary_1 = hospitals.features.map(item => item.geometry.coordinates[0]);
-features.secondary_2 = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.nurseries = kitas.features.map(item => item.geometry.coordinates[0]);
+features.primary_schools = primary_schools.features.map(item => item.geometry.coordinates[0]);
+features.secondary_1 = secondary_1.features.map(item => item.geometry.coordinates[0]);
+features.secondary_2 = secondary_2.features.map(item => item.geometry.coordinates[0]);
 
 /**
  * changes style of accessibility layer
