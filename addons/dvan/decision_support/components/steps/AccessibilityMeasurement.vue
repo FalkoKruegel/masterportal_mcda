@@ -211,6 +211,22 @@ export default {
         }
     },
     watch: {
+        // this watcher checks if the used physician infrastructure are general physicians.
+        // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
+        "stepThree.health.general_physicians": function () {
+            if (this.stepThree.health.general_physicians === true) {
+                this.stepFive.health.physicians.very_good = 2;
+                this.stepFive.health.physicians.good = 5;
+                this.stepFive.health.physicians.sufficient = 10;
+                this.stepFive.health.physicians.deficient = 20;
+            }
+            else {
+                this.stepFive.health.physicians.very_good = 3;
+                this.stepFive.health.physicians.good = 7;
+                this.stepFive.health.physicians.sufficient = 13;
+                this.stepFive.health.physicians.deficient = 25;
+            }
+        },
         // these watchers should ensure that the values of the time slots make sense together
         // this functionality is only implemented for the supermarkets yet.
         // Maybe there is a better alternative to implement this than using watchers
@@ -359,28 +375,28 @@ export default {
                             <TimeInput
                                 id="input5_3_1_1"
                                 v-model="stepFive.local_supply.supermarket.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_1_2"
                                 v-model="stepFive.local_supply.supermarket.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_1_3"
                                 v-model="stepFive.local_supply.supermarket.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_1_4"
                                 v-model="stepFive.local_supply.supermarket.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -397,28 +413,28 @@ export default {
                             <TimeInput
                                 id="input5_3_2_1"
                                 v-model="stepFive.local_supply.discounter.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_2_2"
                                 v-model="stepFive.local_supply.discounter.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_2_3"
                                 v-model="stepFive.local_supply.discounter.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_2_4"
                                 v-model="stepFive.local_supply.discounter.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -435,28 +451,28 @@ export default {
                             <TimeInput
                                 id="input5_3_3_1"
                                 v-model="stepFive.local_supply.others.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_3_2"
                                 v-model="stepFive.local_supply.others.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_3_3"
                                 v-model="stepFive.local_supply.others.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_3_4"
                                 v-model="stepFive.local_supply.others.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -486,28 +502,28 @@ export default {
                             <TimeInput
                                 id="input5_4_1_1"
                                 v-model="stepFive.health.pharmacies.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_1_2"
                                 v-model="stepFive.health.pharmacies.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_1_3"
                                 v-model="stepFive.health.pharmacies.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_1_4"
                                 v-model="stepFive.health.pharmacies.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -524,28 +540,28 @@ export default {
                             <TimeInput
                                 id="input5_4_2_1"
                                 v-model="stepFive.health.clinics.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_2_2"
                                 v-model="stepFive.health.clinics.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_2_3"
                                 v-model="stepFive.health.clinics.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_2_4"
                                 v-model="stepFive.health.clinics.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -562,28 +578,28 @@ export default {
                             <TimeInput
                                 id="input5_4_3_1"
                                 v-model="stepFive.health.physicians.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_3_2"
                                 v-model="stepFive.health.physicians.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_3_3"
                                 v-model="stepFive.health.physicians.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_3_4"
                                 v-model="stepFive.health.physicians.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -613,28 +629,28 @@ export default {
                             <TimeInput
                                 id="input5_5_1_1"
                                 v-model="stepFive.education.nurseries.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_1_2"
                                 v-model="stepFive.education.nurseries.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_1_3"
                                 v-model="stepFive.education.nurseries.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_1_4"
                                 v-model="stepFive.education.nurseries.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -651,28 +667,28 @@ export default {
                             <TimeInput
                                 id="input5_5_2_1"
                                 v-model="stepFive.education.primary_schools.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_2_2"
                                 v-model="stepFive.education.primary_schools.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_2_3"
                                 v-model="stepFive.education.primary_schools.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_2_4"
                                 v-model="stepFive.education.primary_schools.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -689,28 +705,28 @@ export default {
                             <TimeInput
                                 id="input5_5_3_1"
                                 v-model="stepFive.education.secondary_1.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_3_2"
                                 v-model="stepFive.education.secondary_1.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_3_3"
                                 v-model="stepFive.education.secondary_1.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_3_4"
                                 v-model="stepFive.education.secondary_1.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
@@ -727,28 +743,28 @@ export default {
                             <TimeInput
                                 id="input5_5_4_1"
                                 v-model="stepFive.education.secondary_2.very_good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_4_2"
                                 v-model="stepFive.education.secondary_2.good"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_4_3"
                                 v-model="stepFive.education.secondary_2.sufficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_4_4"
                                 v-model="stepFive.education.secondary_2.deficient"
-                                :max-time="40"
+                                :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"
                             />
