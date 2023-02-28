@@ -1,5 +1,9 @@
 {
     "rules": {
         "one-var": ["warn", { "initialized": "never" }],
+        "no-unused-vars": ["error", { "args": "none" }],
+        "no-empty-function": "off",
+        "no-constant-condition": "off",
+        "no-shadow": "off"
     }
 }
