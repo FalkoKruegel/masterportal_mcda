@@ -115,10 +115,10 @@ const state = {
                 deficient: 30
             },
             physicians: {
-                very_good: 0,
-                good: 0,
-                sufficient: 0,
-                deficient: 0
+                very_good: 3,
+                good: 7,
+                sufficient: 13,
+                deficient: 25
             }
         },
         education: {

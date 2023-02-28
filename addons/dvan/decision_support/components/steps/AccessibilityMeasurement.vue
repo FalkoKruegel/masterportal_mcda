@@ -211,6 +211,22 @@ export default {
         }
     },
     watch: {
+        // this watcher checks if the used physician infrastructure are general physicians.
+        // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
+        "stepThree.health.general_physicians": function () {
+            if (this.stepThree.health.general_physicians === true) {
+                this.stepFive.health.physicians.very_good = 2;
+                this.stepFive.health.physicians.good = 5;
+                this.stepFive.health.physicians.sufficient = 10;
+                this.stepFive.health.physicians.deficient = 20;
+            }
+            else {
+                this.stepFive.health.physicians.very_good = 3;
+                this.stepFive.health.physicians.good = 7;
+                this.stepFive.health.physicians.sufficient = 13;
+                this.stepFive.health.physicians.deficient = 25;
+            }
+        },
         // these watchers should ensure that the values of the time slots make sense together
         // this functionality is only implemented for the supermarkets yet.
         // Maybe there is a better alternative to implement this than using watchers
