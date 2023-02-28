@@ -21,6 +21,7 @@ import Tool from "./tool/model";
 import StaticLink from "./staticlink/model";
 import Dropdown from "bootstrap/js/dist/dropdown";
 import Collapse from "bootstrap/js/dist/collapse";
+import {GridLayer} from "../../../addons/dvan/decision_support/utils/layers/grid_layer";
 
 /**
  * WfsFeatureFilter
@@ -178,6 +179,9 @@ const ModelList = Backbone.Collection.extend(/** @lends ModelList.prototype */{
                     return new WMSTimeLayer(attrs, options);
                 }
                 return new WMSLayer(attrs);
+            }
+            else if (attrs.typ === "GRID") {
+                return new GridLayer(attrs);
             }
             else if (attrs.typ === "WMTS") {
                 return new WMTSLayer(attrs, options);
