@@ -1,0 +1,171 @@
+import store from "/src/app-store";
+import {RasterStyle} from "../layers/raster_style";
+import {addLayerModel} from "../map.js";
+import hospitals from "./hospitals.json";
+
+const features = {};
+
+features.supermarket = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.discounter = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.others = hospitals.features.map(item => item.geometry.coordinates[0]);
+
+features.pharmacies = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.clinics = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.physicians = hospitals.features.map(item => item.geometry.coordinates[0]);
+
+features.nurseries = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.primary_schools = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.secondary_1 = hospitals.features.map(item => item.geometry.coordinates[0]);
+features.secondary_2 = hospitals.features.map(item => item.geometry.coordinates[0]);
+
+/**
+ * changes style of accessibility layer
+ * @param {string} new_style attribute name for new style
+ * @returns {void}
+ */
+function changeStyle (new_style) {
+    const model = Radio.request("ModelList", "getModelByAttributes", {id: "accessibility"});
+
+    if (model === null) {
+        return;
+    }
+
+    const ranges = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+    const newStyle = new RasterStyle(new_style, [255, 0, 0, 0.7], [0, 255, 0, 0.7], ranges);
+
+    model.setStyle(newStyle);
+}
+
+/**
+ * runs analysis and adds accessibility layer
+ * @returns {void}
+ */
+async function runAnalysis () {
+    const stepEight = store.getters["Tools/DecisionSupport/stepEight"];
+
+    stepEight.status = "running";
+
+    // let ranges = [180, 420, 900, 1800];
+    const factors = [1.0, 0.6, 0.4, 0.2];
+    // let locations = [];
+    // // for (let id of selectedfeatures) {
+    // //     locations.push(layer.getGeometry(id).coordinates)
+    // // }
+    // for (let feature of hospitals.features) {
+    //     locations.push(feature.geometry.coordinates[0]);
+    // }
+
+    // build request
+    const request = {};
+
+    request.infrastructures = {};
+
+    const stepThree = store.getters["Tools/DecisionSupport/stepThree"];
+    // const stepFive = store.getters["Tools/DecisionSupport/stepFive"];
+    const stepSix = store.getters["Tools/DecisionSupport/stepSix"];
+
+    for (const item in stepThree.local_supply) {
+        if (stepThree.local_supply[item] === true) {
+            request.infrastructures[item] = {
+                "infrastructure_weight": stepSix.local_supply[item],
+                "range_factors": factors,
+                "facility_locations": features[item],
+                "ranges": [100, 200, 300, 400]
+            };
+        }
+    }
+    for (let item in stepThree.health) {
+        if (stepThree.health[item] === true) {
+            if (!["pharmacies", "clinics"].includes(item)) {
+                item = "physicians";
+            }
+            request.infrastructures[item] = {
+                "infrastructure_weight": stepSix.health[item],
+                "range_factors": factors,
+                "facility_locations": features[item],
+                "ranges": [100, 200, 300, 400]
+            };
+        }
+    }
+    for (const item in stepThree.education) {
+        if (stepThree.education[item] === true) {
+            request.infrastructures[item] = {
+                "infrastructure_weight": stepSix.education[item],
+                "range_factors": factors,
+                "facility_locations": features[item],
+                "ranges": [100, 200, 300, 400]
+            };
+        }
+    }
+
+    try {
+        // const start = new Date().getTime();
+
+        const response = await fetch("http://localhost:5000/v1/accessibility/multi", {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(request)
+        });
+
+        // const end = new Date().getTime();
+        // const time = end - start;
+
+        // console.log("Succesfully finished in " + time + " ms");
+
+
+        const geojson = await response.json();
+        const style = new RasterStyle("multiCritera", [255, 0, 0, 0.7], [0, 255, 0, 0.7], [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
+        const gfiAttributes = {
+            "multiCritera": "mutliCritera",
+            "multiCritera_weighted": "multiCritera_weighted"
+        };
+
+        for (const infra in request.infrastructures) {
+            gfiAttributes[infra] = infra;
+            gfiAttributes[infra + "_weighted"] = infra + "_weighted";
+        }
+
+        const attrs = {
+            type: "layer",
+            typ: "GRID",
+            id: "accessibility",
+            name: "Accessibility",
+            gfiAttributes: gfiAttributes,
+            isSelected: true,
+            hitTolerance: 0,
+            parentId: "SelectedLayer",
+            isNeverVisibleInTree: false,
+            isRemovable: true,
+            isSettingVisible: true,
+            isVisibleInMap: true,
+            layerInfoClicked: false,
+            singleBaselayer: false,
+            maxScale: "1000000000",
+            minScale: "0",
+            selectionIDX: 0,
+            showSettings: true,
+
+            features: geojson.features,
+            extend: geojson.extend,
+            size: geojson.size,
+            projection: "EPSG:25832",
+            style: style
+        };
+
+        addLayerModel(attrs);
+
+        stepEight.status = "finished";
+    }
+    catch (e) {
+        stepEight.status = "unfinished";
+    }
+}
+
+export {runAnalysis, changeStyle};

@@ -4,6 +4,7 @@ import BootstrapAccordionItem from "../../../share_components/accordion/Bootstra
 import BootstrapCheckbox from "../../../share_components/BootstrapCheckbox.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
+import {changeStyle} from "../../utils/analysis/run_analysis";
 import {convertLayerName} from "../../utils/util";
 
 export default {
@@ -16,6 +17,7 @@ export default {
     data () {
         return {
             selected_layer: "multiCritera",
+            weighted: false
         };
     },
     computed: {
@@ -46,6 +48,22 @@ export default {
         }
     },
     watch: {
+        selected_layer (newVal) {
+            if (this.weighted) {
+                changeStyle(newVal + "_weighted");
+            }
+            else {
+                changeStyle(newVal);
+            }
+        },
+        weighted (newVal) {
+            if (newVal) {
+                changeStyle(this.selected_layer + "_weighted");
+            }
+            else {
+                changeStyle(this.selected_layer);
+            }
+        }
     },
     methods: {
         ...mapActions("Tools/DecisionSupport", [
@@ -138,6 +156,7 @@ export default {
 
             <BootstrapCheckbox
                 id="Checkbox8_1"
+                v-model="weighted"
                 text="Bevölkerungsgewichtete Darstellung"
             />
             <BootstrapCheckbox

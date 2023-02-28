@@ -15,6 +15,7 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
 import {addLayer, removeLayer} from "../utils/map.js";
+import {runAnalysis} from "../utils/analysis/run_analysis";
 
 export default {
     name: "DecisionSupport",
@@ -250,11 +251,12 @@ export default {
             removeLayer("dummy2");
         },
 
-        runAnalysis () {
-            this.stepEight.status = "running";
-            setTimeout(() => {
-                this.stepEight.status = "finished";
-            }, 2000);
+        runTest () {
+            runAnalysis();
+            // this.stepEight.status = "running";
+            // setTimeout(() => {
+            //     this.stepEight.status = "finished";
+            // }, 2000);
         }
     }
 };
@@ -356,7 +358,7 @@ export default {
                         forward-text="Analyse starten"
                         :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
-                        @forwardClick="() => { openStep(7); runAnalysis(); }"
+                        @forwardClick="() => { openStep(7); runTest(); }"
                     />
                 </AccordionItem>
                 <AccordionItem
