@@ -35,7 +35,7 @@ features.secondary_2 = secondary_2.features.map(item => item.geometry.coordinate
 function changeStyle (new_style) {
     const model = Radio.request("ModelList", "getModelByAttributes", {id: "accessibility"});
 
-    if (model === null) {
+    if (model === undefined) {
         return;
     }
 
@@ -79,7 +79,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.local_supply[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": Object.values(stepFive.local_supply[item]).map(item => item*60)
+                "ranges": Object.values(stepFive.local_supply[item]).map(item => item * 60)
             };
         }
     }
@@ -92,7 +92,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.health[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": Object.values(stepFive.health[item]).map(item => item*60)
+                "ranges": Object.values(stepFive.health[item]).map(item => item * 60)
             };
         }
     }
@@ -102,7 +102,7 @@ async function runAnalysis () {
                 "infrastructure_weight": stepSix.education[item],
                 "range_factors": factors,
                 "facility_locations": features[item],
-                "ranges": Object.values(stepFive.education[item]).map(item => item*60)
+                "ranges": Object.values(stepFive.education[item]).map(item => item * 60)
             };
         }
     }
@@ -110,7 +110,7 @@ async function runAnalysis () {
     try {
         // const start = new Date().getTime();
 
-        const response = await fetch("http://localhost:5000/v1/accessibility/multi", {
+        const response = await fetch("http://172.26.62.41:5000/v1/accessibility/multi", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
