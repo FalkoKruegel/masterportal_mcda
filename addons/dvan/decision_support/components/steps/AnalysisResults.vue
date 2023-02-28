@@ -4,6 +4,7 @@ import BootstrapAccordionItem from "../../../share_components/accordion/Bootstra
 import BootstrapCheckbox from "../../../share_components/BootstrapCheckbox.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
+import {convertLayerName} from "../../utils/util";
 
 export default {
     name: "AnalysisResults",
@@ -14,98 +15,32 @@ export default {
     },
     data () {
         return {
-            selected_layer: "Versorgungssituation"
+            selected_layer: "multiCritera",
         };
     },
     computed: {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
         checkedLayers () {
-            const layers = ["Versorgungssituation"];
+            const layers = ["multiCritera"];
 
             for (const item in this.stepThree.local_supply) {
                 if (this.stepThree.local_supply[item] !== true) {
                     continue;
                 }
-                switch (item) {
-                    case "supermarket":
-                        layers.push("Supermärkte");
-                        break;
-                    case "discounter":
-                        layers.push("Discounter");
-                        break;
-                    case "others":
-                        layers.push("sonstige Lebensmittelgeschäfte");
-                        break;
-                    default:
-                        continue;
-                }
+                layers.push(item);
             }
             for (const item in this.stepThree.health) {
                 if (this.stepThree.health[item] !== true) {
                     continue;
                 }
-                switch (item) {
-                    case "pharmacies":
-                        layers.push("Apotheken");
-                        break;
-                    case "clinics":
-                        layers.push("Hochschulkliniken und Plankrankenhäuser");
-                        break;
-                    case "general_physicians":
-                        layers.push("Hausärzte");
-                        break;
-                    case "paediatricians":
-                        layers.push("Kinder- und Jugendärzte");
-                        break;
-                    case "ophthalmologists":
-                        layers.push("Augenärzte");
-                        break;
-                    case "surgeons":
-                        layers.push("Chirurgen und Orthopäden");
-                        break;
-                    case "gynaecologists":
-                        layers.push("Frauenärzte");
-                        break;
-                    case "dermatologists":
-                        layers.push("Hautärzte");
-                        break;
-                    case "otolaryngologist":
-                        layers.push("HNO-Ärzte");
-                        break;
-                    case "neurologist":
-                        layers.push("Nervenärzte");
-                        break;
-                    case "psychotherapists":
-                        layers.push("Psychotherapeuten");
-                        break;
-                    case "urologists":
-                        layers.push("Urologen");
-                        break;
-                    default:
-                        continue;
-                }
+                layers.push(item);
             }
             for (const item in this.stepThree.education) {
                 if (this.stepThree.education[item] !== true) {
                     continue;
                 }
-                switch (item) {
-                    case "nurseries":
-                        layers.push("Kindertagesstätten");
-                        break;
-                    case "primary_schools":
-                        layers.push("Primärschulen");
-                        break;
-                    case "secondary_1":
-                        layers.push("Sekundarstufe Bereich 1 & 2; ohne (Fach)Hochschulreife");
-                        break;
-                    case "secondary_2":
-                        layers.push("Sekundarstufe Bereich 1 & 2; mit (Fach)Hochschulreife");
-                        break;
-                    default:
-                        continue;
-                }
+                layers.push(item);
             }
             return layers;
         }
@@ -118,7 +53,11 @@ export default {
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
-        ])
+        ]),
+
+        convert (name) {
+            return convertLayerName(name);
+        }
     }
 };
 </script>
@@ -160,7 +99,7 @@ export default {
                     class="btn btn-outline-primary btn-sm"
                     type="button"
                 >
-                    {{ selected_layer }}
+                    {{ convert(selected_layer) }}
                 </button>
                 <button
                     type="button"
@@ -188,7 +127,7 @@ export default {
                             class="dropdown-item"
                             href="#"
                             @click="selected_layer = layer"
-                        >{{ layer }}</a>
+                        >{{ convert(layer) }}</a>
                     </li>
                 </ul>
             </div>
