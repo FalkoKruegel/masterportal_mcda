@@ -132,13 +132,13 @@ async function runAnalysis () {
         const geojson = await response.json();
         const style = new RasterStyle("multiCritera", [255, 0, 0, 0.7], [0, 255, 0, 0.7], [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
         const gfiAttributes = {
-            "multiCritera": "mutliCritera",
-            "multiCritera_weighted": "multiCritera_weighted"
+            "multiCritera": convertLayerName("multiCritera"),
+            "multiCritera_weighted": convertLayerName("multiCritera") + " (gewichtet)"
         };
 
         for (const infra in request.infrastructures) {
-            gfiAttributes[infra] = infra;
-            gfiAttributes[infra + "_weighted"] = infra + "_weighted";
+            gfiAttributes[infra] = convertLayerName(infra);
+            gfiAttributes[infra + "_weighted"] = convertLayerName(infra) + " (gewichtet)";
         }
 
         const attrs = {
