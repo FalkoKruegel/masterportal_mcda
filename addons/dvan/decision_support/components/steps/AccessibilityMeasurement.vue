@@ -3,7 +3,7 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
-import TimeInput from "../../../share_components/TimeInput.vue";
+import TimeInput from "../TimeInput.vue";
 
 export default {
     name: "AccessibilityMeasurement",
@@ -412,28 +412,40 @@ export default {
                         >
                             <TimeInput
                                 id="input5_3_2_1"
-                                v-model="stepFive.local_supply.discounter.very_good"
+                                :value="stepFive.local_supply.discounter.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="local_supply"
+                                infrastructure="discounter"
                                 :max-time="100"
                                 :min-time="0"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_2_2"
-                                v-model="stepFive.local_supply.discounter.good"
+                                :value="stepFive.local_supply.discounter.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="local_supply"
+                                infrastructure="discounter"
                                 :max-time="100"
                                 :min-time="0"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_2_3"
-                                v-model="stepFive.local_supply.discounter.sufficient"
+                                :value="stepFive.local_supply.discounter.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="local_supply"
+                                infrastructure="discounter"
                                 :max-time="100"
                                 :min-time="0"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_2_4"
-                                v-model="stepFive.local_supply.discounter.deficient"
+                                :value="stepFive.local_supply.discounter.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="local_supply"
+                                infrastructure="discounter"
                                 :max-time="100"
                                 :min-time="0"
                                 supply-category="Mangelhafte"

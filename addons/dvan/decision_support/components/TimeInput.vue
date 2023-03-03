@@ -10,6 +10,21 @@ export default {
             type: Number,
             default: 0
         },
+        // define which mutation should be used and therefore which property (very_good, good, sufficient, or deficient) should be changed
+        "mutation": {
+            type: String,
+            default: ""
+        },
+        // define which category of the state (step 5) should be touched by the mutation
+        "category": {
+            type: String,
+            default: ""
+        },
+        // define which specific infrastructure in the category (defined above) should be touched by the mutation (defined above)
+        "infrastructure": {
+            type: String,
+            default: ""
+        },
         "id": {
             type: String,
             default: ""
@@ -28,10 +43,15 @@ export default {
             default: ""
         }
     },
-    emits: [
-        // variable binding for v-model
-        "input"
-    ]
+    // emits: [
+    //      variable binding for v-model
+    //      "input"
+    // ],
+    methods: {
+        updateValue (e) {
+            this.$store.commit(this.mutation, {category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
+        }
+    }
 };
 </script>
 
@@ -56,7 +76,7 @@ export default {
                     :min="minTime"
                     :max="maxTime"
                     class="form-control"
-                    @input="e => $emit('input', parseInt(e.target.value))"
+                    @input="updateValue"
                 >
             </label>
         </div>
