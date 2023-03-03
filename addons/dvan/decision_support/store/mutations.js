@@ -14,7 +14,7 @@ const mutations = {
     // it also ensures that the corresponding good-property will be updated if it is smaller than the new very good property
     SET_VERY_GOOD (currentState, payload) {
         if (payload.value >= currentState.stepFive[payload.category][payload.infrastructure].good) {
-            currentState.stepFive[payload.category][payload.infrastructure].good = payload.value + 1;
+            payload.store.commit("Tools/DecisionSupport/SET_GOOD", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value + 1});
         }
         currentState.stepFive[payload.category][payload.infrastructure].very_good = payload.value;
     },
@@ -23,10 +23,10 @@ const mutations = {
     // it also ensures that the corresponding very good-property will be updated if it is bigger than the new good property
     SET_GOOD (currentState, payload) {
         if (payload.value >= currentState.stepFive[payload.category][payload.infrastructure].sufficient) {
-            currentState.stepFive[payload.category][payload.infrastructure].sufficient = payload.value + 1;
+            payload.store.commit("Tools/DecisionSupport/SET_SUFFICIENT", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value + 1});
         }
         if (payload.value <= currentState.stepFive[payload.category][payload.infrastructure].very_good) {
-            currentState.stepFive[payload.category][payload.infrastructure].very_good = payload.value - 1;
+            payload.store.commit("Tools/DecisionSupport/SET_VERY_GOOD", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value - 1});
         }
         currentState.stepFive[payload.category][payload.infrastructure].good = payload.value;
     },
@@ -35,10 +35,10 @@ const mutations = {
     // it also ensures that the corresponding good-property will be updated if it is bigger than the new sufficient property
     SET_SUFFICIENT (currentState, payload) {
         if (payload.value >= currentState.stepFive[payload.category][payload.infrastructure].deficient) {
-            currentState.stepFive[payload.category][payload.infrastructure].deficient = payload.value + 1;
+            payload.store.commit("Tools/DecisionSupport/SET_DEFICIENT", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value + 1});
         }
         if (payload.value <= currentState.stepFive[payload.category][payload.infrastructure].good) {
-            currentState.stepFive[payload.category][payload.infrastructure].good = payload.value - 1;
+            payload.store.commit("Tools/DecisionSupport/SET_GOOD", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value - 1});
         }
         currentState.stepFive[payload.category][payload.infrastructure].sufficient = payload.value;
     },
@@ -46,7 +46,7 @@ const mutations = {
     // it also ensures that the corresponding sufficent-property will be updated if it is bigger than the new deficient property
     SET_DEFICIENT (currentState, payload) {
         if (payload.value <= currentState.stepFive[payload.category][payload.infrastructure].sufficient) {
-            currentState.stepFive[payload.category][payload.infrastructure].sufficient = payload.value - 1;
+            payload.store.commit("Tools/DecisionSupport/SET_SUFFICIENT", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value - 1});
         }
         currentState.stepFive[payload.category][payload.infrastructure].deficient = payload.value;
     }

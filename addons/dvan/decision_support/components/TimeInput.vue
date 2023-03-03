@@ -5,7 +5,7 @@ export default {
     components: {
     },
     props: {
-        // variable binding for v-model
+        // former variable binding for v-model
         "value": {
             type: Number,
             default: 0
@@ -49,7 +49,7 @@ export default {
     // ],
     methods: {
         updateValue (e) {
-            this.$store.commit(this.mutation, {category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
+            this.$store.commit(this.mutation, {store: this.$store, category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
         }
     }
 };
