@@ -32,10 +32,18 @@ export default {
         // compute status of Accordion5_3_1
         supermarketStatus () {
             if (this.stepThree.local_supply.supermarket === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.local_supply.supermarket) {
+                    const timeItemValue = this.stepFive.local_supply.supermarket[timeItem];
+
                     if (this.stepFive.local_supply.supermarket[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
