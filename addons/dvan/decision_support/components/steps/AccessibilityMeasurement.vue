@@ -226,35 +226,6 @@ export default {
                 this.stepFive.health.physicians.sufficient = 13;
                 this.stepFive.health.physicians.deficient = 25;
             }
-        },
-        // these watchers should ensure that the values of the time slots make sense together
-        // this functionality is only implemented for the supermarkets yet.
-        // Maybe there is a better alternative to implement this than using watchers
-        "stepFive.local_supply.supermarket.very_good": function () {
-            if (this.stepFive.local_supply.supermarket.good <= this.stepFive.local_supply.supermarket.very_good) {
-                this.stepFive.local_supply.supermarket.good = this.stepFive.local_supply.supermarket.very_good + 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.good": function () {
-            if (this.stepFive.local_supply.supermarket.sufficient <= this.stepFive.local_supply.supermarket.good) {
-                this.stepFive.local_supply.supermarket.sufficient = this.stepFive.local_supply.supermarket.good + 1;
-            }
-            if (this.stepFive.local_supply.supermarket.good <= this.stepFive.local_supply.supermarket.very_good) {
-                this.stepFive.local_supply.supermarket.very_good = this.stepFive.local_supply.supermarket.good - 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.sufficient": function () {
-            if (this.stepFive.local_supply.supermarket.deficient <= this.stepFive.local_supply.supermarket.sufficient) {
-                this.stepFive.local_supply.supermarket.deficient = this.stepFive.local_supply.supermarket.sufficient + 1;
-            }
-            if (this.stepFive.local_supply.supermarket.sufficient <= this.stepFive.local_supply.supermarket.good) {
-                this.stepFive.local_supply.supermarket.good = this.stepFive.local_supply.supermarket.sufficient - 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.deficient": function () {
-            if (this.stepFive.local_supply.supermarket.deficient <= this.stepFive.local_supply.supermarket.sufficient) {
-                this.stepFive.local_supply.supermarket.sufficient = this.stepFive.local_supply.supermarket.deficient - 1;
-            }
         }
     },
     methods: {
