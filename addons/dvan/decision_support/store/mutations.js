@@ -9,6 +9,7 @@ const mutations = {
      * will be returned.
      */
     ...generateSimpleMutations(state),
+
     // setters for the different time zones in step 5
     // folowing mutations updates the very good property in a specified category and infrastructure of the state
     // it also ensures that the corresponding good-property will be updated if it is smaller than the new very good property
@@ -39,7 +40,7 @@ const mutations = {
     // folowing mutations updates the sufficient property in a specified category and infrastructure of the state
     // it also ensures that the corresponding deficient-property will be updated if it is smaller than the new sufficient property
     // it also ensures that the corresponding good-property will be updated if it is bigger than the new sufficient property
-    // it also ensures that the suficient property will not drop below or rise above the minValue/maxValue specified in the state
+    // it also ensures that the sufficient property will not drop below or rise above the minValue/maxValue specified in the state
     SET_SUFFICIENT (currentState, payload) {
         if (payload.value >= currentState.stepFive[payload.category][payload.infrastructure].deficient) {
             payload.store.commit("Tools/DecisionSupport/SET_DEFICIENT", {store: payload.store, category: payload.category, infrastructure: payload.infrastructure, value: payload.value + 1});

@@ -5,7 +5,6 @@ export default {
     components: {
     },
     props: {
-        // former variable binding for v-model
         "value": {
             type: Number,
             default: 0
@@ -43,11 +42,10 @@ export default {
             default: ""
         }
     },
-    // emits: [
-    //      variable binding for v-model
-    //      "input"
-    // ],
     methods: {
+        // method will be called if new value is inserted into timeInput-value
+        // it uses mutations to updated the state
+        // which mutation is called and which state-variables are effected can be specified with properties of this component
         updateValue (e) {
             this.$store.commit(this.mutation, {store: this.$store, category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
         }

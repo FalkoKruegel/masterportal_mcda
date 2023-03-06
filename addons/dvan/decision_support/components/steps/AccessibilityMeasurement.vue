@@ -37,9 +37,11 @@ export default {
                 for (const timeItem in this.stepFive.local_supply.supermarket) {
                     const timeItemValue = this.stepFive.local_supply.supermarket[timeItem];
 
+                    // checking if values are equal or below 0
                     if (this.stepFive.local_supply.supermarket[timeItem] <= 0) {
                         return "invalid";
                     }
+                    // checking if value appears in another TimeInput of the same infrastructure
                     if (timeItemValue in timeItemCount) {
                         return "invalid";
                     }
@@ -231,7 +233,7 @@ export default {
             }
             return "deactivated";
         },
-        // compute status of Accordion5_5_2
+        // compute status of Accordion5_5_4
         secondary2Status () {
             if (this.stepThree.education.secondary_2 === true) {
                 const timeItemCount = {};
