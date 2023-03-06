@@ -146,7 +146,9 @@ const state = {
                 sufficient: 30,
                 deficient: 60
             }
-        }
+        },
+        minValue: 0,
+        maxValue: 70
     },
     stepSeven: {
         status: "changed"

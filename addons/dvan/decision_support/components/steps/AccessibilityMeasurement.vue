@@ -416,8 +416,8 @@ export default {
                                 mutation="Tools/DecisionSupport/SET_VERY_GOOD"
                                 category="local_supply"
                                 infrastructure="discounter"
-                                :max-time="100"
-                                :min-time="0"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
@@ -426,8 +426,8 @@ export default {
                                 mutation="Tools/DecisionSupport/SET_GOOD"
                                 category="local_supply"
                                 infrastructure="discounter"
-                                :max-time="100"
-                                :min-time="0"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
@@ -436,8 +436,8 @@ export default {
                                 mutation="Tools/DecisionSupport/SET_SUFFICIENT"
                                 category="local_supply"
                                 infrastructure="discounter"
-                                :max-time="100"
-                                :min-time="0"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
@@ -446,8 +446,8 @@ export default {
                                 mutation="Tools/DecisionSupport/SET_DEFICIENT"
                                 category="local_supply"
                                 infrastructure="discounter"
-                                :max-time="100"
-                                :min-time="0"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
