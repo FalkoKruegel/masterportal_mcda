@@ -117,4 +117,65 @@ function getStyleModelById (id) {
     return bridge.getStyleModelById(id);
 }
 
-export {addLayer, getLayerById, removeLayer, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener};
+let count = 1000;
+
+/**
+ * adds a layer to map
+ * @param {any} attrs layer attributes
+ * @returns {void}
+ */
+function addLayerModel (attrs) {
+    if (attrs.id in layers) {
+        return;
+    }
+
+    Radio.trigger("ModelList", "addModel", attrs);
+    Radio.trigger("ModelList", "updateLayerView");
+    Radio.trigger("ModelList", "updateSelection");
+
+    layers[attrs.id] = true;
+
+    const model = Radio.request("ModelList", "getModelByAttributes", {id: attrs.id});
+
+    model.cid = "c" + String(count);
+    count++;
+}
+
+/**
+ * removes layer from map
+ * @param {string} id layer id
+ * @return {void}
+ */
+function removeLayerModel (id) {
+    const coll = Radio.request("ModelList", "getCollection");
+    const filtered = coll.filter(item => item.id !== id);
+
+    coll.set(filtered);
+    Radio.trigger("ModelList", "updateSelection");
+    Radio.trigger("ModelList", "updateLayerView");
+
+    const layer = getLayerById(id);
+
+    if (layer !== undefined) {
+        store.commit("Maps/removeLayerFromMap", layer);
+    }
+
+    store.dispatch("Legend/removeLegend", id);
+
+    delete layers[id];
+}
+
+const layers = {};
+
+Radio.channel("ModelList").on({
+    "updateSelection": (model) => {
+        if (model === undefined) {
+            return;
+        }
+        if (model.get("id") in layers && model.get("isSelected") === false) {
+            removeLayerModel(model.get("id"));
+        }
+    }
+});
+
+export {addLayerModel, removeLayerModel, addLayer, getLayerById, removeLayer, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener};
