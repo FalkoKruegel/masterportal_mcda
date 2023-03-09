@@ -81,6 +81,36 @@ export default {
         }
     },
     watch: {
+        stepTwo: {
+            handler: function () {
+                this.stepSeven.status = "changed";
+            },
+            deep: true
+        },
+        stepThree: {
+            handler: function () {
+                this.stepSeven.status = "changed";
+            },
+            deep: true
+        },
+        stepFour: {
+            handler: function () {
+                this.stepSeven.status = "changed";
+            },
+            deep: true
+        },
+        stepFive: {
+            handler: function () {
+                this.stepSeven.status = "changed";
+            },
+            deep: true
+        },
+        stepSix: {
+            handler: function () {
+                this.stepSeven.status = "changed";
+            },
+            deep: true
+        }
     },
     methods: {
         ...mapActions("Tools/DecisionSupport", [

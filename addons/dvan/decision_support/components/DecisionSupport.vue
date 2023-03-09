@@ -10,10 +10,12 @@ import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import AccessibilityMeasurement from "./steps/AccessibilityMeasurement.vue";
 import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
+import AnalysisResults from "./steps/AnalysisResults.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
 import {addLayer, removeLayer} from "../utils/map.js";
+import {runAnalysis} from "../utils/analysis/run_analysis";
 
 export default {
     name: "DecisionSupport",
@@ -27,12 +29,13 @@ export default {
         SelectedPopulation,
         AccessibilityMeasurement,
         InfrastructureWeighting,
-        SettingsSummary
+        SettingsSummary,
+        AnalysisResults
     },
     data () {
         return {
             steps: {
-                0: false,
+                0: true,
                 1: false,
                 2: false,
                 3: false,
@@ -145,6 +148,24 @@ export default {
                 }
             }
             return "invalid";
+        },
+        statusStepSeven () {
+            if (this.stepSeven.status === "changed") {
+                return "invalid";
+            }
+            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepSix === "valid") {
+                return "valid";
+            }
+            return "invalid";
+        },
+        statusStepEight () {
+            if (this.stepEight.status === "unfinished") {
+                return "invalid";
+            }
+            if (this.stepEight.status === "finished") {
+                return "valid";
+            }
+            return "default";
         }
     },
     created () {
@@ -194,6 +215,10 @@ export default {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
+
+            if (index === 6) {
+                this.stepSeven.status = "unchanged";
+            }
         },
 
         openWMS () {
@@ -224,6 +249,14 @@ export default {
 
         closeDummy2 () {
             removeLayer("dummy2");
+        },
+
+        runTest () {
+            runAnalysis();
+            // this.stepEight.status = "running";
+            // setTimeout(() => {
+            //     this.stepEight.status = "finished";
+            // }, 2000);
         }
     }
 };
@@ -316,62 +349,27 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 7: Zusammenfassung der Eingabewerte"
-                    status="valid"
+                    :status="statusStepSeven"
                     :opened="steps[6]"
                     @click="openStep(6)"
                 >
                     <SettingsSummary />
                     <AccordionFooter
+                        forward-text="Analyse starten"
+                        :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
-                        @forwardClick="openStep(7)"
+                        @forwardClick="() => { openStep(7); runTest(); }"
                     />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 8: Ergebnisse"
+                    :status="statusStepEight"
                     :opened="steps[7]"
                     @click="openStep(7)"
                 >
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="openWMS()"
-                    >
-                        Open WMS
-                    </button>
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="closeWMS()"
-                    >
-                        Close WMS
-                    </button>
-                    <br>
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="openDummy()"
-                    >
-                        Open Dummy
-                    </button>
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="closeDummy()"
-                    >
-                        Close Dummy
-                    </button>
-                    <br>
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="openDummy2()"
-                    >
-                        Open Dummy2
-                    </button>
-                    <button
-                        class="btn btn-outline-primary btn-sm"
-                        @click="closeDummy2()"
-                    >
-                        Close Dummy2
-                    </button>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    <AnalysisResults />
                     <AccordionFooter
-                        first-last-item="last"
+                        :forward-active="false"
                         @backClick="openStep(6)"
                     />
                 </AccordionItem>
