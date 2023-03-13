@@ -50,7 +50,7 @@ export default {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
         statusStepTwo () {
-            if (this.stepTwo.wholeLowerSaxony || this.stepTwo.ownArea) {
+            if (this.stepTwo.wholeLowerSaxony || (this.stepTwo.ownArea && this.stepTwo.ownAreaExtent !== null)) {
                 return "valid";
             }
             return "invalid";
