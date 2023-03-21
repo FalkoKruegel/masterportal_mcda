@@ -110,7 +110,7 @@ async function runAnalysis () {
     try {
         // const start = new Date().getTime();
 
-        const response = await fetch("http://172.26.62.41:5000/v1/accessibility/multi", {
+        const response = await fetch("https://172.26.62.41:3000/v1/accessibility/multi", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
