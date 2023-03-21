@@ -5,10 +5,24 @@ export default {
     components: {
     },
     props: {
-        // variable binding for v-model
         "value": {
             type: Number,
             default: 0
+        },
+        // define which mutation should be used and therefore which property (very_good, good, sufficient, or deficient) should be changed
+        "mutation": {
+            type: String,
+            default: ""
+        },
+        // define which category of the state (step 5) should be touched by the mutation
+        "category": {
+            type: String,
+            default: ""
+        },
+        // define which specific infrastructure in the category (defined above) should be touched by the mutation (defined above)
+        "infrastructure": {
+            type: String,
+            default: ""
         },
         "id": {
             type: String,
@@ -28,10 +42,14 @@ export default {
             default: ""
         }
     },
-    emits: [
-        // variable binding for v-model
-        "input"
-    ]
+    methods: {
+        // method will be called if new value is inserted into timeInput-value
+        // it uses mutations to updated the state
+        // which mutation is called and which state-variables are effected can be specified with properties of this component
+        updateValue (e) {
+            this.$store.commit(this.mutation, {store: this.$store, category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
+        }
+    }
 };
 </script>
 
@@ -56,7 +74,7 @@ export default {
                     :min="minTime"
                     :max="maxTime"
                     class="form-control"
-                    @input="e => $emit('input', parseInt(e.target.value))"
+                    @input="updateValue"
                 >
             </label>
         </div>
