@@ -3,7 +3,7 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
-import TimeInput from "../../../share_components/TimeInput.vue";
+import TimeInput from "../TimeInput.vue";
 
 export default {
     name: "AccessibilityMeasurement",
@@ -32,10 +32,20 @@ export default {
         // compute status of Accordion5_3_1
         supermarketStatus () {
             if (this.stepThree.local_supply.supermarket === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.local_supply.supermarket) {
+                    const timeItemValue = this.stepFive.local_supply.supermarket[timeItem];
+
+                    // checking if values are equal or below 0
                     if (this.stepFive.local_supply.supermarket[timeItem] <= 0) {
                         return "invalid";
                     }
+                    // checking if value appears in another TimeInput of the same infrastructure
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -44,10 +54,18 @@ export default {
         // compute status of Accordion5_3_2
         discounterStatus () {
             if (this.stepThree.local_supply.discounter === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.local_supply.discounter) {
+                    const timeItemValue = this.stepFive.local_supply.discounter[timeItem];
+
                     if (this.stepFive.local_supply.discounter[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -56,10 +74,18 @@ export default {
         // compute status of Accordion5_3_3
         othersStatus () {
             if (this.stepThree.local_supply.others === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.local_supply.others) {
+                    const timeItemValue = this.stepFive.local_supply.others[timeItem];
+
                     if (this.stepFive.local_supply.others[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -78,10 +104,18 @@ export default {
         // compute status of Accordion5_4_1
         pharmaciesStatus () {
             if (this.stepThree.health.pharmacies === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.health.pharmacies) {
+                    const timeItemValue = this.stepFive.health.pharmacies[timeItem];
+
                     if (this.stepFive.health.pharmacies[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -90,10 +124,18 @@ export default {
         // compute status of Accordion5_4_2
         clinicsStatus () {
             if (this.stepThree.health.clinics === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.health.clinics) {
+                    const timeItemValue = this.stepFive.health.clinics[timeItem];
+
                     if (this.stepFive.health.clinics[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -103,10 +145,18 @@ export default {
         physiciansStatus () {
             for (const item in this.stepThree.health) {
                 if ((item !== "pharmacies") && (item !== "clinics") && (this.stepThree.health[item] === true)) {
+                    const timeItemCount = {};
+
                     for (const timeItem in this.stepFive.health.physicians) {
+                        const timeItemValue = this.stepFive.health.physicians[timeItem];
+
                         if (this.stepFive.health.physicians[timeItem] <= 0) {
                             return "invalid";
                         }
+                        if (timeItemValue in timeItemCount) {
+                            return "invalid";
+                        }
+                        timeItemCount[timeItemValue] = 1;
                     }
                     return "valid";
                 }
@@ -126,10 +176,18 @@ export default {
         // compute status of Accordion5_5_1
         nurseriesStatus () {
             if (this.stepThree.education.nurseries === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.education.nurseries) {
+                    const timeItemValue = this.stepFive.education.nurseries[timeItem];
+
                     if (this.stepFive.education.nurseries[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -138,10 +196,18 @@ export default {
         // compute status of Accordion5_5_2
         primarySchoolsStatus () {
             if (this.stepThree.education.primary_schools === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.education.primary_schools) {
+                    const timeItemValue = this.stepFive.education.primary_schools[timeItem];
+
                     if (this.stepFive.education.primary_schools[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -150,22 +216,38 @@ export default {
         // compute status of Accordion5_5_3
         secondary1Status () {
             if (this.stepThree.education.secondary_1 === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.education.secondary_1) {
+                    const timeItemValue = this.stepFive.education.secondary_1[timeItem];
+
                     if (this.stepFive.education.secondary_1[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
             return "deactivated";
         },
-        // compute status of Accordion5_5_2
+        // compute status of Accordion5_5_4
         secondary2Status () {
             if (this.stepThree.education.secondary_2 === true) {
+                const timeItemCount = {};
+
                 for (const timeItem in this.stepFive.education.secondary_2) {
+                    const timeItemValue = this.stepFive.education.secondary_2[timeItem];
+
                     if (this.stepFive.education.secondary_2[timeItem] <= 0) {
                         return "invalid";
                     }
+                    if (timeItemValue in timeItemCount) {
+                        return "invalid";
+                    }
+                    timeItemCount[timeItemValue] = 1;
                 }
                 return "valid";
             }
@@ -225,35 +307,6 @@ export default {
                 this.stepFive.health.physicians.good = 7;
                 this.stepFive.health.physicians.sufficient = 13;
                 this.stepFive.health.physicians.deficient = 25;
-            }
-        },
-        // these watchers should ensure that the values of the time slots make sense together
-        // this functionality is only implemented for the supermarkets yet.
-        // Maybe there is a better alternative to implement this than using watchers
-        "stepFive.local_supply.supermarket.very_good": function () {
-            if (this.stepFive.local_supply.supermarket.good <= this.stepFive.local_supply.supermarket.very_good) {
-                this.stepFive.local_supply.supermarket.good = this.stepFive.local_supply.supermarket.very_good + 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.good": function () {
-            if (this.stepFive.local_supply.supermarket.sufficient <= this.stepFive.local_supply.supermarket.good) {
-                this.stepFive.local_supply.supermarket.sufficient = this.stepFive.local_supply.supermarket.good + 1;
-            }
-            if (this.stepFive.local_supply.supermarket.good <= this.stepFive.local_supply.supermarket.very_good) {
-                this.stepFive.local_supply.supermarket.very_good = this.stepFive.local_supply.supermarket.good - 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.sufficient": function () {
-            if (this.stepFive.local_supply.supermarket.deficient <= this.stepFive.local_supply.supermarket.sufficient) {
-                this.stepFive.local_supply.supermarket.deficient = this.stepFive.local_supply.supermarket.sufficient + 1;
-            }
-            if (this.stepFive.local_supply.supermarket.sufficient <= this.stepFive.local_supply.supermarket.good) {
-                this.stepFive.local_supply.supermarket.good = this.stepFive.local_supply.supermarket.sufficient - 1;
-            }
-        },
-        "stepFive.local_supply.supermarket.deficient": function () {
-            if (this.stepFive.local_supply.supermarket.deficient <= this.stepFive.local_supply.supermarket.sufficient) {
-                this.stepFive.local_supply.supermarket.sufficient = this.stepFive.local_supply.supermarket.deficient - 1;
             }
         }
     },
@@ -374,30 +427,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_3_1_1"
-                                v-model="stepFive.local_supply.supermarket.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.supermarket.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="local_supply"
+                                infrastructure="supermarket"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_1_2"
-                                v-model="stepFive.local_supply.supermarket.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.supermarket.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="local_supply"
+                                infrastructure="supermarket"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_1_3"
-                                v-model="stepFive.local_supply.supermarket.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.supermarket.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="local_supply"
+                                infrastructure="supermarket"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_1_4"
-                                v-model="stepFive.local_supply.supermarket.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.supermarket.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="local_supply"
+                                infrastructure="supermarket"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -412,30 +477,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_3_2_1"
-                                v-model="stepFive.local_supply.discounter.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.discounter.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="local_supply"
+                                infrastructure="discounter"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_2_2"
-                                v-model="stepFive.local_supply.discounter.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.discounter.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="local_supply"
+                                infrastructure="discounter"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_2_3"
-                                v-model="stepFive.local_supply.discounter.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.discounter.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="local_supply"
+                                infrastructure="discounter"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_2_4"
-                                v-model="stepFive.local_supply.discounter.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.discounter.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="local_supply"
+                                infrastructure="discounter"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -450,30 +527,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_3_3_1"
-                                v-model="stepFive.local_supply.others.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.others.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="local_supply"
+                                infrastructure="others"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_3_3_2"
-                                v-model="stepFive.local_supply.others.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.others.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="local_supply"
+                                infrastructure="others"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_3_3_3"
-                                v-model="stepFive.local_supply.others.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.others.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="local_supply"
+                                infrastructure="others"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_3_3_4"
-                                v-model="stepFive.local_supply.others.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.local_supply.others.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="local_supply"
+                                infrastructure="others"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -501,30 +590,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_4_1_1"
-                                v-model="stepFive.health.pharmacies.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.pharmacies.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="health"
+                                infrastructure="pharmacies"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_1_2"
-                                v-model="stepFive.health.pharmacies.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.pharmacies.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="health"
+                                infrastructure="pharmacies"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_1_3"
-                                v-model="stepFive.health.pharmacies.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.pharmacies.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="health"
+                                infrastructure="pharmacies"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_1_4"
-                                v-model="stepFive.health.pharmacies.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.pharmacies.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="health"
+                                infrastructure="pharmacies"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -539,30 +640,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_4_2_1"
-                                v-model="stepFive.health.clinics.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.clinics.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="health"
+                                infrastructure="clinics"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_2_2"
-                                v-model="stepFive.health.clinics.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.clinics.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="health"
+                                infrastructure="clinics"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_2_3"
-                                v-model="stepFive.health.clinics.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.clinics.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="health"
+                                infrastructure="clinics"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_2_4"
-                                v-model="stepFive.health.clinics.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.clinics.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="health"
+                                infrastructure="clinics"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -577,30 +690,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_4_3_1"
-                                v-model="stepFive.health.physicians.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.physicians.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="health"
+                                infrastructure="physicians"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_4_3_2"
-                                v-model="stepFive.health.physicians.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.physicians.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="health"
+                                infrastructure="physicians"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_4_3_3"
-                                v-model="stepFive.health.physicians.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.physicians.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="health"
+                                infrastructure="physicians"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_4_3_4"
-                                v-model="stepFive.health.physicians.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.health.physicians.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="health"
+                                infrastructure="physicians"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -628,30 +753,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_5_1_1"
-                                v-model="stepFive.education.nurseries.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.nurseries.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="education"
+                                infrastructure="nurseries"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_1_2"
-                                v-model="stepFive.education.nurseries.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.nurseries.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="education"
+                                infrastructure="nurseries"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_1_3"
-                                v-model="stepFive.education.nurseries.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.nurseries.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="education"
+                                infrastructure="nurseries"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_1_4"
-                                v-model="stepFive.education.nurseries.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.nurseries.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="education"
+                                infrastructure="nurseries"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -666,30 +803,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_5_2_1"
-                                v-model="stepFive.education.primary_schools.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.primary_schools.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="education"
+                                infrastructure="primary_schools"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_2_2"
-                                v-model="stepFive.education.primary_schools.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.primary_schools.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="education"
+                                infrastructure="primary_schools"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_2_3"
-                                v-model="stepFive.education.primary_schools.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.primary_schools.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="education"
+                                infrastructure="primary_schools"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_2_4"
-                                v-model="stepFive.education.primary_schools.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.primary_schools.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="education"
+                                infrastructure="primary_schools"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -704,30 +853,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_5_3_1"
-                                v-model="stepFive.education.secondary_1.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_1.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="education"
+                                infrastructure="secondary_1"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_3_2"
-                                v-model="stepFive.education.secondary_1.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_1.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="education"
+                                infrastructure="secondary_1"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_3_3"
-                                v-model="stepFive.education.secondary_1.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_1.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="education"
+                                infrastructure="secondary_1"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_3_4"
-                                v-model="stepFive.education.secondary_1.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_1.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="education"
+                                infrastructure="secondary_1"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>
@@ -742,30 +903,42 @@ export default {
                         >
                             <TimeInput
                                 id="input5_5_4_1"
-                                v-model="stepFive.education.secondary_2.very_good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_2.very_good"
+                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
+                                category="education"
+                                infrastructure="secondary_2"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
                             />
                             <TimeInput
                                 id="input5_5_4_2"
-                                v-model="stepFive.education.secondary_2.good"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_2.good"
+                                mutation="Tools/DecisionSupport/SET_GOOD"
+                                category="education"
+                                infrastructure="secondary_2"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Gute"
                             />
                             <TimeInput
                                 id="input5_5_4_3"
-                                v-model="stepFive.education.secondary_2.sufficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_2.sufficient"
+                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
+                                category="education"
+                                infrastructure="secondary_2"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
                             />
                             <TimeInput
                                 id="input5_5_4_4"
-                                v-model="stepFive.education.secondary_2.deficient"
-                                :max-time="100"
-                                :min-time="0"
+                                :value="stepFive.education.secondary_2.deficient"
+                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
+                                category="education"
+                                infrastructure="secondary_2"
+                                :max-time="stepFive.maxValue"
+                                :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
                             />
                         </div>

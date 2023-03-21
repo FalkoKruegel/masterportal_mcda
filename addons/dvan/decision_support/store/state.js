@@ -81,6 +81,7 @@ const state = {
     stepFive: {
         // either "pkw", "public_transport", or "foot". "pkw" is default
         transport: "pkw",
+        // values for timeZones of local_supply
         local_supply: {
             supermarket: {
                 very_good: 2,
@@ -101,6 +102,7 @@ const state = {
                 deficient: 20
             }
         },
+        // values for timeZones of health
         health: {
             pharmacies: {
                 very_good: 2,
@@ -121,6 +123,7 @@ const state = {
                 deficient: 25
             }
         },
+        // values for timeZones of education
         education: {
             nurseries: {
                 very_good: 2,
@@ -146,7 +149,11 @@ const state = {
                 sufficient: 30,
                 deficient: 60
             }
-        }
+        },
+        // minimum value which is allowed in TimInputs of step 5
+        minValue: 0,
+        // maximum value which is allowed in TimInputs of step 5
+        maxValue: 70
     },
     stepSeven: {
         status: "changed"
