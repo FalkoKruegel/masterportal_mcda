@@ -16,6 +16,7 @@ import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
 import {addLayer, removeLayer} from "../utils/map.js";
 import {runAnalysis} from "../utils/analysis/run_analysis";
+import {storeToolParams} from "../utils/tool_params/load_params";
 
 export default {
     name: "DecisionSupport",
@@ -257,6 +258,17 @@ export default {
             // setTimeout(() => {
             //     this.stepEight.status = "finished";
             // }, 2000);
+        },
+
+        storeTest () {
+            const a = document.createElement("a");
+            const blob = new Blob([JSON.stringify(storeToolParams())], {
+                type: "application/json"
+            });
+
+            a.href = window.URL.createObjectURL(blob);
+            a.download = "settings.json";
+            a.click();
         }
     }
 };
@@ -369,7 +381,8 @@ export default {
                 >
                     <AnalysisResults />
                     <AccordionFooter
-                        :forward-active="false"
+                        forward-text="Analyse speichern"
+                        @forwardClick="storeTest"
                         @backClick="openStep(6)"
                     />
                 </AccordionItem>

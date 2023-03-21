@@ -1,5 +1,6 @@
 <script>
 import {mapActions, mapMutations} from "vuex";
+import {loadToolParams} from "../../utils/tool_params/load_params";
 
 export default {
     name: "StartAnalysis",
@@ -10,7 +11,7 @@ export default {
     ],
     data () {
         return {
-            loadAnalysis: false
+            loadFailed: false
         };
     },
     methods: {
@@ -19,7 +20,28 @@ export default {
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
-        ])
+        ]),
+
+        openAnalysis () {
+            this.$refs.layerDialog.click();
+        },
+        openFile () {
+            const files = this.$refs.layerDialog.files;
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                const obj = JSON.parse(reader.result);
+                const suc = loadToolParams(obj);
+
+                if (suc) {
+                    this.$emit("startAnalysis");
+                }
+                else {
+                    this.loadFailed = true;
+                }
+            };
+            reader.readAsText(files[0]);
+        }
     }
 };
 </script>
@@ -43,10 +65,17 @@ export default {
                         id="button1_2"
                         type="button"
                         class="btn btn-outline-primary btn-lg"
-                        @click="loadAnalysis = !loadAnalysis"
+                        @click="openAnalysis"
                     >
                         Analyseeinstellung laden
                     </button>
+                    <input
+                        ref="layerDialog"
+                        type="file"
+                        style="display:none"
+                        accept=".json"
+                        @change="openFile"
+                    >
                 </div>
                 <div
                     class="col text-end"
@@ -64,10 +93,10 @@ export default {
         </div>
         <!--following div is an placeholder to remind that dialog for loading an older analysis has to be implemented in the future-->
         <div
-            v-if="loadAnalysis"
+            v-if="loadFailed"
             class="callout-warning"
         >
-            Das Interface zum Laden von vorherigen Analysen ist noch nicht implementiert.
+            Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.
         </div>
     </div>
 </template>
