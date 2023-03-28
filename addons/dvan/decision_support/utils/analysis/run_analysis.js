@@ -260,4 +260,4 @@ async function runAnalysis () {
     }
 }
 
-export {runAnalysis, changeStyle};
+export {runAnalysis, changeStyle, features};
