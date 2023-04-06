@@ -2,6 +2,7 @@
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
+import StartAnalysis from "./steps/StartAnalysis.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -10,7 +11,8 @@ export default {
     components: {
         ToolTemplate,
         AccordionItem,
-        AccordionFooter
+        AccordionFooter,
+        StartAnalysis
     },
     data () {
         return {
@@ -98,11 +100,16 @@ export default {
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
+                    id="Accordion1"
                     title="Schritt 1: Analyse starten oder bestehende Analyse laden"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"
-                />
+                >
+                    <StartAnalysis
+                        @startAnalysis="openStep(1)"
+                    />
+                </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Facharztgruppe und Planungsbereich auswählen"
                     status="invalid"
