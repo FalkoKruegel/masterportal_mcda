@@ -2,6 +2,7 @@
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
+import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -10,7 +11,8 @@ export default {
     components: {
         ToolTemplate,
         AccordionItem,
-        AccordionFooter
+        AccordionFooter,
+        SelectedPhysicians
     },
     data () {
         return {
@@ -109,6 +111,7 @@ export default {
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
+                    <SelectedPhysicians />
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"

@@ -8,7 +8,15 @@ const state = {
     renderToWindow: false,
     resizableWindow: true,
     isVisibleInMenu: true,
-    deactivateGFI: false
+    deactivateGFI: false,
+    stepTwo: {
+        supplyLevel: {
+            generalPhysician: false,
+            generalSpecialist: false,
+            specializedSpecialist: false,
+            lowerSaxony: false
+        }
+    }
 };
 
 export default state;
