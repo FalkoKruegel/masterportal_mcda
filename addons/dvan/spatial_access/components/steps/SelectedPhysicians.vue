@@ -28,33 +28,133 @@ export default {
 
 <template lang="html">
     <div>
-        <p>
-            Bitte wählen Sie eine Versorgungsebene aus:
-        </p>
-        <BootstrapCheckbox
-            id="Checkbox_2_1"
-            v-model="stepTwo.supplyLevel.generalPhysician"
-            text="Hausärztliche Versorgung - Versorgungsebene 1"
-            :disabled="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist"
-        />
-        <BootstrapCheckbox
-            id="Checkbox_2_2"
-            v-model="stepTwo.supplyLevel.generalSpecialist"
-            text="Allgemeine fachärztliche Versorgung  - Versorgungsebene 2"
-            :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.specializedSpecialist"
-        />
-        <BootstrapCheckbox
-            id="Checkbox_2_3"
-            v-model="stepTwo.supplyLevel.specializedSpecialist"
-            text="Spezialisierte fachärztliche Versorgung - Versorgungsebene 3"
-            :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist"
-        />
-        <BootstrapCheckbox
-            id="Checkbox_2_4"
-            v-model="stepTwo.supplyLevel.lowerSaxony"
-            text="Niedersachsen - Versorgungsebene / KV-Bezirk"
-        />
-        <!--following div will only be rendered if checkbox for own area (above) is checked-->
+        <div>
+            <p>
+                Bitte wählen Sie eine Versorgungsebene aus:
+            </p>
+            <BootstrapCheckbox
+                id="Checkbox_2_1"
+                v-model="stepTwo.supplyLevel.generalPhysician"
+                text="Hausärztliche Versorgung - Versorgungsebene 1"
+                :disabled="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist"
+            />
+            <BootstrapCheckbox
+                id="Checkbox_2_2"
+                v-model="stepTwo.supplyLevel.generalSpecialist"
+                text="Allgemeine fachärztliche Versorgung  - Versorgungsebene 2"
+                :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.specializedSpecialist"
+            />
+            <BootstrapCheckbox
+                id="Checkbox_2_3"
+                v-model="stepTwo.supplyLevel.specializedSpecialist"
+                text="Spezialisierte fachärztliche Versorgung - Versorgungsebene 3"
+                :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist"
+            />
+            <BootstrapCheckbox
+                id="Checkbox_2_4"
+                v-model="stepTwo.supplyLevel.lowerSaxony"
+                text="Niedersachsen - Versorgungsebene / KV-Bezirk"
+            />
+            <!--following div will only be rendered if checkbox for own area (above) is checked-->
+        </div>
+        <div>
+            <p>Bitte wählen Sie eine Facharztgruppe aus:</p>
+            <div>
+                <select
+                    id="Dropdown2_1"
+                    class="form-select"
+                    aria-label="Default select example"
+                >
+                    <option selected>
+                        Bitte wählen...
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.lowerSaxony"
+                        value="Hausärzte"
+                    >
+                        Hausärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Augenärzte"
+                    >
+                        Augenärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Chirurgen und Orthopäden"
+                    >
+                        Chirurgen und Orthopäden
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Frauenärzte"
+                    >
+                        Frauenärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Hautärzte"
+                    >
+                        Hautärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="HNO-Ärzte"
+                    >
+                        HNO-Ärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Kinderärzte"
+                    >
+                        Kinderärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Nervenärzte"
+                    >
+                        Nervenärzte
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Psychotherapeuten"
+                    >
+                        Psychotherapeuten
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Urologen"
+                    >
+                        Urologen
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="fachärztlich tätige Internisten"
+                    >
+                        fachärztlich tätige Internisten
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Kinder- und Jugendpsychiater"
+                    >
+                        Kinder- und Jugendpsychiater
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Radiologen"
+                    >
+                        Radiologen
+                    </option>
+                    <option
+                        v-if="stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony"
+                        value="Anästhesisten"
+                    >
+                        Anästhesisten
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
 </template>
 
