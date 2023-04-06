@@ -45,6 +45,9 @@
 					"decisionSupport": {
 						"name": "Entscheidungsunterstützung"
 					},
+					"spatialAccess": {
+						"name": "Räumlicher Zugang"
+					},
 					"accessibilitiesLgln": {
 						"name": "Erreichbarkeiten"
 					},
