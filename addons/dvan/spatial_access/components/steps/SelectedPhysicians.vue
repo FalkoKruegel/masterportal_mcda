@@ -35,16 +35,19 @@ export default {
             id="Checkbox_2_1"
             v-model="stepTwo.supplyLevel.generalPhysician"
             text="Hausärztliche Versorgung - Versorgungsebene 1"
+            :disabled="stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist"
         />
         <BootstrapCheckbox
             id="Checkbox_2_2"
             v-model="stepTwo.supplyLevel.generalSpecialist"
             text="Allgemeine fachärztliche Versorgung  - Versorgungsebene 2"
+            :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.specializedSpecialist"
         />
         <BootstrapCheckbox
             id="Checkbox_2_3"
             v-model="stepTwo.supplyLevel.specializedSpecialist"
             text="Spezialisierte fachärztliche Versorgung - Versorgungsebene 3"
+            :disabled="stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist"
         />
         <BootstrapCheckbox
             id="Checkbox_2_4"
