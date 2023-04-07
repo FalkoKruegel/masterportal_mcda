@@ -187,6 +187,18 @@ export default {
                         KV-Bezirk
                     </option>
                 </select>
+                <div
+                    id="Callout2_1"
+                    class="callout"
+                >
+                    Neben dem von Ihnen ausgewählten Planugsbereich werden für eine verbesserte Interpretation von Mitversorgungseffekten die benachbarten Planungsbereiche in die Analyse und Darstellung einbezogen.
+                </div>
+                <div
+                    id="Callout2_2"
+                    class="callout callout-warn"
+                >
+                    Sie haben sich für eine landesweite Analyse entschieden. Durch die hohen Anforderungen an die Berechnung werden alle weiteren Parameter voreingestellt und sind nicht änderbar. Sie können die Einstellungen in den folgenden Schritten einsehen und anschließend in Schritt 5 auf  "Analyse starten" klicken.
+                </div>
             </div>
         </div>
     </div>
@@ -199,5 +211,9 @@ export default {
     margin-bottom: 0.25rem;
     background-color: var(--bd-callout-bg, var(--bs-gray-100));
     border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
+}
+.callout-warn {
+    --bd-callout-bg: rgba(255,0,0,0.3);
+    --bd-callout-border: rgb(100,0,0,0.3);
 }
 </style>
