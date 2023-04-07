@@ -15,7 +15,9 @@ const state = {
             generalSpecialist: false,
             specializedSpecialist: false,
             lowerSaxony: false
-        }
+        },
+        physicianGroup: "Bitte wählen...",
+        planningArea: "Bitte wählen..."
     }
 };
 

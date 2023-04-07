@@ -62,11 +62,15 @@ export default {
             <div>
                 <select
                     id="Dropdown2_1"
+                    v-model="stepTwo.physicianGroup"
                     class="form-select"
                     aria-label="DropdownPhysicians"
                     :disabled="!(stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony)"
                 >
-                    <option selected>
+                    <option
+                        selected
+                        value="Bitte wählen..."
+                    >
                         Bitte wählen...
                     </option>
                     <option
@@ -160,6 +164,7 @@ export default {
                 <p>Bitte wählen Sie einen Planungsbereich aus:</p>
                 <select
                     id="Dropdown2_2"
+                    v-model="stepTwo.planningArea"
                     class="form-select"
                     aria-label="DropdownArea"
                 >
