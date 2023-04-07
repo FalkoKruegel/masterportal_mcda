@@ -55,7 +55,7 @@ export default {
                 v-model="stepTwo.supplyLevel.lowerSaxony"
                 text="Niedersachsen - Versorgungsebene / KV-Bezirk"
             />
-            <!--following div will only be rendered if checkbox for own area (above) is checked-->
+            <p />
         </div>
         <div>
             <p>Bitte wählen Sie eine Facharztgruppe aus:</p>
@@ -64,6 +64,7 @@ export default {
                     id="Dropdown2_1"
                     class="form-select"
                     aria-label="Default select example"
+                    :disabled="!(stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony)"
                 >
                     <option selected>
                         Bitte wählen...
