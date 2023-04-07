@@ -63,7 +63,7 @@ export default {
                 <select
                     id="Dropdown2_1"
                     class="form-select"
-                    aria-label="Default select example"
+                    aria-label="DropdownPhysicians"
                     :disabled="!(stepTwo.supplyLevel.generalPhysician || stepTwo.supplyLevel.generalSpecialist || stepTwo.supplyLevel.specializedSpecialist || stepTwo.supplyLevel.lowerSaxony)"
                 >
                     <option selected>
@@ -152,6 +152,34 @@ export default {
                         value="Anästhesisten"
                     >
                         Anästhesisten
+                    </option>
+                </select>
+                <p />
+            </div>
+            <div>
+                <p>Bitte wählen Sie einen Planungsbereich aus:</p>
+                <select
+                    id="Dropdown2_2"
+                    class="form-select"
+                    aria-label="DropdownArea"
+                >
+                    <option selected>
+                        Bitte wählen...
+                    </option>
+                    <option
+                        value="Platzhalter"
+                    >
+                        Platzhalter
+                    </option>
+                    <option
+                        value="Niedersachsen"
+                    >
+                        Niedersachsen
+                    </option>
+                    <option
+                        value="KV-Bezirk"
+                    >
+                        KV-Bezirk
                     </option>
                 </select>
             </div>
