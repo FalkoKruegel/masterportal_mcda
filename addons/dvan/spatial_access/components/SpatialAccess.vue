@@ -27,7 +27,18 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
+        ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
+
+        statusStepTwo () {
+            for (const item in this.stepTwo.supplyLevel) {
+                if (this.stepTwo.supplyLevel[item] === true) {
+                    if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
+                        return "valid";
+                    }
+                }
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -107,7 +118,7 @@ export default {
                 />
                 <AccordionItem
                     title="Schritt 2: Facharztgruppe und Planungsbereich auswählen"
-                    status="invalid"
+                    :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
