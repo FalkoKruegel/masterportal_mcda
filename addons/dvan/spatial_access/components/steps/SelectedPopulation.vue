@@ -32,8 +32,8 @@ export default {
             if (this.allActivated) {
                 return "valid";
             }
-            for (const item in this.stepFour.kita) {
-                if (this.stepFour.kita[item] === true) {
+            for (const item in this.stepFour.kids) {
+                if (this.stepFour.kids[item] === true) {
                     return "deactivated";
                 }
             }
@@ -45,8 +45,8 @@ export default {
                     return "valid";
                 }
             }
-            for (const item in this.stepFour.kita) {
-                if (this.stepFour.kita[item] === true) {
+            for (const item in this.stepFour.kids) {
+                if (this.stepFour.kids[item] === true) {
                     return "deactivated";
                 }
             }
@@ -58,8 +58,8 @@ export default {
                     return "deactivated";
                 }
             }
-            for (const item in this.stepFour.kita) {
-                if (this.stepFour.kita[item] === true) {
+            for (const item in this.stepFour.kids) {
+                if (this.stepFour.kids[item] === true) {
                     return "valid";
                 }
             }
@@ -86,7 +86,7 @@ export default {
 <template lang="html">
     <div>
         <p>
-            Abhängig von Ihrer Fragestellung und der gewählten Facharztgruppe, kann der räumliche Zugang nur für eine ausgewählte Bevölkerngsgruppe relevant sein. Wählen Sie die Altergruppe, die Sie für die entsprechende Analyse  einbeziehen möchten.
+            Abhängig von Ihrer Fragestellung und der gewählten Facharztgruppe, kann der räumliche Zugang nur für eine ausgewählte Bevölkerungsgruppe relevant sein. Wählen Sie die Altersgruppe, die Sie für die entsprechende Analyse einbeziehen möchten.
         </p>
         <BootstrapAccordion
             id="Accordion4"
@@ -160,37 +160,37 @@ export default {
             >
                 <BootstrapCheckbox
                     id="Checkbox4_3_1"
-                    v-model="stepFour.kita.first"
+                    v-model="stepFour.kids.first"
                     text="0-2 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_2"
-                    v-model="stepFour.kita.second"
+                    v-model="stepFour.kids.second"
                     text="3-5 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_3"
-                    v-model="stepFour.kita.third"
+                    v-model="stepFour.kids.third"
                     text="6-9 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_4"
-                    v-model="stepFour.kita.fourth"
+                    v-model="stepFour.kids.fourth"
                     text="10-14 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_5"
-                    v-model="stepFour.kita.fifth"
+                    v-model="stepFour.kids.fifth"
                     text="15-17 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_6"
-                    v-model="stepFour.kita.sixth"
+                    v-model="stepFour.kids.sixth"
                     text="18-19 Jahre"
                 />
                 <BootstrapCheckbox
                     id="Checkbox4_3_7"
-                    v-model="stepFour.kita.seventh"
+                    v-model="stepFour.kids.seventh"
                     text="ab 20 Jahre"
                 />
             </BootstrapAccordionItem>
