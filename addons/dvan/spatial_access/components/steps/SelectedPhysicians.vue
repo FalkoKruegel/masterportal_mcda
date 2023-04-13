@@ -15,6 +15,28 @@ export default {
     computed: {
         ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
     },
+    watch: {
+        "stepTwo.supplyLevel.generalPhysician": function () {
+            if (this.stepTwo.supplyLevel.generalPhysician === false) {
+                this.stepTwo.physicianGroup = "Bitte wählen...";
+            }
+        },
+        "stepTwo.supplyLevel.generalSpecialist": function () {
+            if (this.stepTwo.supplyLevel.generalSpecialist === false) {
+                this.stepTwo.physicianGroup = "Bitte wählen...";
+            }
+        },
+        "stepTwo.supplyLevel.specializedSpecialist": function () {
+            if (this.stepTwo.supplyLevel.specializedSpecialist === false) {
+                this.stepTwo.physicianGroup = "Bitte wählen...";
+            }
+        },
+        "stepTwo.supplyLevel.lowerSaxony": function () {
+            if (this.stepTwo.supplyLevel.lowerSaxony === false) {
+                this.stepTwo.physicianGroup = "Bitte wählen...";
+            }
+        }
+    },
     methods: {
         ...mapActions("Tools/SpatialAccess", [
             "initialize"
