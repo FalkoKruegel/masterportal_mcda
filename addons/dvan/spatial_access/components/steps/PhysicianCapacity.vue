@@ -34,19 +34,27 @@ export default {
             </p>
             <BootstrapCheckbox
                 id="Checkbox_3_1"
+                v-model="stepThree.physicianAvailability.facility"
                 text="Betriebsstättenbetrachtung"
+                :disabled="stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.employmentVolume || stepThree.physicianAvailability.demandLimit"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_2"
+                v-model="stepThree.physicianAvailability.physicianNumber"
                 text="Facharztzahl an der Betriebsstätte"
+                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.employmentVolume || stepThree.physicianAvailability.demandLimit"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_3"
+                v-model="stepThree.physicianAvailability.employmentVolume"
                 text="Beschäftigungsumfang der Fachärzte an der Betriebsstätten"
+                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.demandLimit"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_4"
+                v-model="stepThree.physicianAvailability.demandLimit"
                 text="Fallzahlabhängige Bedarfsgrenzen an den Betriebsstätten"
+                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.employmentVolume"
             />
             <p />
         </div>
