@@ -4,13 +4,15 @@ import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 
 export default {
     name: "SpatialAccess",
     components: {
         ToolTemplate,
         AccordionItem,
-        AccordionFooter
+        AccordionFooter,
+        PhysicianCapacity
     },
     data () {
         return {
@@ -120,6 +122,7 @@ export default {
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
+                    <PhysicianCapacity />
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
