@@ -27,7 +27,16 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
+        ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
+
+        statusStepThree () {
+            for (const item in this.stepThree.physicianAvailability) {
+                if (this.stepThree.physicianAvailability[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -118,7 +127,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 3: Ärztlichen Teilnahmeumfang und Kapazitäten definieren"
-                    status="invalid"
+                    :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
