@@ -47,7 +47,7 @@ export default {
             <BootstrapCheckbox
                 id="Checkbox_3_3"
                 v-model="stepThree.physicianAvailability.employmentVolume"
-                text="Beschäftigungsumfang der Fachärzte an der Betriebsstätten"
+                text="Beschäftigungsumfang der Fachärzte an den Betriebsstätten"
                 :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.demandLimit"
             />
             <BootstrapCheckbox
@@ -60,16 +60,60 @@ export default {
         </div>
         <div>
             <div
-                id="Callout2_1"
+                v-if="stepThree.physicianAvailability.facility"
+                id="Callout3_1"
                 class="callout"
             >
-                Neben dem von Ihnen ausgewählten Planugsbereich werden für eine verbesserte Interpretation von Mitversorgungseffekten die benachbarten Planungsbereiche in die Analyse und Darstellung einbezogen.
+                <p>
+                    <b>
+                        Analyseergebnis stärker durch die Sicht Erreichbarkeit dominiert
+                    </b>
+                </p>
+                <p>
+                    Sie haben sich für eine rein standortabhängie Betrachtung entschieden. Das Analyseergebnis wird grundsätzlich stärker durch die Dimension "Erreichbarkeit" der Versorgung als durch die Dimension "Verfügbarkeit" der Versorgung dominiert, da die Anzahl der Ärzte oder der Teilnahmeumfang an der vertragsärztlichen Versorgung am Standort nicht berücksichtig werden.
+                </p>
             </div>
             <div
-                id="Callout2_2"
+                v-if="stepThree.physicianAvailability.physicianNumber"
+                id="Callout3_2"
+                class="callout"
+            >
+                <p>
+                    <b>
+                        Analyseergebnis stärker durch die Sicht Versorgungssicherheit dominiert.
+                    </b>
+                </p>
+                <p>
+                    Mit der Auswahl wird der Beschäftigungsumfang der Ärzte am Standort berücksichtigt. Standorte mit hohen Arztzahlen tragen somit stärker zur Versorgung bei als Standorte mit niedrigen Arztzahlen. Berücksichtigen Sie bei der Interpretation der Analyseergebnisse, das dadurch die Dimension "Verfügbarkeit" stärker berücksichtigt wird. Das Ergebnis lässt sich dadurch im Sinne einer regionalen Versorgungssicherheit interpretieren.
+                </p>
+            </div>
+            <div
+                v-if="stepThree.physicianAvailability.employmentVolume"
+                id="Callout3_3"
+                class="callout"
+            >
+                <p>
+                    <b>
+                        Ausgewogene und realitätsnahe Ergebnisdarstellung der fachätztlichen Verfügbarkeit und Erreichbarkeit.
+                    </b>
+                </p>
+                <p>
+                    Das Analyseergebnis wird ausgewogen durch die Dimensionen "Erreichbarkeit" und "Verfügbarkeit" von fachärztlicher Versorgungsleistung dominiert.
+                </p>
+            </div>
+            <div
+                v-if="stepThree.physicianAvailability.demandLimit"
+                id="Callout3_4"
                 class="callout callout-warn"
             >
-                Sie haben sich für eine landesweite Analyse entschieden. Durch die hohen Anforderungen an die Berechnung werden alle weiteren Parameter voreingestellt und sind nicht änderbar. Sie können die Einstellungen in den folgenden Schritten einsehen und anschließend in Schritt 5 auf  "Analyse starten" klicken.
+                <p>
+                    <b>
+                        KV-Spezifikation notwendig: Auslastungsabhängige Ergebnisdarstellung anhand der Fallzahlen der Betriebsstätte.
+                    </b>
+                </p>
+                <p>
+                    Dieses Instrument ist noch nicht verfügbar. Es sind kontextabhängige Spezifikationen, Daten und Absprachen mit Kassenärztlichen Vereinigungen notwendig.
+                </p>
             </div>
         </div>
     </div>
