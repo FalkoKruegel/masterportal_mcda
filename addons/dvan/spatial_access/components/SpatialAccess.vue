@@ -27,7 +27,21 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
+        ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
+
+        statusStepFour () {
+            for (const item in this.stepFour.standard) {
+                if (this.stepFour.standard[item] === true) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepFour.kids) {
+                if (this.stepFour.kids[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -129,7 +143,7 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
-                    status="invalid"
+                    :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >

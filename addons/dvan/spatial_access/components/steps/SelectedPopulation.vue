@@ -92,7 +92,6 @@ export default {
             id="Accordion4"
             body-padding-y="5px"
         >
-            <!-- Nahversorgungs Infrastrukturen -->
             <BootstrapAccordionItem
                 id="Accordion4_1"
                 parent-id="Accordion4"
@@ -106,8 +105,6 @@ export default {
                     @input="activateAll"
                 />
             </BootstrapAccordionItem>
-
-            <!-- Gesundheits Infrastrukturen -->
             <BootstrapAccordionItem
                 id="Accordion4_2"
                 parent-id="Accordion4"
@@ -150,8 +147,6 @@ export default {
                     text="ab 80 Jahre"
                 />
             </BootstrapAccordionItem>
-
-            <!-- Bildungs Infrastrukturen -->
             <BootstrapAccordionItem
                 id="Accordion4_3"
                 parent-id="Accordion4"
