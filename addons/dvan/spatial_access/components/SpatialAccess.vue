@@ -5,9 +5,9 @@ import AccordionFooter from "../../share_components/accordion/AccordionFooter.vu
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
+import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
-import SelectedPopulation from "./steps/SelectedPopulation.vue";
 
 export default {
     name: "SpatialAccess",
@@ -17,7 +17,7 @@ export default {
         AccordionFooter,
         StartAnalysis,
         SelectedPhysicians,
-        PhysicianCapacity
+        PhysicianCapacity,
         SelectedPopulation
     },
     data () {
@@ -48,6 +48,11 @@ export default {
         statusStepThree () {
             for (const item in this.stepThree.physicianAvailability) {
                 if (this.stepThree.physicianAvailability[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        },
         statusStepFour () {
             for (const item in this.stepFour.standard) {
                 if (this.stepFour.standard[item] === true) {
