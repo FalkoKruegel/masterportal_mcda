@@ -13,7 +13,7 @@ export default {
         ToolTemplate,
         AccordionItem,
         AccordionFooter,
-        StartAnalysis
+        StartAnalysis,
         SelectedPhysicians
     },
     data () {
