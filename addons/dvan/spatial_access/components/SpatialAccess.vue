@@ -4,9 +4,9 @@ import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
+import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
-import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 
 export default {
     name: "SpatialAccess",
@@ -15,7 +15,7 @@ export default {
         AccordionItem,
         AccordionFooter,
         StartAnalysis,
-        SelectedPhysicians
+        SelectedPhysicians,
         PhysicianCapacity
     },
     data () {
@@ -39,6 +39,10 @@ export default {
                     if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
                         return "valid";
                     }
+                }
+            }
+            return "invalid";
+        },
         statusStepThree () {
             for (const item in this.stepThree.physicianAvailability) {
                 if (this.stepThree.physicianAvailability[item] === true) {
