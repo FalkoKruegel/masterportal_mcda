@@ -3,6 +3,7 @@ import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
+import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -13,6 +14,7 @@ export default {
         AccordionItem,
         AccordionFooter,
         StartAnalysis
+        SelectedPhysicians
     },
     data () {
         return {
@@ -27,7 +29,18 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
+        ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
+
+        statusStepTwo () {
+            for (const item in this.stepTwo.supplyLevel) {
+                if (this.stepTwo.supplyLevel[item] === true) {
+                    if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
+                        return "valid";
+                    }
+                }
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -112,10 +125,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 2: Facharztgruppe und Planungsbereich auswählen"
-                    status="invalid"
+                    :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
+                    <SelectedPhysicians />
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
