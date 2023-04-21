@@ -25,6 +25,24 @@ const state = {
             physicianNumber: false,
             employmentVolume: false,
             demandLimit: false
+    stepFour: {
+        standard: {
+            first: false,
+            second: false,
+            third: false,
+            fourth: false,
+            fifth: false,
+            sixth: false,
+            seventh: false
+        },
+        kids: {
+            first: false,
+            second: false,
+            third: false,
+            fourth: false,
+            fifth: false,
+            sixth: false,
+            seventh: false
         }
     }
 };

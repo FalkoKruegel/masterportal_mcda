@@ -7,6 +7,7 @@ import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import SelectedPopulation from "./steps/SelectedPopulation.vue";
 
 export default {
     name: "SpatialAccess",
@@ -17,6 +18,7 @@ export default {
         StartAnalysis,
         SelectedPhysicians,
         PhysicianCapacity
+        SelectedPopulation
     },
     data () {
         return {
@@ -46,6 +48,14 @@ export default {
         statusStepThree () {
             for (const item in this.stepThree.physicianAvailability) {
                 if (this.stepThree.physicianAvailability[item] === true) {
+        statusStepFour () {
+            for (const item in this.stepFour.standard) {
+                if (this.stepFour.standard[item] === true) {
+                    return "valid";
+                }
+            }
+            for (const item in this.stepFour.kids) {
+                if (this.stepFour.kids[item] === true) {
                     return "valid";
                 }
             }
@@ -159,10 +169,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
-                    status="invalid"
+                    :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
+                    <SelectedPopulation />
                     <AccordionFooter
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
