@@ -47,7 +47,7 @@ export default {
         },
         statusStepThree () {
             for (const item in this.stepThree.physicianAvailability) {
-                if (this.stepThree.physicianAvailability[item] === true) {
+                if (this.stepThree.physicianAvailability[item] === true & item !== "demandLimit") {
                     return "valid";
                 }
             }
