@@ -35,7 +35,7 @@ export default {
                 urlSearch = searchRequest.substring(0, indiceArray[i]) + "+" + searchRequest.substring(indiceArray[i], indiceArray[i + 1]);
             }
 
-            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1";
+            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=1";
 
             return url;
         }
@@ -45,6 +45,7 @@ export default {
 
 <template lang="html">
     <div>
+        <p />
         <form
             @submit.prevent="fetchData"
         >
@@ -55,7 +56,7 @@ export default {
                     for="addressInput"
                     class="form-label"
                 >
-                    Suche nach Adresse
+                    Suche nach Adresse oder Ort
                 </label>
                 <input
                     id="addressInput"
@@ -73,6 +74,23 @@ export default {
                 </button>
             </div>
         </form>
-        {{ responseData }}
+        <div>
+            <p
+                v-if="responseData !== null"
+            >
+                Name: {{ responseData[0].display_name }}
+            </p>
+            <p
+                v-if="responseData !== null"
+            >
+                Längengrad: {{ responseData[0].lon }}
+            </p>
+            <p
+                v-if="responseData !== null"
+            >
+                Breitengrad: {{ responseData[0].lat }}
+            </p>
+        </div>
+        <p />
     </div>
 </template>
