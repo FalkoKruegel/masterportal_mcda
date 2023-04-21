@@ -6,6 +6,7 @@ import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 
 export default {
     name: "SpatialAccess",
@@ -15,6 +16,7 @@ export default {
         AccordionFooter,
         StartAnalysis,
         SelectedPhysicians
+        PhysicianCapacity
     },
     data () {
         return {
@@ -37,6 +39,10 @@ export default {
                     if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
                         return "valid";
                     }
+        statusStepThree () {
+            for (const item in this.stepThree.physicianAvailability) {
+                if (this.stepThree.physicianAvailability[item] === true) {
+                    return "valid";
                 }
             }
             return "invalid";
@@ -137,10 +143,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 3: Ärztlichen Teilnahmeumfang und Kapazitäten definieren"
-                    status="invalid"
+                    :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
+                    <PhysicianCapacity />
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"

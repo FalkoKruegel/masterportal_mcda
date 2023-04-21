@@ -18,6 +18,13 @@ const state = {
         },
         physicianGroup: "Bitte wählen...",
         planningArea: "Bitte wählen..."
+    stepThree: {
+        physicianAvailability: {
+            facility: false,
+            physicianNumber: false,
+            employmentVolume: false,
+            demandLimit: false
+        }
     }
 };
 
