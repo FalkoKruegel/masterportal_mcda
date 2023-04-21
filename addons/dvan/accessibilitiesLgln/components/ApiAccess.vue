@@ -11,6 +11,8 @@ export default {
         };
     },
     methods: {
+
+        // method uses axios library to fetch data from nominatim api
         fetchData () {
             axios.get(this.createURL(this.addressInput))
                 .then(response => {
@@ -20,9 +22,14 @@ export default {
                     this.errorMessage = error;
                 });
         },
+
+        // method creates string with a url which can be used in the fetchData method
         createURL (searchRequest) {
+
+            // array should contain indices of commas ans spaces in the user input string
             const indiceArray = [];
 
+            // search for commas and spaces in user input string
             for (let i = 0; i < searchRequest.length; i++) {
                 if (searchRequest[i] === "," || searchRequest[i] === " ") {
                     indiceArray.push(i);
@@ -31,10 +38,12 @@ export default {
 
             let urlSearch = searchRequest;
 
+            // replace commas and spaces in input string
             for (let i = 0; i < indiceArray.length; i++) {
                 urlSearch = searchRequest.substring(0, indiceArray[i]) + "+" + searchRequest.substring(indiceArray[i], indiceArray[i + 1]);
             }
 
+            // construct url to use in fetchData method
             const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=1";
 
             return url;
@@ -73,6 +82,7 @@ export default {
                     Suchen
                 </button>
             </div>
+            <p />
         </form>
         <div>
             <p
