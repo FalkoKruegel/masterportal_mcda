@@ -7,13 +7,17 @@ export default {
         return {
             responseData: null,
             addressInput: "",
-            errorMessage: null
+            errorMessage: null,
+            showSuggestions: false,
+            selectedItemIndex: null,
+            showResult: false
         };
     },
     methods: {
 
         // method uses axios library to fetch data from nominatim api
         fetchData () {
+            this.showResult = false;
             axios.get(this.createURL(this.addressInput))
                 .then(response => {
                     this.responseData = response.data;
@@ -21,6 +25,7 @@ export default {
                 .catch(error => {
                     this.errorMessage = error;
                 });
+            this.showSuggestions = true;
         },
 
         // method creates string with a url which can be used in the fetchData method
@@ -44,9 +49,13 @@ export default {
             }
 
             // construct url to use in fetchData method
-            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=1";
+            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=5";
 
             return url;
+        },
+        selectResult (index) {
+            this.selectedItemIndex = index;
+            this.showResult = true;
         }
     }
 };
@@ -58,49 +67,74 @@ export default {
         <form
             @submit.prevent="fetchData"
         >
-            <div
-                class="mb-3"
-            >
+            <div>
                 <label
                     for="addressInput"
                     class="form-label"
                 >
                     Suche nach Adresse oder Ort
                 </label>
-                <input
-                    id="addressInput"
-                    v-model="addressInput"
-                    type="text"
-                    class="form-control"
-                >
+                <div class="input-group mb-3">
+                    <input
+                        id="addressInput"
+                        v-model="addressInput"
+                        type="text"
+                        class="form-control"
+                    >
+                    <button
+                        type="submit"
+                        class="btn btn-outline-primary btn-sm"
+                    >
+                        Suchen
+                    </button>
+                </div>
             </div>
             <div>
-                <button
-                    type="submit"
-                    class="btn btn-outline-primary btn-sm"
+                <ul
+                    v-if="showSuggestions"
+                    class="list-group"
                 >
-                    Suchen
-                </button>
+                    <li
+                        v-for="(item, index) in responseData"
+                        :key="index"
+                        class="list-group-item"
+                        @click="selectResult(index)"
+                        @keydown="selectResult(index)"
+                    >
+                        {{ item.display_name }}
+                    </li>
+                </ul>
             </div>
             <p />
         </form>
         <div>
             <p
-                v-if="responseData !== null"
+                v-if="showResult"
             >
-                Name: {{ responseData[0].display_name }}
+                Name: {{ responseData[selectedItemIndex].display_name }}
             </p>
             <p
-                v-if="responseData !== null"
+                v-if="showResult"
             >
-                Längengrad: {{ responseData[0].lon }}
+                Längengrad: {{ responseData[selectedItemIndex].lon }}
             </p>
             <p
-                v-if="responseData !== null"
+                v-if="showResult"
             >
-                Breitengrad: {{ responseData[0].lat }}
+                Breitengrad: {{ responseData[selectedItemIndex].lat }}
             </p>
         </div>
-        <p />
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+.list-group-item:hover {
+  color: #fff;
+  background-color: #007bff;
+}
+.list-group-item {
+  cursor: pointer;
+}
+
+</style>
