@@ -1,4 +1,5 @@
 import store from "/src/app-store";
+import {toLonLat, get as getProjection} from "ol/proj";
 import {RasterStyle} from "../layers/raster_style";
 import {addLayerModel} from "../map.js";
 import {convertLayerName} from "../util";
@@ -69,9 +70,91 @@ async function runAnalysis () {
 
     request.infrastructures = {};
 
+    const stepTwo = store.getters["Tools/DecisionSupport/stepTwo"];
     const stepThree = store.getters["Tools/DecisionSupport/stepThree"];
+    const stepFour = store.getters["Tools/DecisionSupport/stepFour"];
     const stepFive = store.getters["Tools/DecisionSupport/stepFive"];
     const stepSix = store.getters["Tools/DecisionSupport/stepSix"];
+
+    const projection = getProjection("EPSG:25832");
+    const ll = toLonLat([stepTwo.ownAreaExtent[0], stepTwo.ownAreaExtent[1]], projection);
+    const ur = toLonLat([stepTwo.ownAreaExtent[2], stepTwo.ownAreaExtent[3]], projection);
+
+    request.envelop = [ll[0], ll[1], ur[0], ur[1]];
+
+    const population_indizes = [];
+
+    for (const key in stepFour.standard) {
+        if (stepFour.standard[key] === false) {
+            continue;
+        }
+        switch (key) {
+            case "first":
+                population_indizes.push(0);
+                break;
+            case "second":
+                population_indizes.push(1);
+                break;
+            case "third":
+                population_indizes.push(2);
+                break;
+            case "fourth":
+                population_indizes.push(3);
+                break;
+            case "fifth":
+                population_indizes.push(4);
+                break;
+            case "sixth":
+                population_indizes.push(5);
+                break;
+            case "seventh":
+                population_indizes.push(6);
+                break;
+            default:
+                break;
+        }
+    }
+    if (population_indizes.length === 7) {
+        request.population_type = "standard_all";
+    }
+    else if (population_indizes.length !== 0) {
+        request.population_type = "standard";
+        request.population_indizes = population_indizes;
+    }
+    else {
+        for (const key in stepFour.kita) {
+            if (stepFour.kita[key] === false) {
+                continue;
+            }
+            switch (key) {
+                case "first":
+                    population_indizes.push(0);
+                    break;
+                case "second":
+                    population_indizes.push(1);
+                    break;
+                case "third":
+                    population_indizes.push(2);
+                    break;
+                case "fourth":
+                    population_indizes.push(3);
+                    break;
+                case "fifth":
+                    population_indizes.push(4);
+                    break;
+                case "sixth":
+                    population_indizes.push(5);
+                    break;
+                case "seventh":
+                    population_indizes.push(6);
+                    break;
+                default:
+                    break;
+            }
+        }
+        request.population_type = "kita_schul";
+        request.population_indizes = population_indizes;
+    }
 
     for (const item in stepThree.local_supply) {
         if (stepThree.local_supply[item] === true) {

@@ -11,7 +11,8 @@ const state = {
     deactivateGFI: false,
     stepTwo: {
         wholeLowerSaxony: false,
-        ownArea: false
+        ownArea: false,
+        ownAreaExtent: null
     },
     stepThree: {
         local_supply: {
