@@ -7,6 +7,7 @@ import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import SelectDistanceDecay from "./steps/SelectDistanceDecay.vue";
+import AnalysisResults from "./steps/AnalysisResults.vue";
 import {storeToolParams} from "../utils/tool_params/load_params";
 import {runAnalysis} from "../utils/analysis/run_analysis";
 import {mapGetters, mapActions, mapMutations} from "vuex";
@@ -23,6 +24,7 @@ export default {
         PhysicianCapacity,
         SelectedPopulation,
         SelectDistanceDecay,
+        AnalysisResults
     },
     data () {
         return {
@@ -239,6 +241,7 @@ export default {
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
+                    <AnalysisResults />
                     <AccordionFooter
                         forward-text="Analyse speichern"
                         @forwardClick="storeParams()"
