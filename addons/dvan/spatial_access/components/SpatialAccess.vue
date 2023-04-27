@@ -6,6 +6,7 @@ import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
+import SelectDistanceDecay from "./steps/SelectDistanceDecay.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -18,7 +19,8 @@ export default {
         StartAnalysis,
         SelectedPhysicians,
         PhysicianCapacity,
-        SelectedPopulation
+        SelectedPopulation,
+        SelectDistanceDecay,
     },
     data () {
         return {
@@ -65,6 +67,19 @@ export default {
                 }
             }
             return "invalid";
+        },
+        statusStepFive () {
+            if (["pkw"].includes(this.stepFive.transport) && ["linear", "patient_behavior", "minimum_standards"].includes(this.stepFive.distanceDecay)) {
+                return "valid";
+            }
+            return "invalid";
+        },
+        paramsReady () {
+            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepFive === "valid") {
+                return true;
+            }
+            return false;
+        },
         }
     },
     created () {
@@ -186,10 +201,11 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Transportmittel und Entfernungsabgwichtung wählen"
-                    status="invalid"
+                    :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
+                    <SelectDistanceDecay />
                     <AccordionFooter
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
