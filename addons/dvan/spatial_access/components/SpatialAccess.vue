@@ -7,6 +7,7 @@ import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import SelectDistanceDecay from "./steps/SelectDistanceDecay.vue";
+import {storeToolParams} from "../utils/tool_params/load_params";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -129,9 +130,15 @@ export default {
             }
             this.steps[index] = true;
 
-            if (index === 6) {
-                this.stepSeven.status = "unchanged";
-            }
+        storeParams () {
+            const a = document.createElement("a");
+            const blob = new Blob([JSON.stringify(storeToolParams())], {
+                type: "application/json"
+            });
+
+            a.href = window.URL.createObjectURL(blob);
+            a.download = "spatial_access_settings.json";
+            a.click();
         }
     }
 };
@@ -218,8 +225,9 @@ export default {
                     @click="openStep(5)"
                 >
                     <AccordionFooter
+                        forward-text="Analyse speichern"
+                        @forwardClick="storeParams()"
                         @backClick="openStep(4)"
-                        @forwardClick="openStep(6)"
                     />
                 </AccordionItem>
             </div>
