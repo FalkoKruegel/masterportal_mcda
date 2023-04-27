@@ -51,6 +51,8 @@ const state = {
         distanceDecay: "",
         transport: ""
     },
+    stepSix: {
+        status: "unfinished"
     }
 };
 
