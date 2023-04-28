@@ -49,7 +49,7 @@ export default {
             }
 
             // construct url to use in fetchData method
-            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=5";
+            const url = "https://nominatim.openstreetmap.org/search?q=" + urlSearch + "&format=json&addressdetails=1&limit=5&countrycodes=de&viewbox=6.270117,51.250458,11.672207,54.182840&bounded=1";
 
             return url;
         },
