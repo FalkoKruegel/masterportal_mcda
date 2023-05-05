@@ -8,7 +8,13 @@ const state = {
     renderToWindow: false,
     resizableWindow: true,
     isVisibleInMenu: true,
-    deactivateGFI: false
+    deactivateGFI: false,
+    stepOne: {
+        location: {
+            longitude: null,
+            latitude: null
+        }
+    }
 };
 
 export default state;

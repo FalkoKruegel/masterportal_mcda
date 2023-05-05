@@ -5,13 +5,15 @@ import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
 import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
+import SetLocation from "./steps/SetLocation.vue";
 
 export default {
     name: "PhysicianSearch",
     components: {
         ToolTemplate,
         AccordionItem,
-        AccordionFooter
+        AccordionFooter,
+        SetLocation
     },
     data () {
         return {
@@ -99,6 +101,7 @@ export default {
                     :opened="steps[0]"
                     @click="openStep(0)"
                 >
+                    <SetLocation />
                     <AccordionFooter
                         @forwardClick="openStep(1)"
                         @backClick="openStep(0)"
