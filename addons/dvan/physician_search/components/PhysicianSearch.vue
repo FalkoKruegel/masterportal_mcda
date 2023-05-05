@@ -1,13 +1,27 @@
 
 <script>
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
+import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
+import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
 export default {
     name: "PhysicianSearch",
     components: {
-        ToolTemplate
+        ToolTemplate,
+        AccordionItem,
+        AccordionFooter
+    },
+    data () {
+        return {
+            steps: {
+                0: true,
+                1: false,
+                2: false,
+                3: false
+            }
+        };
     },
     computed: {
         ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
@@ -48,6 +62,16 @@ export default {
             if (model) {
                 model.set("isActive", false);
             }
+        },
+        openStep (index) {
+            if (this.steps[index] === true) {
+                this.steps[index] = false;
+                return;
+            }
+            for (const i in this.steps) {
+                this.steps[i] = false;
+            }
+            this.steps[index] = true;
         }
     }
 };
@@ -61,13 +85,61 @@ export default {
         :render-to-window="renderToWindow"
         :resizable-window="resizableWindow"
         :deactivate-gfi="deactivateGFI"
+        :initial-width="450"
     >
         <template #toolBody>
             <div
-                v-if="active"
-                id="vue-addon"
+                id="physicianSearchAccordion"
+                class="accordion accordion-flush full-window"
             >
-                {{ "Hier entsteht das Tool für die Arztsuche." }}
+                <AccordionItem
+                    id="Accordion1"
+                    title="Schritt 1: Eigenen Standort festlegen"
+                    status="invalid"
+                    :opened="steps[0]"
+                    @click="openStep(0)"
+                >
+                    <AccordionFooter
+                        @forwardClick="openStep(1)"
+                        @backClick="openStep(0)"
+                    />
+                </AccordionItem>
+                <AccordionItem
+                    id="Accordion2"
+                    title="Schritt 2: Fachkriterien"
+                    status="invalid"
+                    :opened="steps[1]"
+                    @click="openStep(1)"
+                >
+                    <AccordionFooter
+                        @forwardClick="openStep(2)"
+                        @backClick="openStep(0)"
+                    />
+                </AccordionItem>
+                <AccordionItem
+                    id="Accordion3"
+                    title="Schritt 3: Radius vom Suchort"
+                    status="invalid"
+                    :opened="steps[2]"
+                    @click="openStep(2)"
+                >
+                    <AccordionFooter
+                        @forwardClick="openStep(3)"
+                        @backClick="openStep(1)"
+                    />
+                </AccordionItem>
+                <AccordionItem
+                    id="Accordion3"
+                    title="Schritt 4: Ergebnisliste"
+                    status="invalid"
+                    :opened="steps[3]"
+                    @click="openStep(3)"
+                >
+                    <AccordionFooter
+                        @forwardClick="openStep(3)"
+                        @backClick="openStep(2)"
+                    />
+                </AccordionItem>
             </div>
         </template>
     </ToolTemplate>
