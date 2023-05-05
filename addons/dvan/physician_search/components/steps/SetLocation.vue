@@ -13,11 +13,11 @@ export default {
             addressInput: "",
             errorMessage: null,
             showSuggestions: false,
-            showResult: false
+            selectedItemIndex: null
         };
     },
     computed: {
-        ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
+        ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
     },
     methods: {
         // method uses axios library to fetch data from nominatim api
@@ -61,12 +61,14 @@ export default {
 
         selectResult (index) {
             this.selectedItemIndex = index;
+            this.stepOne.location.longitude = this.responseData[index].lon;
+            this.stepOne.location.latitude = this.responseData[index].lat;
         },
 
-        ...mapActions("Tools/SpatialAccess", [
+        ...mapActions("Tools/PhysicianSearch", [
             "initialize"
         ]),
-        ...mapMutations("Tools/SpatialAccess", [
+        ...mapMutations("Tools/PhysicianSearch", [
             "setActive"
         ])
     }
