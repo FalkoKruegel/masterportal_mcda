@@ -25,7 +25,7 @@ const Config = {
         numFeaturesToShow: 2,
         infoText: "(weitere Objekte. Bitte zoomen.)"
     },
-    addons: ["DecisionSupport", "SpatialAccess", "AccessibilitiesLgln", "DegreeOfSupply"],
+    addons: ["DecisionSupport", "SpatialAccess", "PhysicianSearch", "AccessibilitiesLgln", "DegreeOfSupply"],
 };
 
 // conditional export to make config readable by e2e tests
