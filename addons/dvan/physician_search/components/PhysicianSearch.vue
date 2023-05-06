@@ -103,6 +103,7 @@ export default {
                 >
                     <SetLocation />
                     <AccordionFooter
+                        :back-render="false"
                         @forwardClick="openStep(1)"
                         @backClick="openStep(0)"
                     />
