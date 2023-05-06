@@ -6,6 +6,7 @@ import AccordionFooter from "../../share_components/accordion/AccordionFooter.vu
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import SetLocation from "./steps/SetLocation.vue";
+import SubjectCriteria from "./steps/SubjectCriteria.vue";
 
 export default {
     name: "PhysicianSearch",
@@ -13,7 +14,8 @@ export default {
         ToolTemplate,
         AccordionItem,
         AccordionFooter,
-        SetLocation
+        SetLocation,
+        SubjectCriteria
     },
     data () {
         return {
@@ -122,6 +124,7 @@ export default {
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
+                    <SubjectCriteria />
                     <AccordionFooter
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"

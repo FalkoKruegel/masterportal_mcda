@@ -14,6 +14,13 @@ const state = {
             longitude: null,
             latitude: null
         }
+    },
+    stepTwo: {
+        medicalService: {
+            generalPhysician: false,
+            specialist: false,
+            psychotherapist: false
+        }
     }
 };
 
