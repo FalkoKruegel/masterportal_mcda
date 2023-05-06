@@ -20,7 +20,13 @@ const state = {
             generalPhysician: false,
             specialist: false,
             psychotherapist: false
+        },
+        empoweredPhys: {
+            yes: false,
+            no: false,
+            onlyPhys: false
         }
+
     }
 };
 
