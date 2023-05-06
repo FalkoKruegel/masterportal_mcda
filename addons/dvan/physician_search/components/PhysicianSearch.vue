@@ -26,7 +26,14 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
+        ...mapGetters("Tools/PhysicianSearch", Object.keys(getters)),
+
+        statusStepOne () {
+            if (this.stepOne.location.longitude !== null && this.stepOne.location.latitude !== null) {
+                return "valid";
+            }
+            return "invalid";
+        }
     },
     created () {
         this.$on("close", this.close);
@@ -97,7 +104,7 @@ export default {
                 <AccordionItem
                     id="Accordion1"
                     title="Schritt 1: Eigenen Standort festlegen"
-                    status="invalid"
+                    :status="statusStepOne"
                     :opened="steps[0]"
                     @click="openStep(0)"
                 >
