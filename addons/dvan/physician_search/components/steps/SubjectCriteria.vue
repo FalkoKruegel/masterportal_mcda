@@ -304,7 +304,7 @@ export default {
                 <BootstrapAccordionItem
                     id="Accordion2_1_2"
                     parent-id="Accordion2_1"
-                    text="Ermächtigte Ärzte"
+                    text="Ermächtigung"
                     :status="statusEmpoweredPhys"
                 >
                     <p>Ermächtigte Ärzte und Psychotherapeuten anzeigen?</p>
