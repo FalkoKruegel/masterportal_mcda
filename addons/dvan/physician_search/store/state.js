@@ -45,6 +45,16 @@ const state = {
             accessibility: "Bitte wählen...",
             languages: "Bitte wählen..."
         }
+    },
+    stepThree: {
+        distance: {
+            distanceActivated: false,
+            distanceSmallerThan: 0
+        },
+        time: {
+            timeActivated: false,
+            timeSmallerThan: 0
+        }
     }
 };
 

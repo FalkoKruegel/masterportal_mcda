@@ -7,6 +7,7 @@ import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import SetLocation from "./steps/SetLocation.vue";
 import SubjectCriteria from "./steps/SubjectCriteria.vue";
+import RadiusFromLocation from "./steps/RadiusFromLocation.vue";
 
 export default {
     name: "PhysicianSearch",
@@ -15,7 +16,8 @@ export default {
         AccordionItem,
         AccordionFooter,
         SetLocation,
-        SubjectCriteria
+        SubjectCriteria,
+        RadiusFromLocation
     },
     data () {
         return {
@@ -165,6 +167,7 @@ export default {
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
+                    <RadiusFromLocation />
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
