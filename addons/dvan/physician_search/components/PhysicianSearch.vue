@@ -8,6 +8,7 @@ import getters from "../store/getters";
 import SetLocation from "./steps/SetLocation.vue";
 import SubjectCriteria from "./steps/SubjectCriteria.vue";
 import RadiusFromLocation from "./steps/RadiusFromLocation.vue";
+import ResultList from "./steps/ResultList.vue";
 
 export default {
     name: "PhysicianSearch",
@@ -17,7 +18,8 @@ export default {
         AccordionFooter,
         SetLocation,
         SubjectCriteria,
-        RadiusFromLocation
+        RadiusFromLocation,
+        ResultList
     },
     data () {
         return {
@@ -187,6 +189,7 @@ export default {
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
+                    <ResultList />
                     <AccordionFooter
                         @forwardClick="openStep(3)"
                         @backClick="openStep(2)"
