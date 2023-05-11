@@ -10,6 +10,7 @@ export default {
     },
     data () {
         return {
+            selectedItemIndex: null,
             physicianList: [
                 {
                     title: "Dr. med.",
@@ -19,7 +20,8 @@ export default {
                     city: "Berlin",
                     streetNumber: "42",
                     street: "Friedrichstraße",
-                    physicianType: "Allgemeinmedizin"
+                    physicianType: "Allgemeinmedizin",
+                    distance: 2
                 },
                 {
                     title: "Dr. med.",
@@ -29,7 +31,8 @@ export default {
                     city: "Köln",
                     streetNumber: "12",
                     street: "Hohe Straße",
-                    physicianType: "Innere Medizin"
+                    physicianType: "Innere Medizin",
+                    distance: 3
                 },
                 {
                     title: "Dr. med.",
@@ -39,7 +42,8 @@ export default {
                     city: "München",
                     streetNumber: "8",
                     street: "Marienplatz",
-                    physicianType: "Pädiatrie"
+                    physicianType: "Pädiatrie",
+                    distance: 4
                 },
                 {
                     title: "Dr. med.",
@@ -49,7 +53,8 @@ export default {
                     city: "Berlin",
                     streetNumber: "7",
                     street: "Alexanderplatz",
-                    physicianType: "Augenheilkunde"
+                    physicianType: "Augenheilkunde",
+                    distance: 5
                 },
                 {
                     title: "Dr. med.",
@@ -59,7 +64,8 @@ export default {
                     city: "Stuttgart",
                     streetNumber: "18",
                     street: "Königstraße",
-                    physicianType: "Hals-Nasen-Ohren-Heilkunde"
+                    physicianType: "Hals-Nasen-Ohren-Heilkunde",
+                    distance: 6
                 },
                 {
                     title: "Dr. med.",
@@ -69,7 +75,8 @@ export default {
                     city: "Hamburg",
                     streetNumber: "1",
                     street: "Jungfernstieg",
-                    physicianType: "Dermatologie"
+                    physicianType: "Dermatologie",
+                    distance: 8
                 },
                 {
                     title: "Dr. med.",
@@ -79,7 +86,8 @@ export default {
                     city: "Berlin",
                     streetNumber: "14",
                     street: "Friedrichstraße",
-                    physicianType: "Psychiatrie"
+                    physicianType: "Psychiatrie",
+                    distance: 10
                 }
             ]
         };
@@ -93,36 +101,64 @@ export default {
         ]),
         ...mapMutations("Tools/PhysicianSearch", [
             "setActive"
-        ])
+        ]),
+        selectResult (index) {
+            this.selectedItemIndex = index;
+        }
     }
 };
 </script>
 
 <template>
-    <div class="list-container">
-        <ul
-            class="list-group"
-        >
-            <li
-                v-for="(item, index) in physicianList"
-                :key="index"
-                class="list-group-item"
-            >
-                <ObjectBox
-                    :title="item.title"
-                    :surname="item.surname"
-                    :name="item.name"
-                    :postal-code="item.postalCode"
-                    :city="item.city"
-                    :street-number="item.streetNumber"
-                    :street="item.street"
-                    :physician-type="item.physicianType"
-                />
-            </li>
-        </ul>
+    <div>
+        <p>Neben der Karte mit den Standorten können Sie untenstehend eine Ergebnisliste aller Ärzte sehen, die den Suchkriterien und dem Suchgebiet entsprechen einsehen.</p>
+        <div class="list-container">
+            <div class="scroll-container">
+                <ul
+                    class="list-group"
+                >
+                    <li
+                        v-for="(item, index) in physicianList"
+                        :key="index"
+                        :class="{ 'list-group-item': true, 'list-group-item-action': true, 'active': selectedItemIndex === index }"
+                        @click="selectResult(index)"
+                        @keydown="selectResult(index)"
+                    >
+                        <ObjectBox
+                            :title="item.title"
+                            :surname="item.surname"
+                            :name="item.name"
+                            :postal-code="item.postalCode"
+                            :city="item.city"
+                            :street-number="item.streetNumber"
+                            :street="item.street"
+                            :physician-type="item.physicianType"
+                            :distance="item.distance"
+                        />
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
 <style scoped>
+    .list-group-item:hover{
+        cursor: pointer;
+        background-color: rgb(218, 206, 206);
+    }
 
+    .list-group-item.active {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+    .list-container {
+        height: 500px;
+    }
+
+    .scroll-container {
+        height: 100%;
+        overflow-y: scroll;
+    }
 </style>

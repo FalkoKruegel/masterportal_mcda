@@ -191,7 +191,7 @@ export default {
                 >
                     <ResultList />
                     <AccordionFooter
-                        @forwardClick="openStep(3)"
+                        :forward-render="false"
                         @backClick="openStep(2)"
                     />
                 </AccordionItem>

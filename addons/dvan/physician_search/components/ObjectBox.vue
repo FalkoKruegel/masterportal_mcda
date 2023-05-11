@@ -35,6 +35,10 @@ export default {
         physicianType: {
             type: String,
             default: ""
+        },
+        distance: {
+            type: Number,
+            default: 0
         }
     }
 };
@@ -42,10 +46,11 @@ export default {
 
 <template>
     <div class="box">
-        <p>{{ title }} {{ surname }}, {{ name }}</p>
+        <p>{{ title }} {{ name }} {{ surname }}</p>
         <p>{{ street }} {{ streetNumber }}</p>
         <p>{{ city }} {{ postalCode }}</p>
         <p>{{ physicianType }}</p>
+        <p>Entfernung: {{ distance }} km</p>
     </div>
 </template>
 
