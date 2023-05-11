@@ -65,6 +65,13 @@ export default {
                 return "invalid";
             }
             return "valid";
+        },
+
+        statusStepThree () {
+            if ((this.stepThree.distance.distanceSmallerThan > 0 || this.stepThree.time.timeSmallerThan > 0) & this.stepThree.transport !== "") {
+                return "valid";
+            }
+            return "invalid";
         }
     },
     created () {
@@ -163,7 +170,7 @@ export default {
                 <AccordionItem
                     id="Accordion3"
                     title="Schritt 3: Radius vom Suchort"
-                    status="invalid"
+                    :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
