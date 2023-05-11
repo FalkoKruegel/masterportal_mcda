@@ -35,6 +35,34 @@ export default {
                 return "valid";
             }
             return "invalid";
+        },
+
+        statusStepTwo () {
+            // checking if special Services refinement is selected
+            if (this.stepTwo.specialServices.subject === "Bitte wählen..." || this.stepTwo.specialServices.additionalDesignation === "Bitte wählen..." || this.stepTwo.specialServices.servicesRequiringAuthorization === "Bitte wählen...") {
+                return "invalid";
+            }
+
+            // checking if any of the checkboxes in the empowered physicians section is true
+            // if none of them is true, "invalid" is returned
+            // Object.values returns an array of the values of the given object
+            // .some() checks if at least one element of an array passes the test given by a function
+            if (!Object.values(this.stepTwo.empoweredPhys).some(val => val === true)) {
+                return "invalid";
+            }
+
+            // checking if any of the checkboxes in the opening hours section is true
+            // if none of them is true, "invalid" is returned
+            // same functions as above are used
+            if (!Object.values(this.stepTwo.openingHours).some(val => val === true)) {
+                return "invalid";
+            }
+
+            // checking if useful valuesare selected for the accessibility and language section
+            if (this.stepTwo.accessibilityAndLanguages.accessibility === "Bitte wählen..." || this.stepTwo.accessibilityAndLanguages.languages === "Bitte wählen...") {
+                return "invalid";
+            }
+            return "valid";
         }
     },
     created () {
@@ -120,7 +148,7 @@ export default {
                 <AccordionItem
                     id="Accordion2"
                     title="Schritt 2: Fachkriterien"
-                    status="invalid"
+                    :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
@@ -160,5 +188,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.accordion {
+    --bs-accordion-btn-padding-x: 10px;
+    --bs-accordion-btn-padding-y: 10px;
+}
 
+.full-window {
+    margin: -1.25rem;
+}
 </style>
