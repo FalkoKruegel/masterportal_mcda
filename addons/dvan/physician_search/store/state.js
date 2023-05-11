@@ -28,6 +28,16 @@ const state = {
             yes: false,
             no: false,
             onlyPhys: false
+        },
+        openingHours: {
+            noRefinement: true,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false
         }
     }
 };

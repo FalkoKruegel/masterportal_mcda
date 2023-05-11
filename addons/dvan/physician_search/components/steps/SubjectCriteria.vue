@@ -81,7 +81,7 @@ export default {
                 id="Accordion2_1"
             >
                 <BootstrapAccordionItem
-                    id="Accordion2_2_1"
+                    id="Accordion2_1_1"
                     parent-id="Accordion2_1"
                     text="Spezialisierung und besondere Leistungen"
                 >
@@ -89,12 +89,12 @@ export default {
                         class="select-element-margin"
                     >
                         <label
-                            for="Dropdown2_2_1_1"
+                            for="Dropdown2_1_1_1"
                         >
                             Fachgebiet / Schwerpunkt:
                         </label>
                         <select
-                            id="Dropdown2_2_1_1"
+                            id="Dropdown2_1_1_1"
                             v-model="stepTwo.subject"
                             class="form-select"
                             aria-label="DropdownPhysicianSubject"
@@ -196,12 +196,12 @@ export default {
                         class="select-element-margin"
                     >
                         <label
-                            for="Dropdown2_2_1_1"
+                            for="Dropdown2_1_1_2"
                         >
                             Zusatzbezeichnung:
                         </label>
                         <select
-                            id="Dropdown2_2_1_1"
+                            id="Dropdown2_2_1_2"
                             v-model="stepTwo.additionalDesignation"
                             class="form-select"
                             aria-label="DropdownPhysicianAdditionalDesignation"
@@ -223,12 +223,12 @@ export default {
                         class="select-element-margin"
                     >
                         <label
-                            for="Dropdown2_2_1_1"
+                            for="Dropdown2_1_1_3"
                         >
                             Genehmigungspflichtige Leistungen:
                         </label>
                         <select
-                            id="Dropdown2_2_1_1"
+                            id="Dropdown2_1_1_3"
                             v-model="stepTwo.servicesRequiringAuthorization"
                             class="form-select"
                             aria-label="DropdownPhysicianServicesRequiringAuthorization"
@@ -248,37 +248,86 @@ export default {
                     </div>
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
-                    id="Accordion2_2_2"
+                    id="Accordion2_1_2"
                     parent-id="Accordion2_1"
                     text="Ermächtigte Ärzte"
                 >
                     <p>Ermächtigte Ärzte und Psychotherapeuten anzeigen?</p>
                     <BootstrapCheckbox
-                        id="checkbox2_2_2_1"
+                        id="checkbox2_1_2_1"
                         v-model="stepTwo.empoweredPhys.no"
                         text="nein"
                         :disabled="stepTwo.empoweredPhys.yes || stepTwo.empoweredPhys.onlyPhys"
                     />
                     <BootstrapCheckbox
-                        id="checkbox2_2_2_2"
+                        id="checkbox2_1_2_2"
                         v-model="stepTwo.empoweredPhys.yes"
                         text="ja"
                         :disabled="stepTwo.empoweredPhys.no || stepTwo.empoweredPhys.onlyPhys"
                     />
                     <BootstrapCheckbox
-                        id="checkbox2_2_2_1"
+                        id="checkbox2_1_2_1"
                         v-model="stepTwo.empoweredPhys.onlyPhys"
                         text="ausschließlich ermächtigte Ärzte"
                         :disabled="stepTwo.empoweredPhys.yes || stepTwo.empoweredPhys.no"
                     />
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
-                    id="Accordion2_2_3"
+                    id="Accordion2_1_3"
                     parent-id="Accordion2_1"
                     text="Sprechzeiten"
-                />
+                >
+                    <p>Sprechzeiten eingrenzen?</p>
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_1"
+                        v-model="stepTwo.openingHours.noRefinement"
+                        text="keine Einschränkung"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_2"
+                        v-model="stepTwo.openingHours.monday"
+                        text="Montag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_3"
+                        v-model="stepTwo.openingHours.tuesday"
+                        text="Dienstag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_4"
+                        v-model="stepTwo.openingHours.wednesday"
+                        text="Mittwoch"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_5"
+                        v-model="stepTwo.openingHours.thursday"
+                        text="Donnerstag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_6"
+                        v-model="stepTwo.openingHours.friday"
+                        text="Freitag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_7"
+                        v-model="stepTwo.openingHours.saturday"
+                        text="Samstag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                    <BootstrapCheckbox
+                        id="checkbox2_1_3_8"
+                        v-model="stepTwo.openingHours.sunday"
+                        text="Sonntag"
+                        :disabled="stepTwo.openingHours.noRefinement"
+                    />
+                </BootstrapAccordionItem>
                 <BootstrapAccordionItem
-                    id="Accordion2_2_4"
+                    id="Accordion2_1_4"
                     parent-id="Accordion2_1"
                     text="Barrierefreiheit und Fremdsprachen"
                 />
