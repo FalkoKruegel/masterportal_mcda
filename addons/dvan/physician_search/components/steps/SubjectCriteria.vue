@@ -75,16 +75,19 @@ export default {
                         id="checkbox2_2_2_1"
                         v-model="stepTwo.empoweredPhys.no"
                         text="nein"
+                        :disabled="stepTwo.empoweredPhys.yes || stepTwo.empoweredPhys.onlyPhys"
                     />
                     <BootstrapCheckbox
                         id="checkbox2_2_2_2"
                         v-model="stepTwo.empoweredPhys.yes"
                         text="ja"
+                        :disabled="stepTwo.empoweredPhys.no || stepTwo.empoweredPhys.onlyPhys"
                     />
                     <BootstrapCheckbox
                         id="checkbox2_2_2_1"
                         v-model="stepTwo.empoweredPhys.onlyPhys"
                         text="ausschließlich ermächtigte Ärzte"
+                        :disabled="stepTwo.empoweredPhys.yes || stepTwo.empoweredPhys.no"
                     />
                 </BootstrapAccordionItem>
                 <BootstrapAccordionItem
