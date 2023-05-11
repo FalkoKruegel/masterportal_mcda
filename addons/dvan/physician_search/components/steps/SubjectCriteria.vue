@@ -20,6 +20,7 @@ export default {
         ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
     },
     watch: {
+        // following watchers make sure, that subject value is resetted if status of checkboxes changes
         "stepTwo.medicalService.generalPhysician": function () {
             if (this.stepTwo.medicalService.generalPhysician === false) {
                 this.stepTwo.subject = "Bitte wählen...";
@@ -33,6 +34,18 @@ export default {
         "stepTwo.medicalService.psychotherapist": function () {
             if (this.stepTwo.medicalService.psychotherapist === false) {
                 this.stepTwo.subject = "Bitte wählen...";
+            }
+        },
+        // watcher deselects checkboxes for weekdays if "noRefinement" is chosen
+        "stepTwo.openingHours.noRefinement": function () {
+            if (this.stepTwo.openingHours.noRefinement === true) {
+                this.stepTwo.openingHours.monday = false;
+                this.stepTwo.openingHours.tuesday = false;
+                this.stepTwo.openingHours.wednesday = false;
+                this.stepTwo.openingHours.thursday = false;
+                this.stepTwo.openingHours.friday = false;
+                this.stepTwo.openingHours.saturday = false;
+                this.stepTwo.openingHours.sunday = false;
             }
         }
     },
@@ -330,7 +343,62 @@ export default {
                     id="Accordion2_1_4"
                     parent-id="Accordion2_1"
                     text="Barrierefreiheit und Fremdsprachen"
-                />
+                >
+                    <div
+                        class="select-element-margin"
+                    >
+                        <label
+                            for="Dropdown2_1_4_1"
+                        >
+                            Barrierefreiheit:
+                        </label>
+                        <select
+                            id="Dropdown2_1_4_1"
+                            v-model="stepTwo.accessibilityAndLanguages.accessibility"
+                            class="form-select"
+                            aria-label="DropdownAccessibility"
+                        >
+                            <option
+                                selected
+                                value="Bitte wählen..."
+                            >
+                                Bitte wählen...
+                            </option>
+                            <option
+                                value="Eingrenzung aktuell nicht möglich"
+                            >
+                                Eingrenzung aktuell nicht möglich
+                            </option>
+                        </select>
+                    </div>
+                    <div
+                        class="select-element-margin"
+                    >
+                        <label
+                            for="Dropdown2_1_4_2"
+                        >
+                            Fremdsprache:
+                        </label>
+                        <select
+                            id="Dropdown2_1_4_2"
+                            v-model="stepTwo.accessibilityAndLanguages.languages"
+                            class="form-select"
+                            aria-label="DropdownLanguages"
+                        >
+                            <option
+                                selected
+                                value="Bitte wählen..."
+                            >
+                                Bitte wählen...
+                            </option>
+                            <option
+                                value="Eingrenzung aktuell nicht möglich"
+                            >
+                                Eingrenzung aktuell nicht möglich
+                            </option>
+                        </select>
+                    </div>
+                </BootstrapAccordionItem>
             </BootstrapAccordion>
         </div>
     </div>

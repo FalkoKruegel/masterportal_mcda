@@ -38,6 +38,10 @@ const state = {
             friday: false,
             saturday: false,
             sunday: false
+        },
+        accessibilityAndLanguages: {
+            accessibility: "Bitte wählen...",
+            languages: "Bitte wählen..."
         }
     }
 };
