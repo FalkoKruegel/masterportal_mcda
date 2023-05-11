@@ -126,7 +126,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style scoped>
     .list-group-item:hover{
         cursor: pointer;
         background-color: rgb(218, 206, 206);
