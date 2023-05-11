@@ -448,7 +448,7 @@ export default {
     </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
     .select-element-margin {
         margin-top: 10px;
         margin-bottom: 10px;
