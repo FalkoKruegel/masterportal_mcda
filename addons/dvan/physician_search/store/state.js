@@ -21,12 +21,14 @@ const state = {
             specialist: false,
             psychotherapist: false
         },
+        subject: "Bitte wählen...",
+        additionalDesignation: "Bitte wählen...",
+        servicesRequiringAuthorization: "Bitte wählen...",
         empoweredPhys: {
             yes: false,
             no: false,
             onlyPhys: false
         }
-
     }
 };
 

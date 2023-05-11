@@ -19,6 +19,23 @@ export default {
     computed: {
         ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
     },
+    watch: {
+        "stepTwo.medicalService.generalPhysician": function () {
+            if (this.stepTwo.medicalService.generalPhysician === false) {
+                this.stepTwo.subject = "Bitte wählen...";
+            }
+        },
+        "stepTwo.medicalService.specialist": function () {
+            if (this.stepTwo.medicalService.specialist === false) {
+                this.stepTwo.subject = "Bitte wählen...";
+            }
+        },
+        "stepTwo.medicalService.psychotherapist": function () {
+            if (this.stepTwo.medicalService.psychotherapist === false) {
+                this.stepTwo.subject = "Bitte wählen...";
+            }
+        }
+    },
     methods: {
         ...mapActions("Tools/PhysicianSearch", [
             "initialize"
@@ -40,16 +57,19 @@ export default {
                 id="checkbox2_1"
                 v-model="stepTwo.medicalService.generalPhysician"
                 text="Hausarzt"
+                :disabled="stepTwo.medicalService.specialist || stepTwo.medicalService.psychotherapist"
             />
             <BootstrapCheckbox
                 id="checkbox2_2"
                 v-model="stepTwo.medicalService.specialist"
                 text="Facharzt"
+                :disabled="stepTwo.medicalService.generalPhysician || stepTwo.medicalService.psychotherapist"
             />
             <BootstrapCheckbox
                 id="checkbox2_3"
                 v-model="stepTwo.medicalService.psychotherapist"
                 text="Psychotherapeut"
+                :disabled="stepTwo.medicalService.generalPhysician || stepTwo.medicalService.specialist"
             />
         </div>
         <p />
@@ -64,7 +84,169 @@ export default {
                     id="Accordion2_2_1"
                     parent-id="Accordion2_1"
                     text="Spezialisierung und besondere Leistungen"
-                />
+                >
+                    <div
+                        class="select-element-margin"
+                    >
+                        <label
+                            for="Dropdown2_2_1_1"
+                        >
+                            Fachgebiet / Schwerpunkt:
+                        </label>
+                        <select
+                            id="Dropdown2_2_1_1"
+                            v-model="stepTwo.subject"
+                            class="form-select"
+                            aria-label="DropdownPhysicianSubject"
+                            :disabled="!(stepTwo.medicalService.generalPhysician || stepTwo.medicalService.specialist || stepTwo.medicalService.psychotherapist)"
+                        >
+                            <option
+                                selected
+                                value="Bitte wählen..."
+                            >
+                                Bitte wählen...
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.generalPhysician"
+                                value="Hausärzte"
+                            >
+                                Hausärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Augenärzte"
+                            >
+                                Augenärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Chirurgen und Orthopäden"
+                            >
+                                Chirurgen und Orthopäden
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Frauenärzte"
+                            >
+                                Frauenärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Hautärzte"
+                            >
+                                Hautärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="HNO-Ärzte"
+                            >
+                                HNO-Ärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Kinderärzte"
+                            >
+                                Kinderärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Nervenärzte"
+                            >
+                                Nervenärzte
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist || stepTwo.medicalService.psychotherapist"
+                                value="Psychotherapeuten"
+                            >
+                                Psychotherapeuten
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Urologen"
+                            >
+                                Urologen
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="fachärztlich tätige Internisten"
+                            >
+                                fachärztlich tätige Internisten
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.psychotherapist"
+                                value="Kinder- und Jugendpsychiater"
+                            >
+                                Kinder- und Jugendpsychiater
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Radiologen"
+                            >
+                                Radiologen
+                            </option>
+                            <option
+                                v-if="stepTwo.medicalService.specialist"
+                                value="Anästhesisten"
+                            >
+                                Anästhesisten
+                            </option>
+                        </select>
+                    </div>
+                    <div
+                        class="select-element-margin"
+                    >
+                        <label
+                            for="Dropdown2_2_1_1"
+                        >
+                            Zusatzbezeichnung:
+                        </label>
+                        <select
+                            id="Dropdown2_2_1_1"
+                            v-model="stepTwo.additionalDesignation"
+                            class="form-select"
+                            aria-label="DropdownPhysicianAdditionalDesignation"
+                        >
+                            <option
+                                selected
+                                value="Bitte wählen..."
+                            >
+                                Bitte wählen...
+                            </option>
+                            <option
+                                value="Eingrenzung aktuell nicht möglich"
+                            >
+                                Eingrenzung aktuell nicht möglich
+                            </option>
+                        </select>
+                    </div>
+                    <div
+                        class="select-element-margin"
+                    >
+                        <label
+                            for="Dropdown2_2_1_1"
+                        >
+                            Genehmigungspflichtige Leistungen:
+                        </label>
+                        <select
+                            id="Dropdown2_2_1_1"
+                            v-model="stepTwo.servicesRequiringAuthorization"
+                            class="form-select"
+                            aria-label="DropdownPhysicianServicesRequiringAuthorization"
+                        >
+                            <option
+                                selected
+                                value="Bitte wählen..."
+                            >
+                                Bitte wählen...
+                            </option>
+                            <option
+                                value="Eingrenzung aktuell nicht möglich"
+                            >
+                                Eingrenzung aktuell nicht möglich
+                            </option>
+                        </select>
+                    </div>
+                </BootstrapAccordionItem>
                 <BootstrapAccordionItem
                     id="Accordion2_2_2"
                     parent-id="Accordion2_1"
@@ -104,3 +286,14 @@ export default {
         </div>
     </div>
 </template>
+
+<style lang="css">
+    .select-element-margin {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-select {
+        margin-top: 5px;
+    }
+</style>
