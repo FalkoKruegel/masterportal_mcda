@@ -1,7 +1,7 @@
 <script>
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
-import ObjectBox from "./ObjectBox.vue";
+import ObjectBox from "../ObjectBox.vue";
 
 export default {
     name: "ResultList",
