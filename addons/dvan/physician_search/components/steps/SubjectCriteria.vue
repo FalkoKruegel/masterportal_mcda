@@ -17,23 +17,63 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/PhysicianSearch", Object.keys(getters))
+        ...mapGetters("Tools/PhysicianSearch", Object.keys(getters)),
+
+        // setting status for Accordion2_1_1
+        statusSpecialServices () {
+            // only if select items are assigned the standard value this element will be invalid
+            if (this.stepTwo.specialServices.subject === "Bitte wählen..." || this.stepTwo.specialServices.additionalDesignation === "Bitte wählen..." || this.stepTwo.specialServices.servicesRequiringAuthorization === "Bitte wählen...") {
+                return "invalid";
+            }
+            return "valid";
+        },
+
+        // setting status for Accordion2_1_2
+        statusEmpoweredPhys () {
+            // checking if one of the checkboxes is set active
+            for (const item in this.stepTwo.empoweredPhys) {
+                if (this.stepTwo.empoweredPhys[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        },
+
+        // setting status for Accordion2_1_3
+        statusOpeningHours () {
+            // checking if one of the checkboxes is set active
+            for (const item in this.stepTwo.openingHours) {
+                if (this.stepTwo.openingHours[item] === true) {
+                    return "valid";
+                }
+            }
+            return "invalid";
+        },
+
+        // setting status for Accordion2_1_4
+        statusAccessibilityAndLanguages () {
+            // only if select items are assigned the standard value this element will be invalid
+            if (this.stepTwo.accessibilityAndLanguages.accessibility === "Bitte wählen..." || this.stepTwo.accessibilityAndLanguages.languages === "Bitte wählen...") {
+                return "invalid";
+            }
+            return "valid";
+        }
     },
     watch: {
         // following watchers make sure, that subject value is resetted if status of checkboxes changes
         "stepTwo.medicalService.generalPhysician": function () {
             if (this.stepTwo.medicalService.generalPhysician === false) {
-                this.stepTwo.subject = "Bitte wählen...";
+                this.stepTwo.specialServices.subject = "Bitte wählen...";
             }
         },
         "stepTwo.medicalService.specialist": function () {
             if (this.stepTwo.medicalService.specialist === false) {
-                this.stepTwo.subject = "Bitte wählen...";
+                this.stepTwo.specialServices.subject = "Bitte wählen...";
             }
         },
         "stepTwo.medicalService.psychotherapist": function () {
             if (this.stepTwo.medicalService.psychotherapist === false) {
-                this.stepTwo.subject = "Bitte wählen...";
+                this.stepTwo.specialServices.subject = "Bitte wählen...";
             }
         },
         // watcher deselects checkboxes for weekdays if "noRefinement" is chosen
@@ -97,6 +137,7 @@ export default {
                     id="Accordion2_1_1"
                     parent-id="Accordion2_1"
                     text="Spezialisierung und besondere Leistungen"
+                    :status="statusSpecialServices"
                 >
                     <div
                         class="select-element-margin"
@@ -108,7 +149,7 @@ export default {
                         </label>
                         <select
                             id="Dropdown2_1_1_1"
-                            v-model="stepTwo.subject"
+                            v-model="stepTwo.specialServices.subject"
                             class="form-select"
                             aria-label="DropdownPhysicianSubject"
                             :disabled="!(stepTwo.medicalService.generalPhysician || stepTwo.medicalService.specialist || stepTwo.medicalService.psychotherapist)"
@@ -215,7 +256,7 @@ export default {
                         </label>
                         <select
                             id="Dropdown2_2_1_2"
-                            v-model="stepTwo.additionalDesignation"
+                            v-model="stepTwo.specialServices.additionalDesignation"
                             class="form-select"
                             aria-label="DropdownPhysicianAdditionalDesignation"
                         >
@@ -242,7 +283,7 @@ export default {
                         </label>
                         <select
                             id="Dropdown2_1_1_3"
-                            v-model="stepTwo.servicesRequiringAuthorization"
+                            v-model="stepTwo.specialServices.servicesRequiringAuthorization"
                             class="form-select"
                             aria-label="DropdownPhysicianServicesRequiringAuthorization"
                         >
@@ -264,6 +305,7 @@ export default {
                     id="Accordion2_1_2"
                     parent-id="Accordion2_1"
                     text="Ermächtigte Ärzte"
+                    :status="statusEmpoweredPhys"
                 >
                     <p>Ermächtigte Ärzte und Psychotherapeuten anzeigen?</p>
                     <BootstrapCheckbox
@@ -289,6 +331,7 @@ export default {
                     id="Accordion2_1_3"
                     parent-id="Accordion2_1"
                     text="Sprechzeiten"
+                    :status="statusOpeningHours"
                 >
                     <p>Sprechzeiten eingrenzen?</p>
                     <BootstrapCheckbox
@@ -343,6 +386,7 @@ export default {
                     id="Accordion2_1_4"
                     parent-id="Accordion2_1"
                     text="Barrierefreiheit und Fremdsprachen"
+                    :status="statusAccessibilityAndLanguages"
                 >
                     <div
                         class="select-element-margin"
