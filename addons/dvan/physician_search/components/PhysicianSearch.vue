@@ -169,7 +169,7 @@ export default {
                 >
                     <RadiusFromLocation />
                     <AccordionFooter
-                        @forwardClick="openStep(3)"
+                        forward-text="Ärzte suchen"
                         @backClick="openStep(1)"
                     />
                 </AccordionItem>

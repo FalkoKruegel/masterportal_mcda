@@ -54,7 +54,8 @@ const state = {
         time: {
             timeActivated: false,
             timeSmallerThan: 0
-        }
+        },
+        transport: "pkw"
     }
 };
 

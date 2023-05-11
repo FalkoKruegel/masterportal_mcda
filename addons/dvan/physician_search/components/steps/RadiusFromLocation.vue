@@ -117,6 +117,59 @@ export default {
                 min
             </div>
         </div>
+        <div>
+            <p>über folgendes Medium:</p>
+            <div class="container text-center">
+                <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Transportmittel"
+                >
+                    <input
+                        id="PKW"
+                        v-model="stepThree.transport"
+                        type="radio"
+                        class="btn-check"
+                        name="options"
+                        value="pkw"
+                    >
+                    <label
+                        class="btn btn-outline-primary"
+                        for="PKW"
+                    >
+                        PKW
+                    </label>
+                    <input
+                        id="ÖPNV"
+                        v-model="stepThree.transport"
+                        type="radio"
+                        class="btn-check"
+                        name="options"
+                        value="public_transport"
+                    >
+                    <label
+                        class="btn btn-outline-primary"
+                        for="ÖPNV"
+                    >
+                        ÖPNV
+                    </label>
+                    <input
+                        id="Fuß"
+                        v-model="stepThree.transport"
+                        type="radio"
+                        class="btn-check"
+                        name="options"
+                        value="foot"
+                    >
+                    <label
+                        class="btn btn-outline-primary"
+                        for="Fuß"
+                    >
+                        Fuß
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
