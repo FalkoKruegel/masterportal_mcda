@@ -1,8 +1,8 @@
 import {GeoJSON} from "ol/format";
 // import {Style, Fill, RegularShape, Stroke} from "ol/style";
 import schools from "./schools.json";
-import {getStyleModelById, getMapView} from "./map.js";
-import {getLegendFromStyleModel, getLegendFromWMS} from "../utils/util.js";
+import {getStyleModelById, getMapView} from "../../share_utils/map.js";
+import {getLegendFromStyleModel, getLegendFromWMS} from "../../share_utils/util.js";
 import VectorImageLayer from "ol/layer/VectorImage.js";
 import VectorSource from "ol/source/Vector.js";
 import ImageLayer from "ol/layer/Image.js";

@@ -4,7 +4,7 @@ import {RasterStyle} from "./raster_style";
 import {QuadTree} from "./quad_tree";
 import {fromLonLat, toLonLat, get as getProjection} from "ol/proj.js";
 import GeoJSON from "ol/format/GeoJSON.js";
-import Layer from "../../../../../src/core/layers/layer";
+import Layer from "../../../../src/core/layers/layer";
 
 
 /**

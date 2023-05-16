@@ -14,7 +14,7 @@ import AnalysisResults from "./steps/AnalysisResults.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 import {getDummyLayer, getWMSLayer, getDummyLayer2} from "../utils/dummy_layer.js";
-import {addLayer, removeLayer} from "../utils/map.js";
+import {addLayer, removeLayer} from "../../share_utils/map.js";
 import {runAnalysis} from "../utils/analysis/run_analysis";
 import {storeToolParams} from "../utils/tool_params/load_params";
 
