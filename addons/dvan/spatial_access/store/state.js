@@ -46,6 +46,13 @@ const state = {
             sixth: false,
             seventh: false
         }
+    },
+    stepFive: {
+        distanceDecay: "",
+        transport: ""
+    },
+    stepSix: {
+        status: "unfinished"
     }
 };
 

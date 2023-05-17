@@ -48,6 +48,9 @@
 					"spatialAccess": {
 						"name": "Räumlicher Zugang"
 					},
+					"physicianSearch": {
+						"name": "Arztsuche"
+					},
 					"accessibilitiesLgln": {
 						"name": "Erreichbarkeiten"
 					},

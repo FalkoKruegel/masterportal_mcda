@@ -1,7 +1,7 @@
 import store from "/src/app-store";
 import {toLonLat, get as getProjection} from "ol/proj";
-import {RasterStyle} from "../layers/raster_style";
-import {addLayerModel} from "../map.js";
+import {RasterStyle} from "../../../share_utils/layers/raster_style";
+import {addLayerModel} from "../../../share_utils/map.js";
 import {convertLayerName} from "../util";
 import hospitals from "./hospitals.json";
 import discounter from "./discounter.json";

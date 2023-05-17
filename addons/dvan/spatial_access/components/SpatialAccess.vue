@@ -6,6 +6,10 @@ import StartAnalysis from "./steps/StartAnalysis.vue";
 import SelectedPhysicians from "./steps/SelectedPhysicians.vue";
 import PhysicianCapacity from "./steps/PhysicianCapacity.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
+import SelectDistanceDecay from "./steps/SelectDistanceDecay.vue";
+import AnalysisResults from "./steps/AnalysisResults.vue";
+import {storeToolParams} from "../utils/tool_params/load_params";
+import {runAnalysis} from "../utils/analysis/run_analysis";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
 
@@ -18,7 +22,9 @@ export default {
         StartAnalysis,
         SelectedPhysicians,
         PhysicianCapacity,
-        SelectedPopulation
+        SelectedPopulation,
+        SelectDistanceDecay,
+        AnalysisResults
     },
     data () {
         return {
@@ -65,6 +71,27 @@ export default {
                 }
             }
             return "invalid";
+        },
+        statusStepFive () {
+            if (["pkw"].includes(this.stepFive.transport) && ["linear", "patient_behavior", "minimum_standards"].includes(this.stepFive.distanceDecay)) {
+                return "valid";
+            }
+            return "invalid";
+        },
+        paramsReady () {
+            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepFive === "valid") {
+                return true;
+            }
+            return false;
+        },
+        statusStepSix () {
+            if (this.stepSix.status === "unfinished") {
+                return "invalid";
+            }
+            if (this.stepSix.status === "finished") {
+                return "valid";
+            }
+            return "default";
         }
     },
     created () {
@@ -113,10 +140,20 @@ export default {
                 this.steps[i] = false;
             }
             this.steps[index] = true;
+        },
 
-            if (index === 6) {
-                this.stepSeven.status = "unchanged";
-            }
+        runAnalysis () {
+            runAnalysis();
+        },
+        storeParams () {
+            const a = document.createElement("a");
+            const blob = new Blob([JSON.stringify(storeToolParams())], {
+                type: "application/json"
+            });
+
+            a.href = window.URL.createObjectURL(blob);
+            a.download = "spatial_access_settings.json";
+            a.click();
         }
     }
 };
@@ -186,24 +223,29 @@ export default {
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 5: Transportmittel und Entfernungsabgwichtung wählen"
-                    status="invalid"
+                    :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
+                    <SelectDistanceDecay />
                     <AccordionFooter
+                        forward-text="Analyse starten"
+                        :forward-active="paramsReady"
+                        @forwardClick="() => { openStep(5); runAnalysis(); }"
                         @backClick="openStep(3)"
-                        @forwardClick="openStep(5)"
                     />
                 </AccordionItem>
                 <AccordionItem
                     title="Schritt 6: Zusammenfassung und Ergebnisse"
-                    status="invalid"
+                    :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
+                    <AnalysisResults />
                     <AccordionFooter
+                        forward-text="Analyse speichern"
+                        @forwardClick="storeParams()"
                         @backClick="openStep(4)"
-                        @forwardClick="openStep(6)"
                     />
                 </AccordionItem>
             </div>

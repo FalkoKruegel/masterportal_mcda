@@ -9,6 +9,11 @@
         "vue": true,
         "path": "dvan/spatial_access"
     },
+    "PhysicianSearch": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/physician_search"
+    },
     "AccessibilitiesLgln": {
         "type": "tool",
         "vue": true,

@@ -14,6 +14,14 @@ export default {
             type: Boolean,
             default: true
         },
+        "backRender": {
+            type: Boolean,
+            default: true
+        },
+        "forwardRender": {
+            type: Boolean,
+            default: true
+        },
         "forwardText": {
             type: String,
             default: "Weiter"
@@ -50,6 +58,7 @@ export default {
             class="row mb-2 footer-row"
         >
             <div
+                v-if="backRender"
                 class="col text-start"
             >
                 <button
@@ -62,6 +71,7 @@ export default {
                 </button>
             </div>
             <div
+                v-if="forwardRender"
                 class="col text-end"
             >
                 <button

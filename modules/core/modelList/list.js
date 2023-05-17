@@ -21,7 +21,7 @@ import Tool from "./tool/model";
 import StaticLink from "./staticlink/model";
 import Dropdown from "bootstrap/js/dist/dropdown";
 import Collapse from "bootstrap/js/dist/collapse";
-import {GridLayer} from "../../../addons/dvan/decision_support/utils/layers/grid_layer";
+import {GridLayer} from "../../../addons/dvan/share_utils/layers/grid_layer";
 
 /**
  * WfsFeatureFilter
