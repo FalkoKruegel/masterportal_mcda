@@ -2,6 +2,7 @@
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 import ObjectBox from "../ObjectBox.vue";
+import physicianListData from "../../physicianListData.json";
 
 export default {
     name: "ResultList",
@@ -11,85 +12,7 @@ export default {
     data () {
         return {
             selectedItemIndex: null,
-            physicianList: [
-                {
-                    title: "Dr. med.",
-                    surname: "Müller",
-                    name: "Julia",
-                    postalCode: "10115",
-                    city: "Berlin",
-                    streetNumber: "42",
-                    street: "Friedrichstraße",
-                    physicianType: "Allgemeinmedizin",
-                    distance: 2
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Schmidt",
-                    name: "Max",
-                    postalCode: "50667",
-                    city: "Köln",
-                    streetNumber: "12",
-                    street: "Hohe Straße",
-                    physicianType: "Innere Medizin",
-                    distance: 3
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Weber",
-                    name: "Anna",
-                    postalCode: "80331",
-                    city: "München",
-                    streetNumber: "8",
-                    street: "Marienplatz",
-                    physicianType: "Pädiatrie",
-                    distance: 4
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Klein",
-                    name: "Hans",
-                    postalCode: "10179",
-                    city: "Berlin",
-                    streetNumber: "7",
-                    street: "Alexanderplatz",
-                    physicianType: "Augenheilkunde",
-                    distance: 5
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Schneider",
-                    name: "Sabine",
-                    postalCode: "70173",
-                    city: "Stuttgart",
-                    streetNumber: "18",
-                    street: "Königstraße",
-                    physicianType: "Hals-Nasen-Ohren-Heilkunde",
-                    distance: 6
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Fischer",
-                    name: "Markus",
-                    postalCode: "20095",
-                    city: "Hamburg",
-                    streetNumber: "1",
-                    street: "Jungfernstieg",
-                    physicianType: "Dermatologie",
-                    distance: 8
-                },
-                {
-                    title: "Dr. med.",
-                    surname: "Köhler",
-                    name: "Anke",
-                    postalCode: "10117",
-                    city: "Berlin",
-                    streetNumber: "14",
-                    street: "Friedrichstraße",
-                    physicianType: "Psychiatrie",
-                    distance: 10
-                }
-            ]
+            physicianList: physicianListData
         };
     },
     computed: {
@@ -134,7 +57,6 @@ export default {
                             :street="item.street"
                             :physician-type="item.physicianType"
                             :distance="item.distance"
-                            :style="{ color: selectedItemIndex === index ? 'black' : 'inherit', 'background-color': selectedItemIndex === index ? 'white' : 'inherit' }"
                         />
                     </li>
                 </ul>
@@ -154,7 +76,7 @@ export default {
         border-color: #007bff;
         color: #fff;
     }
-    .list-group-item.active .box {
+    .list-group-item.active .card {
         background-color: #ffffff;
         color: #000000;
 }
