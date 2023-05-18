@@ -134,6 +134,7 @@ export default {
                             :street="item.street"
                             :physician-type="item.physicianType"
                             :distance="item.distance"
+                            :style="{ color: selectedItemIndex === index ? 'black' : 'inherit', 'background-color': selectedItemIndex === index ? 'white' : 'inherit' }"
                         />
                     </li>
                 </ul>
@@ -153,6 +154,10 @@ export default {
         border-color: #007bff;
         color: #fff;
     }
+    .list-group-item.active .box {
+        background-color: #ffffff;
+        color: #000000;
+}
     .list-container {
         height: 500px;
     }
