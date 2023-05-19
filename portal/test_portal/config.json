@@ -135,65 +135,171 @@
 	"Themenconfig": {
 		"Hintergrundkarten": {
 			"Layer": [
-        {
-          "id": "10",
-          "visibility": true
-        }
+		{
+		  "id": "10",
+		  "visibility": true
+		}
 			]
 		},
-		"Fachdaten": {
-			"Ordner":[
-				{
-				"Titel":"Ärzte",
-				"Layer":
-					[
+		"Fachdaten": 
+			{
+				"Ordner": 
+				[
+					{
+					"Titel": "Daseinsvorsorgeeinrichtungen",
+					"Ordner": 
+						[
+							{
+							"Titel": "Nahversorgung",
+							"Ordner": 
+								[
+								{
+									"Titel": "Discounter",
+									"Layer": 
+										[
+										{
+											"id":"[Replace]",
+											"name":"Discounter"
+										}
+										]
+								},
+								{
+									"Titel": "Supermarkt",
+									"Layer": 
+										[
+										{
+											"id":"1[Replace]4",
+											"name":"Supermarkt"
+										}
+										]
+								},
+								{
+									"Titel": "Hof- und Bioladen",
+									"Layer": 
+										[
+										{
+											"id":"[Replace]",
+											"name":"Hof und Biolanden"
+										}
+										]
+								}
+								]
+							},
+							{
+								"Titel": "Gesundheit",
+								"Ordner": 
+									[
+									{
+										"Titel": "Apotheken",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Kindertagesstätten"
+											}
+											]
+									},
+									{
+										"Titel": "Ambulante Versorgung",
+										"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"name":"Primarschulen"
+												}
+												]
+									},
+									{
+										"Titel": "Stationäre Versorgung",
+											"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"name":"Krankenhäuser"
+												}
+												]
+									}
+									]	
+							},
+							{
+								"Titel": "Bildung",
+								"Ordner": 
+									[
+									{
+										"Titel": "Frühkindliche Bildung",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Kindertagesstätten"
+											}
+											]
+									},
+									{
+										"Titel": "Schulbidung",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Primarschulen"
+											}
+											]
+									}
+									]
+								}
+						]
+					},
+					{
+						"Titel": "Erreichbarkeit von Daseinsvorsorgeeinrichtungen",
+						"Ordner": 
+							[
 						{
-						"id":"13",
-						"styleId":"physicianStyle",
-						"visibility": false,
-						"name":"Ärzte Oldenburg"
-						},
-						{
-						"id":"12",
-						"name":"Ärzte Niedersachsen",
-						"visibility":false,
-						"styleId":"arzt_krankenhaus"
-						},
-						{
-							"id": "12",
-							"name": "1",
-							"visibility":false,
-							"isNeverVisibleInTree": true,
-							"styleId": "schoolStyle"
-						},
-						{
-							"id": "12",
-							"name": "2",
-							"visibility":false,
-							"isNeverVisibleInTree": true,
-							"styleId": "physicianStyle"
-						}					
-					]
-				},
-				{
-				"Titel":"Bevölkerung",
-				"Layer":
-					[
-						{
-						"id":"14",
-						"styleId":"populationEWGesamt",
-						"visibility":false,
-						"name":"Bevölkerung Oldenburg"
-						},
-						{
-						"id":"11",
-						"styleId":"populationEWGesamt",
-						"visibility":false,
-						"name":"Bevölkerung Niedersachsen"
+							"Titel": "Erreichbarkeit von Einrichtungen der Nahversorgung",
+							"Ordner": 
+								[
+									{
+									"Titel": "Erreichbarkeit von Discountern",
+									"Ordner": 
+										[
+										{
+											"Titel": "ÖPNV in Minuten",
+											"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"name":"Discounter - ÖPNV Erreichbarkeit in Minuten"
+												}
+												]
+										},
+										{
+											"Titel": "PKW in Minuten",
+											"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"name":"Discounter - PKW Erreichbarkeit in Kilometern"
+												}
+												]
+										},
+										{
+											"Titel": "PKW in Kilometer",
+											"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"visibility":false,
+													"name":"Discounter - PKW Erreichbarkeit in Kilometern"
+												}
+												]
+										}
+										]
+									}
+								]
+							}
+						]
 						}
-					]
-				}
-			]
-		}
+					
+				]
+			}
 	}
 }
