@@ -259,38 +259,13 @@
 								[
 									{
 									"Titel": "Erreichbarkeit von Discountern",
-									"Ordner": 
+									"Layer": 
 										[
 										{
-											"Titel": "ÖPNV in Minuten",
-											"Layer": 
-												[
-												{
-													"id":"[Replace]",
-													"name":"Discounter - ÖPNV Erreichbarkeit in Minuten"
-												}
-												]
-										},
-										{
-											"Titel": "PKW in Minuten",
-											"Layer": 
-												[
-												{
-													"id":"[Replace]",
-													"name":"Discounter - PKW Erreichbarkeit in Kilometern"
-												}
-												]
-										},
-										{
-											"Titel": "PKW in Kilometer",
-											"Layer": 
-												[
-												{
-													"id":"[Replace]",
-													"visibility":false,
-													"name":"Discounter - PKW Erreichbarkeit in Kilometern"
-												}
-												]
+											
+											"id":"23",
+											"name":["Discounter - ÖPNV Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
 										}
 										]
 									}
