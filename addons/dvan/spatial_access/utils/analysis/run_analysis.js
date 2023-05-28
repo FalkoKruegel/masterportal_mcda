@@ -11,23 +11,25 @@ async function runAnalysis () {
 
     stepSix.status = "running";
 
-    // const stepTwo = store.getters["Tools/SpatialAccess/stepTwo"];
-    // const stepThree = store.getters["Tools/SpatialAccess/stepThree"];
+    const stepTwo = store.getters["Tools/SpatialAccess/stepTwo"];
+    const stepThree = store.getters["Tools/SpatialAccess/stepThree"];
     const stepFour = store.getters["Tools/SpatialAccess/stepFour"];
-    // const stepFive = store.getters["Tools/SpatialAccess/stepFive"];
+    const stepFive = store.getters["Tools/SpatialAccess/stepFive"];
 
     // build request
     const request = {};
 
+    // set extent parameters
+    request.supply_level = stepTwo.supplyLevel;
+    request.planning_area = stepTwo.planningArea;
+
+    // set facility parameters
+    request.facility_type = stepTwo.physicianGroup;
+    request.facility_capacity = stepThree.physicianAvailability;
+
     // set travel parameters
-    request.travel_mode = "pkw";
-
-    // set gravity parameters
-    request.ranges = [120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200];
-    request.range_factors = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1];
-
-    // calc request envelop
-    request.envelop = [9.521313150418797, 52.83516591994211, 9.912732755795634, 53.04449960862109];
+    request.travel_mode = stepFive.transport;
+    request.decay_type = stepFive.distanceDecay;
 
     // set population information
     const population_indizes = [];
@@ -104,13 +106,10 @@ async function runAnalysis () {
         request.population_indizes = population_indizes;
     }
 
-    // set facility parameters
-    request.facility = "general_physician";
-
     // run request
     try {
         // const start = new Date().getTime();
-        const response = await fetch("http://localhost:5000/v1/accessibility/gravity2/grid", {
+        const response = await fetch("http://localhost:5000/v1/spatial_access/grid", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
@@ -127,10 +126,9 @@ async function runAnalysis () {
         // console.log("Succesfully finished in " + time + " ms");
         const geojson = await response.json();
 
-        const style = new RasterStyle("unweighted", [255, 0, 0, 0.7], [0, 255, 0, 0.7], [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
+        const style = new RasterStyle("accessibility", [255, 0, 0, 0.7], [0, 255, 0, 0.7], [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
         const gfiAttributes = {
-            "weighted": "Räumlicher Zugang (Bevölkerungsgewichtet)",
-            "unweighted": "Räumlicher Zugang"
+            "accessibility": "Räumlicher Zugang"
         };
         const attrs = {
             type: "layer",
