@@ -135,10 +135,18 @@
 	"Themenconfig": {
 		"Hintergrundkarten": {
 			"Layer": [
-		{
-		  "id": "10",
-		  "visibility": true
-		}
+				{
+					"id": "8",
+					"visibility": false
+				},
+				{
+					"id": "9",
+					"visibility": false
+				},
+				{
+					"id": "10",
+					"visibility": false
+				}
 			]
 		},
 		"Fachdaten": 
