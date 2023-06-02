@@ -136,6 +136,14 @@
 		"Hintergrundkarten": {
 			"Layer": [
 				{
+					"id": "6",
+					"visibility": false
+				},
+				{
+					"id": "7",
+					"visibility": false
+				},
+				{
 					"id": "8",
 					"visibility": false
 				},
