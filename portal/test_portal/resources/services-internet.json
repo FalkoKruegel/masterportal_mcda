@@ -626,6 +626,28 @@
       "cache" : false,
       "featureCount" : 1
     },
+    {
+      "id" : "50",
+      "name" : "Hausärztliche Planungsbereiche",
+      "url" : "http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?",
+      "typ" : "WMS",
+      "layers" : "Planungsbereiche_VE1_Hausaerztlich",
+      "format" : "image/png",
+      "version" : "1.1.0",
+      "transparent" : true,
+      "transparency" : 0,
+      "tilesize" : 512,
+      "minScale" : "0",
+      "maxScale" : "2500000",
+      "gfiAttributes" : "ignore",
+      "gfiTheme" : "default",
+      "gfiComplex" : "false",
+      "layerAttribution" : "nicht vorhanden",
+      "legendURL":"ignore",
+      "legend" : "ignore",
+      "cache" : false,
+      "featureCount" : 1
+    },
   {
     "id" : "452",
     "name" : "Digitale Orthophotos (belaubt) Hamburg",

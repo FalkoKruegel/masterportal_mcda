@@ -525,8 +525,24 @@
 								]
 							}
 						]
+					},
+					{
+					"Titel":"Ambulante Bedarfsplanungsbereiche",
+					"Ordner":
+						[
+							{
+							"Titel":"Hausärztliche Planungsbereiche",
+							"Layer":
+							[
+								{
+								"id":"50",
+								"name":["Hausärztliche Planungsbereiche", "Versorgungsgrad ohne Ermächtigte"],
+								"styles":["Planungsbereiche_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"]
+								}
+							]
+							}
+						]
 					}
-					
 				]
 			}
 	}
