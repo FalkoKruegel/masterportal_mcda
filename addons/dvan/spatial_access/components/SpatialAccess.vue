@@ -42,20 +42,16 @@ export default {
         ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
 
         statusStepTwo () {
-            for (const item in this.stepTwo.supplyLevel) {
-                if (this.stepTwo.supplyLevel[item] === true) {
-                    if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
-                        return "valid";
-                    }
+            if (this.stepTwo.supplyLevel !== "") {
+                if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
+                    return "valid";
                 }
             }
             return "invalid";
         },
         statusStepThree () {
-            for (const item in this.stepThree.physicianAvailability) {
-                if (this.stepThree.physicianAvailability[item] === true & item !== "demandLimit") {
-                    return "valid";
-                }
+            if (this.stepThree.physicianAvailability !== "" && this.stepThree.physicianAvailability !== "demandLimit") {
+                return "valid";
             }
             return "invalid";
         },

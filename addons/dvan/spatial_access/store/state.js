@@ -10,22 +10,24 @@ const state = {
     isVisibleInMenu: true,
     deactivateGFI: false,
     stepTwo: {
-        supplyLevel: {
-            generalPhysician: false,
-            generalSpecialist: false,
-            specializedSpecialist: false,
-            lowerSaxony: false
+        supplyLevel: "",
+        physicianGroups: {
+            generalPhysician: ["Hausärzte"],
+            generalSpecialist: ["Augenärzte", "Chirurgen und Orthopäden", "Frauenärzte", "Hautärzte", "HNO-Ärzte", "Kinderärzte", "Nervenärzte", "Psychotherapeuten", "Urologen"],
+            specializedSpecialist: ["fachärztlich tätige Internisten", "Kinder- und Jugendpsychiater", "Radiologen", "Anästhesisten"],
+            lowerSaxony: ["Hausärzte", "Augenärzte", "Chirurgen und Orthopäden", "Frauenärzte", "Hautärzte", "HNO-Ärzte", "Kinderärzte", "Nervenärzte", "Psychotherapeuten", "Urologen", "fachärztlich tätige Internisten", "Kinder- und Jugendpsychiater", "Radiologen", "Anästhesisten"]
         },
         physicianGroup: "Bitte wählen...",
+        planningAreas: {
+            generalPhysician: ["Aurich", "Emden", "Jever", "Norden", "Varel", "Wilhelmshaven", "Wittmund"],
+            generalSpecialist: ["Aurich", "Emden", "Jever", "Norden", "Varel", "Wilhelmshaven", "Wittmund"],
+            specializedSpecialist: ["Aurich", "Emden", "Jever", "Norden", "Varel", "Wilhelmshaven", "Wittmund"],
+            lowerSaxony: ["Aurich", "Emden", "Jever", "Norden", "Varel", "Wilhelmshaven", "Wittmund"]
+        },
         planningArea: "Bitte wählen..."
     },
     stepThree: {
-        physicianAvailability: {
-            facility: false,
-            physicianNumber: false,
-            employmentVolume: false,
-            demandLimit: false
-        }
+        physicianAvailability: ""
     },
     stepFour: {
         standard: {
