@@ -141,18 +141,10 @@
 				},
 				{
 					"id": "7",
-					"visibility": false
+					"visibility": true
 				},
 				{
 					"id": "8",
-					"visibility": false
-				},
-				{
-					"id": "9",
-					"visibility": false
-				},
-				{
-					"id": "10",
 					"visibility": false
 				}
 			]
