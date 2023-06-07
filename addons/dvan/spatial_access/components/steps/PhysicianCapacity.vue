@@ -34,33 +34,37 @@ export default {
             </p>
             <BootstrapCheckbox
                 id="Checkbox_3_1"
-                v-model="stepThree.physicianAvailability.facility"
                 text="Betriebsstättenbetrachtung"
-                :disabled="stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.employmentVolume || stepThree.physicianAvailability.demandLimit"
+                :value="stepThree.physicianAvailability === 'facility'"
+                :disabled="stepThree.physicianAvailability !== 'facility' && stepThree.physicianAvailability !== ''"
+                @input="e => e ? stepThree.physicianAvailability = 'facility' : stepThree.physicianAvailability = ''"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_2"
-                v-model="stepThree.physicianAvailability.physicianNumber"
                 text="Facharztzahl an der Betriebsstätte"
-                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.employmentVolume || stepThree.physicianAvailability.demandLimit"
+                :value="stepThree.physicianAvailability === 'physicianNumber'"
+                :disabled="stepThree.physicianAvailability !== 'physicianNumber' && stepThree.physicianAvailability !== ''"
+                @input="e => e ? stepThree.physicianAvailability = 'physicianNumber' : stepThree.physicianAvailability = ''"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_3"
-                v-model="stepThree.physicianAvailability.employmentVolume"
                 text="Beschäftigungsumfang der Fachärzte an den Betriebsstätten"
-                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.demandLimit"
+                :value="stepThree.physicianAvailability === 'employmentVolume'"
+                :disabled="stepThree.physicianAvailability !== 'employmentVolume' && stepThree.physicianAvailability !== ''"
+                @input="e => e ? stepThree.physicianAvailability = 'employmentVolume' : stepThree.physicianAvailability = ''"
             />
             <BootstrapCheckbox
                 id="Checkbox_3_4"
-                v-model="stepThree.physicianAvailability.demandLimit"
                 text="Fallzahlabhängige Bedarfsgrenzen an den Betriebsstätten"
-                :disabled="stepThree.physicianAvailability.facility || stepThree.physicianAvailability.physicianNumber || stepThree.physicianAvailability.employmentVolume"
+                :value="stepThree.physicianAvailability === 'demandLimit'"
+                :disabled="stepThree.physicianAvailability !== 'demandLimit' && stepThree.physicianAvailability !== ''"
+                @input="e => e ? stepThree.physicianAvailability = 'demandLimit' : stepThree.physicianAvailability = ''"
             />
             <p />
         </div>
         <div>
             <div
-                v-if="stepThree.physicianAvailability.facility"
+                v-if="stepThree.physicianAvailability === 'facility'"
                 id="Callout3_1"
                 class="callout"
             >
@@ -74,7 +78,7 @@ export default {
                 </p>
             </div>
             <div
-                v-if="stepThree.physicianAvailability.physicianNumber"
+                v-if="stepThree.physicianAvailability === 'physicianNumber'"
                 id="Callout3_2"
                 class="callout"
             >
@@ -88,7 +92,7 @@ export default {
                 </p>
             </div>
             <div
-                v-if="stepThree.physicianAvailability.employmentVolume"
+                v-if="stepThree.physicianAvailability === 'employmentVolume'"
                 id="Callout3_3"
                 class="callout"
             >
@@ -102,7 +106,7 @@ export default {
                 </p>
             </div>
             <div
-                v-if="stepThree.physicianAvailability.demandLimit"
+                v-if="stepThree.physicianAvailability === 'demandLimit'"
                 id="Callout3_4"
                 class="callout callout-warn"
             >
