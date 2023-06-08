@@ -152,7 +152,18 @@
 		"Fachdaten": 
 			{
 				"Ordner": 
-				[
+				[	
+					{
+					"Titel": "Bevölkerung",
+					"Layer":
+						[
+							{
+							"id":"60",
+							"name":["Bevölkerung - Gesamt", "Bevölkerung unter 20 Jahren", "Bevölkerung ab 65 Jahren"],
+							"styles":["Bevoelkerung_Raster_EW_GESAMT", "Bevoelkerung_Raster_EW_unter20", "Bevoelkerung_Raster_EW_ab65"]
+							}
+						]
+					},
 					{
 					"Titel": "Daseinsvorsorgeeinrichtungen",
 					"Ordner": 
@@ -209,11 +220,23 @@
 									},
 									{
 										"Titel": "Ambulante Versorgung",
-										"Layer": 
+										"Ordner": 
 												[
 												{
-													"id":"[Replace]",
-													"name":"Primarschulen"
+													"Titel":"hausärztliche Versorgung",
+													"Layer":
+														[
+														{
+															"id":"70",
+															"name":["Praxisstandorte"],
+															"styles":["Infrastruktur_Aezte_Standard_Hausarzt"]
+														},
+														{
+															"id":"71",
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["Infrastruktur_Aezte_Proportional_Hausarzt"]
+														}
+														]
 												}
 												]
 									},
