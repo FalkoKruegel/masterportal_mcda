@@ -295,7 +295,9 @@
 											{
 											"id":"21",
 											"name":["Discounter - ÖPNV Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Kilometern"],
-											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"],
+											"legendURL": [true, true, true],
+											"legend": [true, true, true]
 											}
 										]
 									},
