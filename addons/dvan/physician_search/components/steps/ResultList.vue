@@ -34,7 +34,7 @@ export default {
 
 <template>
     <div>
-        <p>Neben der Karte mit den Standorten können Sie untenstehend eine Ergebnisliste aller Ärzte sehen, die den Suchkriterien und dem Suchgebiet entsprechen einsehen.</p>
+        <p>Neben der Karte mit den Standorten können Sie untenstehend eine Ergebnisliste aller Ärzte, die den Suchkriterien und dem Suchgebiet entsprechen, einsehen.</p>
         <div class="list-container">
             <div class="scroll-container">
                 <ul
