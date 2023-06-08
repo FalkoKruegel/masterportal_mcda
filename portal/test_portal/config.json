@@ -152,7 +152,18 @@
 		"Fachdaten": 
 			{
 				"Ordner": 
-				[
+				[	
+					{
+						"Titel": "Bevölkerung",
+						"Layer":
+							[
+							{
+								"id":"60",
+								"name":["Bevölkerung - Gesamt", "Bevölkerung unter 20 Jahren", "Bevölkerung ab 65 Jahren"],
+								"styles":["Bevoelkerung_Raster_EW_GESAMT", "Bevoelkerung_Raster_EW_unter20", "Bevoelkerung_Raster_EW_ab65"]
+							}
+							]
+					},
 					{
 					"Titel": "Daseinsvorsorgeeinrichtungen",
 					"Ordner": 
