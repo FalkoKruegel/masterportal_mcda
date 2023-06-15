@@ -237,6 +237,16 @@
 															"styles":["Infrastruktur_Aezte_Proportional_Hausarzt"]
 														}
 														]
+												},
+												{
+													"Titel":"HNO Versorgung",
+													"Layer":
+														[
+														{
+															"id":"72",
+															"name":["Praxisstandorte"]
+														}
+														]
 												}
 												]
 									},
