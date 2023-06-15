@@ -295,9 +295,7 @@
 											{
 											"id":"21",
 											"name":["Discounter - ÖPNV Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Kilometern"],
-											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"],
-											"legendURL": [true, true, true],
-											"legend": [true, true, true]
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
 											}
 										]
 									},
@@ -554,7 +552,8 @@
 								{
 								"id":"50",
 								"name":["Hausärztliche Planungsbereiche", "Versorgungsgrad ohne Ermächtigte"],
-								"styles":["Planungsbereiche_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"]
+								"styles":["Planungsbereiche_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"],
+								"legendURL":["ignore", ""]
 								}
 							]
 							}
