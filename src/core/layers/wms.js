@@ -161,6 +161,7 @@ WMSLayer.prototype.createLegend = function () {
     }
     else if (legend === true && this.get("url")) {
         const layerNames = this.get("layers").split(","),
+            layerStyles = this.get("styles").split(","),
             legends = [];
 
         // Compose GetLegendGraphic request(s)
@@ -173,7 +174,11 @@ WMSLayer.prototype.createLegend = function () {
             legendUrl.searchParams.set("FORMAT", "image/png");
             legendUrl.searchParams.set("LAYER", layerName);
 
-            legends.push(legendUrl.toString());
+            // Adding legend-request for each provided style of the wms
+            layerStyles.forEach(layerStyle => {
+                legendUrl.searchParams.set("STYLE", layerStyle);
+                legends.push(legendUrl.toString());
+            });
         });
 
         this.setLegend(legends);
