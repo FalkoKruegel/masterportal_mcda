@@ -172,10 +172,43 @@ async function runAnalysis () {
 
         LAYERS.accessibility = ol_layer;
         stepSix.show_accessibility = true;
+
+        const extent = geojson.extend;
+        const center = [(extent[2] + extent[0]) / 2, (extent[3] + extent[1]) / 2];
+
+        flyTo(getMapView(), center);
     }
     catch (e) {
         stepSix.status = "unfinished";
     }
+}
+
+/**
+ * animates view to fly to location
+ * @param {*} view openlayers view
+ * @param {*} location location to fly to
+ * @returns {void}
+ */
+function flyTo (view, location) {
+    const duration = 2000;
+    // const zoom = view.getZoom();
+
+    view.animate(
+        {
+            center: location,
+            duration: duration
+        }
+    );
+    view.animate(
+        {
+            zoom: 0,
+            duration: duration / 2
+        },
+        {
+            zoom: 1,
+            duration: duration / 2
+        }
+    );
 }
 
 export {runAnalysis};
