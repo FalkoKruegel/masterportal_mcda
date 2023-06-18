@@ -54,7 +54,11 @@ const state = {
         transport: ""
     },
     stepSix: {
-        status: "unfinished"
+        status: "unfinished",
+        show_locations: false,
+        show_scope: false,
+        show_population: false,
+        show_accessibility: false
     }
 };
 
