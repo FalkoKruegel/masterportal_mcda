@@ -166,7 +166,20 @@ WMSLayer.prototype.createLegend = function () {
 
         // Compose GetLegendGraphic request(s)
         layerNames.forEach(layerName => {
-            const legendUrl = new URL(this.get("url"));
+
+            // url has to be modified because cql-statements can be added in the url
+            const urlString = this.get("url");
+            let legendUrl;
+
+            // code should not break when there is no question mark
+            if (urlString.includes("?")) {
+                const indexQuestionMark = urlString.indexOf("?");
+
+                legendUrl = new URL(urlString.substring(0, indexQuestionMark + 1));
+            }
+            else {
+                legendUrl = new URL(urlString);
+            }
 
             legendUrl.searchParams.set("SERVICE", "WMS");
             legendUrl.searchParams.set("VERSION", version);
