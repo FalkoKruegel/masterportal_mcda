@@ -45,15 +45,49 @@ export default {
 </script>
 
 <template>
-    <div class="box">
-        <p>{{ title }} {{ name }} {{ surname }}</p>
-        <p>{{ street }} {{ streetNumber }}</p>
-        <p>{{ city }} {{ postalCode }}</p>
-        <p>{{ physicianType }}</p>
-        <p>Entfernung: {{ distance }} km</p>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                {{ title }} {{ name }} {{ surname }}
+            </h4>
+            <p>
+                {{ physicianType }}
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="card-text">
+                        {{ postalCode }} {{ city }}
+                    </p>
+                    <p class="card-text">
+                        {{ street }} {{ streetNumber }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p>Entfernung: {{ distance }} km</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
-<style scoped>
+  <style scoped>
+  .card {
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 4px;
+  }
 
-</style>
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .card-text {
+    margin-bottom: 0;
+  }
+  </style>
+
