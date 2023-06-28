@@ -6,9 +6,10 @@ import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 /**
  * adds Layer to Map
  * @param {any} layer layer to be added
+ * @param {any} close_handler callback called on layer close
  * @returns {void}
  */
-function addLayer (layer) {
+function addLayer (layer, close_handler) {
     if (getLayerById(layer.get("id")) !== undefined) {
         removeLayer(layer.get("id"));
     }
@@ -25,7 +26,10 @@ function addLayer (layer) {
         },
         onZIndex: (value) => layer.setZIndex(value),
         onVisibile: (value) => layer.setVisible(value),
-        onClose: () => removeLayer(layer.get("id"))
+        onClose: () => {
+            close_handler();
+            removeLayer(layer.get("id"));
+        }
     });
 }
 

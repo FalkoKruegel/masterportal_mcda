@@ -161,11 +161,25 @@ WMSLayer.prototype.createLegend = function () {
     }
     else if (legend === true && this.get("url")) {
         const layerNames = this.get("layers").split(","),
+            layerStyles = this.get("styles").split(","),
             legends = [];
 
         // Compose GetLegendGraphic request(s)
         layerNames.forEach(layerName => {
-            const legendUrl = new URL(this.get("url"));
+
+            // url has to be modified because cql-statements can be added in the url
+            const urlString = this.get("url");
+            let legendUrl;
+
+            // code should not break when there is no question mark
+            if (urlString.includes("?")) {
+                const indexQuestionMark = urlString.indexOf("?");
+
+                legendUrl = new URL(urlString.substring(0, indexQuestionMark + 1));
+            }
+            else {
+                legendUrl = new URL(urlString);
+            }
 
             legendUrl.searchParams.set("SERVICE", "WMS");
             legendUrl.searchParams.set("VERSION", version);
@@ -173,7 +187,11 @@ WMSLayer.prototype.createLegend = function () {
             legendUrl.searchParams.set("FORMAT", "image/png");
             legendUrl.searchParams.set("LAYER", layerName);
 
-            legends.push(legendUrl.toString());
+            // Adding legend-request for each provided style of the wms
+            layerStyles.forEach(layerStyle => {
+                legendUrl.searchParams.set("STYLE", layerStyle);
+                legends.push(legendUrl.toString());
+            });
         });
 
         this.setLegend(legends);

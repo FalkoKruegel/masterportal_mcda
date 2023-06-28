@@ -1,6 +1,8 @@
 import store from "/src/app-store";
 import {RasterStyle} from "../../../share_utils/layers/raster_style";
-import {addLayerModel} from "../../../share_utils/map.js";
+import {GridLayer} from "../../../share_utils/layers/grid_layer";
+import {getMapView} from "../../../share_utils/map.js";
+import {LAYERS} from "./show_layers";
 
 /**
  * runs analysis and adds accessibility layer
@@ -10,6 +12,7 @@ async function runAnalysis () {
     const stepSix = store.getters["Tools/SpatialAccess/stepSix"];
 
     stepSix.status = "running";
+    stepSix.show_accessibility = false;
 
     const stepTwo = store.getters["Tools/SpatialAccess/stepTwo"];
     const stepThree = store.getters["Tools/SpatialAccess/stepThree"];
@@ -130,10 +133,20 @@ async function runAnalysis () {
         const gfiAttributes = {
             "accessibility": "Räumlicher Zugang"
         };
-        const attrs = {
+
+        const layer = new GridLayer({
+            features: geojson.features,
+            extend: geojson.extend,
+            size: geojson.size,
+            projection: "EPSG:25832",
+            style: style
+        });
+
+        const ol_layer = layer.getOlLayer();
+        const attr = {
             type: "layer",
             typ: "GRID",
-            id: "spatial_access",
+            id: "spatial_access_accessibility",
             name: "Spatial Access",
             gfiAttributes: gfiAttributes,
             isSelected: true,
@@ -148,22 +161,54 @@ async function runAnalysis () {
             maxScale: "1000000000",
             minScale: "0",
             selectionIDX: 0,
-            showSettings: true,
-
-            features: geojson.features,
-            extend: geojson.extend,
-            size: geojson.size,
-            projection: "EPSG:25832",
-            style: style
+            showSettings: true
         };
 
-        addLayerModel(attrs);
+        for (const key in attr) {
+            ol_layer.set(key, attr[key]);
+        }
 
         stepSix.status = "finished";
+
+        LAYERS.accessibility = ol_layer;
+        stepSix.show_accessibility = true;
+
+        const extent = geojson.extend;
+        const center = [(extent[2] + extent[0]) / 2, (extent[3] + extent[1]) / 2];
+
+        flyTo(getMapView(), center);
     }
     catch (e) {
         stepSix.status = "unfinished";
     }
+}
+
+/**
+ * animates view to fly to location
+ * @param {*} view openlayers view
+ * @param {*} location location to fly to
+ * @returns {void}
+ */
+function flyTo (view, location) {
+    const duration = 2000;
+    // const zoom = view.getZoom();
+
+    view.animate(
+        {
+            center: location,
+            duration: duration
+        }
+    );
+    view.animate(
+        {
+            zoom: 0,
+            duration: duration / 2
+        },
+        {
+            zoom: 1,
+            duration: duration / 2
+        }
+    );
 }
 
 export {runAnalysis};
