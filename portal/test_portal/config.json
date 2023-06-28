@@ -135,65 +135,430 @@
 	"Themenconfig": {
 		"Hintergrundkarten": {
 			"Layer": [
-        {
-          "id": "10",
-          "visibility": true
-        }
-			]
-		},
-		"Fachdaten": {
-			"Ordner":[
 				{
-				"Titel":"Ärzte",
-				"Layer":
-					[
-						{
-						"id":"13",
-						"styleId":"physicianStyle",
-						"visibility": false,
-						"name":"Ärzte Oldenburg"
-						},
-						{
-						"id":"12",
-						"name":"Ärzte Niedersachsen",
-						"visibility":false,
-						"styleId":"arzt_krankenhaus"
-						},
-						{
-							"id": "12",
-							"name": "1",
-							"visibility":false,
-							"isNeverVisibleInTree": true,
-							"styleId": "schoolStyle"
-						},
-						{
-							"id": "12",
-							"name": "2",
-							"visibility":false,
-							"isNeverVisibleInTree": true,
-							"styleId": "physicianStyle"
-						}					
-					]
+					"id": "6",
+					"visibility": false
 				},
 				{
-				"Titel":"Bevölkerung",
-				"Layer":
-					[
-						{
-						"id":"14",
-						"styleId":"populationEWGesamt",
-						"visibility":false,
-						"name":"Bevölkerung Oldenburg"
-						},
-						{
-						"id":"11",
-						"styleId":"populationEWGesamt",
-						"visibility":false,
-						"name":"Bevölkerung Niedersachsen"
-						}
-					]
+					"id": "7",
+					"visibility": true
+				},
+				{
+					"id": "8",
+					"visibility": false
 				}
 			]
-		}
+		},
+		"Fachdaten": 
+			{
+				"Ordner": 
+				[	
+					{
+					"Titel": "Bevölkerung",
+					"Layer":
+						[
+							{
+							"id":"60",
+							"name":["Bevölkerung - Gesamt", "Bevölkerung unter 20 Jahren", "Bevölkerung ab 65 Jahren"],
+							"styles":["Bevoelkerung_Raster_EW_GESAMT", "Bevoelkerung_Raster_EW_unter20", "Bevoelkerung_Raster_EW_ab65"]
+							}
+						]
+					},
+					{
+					"Titel": "Daseinsvorsorgeeinrichtungen",
+					"Ordner": 
+						[
+							{
+							"Titel": "Nahversorgung",
+							"Ordner": 
+								[
+								{
+									"Titel": "Discounter",
+									"Layer": 
+										[
+										{
+											"id":"[Replace]",
+											"name":"Discounter"
+										}
+										]
+								},
+								{
+									"Titel": "Supermarkt",
+									"Layer": 
+										[
+										{
+											"id":"1[Replace]4",
+											"name":"Supermarkt"
+										}
+										]
+								},
+								{
+									"Titel": "Hof- und Bioladen",
+									"Layer": 
+										[
+										{
+											"id":"[Replace]",
+											"name":"Hof und Biolanden"
+										}
+										]
+								}
+								]
+							},
+							{
+								"Titel": "Gesundheit",
+								"Ordner": 
+									[
+									{
+										"Titel": "Apotheken",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Kindertagesstätten"
+											}
+											]
+									},
+									{
+										"Titel": "Ambulante Versorgung",
+										"Ordner": 
+												[
+												{
+													"Titel":"hausärztliche Versorgung",
+													"Layer":
+														[
+														{
+															"id":"70",
+															"name":["Praxisstandorte"],
+															"styles":["Infrastruktur_Aezte_Standard_Hausarzt"]
+														},
+														{
+															"id":"71",
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["Infrastruktur_Aezte_Proportional_Hausarzt"]
+														}
+														]
+												}
+												]
+									},
+									{
+										"Titel": "Stationäre Versorgung",
+											"Layer": 
+												[
+												{
+													"id":"[Replace]",
+													"name":"Krankenhäuser"
+												}
+												]
+									}
+									]	
+							},
+							{
+								"Titel": "Bildung",
+								"Ordner": 
+									[
+									{
+										"Titel": "Frühkindliche Bildung",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Kindertagesstätten"
+											}
+											]
+									},
+									{
+										"Titel": "Schulbidung",
+										"Layer": 
+											[
+											{
+												"id":"[Replace]",
+												"name":"Primarschulen"
+											}
+											]
+									}
+									]
+								}
+						]
+					},
+					{
+					"Titel": "Erreichbarkeit von Daseinsvorsorgeeinrichtungen",
+					"Ordner": 
+						[
+							{
+							"Titel": "Erreichbarkeit von Einrichtungen der Nahversorgung",
+							"Ordner": 
+								[
+									{
+									"Titel": "Erreichbarkeit von Discountern",
+									"Layer": 
+										[
+											{
+											"id":"21",
+											"name":["Discounter - ÖPNV Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Minuten", "Discounter - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Supermärkten",
+									"Layer": 
+										[
+											{
+											"id":"22",
+											"name":["Supermärkte - ÖPNV Erreichbarkeit in Minuten", "Supermärkte - PKW Erreichbarkeit in Minuten", "Supermärkte - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Hof- und Bioläden",
+									"Layer": 
+										[
+											{
+											"id":"23",
+											"name":["Hof- und Bioläden - ÖPNV Erreichbarkeit in Minuten", "Hof- und Bioläden - PKW Erreichbarkeit in Minuten", "Hof- und Bioläden - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Einrichtungen des Lebensmittelhandwerks",
+									"Layer": 
+										[
+											{
+											"id":"32",
+											"name":["Lebensmittelhandwerk - ÖPNV Erreichbarkeit in Minuten", "Lebensmittelhandwerk - PKW Erreichbarkeit in Minuten", "Lebensmittelhandwerk - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von sonstigen Lebensmittelläden",
+									"Layer": 
+										[
+											{
+											"id":"33",
+											"name":["Sonstige Lebensmittelläden - ÖPNV Erreichbarkeit in Minuten", "Sonstige Lebensmittelläden - PKW Erreichbarkeit in Minuten", "Sonstige Lebensmittelläden - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Lebensmittelgeschaefte_OPNV", "Versorgungslage_Lebensmittelgeschaefte_Min", "Versorgungslage_Lebensmittelgeschaefte_km"]
+											}
+										]
+									}
+								]
+							},
+							{
+							"Titel": "Erreichbarkeit von Einrichtungen der Gesundheit",
+							"Ordner": 
+								[
+									{
+									"Titel": "Erreichbarkeit von Apotheken",
+									"Layer":
+										[
+											{
+											"id":"24",
+											"name":["Apotheken - ÖPNV Erreichbarkeit in Minuten", "Apotheken - PKW Erreichbarkeit in Minuten", "Apotheken - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Apotheken_OPNV", "Versorgungslage_Apotheken_Min", "Versorgungslage_Apotheken_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Einrichtungen der ambulanten Versorgung",
+									"Ordner":
+										[
+											{
+											"Titel": "Erreichbarkeit von Hausärzten",
+											"Layer":
+												[
+													{
+													"id":"34",
+													"name":["Hausärzte - ÖPNV Erreichbarkeit in Minuten", "Hausärzte - PKW Erreichbarkeit in Minuten", "Hausärzte - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Hausarzt_OPNV","Versorgungslage_Hausarzt_Min","Versorgungslage_Hausarzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Augenärzten",
+											"Layer":
+												[
+													{
+													"id":"35",
+													"name":["Augenärzte - ÖPNV Erreichbarkeit in Minuten", "Augenärzte - PKW Erreichbarkeit in Minuten", "Augenärzte - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Chirurgen und Orthopäden",
+											"Layer":
+												[
+													{
+													"id":"36",
+													"name":["Chirurgen und Orthopäden - ÖPNV Erreichbarkeit in Minuten", "Chirurgen und Orthopäden - PKW Erreichbarkeit in Minuten", "Chirurgen und Orthopäden - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Frauenärzten",
+											"Layer":
+												[
+													{
+													"id":"37",
+													"name":["Frauenärzte - ÖPNV Erreichbarkeit in Minuten", "Frauenärzte - PKW Erreichbarkeit in Minuten", "Frauenärzte - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Kinderärzten",
+											"Layer":
+												[
+													{
+													"id":"38",
+													"name":["Kinderärzte - ÖPNV Erreichbarkeit in Minuten", "Kinderärzte - PKW Erreichbarkeit in Minuten", "Kinderärzte - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Nervenärzten",
+											"Layer":
+												[
+													{
+													"id":"39",
+													"name":["Nervenärzte - ÖPNV Erreichbarkeit in Minuten", "Nervenärzte - PKW Erreichbarkeit in Minuten", "Nervenärzte - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Psychotherapeuten",
+											"Layer":
+												[
+													{
+													"id":"40",
+													"name":["Psychotherapeuten - ÖPNV Erreichbarkeit in Minuten", "Psychotherapeuten - PKW Erreichbarkeit in Minuten", "Psychotherapeuten - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											},
+											{
+											"Titel": "Erreichbarkeit von Urologen",
+											"Layer":
+												[
+													{
+													"id":"41",
+													"name":["Urologen - ÖPNV Erreichbarkeit in Minuten", "Urologen - PKW Erreichbarkeit in Minuten", "Urologen - PKW Erreichbarkeit in Kilometern"],
+													"styles":["Versorgungslage_Facharzt_OPNV","Versorgungslage_Facharzt_Min","Versorgungslage_Facharzt_km"]
+													}
+												]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Einrichtungen der stationären Versorgung",
+									"Layer":
+										[
+											{
+											"id":"25",
+											"name":["Krankenhäuser - ÖPNV Erreichbarkeit in Minuten", "Krankenhäuser - PKW Erreichbarkeit in Minuten", "Krankenhäuser - PKW Erreichbarkeit in Kilometern"],
+											"styles": ["Versorgungslage_Krankenhaus_OPNV", "Versorgungslage_Krankenhaus_Min", "Versorgungslage_Krankenhaus_km"]
+											}
+										]
+									}
+								]
+							},
+							{
+							"Titel": "Erreichbarkeit von Einrichtungen der Bildung",
+							"Ordner":
+								[
+									{
+									"Titel": "Erreichbarkeit von Einrichtungen des Primarbereichs",
+									"Layer":
+										[
+											{
+											"id":"26",
+											"name":["Primarbereich - ÖPNV Erreichbarkeit in Minuten", "Primarbereich - PKW Erreichbarkeit in Minuten", "Primarbereich - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Primarschule_OPNV", "Versorgungslage_Primarschule_Min", "Versorgungslage_Primarschule_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Oberschulen",
+									"Layer":
+										[
+											{
+											"id":"27",
+											"name":["Oberschulen - ÖPNV Erreichbarkeit in Minuten", "Oberschulen - PKW Erreichbarkeit in Minuten", "Oberschulen - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Sekundarstufe1_ohne_HSR_OPNV", "Versorgungslage_Sekundarstufe1_ohne_HSR_Min", "Versorgungslage_Sekundarstufe1_ohne_HSR_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Hauptschulen",
+									"Layer":
+										[
+											{
+											"id":"28",
+											"name":["Hauptschulen - ÖPNV Erreichbarkeit in Minuten", "Hauptschulen - PKW Erreichbarkeit in Minuten", "Hauptschulen - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Sekundarstufe1_ohne_HSR_OPNV", "Versorgungslage_Sekundarstufe1_ohne_HSR_Min", "Versorgungslage_Sekundarstufe1_ohne_HSR_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Realschulen",
+									"Layer":
+										[
+											{
+											"id":"29",
+											"name":["Realschulen - ÖPNV Erreichbarkeit in Minuten", "Realschulen - PKW Erreichbarkeit in Minuten", "Realschulen - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Sekundarstufe1_ohne_HSR_OPNV", "Versorgungslage_Sekundarstufe1_ohne_HSR_Min", "Versorgungslage_Sekundarstufe1_ohne_HSR_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Gymnasien",
+									"Layer":
+										[
+											{
+											"id":"30",
+											"name":["Gymnasien - ÖPNV Erreichbarkeit in Minuten", "Gymnasien - PKW Erreichbarkeit in Minuten", "Gymnasien - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Sekundarstufe1u2_mit_HSR_OPNV", "Versorgungslage_Sekundarstufe1u2_mit_HSR_Min", "Versorgungslage_Sekundarstufe1u2_mit_HSR_km"]
+											}
+										]
+									},
+									{
+									"Titel": "Erreichbarkeit von Gesamtschulen",
+									"Layer":
+										[
+											{
+											"id":"31",
+											"name":["Gesamtschulen - ÖPNV Erreichbarkeit in Minuten", "Gesamtschulen - PKW Erreichbarkeit in Minuten", "Gesamtschulen - PKW Erreichbarkeit in Kilometern"],
+											"styles":["Versorgungslage_Sekundarstufe1u2_mit_HSR_OPNV", "Versorgungslage_Sekundarstufe1u2_mit_HSR_Min", "Versorgungslage_Sekundarstufe1u2_mit_HSR_km"]
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+					"Titel":"Ambulante Bedarfsplanungsbereiche",
+					"Ordner":
+						[
+							{
+							"Titel":"Hausärztliche Planungsbereiche",
+							"Layer":
+							[
+								{
+								"id":"50",
+								"name":["Hausärztliche Planungsbereiche", "Versorgungsgrad ohne Ermächtigte"],
+								"styles":["Planungsbereiche_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"]
+								}
+							]
+							}
+						]
+					}
+				]
+			}
 	}
 }
