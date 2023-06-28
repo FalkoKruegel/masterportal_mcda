@@ -34,6 +34,7 @@ describe("src/core/layers/wms.js", () => {
             maxScale: "2500000",
             isChildLayer: false,
             layers: "layer1,layer2",
+            styles: "style1, style2",
             transparent: false,
             isSelected: false
         };
@@ -118,7 +119,7 @@ describe("src/core/layers/wms.js", () => {
 
         wmsLayer.createLegend();
         expect(Array.isArray(dispatchCalls["Legend/setLegendOnChanged"])).to.be.true;
-        expect(dispatchCalls["Legend/setLegendOnChanged"].length).to.be.equals(2);
+        expect(dispatchCalls["Legend/setLegendOnChanged"].length).to.be.equals(4);
 
     });
 });
