@@ -584,7 +584,8 @@
       "layerAttribution" : "nicht vorhanden",
       "legendURL":"",
       "cache" : false,
-      "featureCount" : 1
+      "featureCount" : 1,
+      "singleTile": true
     },
     {
       "id" : "60",
