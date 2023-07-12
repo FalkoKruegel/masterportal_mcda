@@ -1,7 +1,7 @@
 import {toLonLat, get as getProjection} from "ol/proj";
 import {features} from "../../decision_support/utils/analysis/run_analysis";
-import {addLayerModel} from "../../decision_support/utils/map";
-import {RasterStyle} from "../../decision_support/utils/layers/raster_style";
+import {addLayerModel} from "../../share_utils/map";
+import {RasterStyle} from "../../share_utils/layers/raster_style";
 
 let grid_style = null;
 let grid_layer = null;
