@@ -28,5 +28,10 @@
         "type": "tool",
         "vue": true,
         "path": "dvan/nearest_query"
+    },
+    "SpatialAnalysis": {
+        "type": "tool",
+        "vue": true,
+        "path": "dvan/spatial_analysis"
     }
 }

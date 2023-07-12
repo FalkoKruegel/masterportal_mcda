@@ -59,6 +59,9 @@
 					},
 					"nearestQuery": {
 						"name": "Nearest Query"
+					},
+					"spatialAnalysis": {
+						"name": "Spatial Analysis"
 					}
 				}
 			},
