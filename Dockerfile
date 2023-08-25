@@ -1,12 +1,12 @@
 # Build build image
-FROM node:16.16.0-alpine as build
+FROM node:16.16.0 as build
 
 WORKDIR /app
 
-COPY package.json ./package.json
+COPY . .
+
 RUN npm install
 
-COPY . .
 RUN node devtools/tasks/build_portal.mjs
 
 # Build runtime image
