@@ -6,23 +6,12 @@ export default {
     },
     props: {
         "value": {
+            type: Array,
+            default: () => [1, 2, 3, 4]
+        },
+        "index": {
             type: Number,
             default: 0
-        },
-        // define which mutation should be used and therefore which property (very_good, good, sufficient, or deficient) should be changed
-        "mutation": {
-            type: String,
-            default: ""
-        },
-        // define which category of the state (step 5) should be touched by the mutation
-        "category": {
-            type: String,
-            default: ""
-        },
-        // define which specific infrastructure in the category (defined above) should be touched by the mutation (defined above)
-        "infrastructure": {
-            type: String,
-            default: ""
         },
         "id": {
             type: String,
@@ -42,13 +31,11 @@ export default {
             default: ""
         }
     },
+    emits: [
+        // variable binding for v-model
+        "input"
+    ],
     methods: {
-        // method will be called if new value is inserted into timeInput-value
-        // it uses mutations to updated the state
-        // which mutation is called and which state-variables are effected can be specified with properties of this component
-        updateValue (e) {
-            this.$store.commit(this.mutation, {store: this.$store, category: this.category, infrastructure: this.infrastructure, value: parseInt(e.target.value, 10)});
-        }
     }
 };
 </script>
@@ -68,13 +55,13 @@ export default {
             >
                 <input
                     :id="id"
-                    :value="value"
+                    :value="value[index]"
                     type="number"
                     step="1"
                     :min="minTime"
                     :max="maxTime"
                     class="form-control"
-                    @input="updateValue"
+                    @input="e => $emit('input', Number(e.target.value))"
                 >
             </label>
         </div>

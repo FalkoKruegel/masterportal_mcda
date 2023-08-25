@@ -20,65 +20,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
-        checkedPhysician () {
-            for (const item in this.stepThree.health) {
-                if (item === "pharmacies" || item === "clinics") {
-                    continue;
-                }
-                if (this.stepThree.health[item] === true) {
-                    switch (item) {
-                        case "general_physicians":
-                            return "Hausärzte";
-                        case "paediatricians":
-                            return "Kinder- und Jugendärzte";
-                        case "ophthalmologists":
-                            return "Augenärzte";
-                        case "surgeons":
-                            return "Chirurgen und Orthopäden";
-                        case "gynaecologists":
-                            return "Frauenärzte";
-                        case "dermatologists":
-                            return "Hautärzte";
-                        case "otolaryngologist":
-                            return "HNO-Ärzte";
-                        case "neurologist":
-                            return "Nervenärzte";
-                        case "psychotherapists":
-                            return "Psychotherapeuten";
-                        case "urologists":
-                            return "Urologen";
-                        default:
-                            continue;
-                    }
-                }
-            }
-            return "Ärzte";
-        },
-        localSupplyStatus () {
-            for (const item in this.stepThree.local_supply) {
-                if (this.stepThree.local_supply[item] === true) {
-                    return "default";
-                }
-            }
-            return "deactivated";
-        },
-        healthStatus () {
-            for (const item in this.stepThree.health) {
-                if (this.stepThree.health[item] === true) {
-                    return "default";
-                }
-            }
-            return "deactivated";
-        },
-        educationStatus () {
-            for (const item in this.stepThree.education) {
-                if (this.stepThree.education[item] === true) {
-                    return "default";
-                }
-            }
-            return "deactivated";
-        }
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     watch: {
         stepTwo: {
@@ -118,7 +60,36 @@ export default {
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
-        ])
+        ]),
+
+        selectionStatus (items) {
+            for (const name in items) {
+                if (items[name] !== "") {
+                    return "default";
+                }
+            }
+            return "deactivated";
+        },
+
+        getGroupName (name) {
+            return "Zusammenfassung " + this.stepThree.facilities[name].text;
+        },
+
+        getFacilityName (group, name, value) {
+            const item = this.stepThree.facilities[group].items[name];
+
+            if (item.isGroup === true) {
+                if (value === "") {
+                    return item.text;
+                }
+
+                return item.items[value].text;
+
+            }
+
+            return item.text;
+
+        }
     }
 };
 </script>
@@ -130,11 +101,12 @@ export default {
             id="Accordion_7"
             body-padding-y="5px"
         >
-            <!-- Nahversorgungs Infrastrukturen -->
             <BootstrapAccordionItem
-                id="Accordion7_1"
-                text="Zusammenfassung Nahversorgung"
-                :status="localSupplyStatus"
+                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
+                :id="`Accordion7_${group_index}`"
+                :key="group_index"
+                :text="getGroupName(group_name)"
+                :status="selectionStatus(stepThree.selected_facilities[group_name])"
             >
                 <div class="card">
                     <div class="card-header">
@@ -143,119 +115,17 @@ export default {
                         <span class="value">Gewicht</span>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="text">Supermärkte</span>
+                        <li
+                            v-for="(item, name, index) in group_item"
+                            :key="index"
+                            class="list-group-item"
+                        >
+                            <span class="text">{{ getFacilityName(group_name, name, item) }}</span>
                             <span
                                 class="icon"
-                                v-html="stepThree.local_supply.supermarket ? checkIcon : xIcon"
+                                v-html="item !== '' ? checkIcon : xIcon"
                             />
-                            <span class="value">{{ stepSix.local_supply.supermarket }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">Discounter</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.local_supply.discounter ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.local_supply.discounter }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">sonstige Lebensmittelgeschäfte</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.local_supply.others ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.local_supply.others }}%</span>
-                        </li>
-                    </ul>
-                </div>
-            </BootstrapAccordionItem>
-
-            <!-- Gesundheits Infrastrukturen -->
-            <BootstrapAccordionItem
-                id="Accordion7_2"
-                text="Zusammenfassung Gesundheit"
-                :status="healthStatus"
-            >
-                <div class="card">
-                    <div class="card-header">
-                        <span class="text">Infrastruktur</span>
-                        <span class="value">An/<br>Aus</span>
-                        <span class="value">Gewicht</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="text">Apotheken</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.health.pharmacies ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.health.pharmacies }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">Hochschulkliniken und Plankrankenhäuser</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.health.clinics ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.health.clinics }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">{{ checkedPhysician }}</span>
-                            <span
-                                class="icon"
-                                v-html="checkedPhysician !== 'Ärzte' ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.health.physicians }}%</span>
-                        </li>
-                    </ul>
-                </div>
-            </BootstrapAccordionItem>
-
-            <!-- Bildungs Infrastrukturen -->
-            <BootstrapAccordionItem
-                id="Accordion7_3"
-                text="Zusammenfassung Bildung"
-                :status="educationStatus"
-            >
-                <div class="card">
-                    <div class="card-header">
-                        <span class="text">Infrastruktur</span>
-                        <span class="value">An/<br>Aus</span>
-                        <span class="value">Gewicht</span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="text">Kindertagesstätten</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.education.nurseries ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.education.nurseries }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">Primärschulen</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.education.primary_schools ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.education.primary_schools }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">Sekundarstufe Bereich 1 & 2; ohne (Fach)Hochschulreife</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.education.secondary_1 ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.education.secondary_1 }}%</span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="text">Sekundarstufe Bereich 1 & 2; mit (Fach)Hochschulreife</span>
-                            <span
-                                class="icon"
-                                v-html="stepThree.education.secondary_2 ? checkIcon : xIcon"
-                            />
-                            <span class="value">{{ stepSix.education.secondary_2 }}%</span>
+                            <span class="value">{{ stepSix.facility_weights[group_name][name] }}%</span>
                         </li>
                     </ul>
                 </div>

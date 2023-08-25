@@ -20,48 +20,38 @@ export default {
         ...mapGetters("Tools/SpatialAccess", Object.keys(getters)),
 
         allActivated () {
-            for (const item in this.stepFour.standard) {
-                if (this.stepFour.standard[item] === false) {
-                    return false;
+            if (this.stepFour.populationType === "standard") {
+                if (this.stepFour.selectedAgeGroups.length === Object.keys(this.stepFour.standardAgeGroups).length) {
+                    return true;
                 }
             }
-            return true;
+            return false;
         },
 
         allStatus () {
             if (this.allActivated) {
                 return "valid";
             }
-            for (const item in this.stepFour.kids) {
-                if (this.stepFour.kids[item] === true) {
-                    return "deactivated";
-                }
+            if (this.stepFour.populationType === "kids") {
+                return "deactivated";
             }
             return "default";
         },
         standardStatus () {
-            for (const item in this.stepFour.standard) {
-                if (this.stepFour.standard[item] === true) {
-                    return "valid";
-                }
+            if (this.stepFour.populationType === "standard") {
+                return "valid";
             }
-            for (const item in this.stepFour.kids) {
-                if (this.stepFour.kids[item] === true) {
-                    return "deactivated";
-                }
+            if (this.stepFour.populationType === "kids") {
+                return "deactivated";
             }
             return "default";
         },
         kitaStatus () {
-            for (const item in this.stepFour.standard) {
-                if (this.stepFour.standard[item] === true) {
-                    return "deactivated";
-                }
+            if (this.stepFour.populationType === "kids") {
+                return "valid";
             }
-            for (const item in this.stepFour.kids) {
-                if (this.stepFour.kids[item] === true) {
-                    return "valid";
-                }
+            if (this.stepFour.populationType === "standard") {
+                return "deactivated";
             }
             return "default";
         }
@@ -75,8 +65,29 @@ export default {
         ]),
 
         activateAll (e) {
-            for (const item in this.stepFour.standard) {
-                this.stepFour.standard[item] = e;
+            this.stepFour.populationType = "standard";
+            const vals = [];
+
+            for (const name in this.stepFour.standardAgeGroups) {
+                vals.push(name);
+            }
+            this.stepFour.selectedAgeGroups = vals;
+        },
+        deactivateAll () {
+            this.stepFour.populationType = "";
+            this.stepFour.selectedAgeGroups = [];
+        },
+
+        activate (type, name) {
+            if (this.stepFour.populationType === "") {
+                this.stepFour.populationType = type;
+            }
+            this.stepFour.selectedAgeGroups = [...this.stepFour.selectedAgeGroups, name];
+        },
+        deactivate (type, name) {
+            this.stepFour.selectedAgeGroups = this.stepFour.selectedAgeGroups.filter(e => e !== name);
+            if (this.stepFour.selectedAgeGroups.length === 0) {
+                this.stepFour.populationType = "";
             }
         }
     }
@@ -102,7 +113,7 @@ export default {
                     id="Checkbox4_1_1"
                     :value="allActivated"
                     text="Berücksichtigung der Gesamtbevölkerung"
-                    @input="activateAll"
+                    @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
@@ -112,39 +123,12 @@ export default {
                 :status="standardStatus"
             >
                 <BootstrapCheckbox
-                    id="Checkbox4_2_1"
-                    v-model="stepFour.standard.first"
-                    text="0-9 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_2"
-                    v-model="stepFour.standard.second"
-                    text="10-19 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_3"
-                    v-model="stepFour.standard.third"
-                    text="20-39 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_4"
-                    v-model="stepFour.standard.fourth"
-                    text="40-49 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_5"
-                    v-model="stepFour.standard.fifth"
-                    text="50-59 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_6"
-                    v-model="stepFour.standard.sixth"
-                    text="60-79 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_2_7"
-                    v-model="stepFour.standard.seventh"
-                    text="ab 80 Jahre"
+                    v-for="(item, name, index) in stepFour.standardAgeGroups"
+                    :id="`Checkbox_4_2_${index}`"
+                    :key="index"
+                    :text="item['text']"
+                    :value="stepFour.selectedAgeGroups.includes(name)"
+                    @input="e => e ? activate('standard', name) : deactivate('standard', name)"
                 />
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
@@ -154,39 +138,12 @@ export default {
                 :status="kitaStatus"
             >
                 <BootstrapCheckbox
-                    id="Checkbox4_3_1"
-                    v-model="stepFour.kids.first"
-                    text="0-2 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_2"
-                    v-model="stepFour.kids.second"
-                    text="3-5 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_3"
-                    v-model="stepFour.kids.third"
-                    text="6-9 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_4"
-                    v-model="stepFour.kids.fourth"
-                    text="10-14 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_5"
-                    v-model="stepFour.kids.fifth"
-                    text="15-17 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_6"
-                    v-model="stepFour.kids.sixth"
-                    text="18-19 Jahre"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox4_3_7"
-                    v-model="stepFour.kids.seventh"
-                    text="ab 20 Jahre"
+                    v-for="(item, name, index) in stepFour.kidsAgeGroups"
+                    :id="`Checkbox_4_3_${index}`"
+                    :key="index"
+                    :text="item['text']"
+                    :value="stepFour.selectedAgeGroups.includes(name)"
+                    @input="e => e ? activate('kids', name) : deactivate('kids', name)"
                 />
             </BootstrapAccordionItem>
         </BootstrapAccordion>

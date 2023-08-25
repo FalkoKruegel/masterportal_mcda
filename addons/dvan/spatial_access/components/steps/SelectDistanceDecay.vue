@@ -13,19 +13,14 @@ export default {
         BootstrapAccordionItem
     },
     data () {
-        return {
-        };
+        return {};
     },
     computed: {
         ...mapGetters("Tools/SpatialAccess", Object.keys(getters))
     },
     methods: {
-        ...mapActions("Tools/SpatialAccess", [
-            "initialize"
-        ]),
-        ...mapMutations("Tools/SpatialAccess", [
-            "setActive"
-        ])
+        ...mapActions("Tools/SpatialAccess", ["initialize"]),
+        ...mapMutations("Tools/SpatialAccess", ["setActive"])
     }
 };
 </script>
@@ -40,7 +35,7 @@ export default {
                 id="Accordion5_1"
                 parent-id="Accordion5"
                 text="Transportmittel"
-                :status="stepFive.transport === 'pkw' ? 'valid' : stepFive.transport === 'public_transport' ? 'invalid' : 'default'"
+                :status="stepFive.transport === '' ? 'default' : stepFive.travelModes[stepFive.transport]['valid'] ? 'valid' : 'invalid'"
             >
                 <p>Bitte wählen Sie, auf welches Transportmittel sich die Analyse beziehen soll:</p>
                 <div class="container text-center">
@@ -50,38 +45,29 @@ export default {
                         role="group"
                         aria-label="Transportmittel"
                     >
-                        <input
-                            id="PKW"
-                            v-model="stepFive.transport"
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            value="pkw"
+                        <div
+                            v-for="(item, name, index) in stepFive.travelModes"
+                            :key="index"
                         >
-                        <label
-                            class="btn btn-outline-primary"
-                            for="PKW"
-                        >
-                            PKW
-                        </label>
-                        <input
-                            id="ÖPNV"
-                            v-model="stepFive.transport"
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            value="public_transport"
-                        >
-                        <label
-                            class="btn btn-outline-primary"
-                            for="ÖPNV"
-                        >
-                            ÖPNV
-                        </label>
+                            <input
+                                :id="`Button_5_1_${index}`"
+                                v-model="stepFive.transport"
+                                type="radio"
+                                class="btn-check"
+                                name="options"
+                                :value="name"
+                            >
+                            <label
+                                class="btn btn-outline-primary"
+                                :for="`Button_5_1_${index}`"
+                            >
+                                {{ item['text'] }}
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div
-                    v-if="stepFive.transport === 'public_transport'"
+                    v-if="stepFive.transport === 'public-transit'"
                     id="Callout5_1"
                     class="callout-warning"
                 >
@@ -93,25 +79,15 @@ export default {
                 id="Accordion5_2"
                 parent-id="Accordion5"
                 text="Entfernungsabgewichtung"
-                :status="['linear', 'patient_behavior', 'minimum_standards'].includes(stepFive.distanceDecay) ? 'valid' : 'default'"
+                :status="stepFive.distanceDecay !== '' ? 'valid' : 'default'"
             >
                 <BootstrapCheckbox
-                    id="Checkbox5_2_1"
-                    :value="stepFive.distanceDecay === 'linear'"
-                    text="Linear"
-                    @input="e => e ? stepFive.distanceDecay = 'linear' : stepFive.distanceDecay = ''"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox5_2_2"
-                    :value="stepFive.distanceDecay === 'patient_behavior'"
-                    text="KV-Abrechnungsdaten / Patientenverhalten"
-                    @input="e => e ? stepFive.distanceDecay = 'patient_behavior' : stepFive.distanceDecay = ''"
-                />
-                <BootstrapCheckbox
-                    id="Checkbox5_2_3"
-                    :value="stepFive.distanceDecay === 'minimum_standards'"
-                    text="Mindesterreichbarkeitsstandards"
-                    @input="e => e ? stepFive.distanceDecay = 'minimum_standards' : stepFive.distanceDecay = ''"
+                    v-for="(item, name, index) in stepFive.distanceDecays"
+                    :id="`Checkbox5_2_${index}`"
+                    :key="index"
+                    :value="stepFive.distanceDecay === name"
+                    :text="item['text']"
+                    @input="e => e ? stepFive.distanceDecay = name : stepFive.distanceDecay = ''"
                 />
                 <div
                     v-if="stepFive.distanceDecay === 'linear'"
@@ -152,28 +128,29 @@ export default {
 
 <style lang="scss" scoped>
 .callout {
-    padding: 0.5rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-    background-color: var(--bd-callout-bg, var(--bs-gray-100));
-    border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  background-color: var(--bd-callout-bg, var(--bs-gray-100));
+  border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
 }
 
 .callout-warning {
-    padding: 0.5rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-    background-color: rgba(var(--bs-danger-rgb), .075);
-    border-left: 0.25rem solid var(--bd-callout-border, rgba(var(--bs-danger-rgb), .5));
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  background-color: rgba(var(--bs-danger-rgb), 0.075);
+  border-left: 0.25rem solid
+    var(--bd-callout-border, rgba(var(--bs-danger-rgb), 0.5));
 }
 
 .img-container {
-    max-width: 400px;
-    max-height: 100%;
+  max-width: 400px;
+  max-height: 100%;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>

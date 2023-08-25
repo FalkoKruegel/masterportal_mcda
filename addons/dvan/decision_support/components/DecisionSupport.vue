@@ -57,95 +57,47 @@ export default {
             return "invalid";
         },
         statusStepThree () {
-            for (const item in this.stepThree.local_supply) {
-                if (this.stepThree.local_supply[item] === true) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepThree.health) {
-                if (this.stepThree.health[item] === true) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepThree.education) {
-                if (this.stepThree.education[item] === true) {
-                    return "valid";
+            for (const group in this.stepThree.selected_facilities) {
+                for (const name in this.stepThree.selected_facilities[group]) {
+                    if (this.stepThree.selected_facilities[group][name] !== "") {
+                        return "valid";
+                    }
                 }
             }
             return "invalid";
         },
         statusStepFour () {
-            for (const item in this.stepFour.standard) {
-                if (this.stepFour.standard[item] === true) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepFour.kita) {
-                if (this.stepFour.kita[item] === true) {
-                    return "valid";
-                }
+            if (this.stepFour.populationType !== "" && this.stepFour.selectedAgeGroups.length !== 0) {
+                return "valid";
             }
             return "invalid";
         },
         statusStepFive () {
-            // helper variable to check if one of the checkboxes in step three has been ticked
-            let infraSelected = false;
-
-            // checking status of local supply
-            for (const item in this.stepThree.local_supply) {
-                if (this.stepThree.local_supply[item] === true) {
-                    infraSelected = true;
-                    for (const timeItem in this.stepFive.local_supply[item]) {
-                        if (this.stepFive.local_supply[item][timeItem] <= 0) {
+            for (const group in this.stepFive.time_zones) {
+                for (const name in this.stepFive.time_zones[group]) {
+                    for (let i = 0; i < 4; i++) {
+                        if (this.stepFive.time_zones[group][name][i] < this.stepFive.minValue) {
+                            return "invalid";
+                        }
+                        if (this.stepFive.time_zones[group][name][i] > this.stepFive.maxValue) {
+                            return "invalid";
+                        }
+                    }
+                    for (let i = 1; i < 4; i++) {
+                        if (this.stepFive.time_zones[group][name][i] <= this.stepFive.time_zones[group][name][i - 1]) {
                             return "invalid";
                         }
                     }
                 }
-            }
-            // checking status of health
-            for (let item in this.stepThree.health) {
-                if (this.stepThree.health[item] === true) {
-                    infraSelected = true;
-                    if ((item !== "pharmacies") && (item !== "clinics")) {
-                        item = "physicians";
-                    }
-                    for (const timeItem in this.stepFive.health[item]) {
-                        if (this.stepFive.health[item][timeItem] <= 0) {
-                            return "invalid";
-                        }
-                    }
-                }
-            }
-            // checking status of education
-            for (const item in this.stepThree.education) {
-                if (this.stepThree.education[item] === true) {
-                    infraSelected = true;
-                    for (const timeItem in this.stepFive.education[item]) {
-                        if (this.stepFive.education[item][timeItem] <= 0) {
-                            return "invalid";
-                        }
-                    }
-                }
-            }
-            if (infraSelected === false) {
-                return "invalid";
             }
             return "valid";
         },
         statusStepSix () {
-            for (const item in this.stepSix.local_supply) {
-                if (this.stepSix.local_supply[item] !== 0) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepSix.health) {
-                if (this.stepSix.health[item] !== 0) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepSix.education) {
-                if (this.stepSix.education[item] !== 0) {
-                    return "valid";
+            for (const group in this.stepThree.selected_facilities) {
+                for (const name in this.stepThree.selected_facilities[group]) {
+                    if (this.stepSix.facility_weights[group][name] !== 0) {
+                        return "valid";
+                    }
                 }
             }
             return "invalid";
@@ -154,7 +106,7 @@ export default {
             if (this.stepSeven.status === "changed") {
                 return "invalid";
             }
-            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepSix === "valid") {
+            if (this.statusStepTwo === "valid" && this.statusStepThree === "valid" && this.statusStepFour === "valid" && this.statusStepFive === "valid" && this.statusStepSix === "valid") {
                 return "valid";
             }
             return "invalid";

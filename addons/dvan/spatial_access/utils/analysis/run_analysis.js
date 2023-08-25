@@ -35,84 +35,28 @@ async function runAnalysis () {
     request.decay_type = stepFive.distanceDecay;
 
     // set population information
-    const population_indizes = [];
-
-    for (const key in stepFour.standard) {
-        if (stepFour.standard[key] === false) {
-            continue;
-        }
-        switch (key) {
-            case "first":
-                population_indizes.push(0);
-                break;
-            case "second":
-                population_indizes.push(1);
-                break;
-            case "third":
-                population_indizes.push(2);
-                break;
-            case "fourth":
-                population_indizes.push(3);
-                break;
-            case "fifth":
-                population_indizes.push(4);
-                break;
-            case "sixth":
-                population_indizes.push(5);
-                break;
-            case "seventh":
-                population_indizes.push(6);
-                break;
-            default:
-                break;
-        }
-    }
-    if (population_indizes.length === 7) {
-        request.population_type = "standard_all";
-    }
-    else if (population_indizes.length !== 0) {
-        request.population_type = "standard";
-        request.population_indizes = population_indizes;
-    }
-    else {
-        for (const key in stepFour.kita) {
-            if (stepFour.kita[key] === false) {
-                continue;
+    switch (stepFour.populationType) {
+        case "standard":
+            if (stepFour.selectedAgeGroups.length === stepFour.standardAgeGroups.length) {
+                request.population_type = "standard_all";
             }
-            switch (key) {
-                case "first":
-                    population_indizes.push(0);
-                    break;
-                case "second":
-                    population_indizes.push(1);
-                    break;
-                case "third":
-                    population_indizes.push(2);
-                    break;
-                case "fourth":
-                    population_indizes.push(3);
-                    break;
-                case "fifth":
-                    population_indizes.push(4);
-                    break;
-                case "sixth":
-                    population_indizes.push(5);
-                    break;
-                case "seventh":
-                    population_indizes.push(6);
-                    break;
-                default:
-                    break;
+            else {
+                request.population_type = "standard";
+                request.population_indizes = stepFour.selectedAgeGroups;
             }
-        }
-        request.population_type = "kita_schul";
-        request.population_indizes = population_indizes;
+            break;
+        case "kids":
+            request.population_type = "kita_schul";
+            request.population_indizes = stepFour.selectedAgeGroups;
+            break;
+        default:
+            throw Error("missing population selection");
     }
 
     // run request
     try {
         // const start = new Date().getTime();
-        const response = await fetch("http://172.26.62.41:5000/v1/spatial_access/grid", {
+        const response = await fetch("http://localhost:5000/v1/spatial_access/grid", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
