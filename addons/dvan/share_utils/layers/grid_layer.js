@@ -86,7 +86,7 @@ class GridLayer extends Layer {
         this.name = attr.name;
         this.proj = getProjection(projection);
 
-        this.setStyle(this.style);
+        this.rerender();
     }
 
     /**
@@ -155,7 +155,7 @@ class GridLayer extends Layer {
 
             this.features.insert(px, py, feature.value);
         }
-        this.setStyle(this.style);
+        this.rerender();
     }
 
     /**
@@ -309,11 +309,22 @@ class GridLayer extends Layer {
      */
     setStyle (style) {
         this.style = style;
-        for (const feature of this.features.getAllNodes()) {
-            const [r, g, b, a] = this.style.getRGBA(feature.value);
+        this.rerender();
+    }
 
-            this.drawPixel(feature.x, feature.y, r, g, b, a);
+    /**
+     * rerenders layer
+     * @returns {void}
+     */
+    rerender () {
+        const img_data = this.ctx.createImageData(this.canvas.width, this.canvas.height);
+
+        for (const feature of this.features.getAllNodes()) {
+            const rgba = this.style.getRGBA(feature.value);
+
+            this.drawRGBA(img_data, feature.x, feature.y, rgba);
         }
+        this.ctx.putImageData(img_data, 0, 0);
         if (this.layer !== undefined) {
             this.layer.getSource().changed();
         }
@@ -426,18 +437,17 @@ class GridLayer extends Layer {
 
     /**
      * draws a pixel to underlying canvas
+     * @param {ImageData} img_data imagedata to write to
      * @param {number} x x pixel-location
      * @param {number} y y pixel-location
-     * @param {number} r red
-     * @param {number} g green
-     * @param {number} b blue
-     * @param {number} a alpha
+     * @param {number[]} rgba rgba values
      * @returns {void}
      */
-    drawPixel (x, y, r, g, b, a) {
-        this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-        this.ctx.clearRect(x, y, 1, 1);
-        this.ctx.fillRect(x, y, 1, 1);
+    drawRGBA (img_data, x, y, rgba) {
+        img_data.data[y * (img_data.width * 4) + x * 4 + 0] = rgba[0];
+        img_data.data[y * (img_data.width * 4) + x * 4 + 1] = rgba[1];
+        img_data.data[y * (img_data.width * 4) + x * 4 + 2] = rgba[2];
+        img_data.data[y * (img_data.width * 4) + x * 4 + 3] = rgba[3];
     }
 }
 

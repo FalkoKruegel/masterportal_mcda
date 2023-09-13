@@ -37,7 +37,7 @@ async function runAnalysis () {
     // set population information
     switch (stepFour.populationType) {
         case "standard":
-            if (stepFour.selectedAgeGroups.length === stepFour.standardAgeGroups.length) {
+            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.standardAgeGroups).length) {
                 request.population_type = "standard_all";
             }
             else {
@@ -73,7 +73,20 @@ async function runAnalysis () {
         // console.log("Succesfully finished in " + time + " ms");
         const geojson = await response.json();
 
-        const style = new RasterStyle("accessibility", [255, 0, 0, 0.7], [0, 255, 0, 0.7], [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
+        const style = new RasterStyle("accessibility",
+            [255, 0, 0, 180],
+            [0, 255, 0, 180],
+            get_ranges(geojson.min, geojson.max, 10),
+            -9999,
+            [25, 25, 25, 100]
+        );
+        // const style = new ContinousGridStyle("accessibility",
+        //     [255, 0, 0, 180],
+        //     [0, 255, 0, 180],
+        //     geojson.min, geojson.max,
+        //     -9999,
+        //     [25, 25, 25, 100]
+        // );
         const gfiAttributes = {
             "accessibility": "Räumlicher Zugang"
         };
@@ -85,6 +98,13 @@ async function runAnalysis () {
             projection: "EPSG:25832",
             style: style
         });
+        // const layer = new RemoteGridLayer({
+        //     url: geojson.url,
+        //     layer_id: geojson.id,
+        //     extend: geojson.extend,
+        //     projection: "EPSG:25832",
+        //     style: style
+        // });
 
         const ol_layer = layer.getOlLayer();
         const attr = {
@@ -153,6 +173,23 @@ function flyTo (view, location) {
             duration: duration / 2
         }
     );
+}
+
+/**
+ * Computes color ranges from min max
+ * @param {number} min minimum value
+ * @param {number} max maximum value
+ * @param {number} count step count
+ * @returns {number[]} ranges
+ */
+function get_ranges (min, max, count) {
+    const step_size = (max - min) / count;
+    const ranges = [];
+
+    for (let i = 0; i < count; i++) {
+        ranges.push(step_size * (i + 1));
+    }
+    return ranges;
 }
 
 export {runAnalysis};

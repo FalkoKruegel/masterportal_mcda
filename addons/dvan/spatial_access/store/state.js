@@ -120,8 +120,7 @@ const state = {
             "std_0_9": {text: "0-9 Jahre"},
             "std_10_19": {text: "10-19 Jahre"},
             "std_20_39": {text: "20-39 Jahre"},
-            "std_40_49": {text: "40-49 Jahre"},
-            "std_50_59": {text: "50-59 Jahre"},
+            "std_40_59": {text: "40-59 Jahre"},
             "std_60_79": {text: "60-79 Jahre"},
             "std_80x": {text: "ab 80 Jahre"}
         },
