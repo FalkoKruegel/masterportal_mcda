@@ -80,14 +80,16 @@ async function runAnalysis () {
     request.infrastructures = {};
     for (const group in stepThree.selected_facilities) {
         for (const item in stepThree.selected_facilities[group]) {
-            if (stepThree.selected_facilities[group][item] === "") {
+            const name = stepThree.selected_facilities[group][item];
+
+            if (name === "") {
                 continue;
             }
-            request.infrastructures[item] = {
+            request.infrastructures[name] = {
                 "infrastructure_weight": stepSix.facility_weights[group][item],
                 "range_factors": factors,
                 "ranges": stepFive.time_zones[group][item].map(item => item * 60),
-                "facility_type": stepThree.selected_facilities[group][item]
+                "facility_type": name
             };
         }
     }
@@ -95,7 +97,7 @@ async function runAnalysis () {
     try {
         // const start = new Date().getTime();
 
-        const response = await fetch("http://localhost:5000/v1/accessibility/multi/grid", {
+        const response = await fetch("http://localhost:5000/v1/decision_support/grid", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",

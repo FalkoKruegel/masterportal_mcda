@@ -85,7 +85,7 @@ const state = {
     stepFour: {
         // possibile values
         standardAgeGroups: {
-            "std_0_9": {text: "0-9 Jahre"},
+            "std_00_09": {text: "0-9 Jahre"},
             "std_10_19": {text: "10-19 Jahre"},
             "std_20_39": {text: "20-39 Jahre"},
             "std_40_59": {text: "40-59 Jahre"},
@@ -93,9 +93,9 @@ const state = {
             "std_80x": {text: "ab 80 Jahre"}
         },
         kidsAgeGroups: {
-            "ksc_0_2": {text: "0-2 Jahre"},
-            "ksc_3_5": {text: "3-5 Jahre"},
-            "ksc_6_9": {text: "6-9 Jahre"},
+            "ksc_00_02": {text: "0-2 Jahre"},
+            "ksc_03_05": {text: "3-5 Jahre"},
+            "ksc_06_09": {text: "6-9 Jahre"},
             "ksc_10_14": {text: "10-14 Jahre"},
             "ksc_15_17": {text: "15-17 Jahre"},
             "ksc_18_19": {text: "18-19 Jahre"},

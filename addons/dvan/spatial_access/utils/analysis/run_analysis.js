@@ -1,8 +1,9 @@
 import store from "/src/app-store";
-import {RasterStyle} from "../../../share_utils/layers/raster_style";
+// import {RasterStyle} from "../../../share_utils/layers/raster_style";
+import {ContinousGridStyle} from "../../../share_utils/layers/grid/continuus_style";
 import {GridLayer} from "../../../share_utils/layers/grid_layer";
 import {getMapView} from "../../../share_utils/map.js";
-import {LAYERS} from "./show_layers";
+import {LAYERS, getWMSLayer} from "./show_layers";
 
 /**
  * runs analysis and adds accessibility layer
@@ -13,6 +14,9 @@ async function runAnalysis () {
 
     stepSix.status = "running";
     stepSix.show_accessibility = false;
+    stepSix.show_locations = false;
+    stepSix.show_scope = false;
+    stepSix.show_population = false;
 
     const stepTwo = store.getters["Tools/SpatialAccess/stepTwo"];
     const stepThree = store.getters["Tools/SpatialAccess/stepThree"];
@@ -73,20 +77,20 @@ async function runAnalysis () {
         // console.log("Succesfully finished in " + time + " ms");
         const geojson = await response.json();
 
-        const style = new RasterStyle("accessibility",
-            [255, 0, 0, 180],
-            [0, 255, 0, 180],
-            get_ranges(geojson.min, geojson.max, 10),
-            -9999,
-            [25, 25, 25, 100]
-        );
-        // const style = new ContinousGridStyle("accessibility",
+        // const style = new RasterStyle("accessibility",
         //     [255, 0, 0, 180],
         //     [0, 255, 0, 180],
-        //     geojson.min, geojson.max,
+        //     get_ranges(geojson.min, geojson.max, 10),
         //     -9999,
         //     [25, 25, 25, 100]
         // );
+        const style = new ContinousGridStyle("accessibility",
+            [255, 0, 0, 180],
+            [0, 255, 0, 180],
+            geojson.min, geojson.max,
+            -9999,
+            [25, 25, 25, 100]
+        );
         const gfiAttributes = {
             "accessibility": "Räumlicher Zugang"
         };
@@ -135,6 +139,25 @@ async function runAnalysis () {
         stepSix.status = "finished";
 
         LAYERS.accessibility = ol_layer;
+        LAYERS.locations = getWMSLayer(
+            "spatial_access_locations",
+            "Spatial Access (Praxisstandorte)",
+            `http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?CQL_FILTER=DETAIL_ID_=${get_detail_id(stepTwo.physicianGroup)}`,
+            "outpatient_physicians_location_based"
+        );
+        LAYERS.scope = getWMSLayer(
+            "spatial_access_scope",
+            "Spatial Access (Praxisumfang)",
+            `http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?CQL_FILTER=DETAIL_ID_=${get_detail_id(stepTwo.physicianGroup)}`,
+            "outpatient_physicians_location_specialist_count"
+        );
+        LAYERS.population = getWMSLayer(
+            "spatial_access_population",
+            "Spatial Access (Bevölkerung)",
+            "http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?",
+            "dvan_view_bevoelkerung_2019",
+            "Bevoelkerung_Raster_EW_GESAMT"
+        );
         stepSix.show_accessibility = true;
 
         const extent = geojson.extend;
@@ -175,21 +198,61 @@ function flyTo (view, location) {
     );
 }
 
-/**
- * Computes color ranges from min max
- * @param {number} min minimum value
- * @param {number} max maximum value
- * @param {number} count step count
- * @returns {number[]} ranges
- */
-function get_ranges (min, max, count) {
-    const step_size = (max - min) / count;
-    const ranges = [];
+// /**
+//  * Computes color ranges from min max
+//  * @param {number} min minimum value
+//  * @param {number} max maximum value
+//  * @param {number} count step count
+//  * @returns {number[]} ranges
+//  */
+// function get_ranges (min, max, count) {
+//     const step_size = (max - min) / count;
+//     const ranges = [];
 
-    for (let i = 0; i < count; i++) {
-        ranges.push(step_size * (i + 1));
+//     for (let i = 0; i < count; i++) {
+//         ranges.push(step_size * (i + 1));
+//     }
+//     return ranges;
+// }
+
+/**
+ * convert physican name to it's detail id
+ * @param {string} physician physican name
+ * @returns {number} physician detail id
+ */
+function get_detail_id (physician) {
+    switch (physician) {
+        case "general_physician":
+            return 100;
+        case "augenarzte":
+            return 205;
+        case "surgeon":
+            return 212;
+        case "frauenarzte":
+            return 235;
+        case "dermatologist":
+            return 225;
+        case "hno_arzte":
+            return 220;
+        case "paediatrician":
+            return 245;
+        case "neurologist":
+            return 230;
+        case "psychotherapist":
+            return 250;
+        case "urologist":
+            return 240;
+        case "internisten":
+            return 302;
+        case "jugendpsychiater":
+            return 303;
+        case "radiologen":
+            return 304;
+        case "anasthesisten":
+            return 301;
+        default:
+            return 0;
     }
-    return ranges;
 }
 
 export {runAnalysis};
