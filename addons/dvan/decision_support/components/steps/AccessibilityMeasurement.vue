@@ -17,296 +17,17 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
-
-        // compute status of Accordion5_3
-        localSupplyStatus () {
-            if (this.supermarketStatus === "deactivated" && this.discounterStatus === "deactivated" && this.othersStatus === "deactivated") {
-                return "deactivated";
-            }
-            if (this.supermarketStatus === "invalid" || this.discounterStatus === "invalid" || this.othersStatus === "invalid") {
-                return "invalid";
-            }
-            return "valid";
-        },
-        // compute status of Accordion5_3_1
-        supermarketStatus () {
-            if (this.stepThree.local_supply.supermarket === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.local_supply.supermarket) {
-                    const timeItemValue = this.stepFive.local_supply.supermarket[timeItem];
-
-                    // checking if values are equal or below 0
-                    if (this.stepFive.local_supply.supermarket[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    // checking if value appears in another TimeInput of the same infrastructure
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_3_2
-        discounterStatus () {
-            if (this.stepThree.local_supply.discounter === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.local_supply.discounter) {
-                    const timeItemValue = this.stepFive.local_supply.discounter[timeItem];
-
-                    if (this.stepFive.local_supply.discounter[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_3_3
-        othersStatus () {
-            if (this.stepThree.local_supply.others === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.local_supply.others) {
-                    const timeItemValue = this.stepFive.local_supply.others[timeItem];
-
-                    if (this.stepFive.local_supply.others[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_4
-        healthStatus () {
-            if (this.pharmaciesStatus === "deactivated" && this.clinicsStatus === "deactivated" && this.physiciansStatus === "deactivated") {
-                return "deactivated";
-            }
-            if (this.pharmaciesStatus === "invalid" || this.clinicsStatus === "invalid" || this.physiciansStatus === "invalid") {
-                return "invalid";
-            }
-            return "valid";
-        },
-        // compute status of Accordion5_4_1
-        pharmaciesStatus () {
-            if (this.stepThree.health.pharmacies === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.health.pharmacies) {
-                    const timeItemValue = this.stepFive.health.pharmacies[timeItem];
-
-                    if (this.stepFive.health.pharmacies[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_4_2
-        clinicsStatus () {
-            if (this.stepThree.health.clinics === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.health.clinics) {
-                    const timeItemValue = this.stepFive.health.clinics[timeItem];
-
-                    if (this.stepFive.health.clinics[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_4_3
-        physiciansStatus () {
-            for (const item in this.stepThree.health) {
-                if ((item !== "pharmacies") && (item !== "clinics") && (this.stepThree.health[item] === true)) {
-                    const timeItemCount = {};
-
-                    for (const timeItem in this.stepFive.health.physicians) {
-                        const timeItemValue = this.stepFive.health.physicians[timeItem];
-
-                        if (this.stepFive.health.physicians[timeItem] <= 0) {
-                            return "invalid";
-                        }
-                        if (timeItemValue in timeItemCount) {
-                            return "invalid";
-                        }
-                        timeItemCount[timeItemValue] = 1;
-                    }
-                    return "valid";
-                }
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_5
-        educationStatus () {
-            if (this.nurseriesStatus === "deactivated" && this.primarySchoolsStatus === "deactivated" && this.secondary1Status === "deactivated" && this.secondary2Status === "deactivated") {
-                return "deactivated";
-            }
-            if (this.nurseriesStatus === "invalid" || this.primarySchoolsStatus === "invalid" || this.secondary1Status === "invalid" || this.secondary2Status === "invalid") {
-                return "invalid";
-            }
-            return "valid";
-        },
-        // compute status of Accordion5_5_1
-        nurseriesStatus () {
-            if (this.stepThree.education.nurseries === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.education.nurseries) {
-                    const timeItemValue = this.stepFive.education.nurseries[timeItem];
-
-                    if (this.stepFive.education.nurseries[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_5_2
-        primarySchoolsStatus () {
-            if (this.stepThree.education.primary_schools === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.education.primary_schools) {
-                    const timeItemValue = this.stepFive.education.primary_schools[timeItem];
-
-                    if (this.stepFive.education.primary_schools[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_5_3
-        secondary1Status () {
-            if (this.stepThree.education.secondary_1 === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.education.secondary_1) {
-                    const timeItemValue = this.stepFive.education.secondary_1[timeItem];
-
-                    if (this.stepFive.education.secondary_1[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute status of Accordion5_5_4
-        secondary2Status () {
-            if (this.stepThree.education.secondary_2 === true) {
-                const timeItemCount = {};
-
-                for (const timeItem in this.stepFive.education.secondary_2) {
-                    const timeItemValue = this.stepFive.education.secondary_2[timeItem];
-
-                    if (this.stepFive.education.secondary_2[timeItem] <= 0) {
-                        return "invalid";
-                    }
-                    if (timeItemValue in timeItemCount) {
-                        return "invalid";
-                    }
-                    timeItemCount[timeItemValue] = 1;
-                }
-                return "valid";
-            }
-            return "deactivated";
-        },
-        // compute name of physician in Accordion5_4_3
-        physicianName () {
-            for (const item in this.stepThree.health) {
-                if (item !== "pharmacies" & item !== "clinics" & this.stepThree.health[item] === true) {
-                    if (item === "general_physicians") {
-                        return "Schwellwert Hausärzte";
-                    }
-                    if (item === "paediatricians") {
-                        return "Schwellwert Kinder- und Jugendärzte";
-                    }
-                    if (item === "ophthalmologists") {
-                        return "Schwellwert Augenärzte";
-                    }
-                    if (item === "surgeons") {
-                        return "Schwellwert Chirurgen und Orthopäden";
-                    }
-                    if (item === "gynaecologists") {
-                        return "Schwellwert Frauenärzte";
-                    }
-                    if (item === "dermatologists") {
-                        return "Schwellwert Hautärzte";
-                    }
-                    if (item === "otolaryngologist") {
-                        return "Schwellwert HNO-Ärzte";
-                    }
-                    if (item === "neurologist") {
-                        return "Schwellwert Nervenärzte";
-                    }
-                    if (item === "psychotherapists") {
-                        return "Schwellwert Psychotherapeuten";
-                    }
-                    if (item === "urologists") {
-                        return "Schwellwert Urologen";
-                    }
-                }
-            }
-            return "Schwellwert Arzttyp";
-        }
+        ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     watch: {
         // this watcher checks if the used physician infrastructure are general physicians.
         // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
-        "stepThree.health.general_physicians": function () {
-            if (this.stepThree.health.general_physicians === true) {
-                this.stepFive.health.physicians.very_good = 2;
-                this.stepFive.health.physicians.good = 5;
-                this.stepFive.health.physicians.sufficient = 10;
-                this.stepFive.health.physicians.deficient = 20;
+        "stepThree.health.physicians": function () {
+            if (this.stepThree.selected_facilities.health.physicians === "general_physicians") {
+                this.stepFive.time_zones.health.physicians = [2, 5, 10, 20];
             }
             else {
-                this.stepFive.health.physicians.very_good = 3;
-                this.stepFive.health.physicians.good = 7;
-                this.stepFive.health.physicians.sufficient = 13;
-                this.stepFive.health.physicians.deficient = 25;
+                this.stepFive.time_zones.health.physicians = [3, 7, 13, 25];
             }
         }
     },
@@ -316,7 +37,61 @@ export default {
         ]),
         ...mapMutations("Tools/DecisionSupport", [
             "setActive"
-        ])
+        ]),
+
+        selectionStatus (items) {
+            for (const name in items) {
+                if (items[name] !== "") {
+                    return "default";
+                }
+            }
+            return "deactivated";
+        },
+
+        getGroupName (name) {
+            return "Schwellwerte " + this.stepThree.facilities[name].text;
+        },
+
+        getFacilityName (group, name, value) {
+            const item = this.stepThree.facilities[group].items[name];
+
+            if (item.isGroup === true) {
+                if (value === "") {
+                    return item.text;
+                }
+
+                return item.items[value].text;
+
+            }
+
+            return item.text;
+
+        },
+
+        setTimeZone (arr, value, index) {
+            let val = value;
+
+            if (val <= this.stepFive.minValue + index) {
+                val = this.stepFive.minValue + index;
+            }
+            else if (val >= this.stepFive.maxValue - 3 + index) {
+                val = this.stepFive.maxValue - 3 + index;
+            }
+            const new_arr = [];
+
+            for (let i = 0; i < 4; i++) {
+                if (i < index) {
+                    new_arr.push(Math.min(val - (index - i), arr[i]));
+                }
+                if (i === index) {
+                    new_arr.push(val);
+                }
+                if (i > index) {
+                    new_arr.push(Math.max(val + (i - index), arr[i]));
+                }
+            }
+            return new_arr;
+        }
     }
 };
 </script>
@@ -361,585 +136,86 @@ export default {
                         role="group"
                         aria-label="Transportmittel"
                     >
-                        <input
-                            id="PKW"
-                            v-model="stepFive.transport"
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            value="pkw"
+                        <div
+                            v-for="(item, name, index) in stepFive.travelModes"
+                            :key="index"
                         >
-                        <label
-                            class="btn btn-outline-primary"
-                            for="PKW"
-                        >
-                            PKW
-                        </label>
-                        <input
-                            id="ÖPNV"
-                            v-model="stepFive.transport"
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            value="public_transport"
-                        >
-                        <label
-                            class="btn btn-outline-primary"
-                            for="ÖPNV"
-                        >
-                            ÖPNV
-                        </label>
-                        <input
-                            id="Fuß"
-                            v-model="stepFive.transport"
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            value="foot"
-                        >
-                        <label
-                            class="btn btn-outline-primary"
-                            for="Fuß"
-                        >
-                            Fuß
-                        </label>
+                            <input
+                                :id="`Button_5_1_${index}`"
+                                v-model="stepFive.transport"
+                                type="radio"
+                                class="btn-check"
+                                name="options"
+                                :value="name"
+                            >
+                            <label
+                                class="btn btn-outline-primary"
+                                :for="`Button_5_1_${index}`"
+                            >
+                                {{ item["text"] }}
+                            </label>
+                        </div>
                     </div>
                 </div>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                id="Accordion5_3"
+                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
+                :id="`Accordion5_${group_index+3}`"
+                :key="group_index"
                 parent-id="Accordion5"
-                text="Schwellwerte Nahversorgung"
-                :status="localSupplyStatus"
+                :text="getGroupName(group_name)"
+                :status="selectionStatus(stepThree.selected_facilities[group_name])"
             >
                 <BootstrapAccordion
-                    id="Accordion5_3"
+                    :id="`Accordion5_${group_index+3}_1`"
                     body-padding-x="5px"
                     body-padding-y="5px"
                 >
                     <BootstrapAccordionItem
-                        id="Accordion5_3_1"
-                        text="Schwellwerte Supermärkte"
-                        :status="supermarketStatus"
+                        v-for="(item, name, index) in group_item"
+                        :id="`Accordion5_${group_index+3}_1_${index}`"
+                        :key="index"
+                        :text="getFacilityName(group_name, name, item)"
+                        :status="stepThree.selected_facilities[group_name][name] === '' ? 'deactivated' : 'default'"
                     >
                         <div
                             class="container"
                         >
                             <TimeInput
-                                id="input5_3_1_1"
-                                :value="stepFive.local_supply.supermarket.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="local_supply"
-                                infrastructure="supermarket"
+                                :id="`input5_${group_index+3}_1_${index}_1`"
+                                :value="stepFive.time_zones[group_name][name]"
+                                :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 supply-category="Sehr gute"
+                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 0)"
                             />
                             <TimeInput
-                                id="input5_3_1_2"
-                                :value="stepFive.local_supply.supermarket.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="local_supply"
-                                infrastructure="supermarket"
+                                :id="`input5_${group_index+3}_1_${index}_2`"
+                                :value="stepFive.time_zones[group_name][name]"
+                                :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 supply-category="Gute"
+                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 1)"
                             />
                             <TimeInput
-                                id="input5_3_1_3"
-                                :value="stepFive.local_supply.supermarket.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="local_supply"
-                                infrastructure="supermarket"
+                                :id="`input5_${group_index+3}_1_${index}_3`"
+                                :value="stepFive.time_zones[group_name][name]"
+                                :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 supply-category="Ausreichende"
+                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 2)"
                             />
                             <TimeInput
-                                id="input5_3_1_4"
-                                :value="stepFive.local_supply.supermarket.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="local_supply"
-                                infrastructure="supermarket"
+                                :id="`input5_${group_index+3}_1_${index}_4`"
+                                :value="stepFive.time_zones[group_name][name]"
+                                :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_3_2"
-                        text="Schwellwerte Discounter"
-                        :status="discounterStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_3_2_1"
-                                :value="stepFive.local_supply.discounter.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="local_supply"
-                                infrastructure="discounter"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_3_2_2"
-                                :value="stepFive.local_supply.discounter.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="local_supply"
-                                infrastructure="discounter"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_3_2_3"
-                                :value="stepFive.local_supply.discounter.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="local_supply"
-                                infrastructure="discounter"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_3_2_4"
-                                :value="stepFive.local_supply.discounter.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="local_supply"
-                                infrastructure="discounter"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_3_3"
-                        text="Schwellwerte sonstige Lebensmittelgeschäfte"
-                        :status="othersStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_3_3_1"
-                                :value="stepFive.local_supply.others.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="local_supply"
-                                infrastructure="others"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_3_3_2"
-                                :value="stepFive.local_supply.others.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="local_supply"
-                                infrastructure="others"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_3_3_3"
-                                :value="stepFive.local_supply.others.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="local_supply"
-                                infrastructure="others"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_3_3_4"
-                                :value="stepFive.local_supply.others.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="local_supply"
-                                infrastructure="others"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                </BootstrapAccordion>
-            </BootstrapAccordionItem>
-            <BootstrapAccordionItem
-                id="Accordion5_4"
-                parent-id="Accordion5"
-                text="Schwellwerte Gesundheit"
-                :status="healthStatus"
-            >
-                <BootstrapAccordion
-                    id="Accordion5_4"
-                    body-padding-x="5px"
-                    body-padding-y="5px"
-                >
-                    <BootstrapAccordionItem
-                        id="Accordion5_4_1"
-                        text="Schwellwerte Apotheken"
-                        :status="pharmaciesStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_4_1_1"
-                                :value="stepFive.health.pharmacies.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="health"
-                                infrastructure="pharmacies"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_4_1_2"
-                                :value="stepFive.health.pharmacies.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="health"
-                                infrastructure="pharmacies"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_4_1_3"
-                                :value="stepFive.health.pharmacies.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="health"
-                                infrastructure="pharmacies"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_4_1_4"
-                                :value="stepFive.health.pharmacies.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="health"
-                                infrastructure="pharmacies"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_4_2"
-                        text="Schwellwerte Hochschulkliniken und Plankrankenhäuser"
-                        :status="clinicsStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_4_2_1"
-                                :value="stepFive.health.clinics.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="health"
-                                infrastructure="clinics"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_4_2_2"
-                                :value="stepFive.health.clinics.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="health"
-                                infrastructure="clinics"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_4_2_3"
-                                :value="stepFive.health.clinics.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="health"
-                                infrastructure="clinics"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_4_2_4"
-                                :value="stepFive.health.clinics.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="health"
-                                infrastructure="clinics"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_4_3"
-                        :text="physicianName"
-                        :status="physiciansStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_4_3_1"
-                                :value="stepFive.health.physicians.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="health"
-                                infrastructure="physicians"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_4_3_2"
-                                :value="stepFive.health.physicians.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="health"
-                                infrastructure="physicians"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_4_3_3"
-                                :value="stepFive.health.physicians.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="health"
-                                infrastructure="physicians"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_4_3_4"
-                                :value="stepFive.health.physicians.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="health"
-                                infrastructure="physicians"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                </BootstrapAccordion>
-            </BootstrapAccordionItem>
-            <BootstrapAccordionItem
-                id="Accordion5_5"
-                parent-id="Accordion5"
-                text="Schwellwerte Bildung"
-                :status="educationStatus"
-            >
-                <BootstrapAccordion
-                    id="Accordion5_5"
-                    body-padding-x="5px"
-                    body-padding-y="5px"
-                >
-                    <BootstrapAccordionItem
-                        id="Accordion5_5_1"
-                        text="Schwellwerte Kindertagesstätten"
-                        :status="nurseriesStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_5_1_1"
-                                :value="stepFive.education.nurseries.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="education"
-                                infrastructure="nurseries"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_5_1_2"
-                                :value="stepFive.education.nurseries.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="education"
-                                infrastructure="nurseries"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_5_1_3"
-                                :value="stepFive.education.nurseries.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="education"
-                                infrastructure="nurseries"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_5_1_4"
-                                :value="stepFive.education.nurseries.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="education"
-                                infrastructure="nurseries"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_5_2"
-                        text="Schwellwerte Primarschulen"
-                        :status="primarySchoolsStatus"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_5_2_1"
-                                :value="stepFive.education.primary_schools.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="education"
-                                infrastructure="primary_schools"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_5_2_2"
-                                :value="stepFive.education.primary_schools.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="education"
-                                infrastructure="primary_schools"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_5_2_3"
-                                :value="stepFive.education.primary_schools.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="education"
-                                infrastructure="primary_schools"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_5_2_4"
-                                :value="stepFive.education.primary_schools.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="education"
-                                infrastructure="primary_schools"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_5_3"
-                        text="Schwellwerte Sekundarschulen Bereich I und II, ohne (Fach)Hochschulreife"
-                        :status="secondary1Status"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_5_3_1"
-                                :value="stepFive.education.secondary_1.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="education"
-                                infrastructure="secondary_1"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_5_3_2"
-                                :value="stepFive.education.secondary_1.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="education"
-                                infrastructure="secondary_1"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_5_3_3"
-                                :value="stepFive.education.secondary_1.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="education"
-                                infrastructure="secondary_1"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_5_3_4"
-                                :value="stepFive.education.secondary_1.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="education"
-                                infrastructure="secondary_1"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                            />
-                        </div>
-                    </BootstrapAccordionItem>
-                    <BootstrapAccordionItem
-                        id="Accordion5_5_4"
-                        text="Schwellwerte Sekundarschulen Bereich I und II, mit (Fach)Hochschulreife"
-                        :status="secondary2Status"
-                    >
-                        <div
-                            class="container"
-                        >
-                            <TimeInput
-                                id="input5_5_4_1"
-                                :value="stepFive.education.secondary_2.very_good"
-                                mutation="Tools/DecisionSupport/SET_VERY_GOOD"
-                                category="education"
-                                infrastructure="secondary_2"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                            />
-                            <TimeInput
-                                id="input5_5_4_2"
-                                :value="stepFive.education.secondary_2.good"
-                                mutation="Tools/DecisionSupport/SET_GOOD"
-                                category="education"
-                                infrastructure="secondary_2"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                            />
-                            <TimeInput
-                                id="input5_5_4_3"
-                                :value="stepFive.education.secondary_2.sufficient"
-                                mutation="Tools/DecisionSupport/SET_SUFFICIENT"
-                                category="education"
-                                infrastructure="secondary_2"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                            />
-                            <TimeInput
-                                id="input5_5_4_4"
-                                :value="stepFive.education.secondary_2.deficient"
-                                mutation="Tools/DecisionSupport/SET_DEFICIENT"
-                                category="education"
-                                infrastructure="secondary_2"
-                                :max-time="stepFive.maxValue"
-                                :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
+                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 3)"
                             />
                         </div>
                     </BootstrapAccordionItem>

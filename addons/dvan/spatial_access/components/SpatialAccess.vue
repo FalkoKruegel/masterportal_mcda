@@ -43,34 +43,31 @@ export default {
 
         statusStepTwo () {
             if (this.stepTwo.supplyLevel !== "") {
-                if (this.stepTwo.physicianGroup !== "Bitte wählen..." & this.stepTwo.planningArea !== "Bitte wählen...") {
+                if (this.stepTwo.physicianGroup !== "Bitte wählen..." && this.stepTwo.planningArea !== "Bitte wählen...") {
                     return "valid";
                 }
             }
             return "invalid";
         },
         statusStepThree () {
-            if (this.stepThree.physicianAvailability !== "" && this.stepThree.physicianAvailability !== "demandLimit") {
-                return "valid";
+            if (this.stepThree.physicianAvailability !== "") {
+                if (this.stepThree.availabilityOptions[this.stepThree.physicianAvailability].valid) {
+                    return "valid";
+                }
             }
             return "invalid";
         },
         statusStepFour () {
-            for (const item in this.stepFour.standard) {
-                if (this.stepFour.standard[item] === true) {
-                    return "valid";
-                }
-            }
-            for (const item in this.stepFour.kids) {
-                if (this.stepFour.kids[item] === true) {
-                    return "valid";
-                }
+            if (this.stepFour.populationType !== "" && this.stepFour.selectedAgeGroups.length !== 0) {
+                return "valid";
             }
             return "invalid";
         },
         statusStepFive () {
-            if (["pkw"].includes(this.stepFive.transport) && ["linear", "patient_behavior", "minimum_standards"].includes(this.stepFive.distanceDecay)) {
-                return "valid";
+            if (this.stepFive.transport !== "" && this.stepFive.distanceDecay !== "") {
+                if (this.stepFive.travelModes[this.stepFive.transport].valid) {
+                    return "valid";
+                }
             }
             return "invalid";
         },

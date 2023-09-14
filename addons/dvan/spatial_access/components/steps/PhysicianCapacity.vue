@@ -33,32 +33,13 @@ export default {
                 Bitte wählen Sie, wie Sie die ärztliche Verfügbarkeit in der Analyse berücksichtigen wollen.
             </p>
             <BootstrapCheckbox
-                id="Checkbox_3_1"
-                text="Betriebsstättenbetrachtung"
-                :value="stepThree.physicianAvailability === 'facility'"
-                :disabled="stepThree.physicianAvailability !== 'facility' && stepThree.physicianAvailability !== ''"
-                @input="e => e ? stepThree.physicianAvailability = 'facility' : stepThree.physicianAvailability = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_3_2"
-                text="Facharztzahl an der Betriebsstätte"
-                :value="stepThree.physicianAvailability === 'physicianNumber'"
-                :disabled="stepThree.physicianAvailability !== 'physicianNumber' && stepThree.physicianAvailability !== ''"
-                @input="e => e ? stepThree.physicianAvailability = 'physicianNumber' : stepThree.physicianAvailability = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_3_3"
-                text="Beschäftigungsumfang der Fachärzte an den Betriebsstätten"
-                :value="stepThree.physicianAvailability === 'employmentVolume'"
-                :disabled="stepThree.physicianAvailability !== 'employmentVolume' && stepThree.physicianAvailability !== ''"
-                @input="e => e ? stepThree.physicianAvailability = 'employmentVolume' : stepThree.physicianAvailability = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_3_4"
-                text="Fallzahlabhängige Bedarfsgrenzen an den Betriebsstätten"
-                :value="stepThree.physicianAvailability === 'demandLimit'"
-                :disabled="stepThree.physicianAvailability !== 'demandLimit' && stepThree.physicianAvailability !== ''"
-                @input="e => e ? stepThree.physicianAvailability = 'demandLimit' : stepThree.physicianAvailability = ''"
+                v-for="(item, name, index) in stepThree.availabilityOptions"
+                :id="`Checkbox_3_${index}`"
+                :key="index"
+                :text="item['text']"
+                :value="stepThree.physicianAvailability === name"
+                :disabled="stepThree.physicianAvailability !== name && stepThree.physicianAvailability !== ''"
+                @input="e => e ? stepThree.physicianAvailability = name : stepThree.physicianAvailability = ''"
             />
             <p />
         </div>

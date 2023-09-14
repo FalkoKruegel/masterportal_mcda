@@ -2,7 +2,7 @@
 import BootstrapCheckbox from "../../../share_components/BootstrapCheckbox.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
-import {getWMSLayer, LAYERS} from "../../utils/analysis/show_layers";
+import {LAYERS} from "../../utils/analysis/show_layers";
 import {addLayer, removeLayer} from "../../../share_utils/map.js";
 
 export default {
@@ -20,12 +20,7 @@ export default {
         "stepSix.show_locations": function (newVal) {
             if (newVal) {
                 if (LAYERS.locations === null) {
-                    LAYERS.locations = getWMSLayer(
-                        "spatial_access_locations",
-                        "Spatial Access (Praxisstandorte)",
-                        "http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?",
-                        "outpatient_physicians_location_based"
-                    );
+                    return;
                 }
                 addLayer(LAYERS.locations, () => {
                     this.stepSix.show_locations = false;
@@ -38,12 +33,7 @@ export default {
         "stepSix.show_scope": function (newVal) {
             if (newVal) {
                 if (LAYERS.scope === null) {
-                    LAYERS.scope = getWMSLayer(
-                        "spatial_access_scope",
-                        "Spatial Access (Praxisumfang)",
-                        "http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?",
-                        "outpatient_physicians_location_specialist_count"
-                    );
+                    return;
                 }
                 addLayer(LAYERS.scope, () => {
                     this.stepSix.show_scope = false;
@@ -56,13 +46,7 @@ export default {
         "stepSix.show_population": function (newVal) {
             if (newVal) {
                 if (LAYERS.population === null) {
-                    LAYERS.population = getWMSLayer(
-                        "spatial_access_population",
-                        "Spatial Access (Bevölkerung)",
-                        "http://172.26.63.162:8085/geoserver/DVAN_View_Data/ows?",
-                        "dvan_view_bevoelkerung_2019",
-                        "Bevoelkerung_Raster_EW_GESAMT"
-                    );
+                    return;
                 }
                 addLayer(LAYERS.population, () => {
                     this.stepSix.show_population = false;

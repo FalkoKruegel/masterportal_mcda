@@ -29,10 +29,10 @@ class RasterStyle {
         this.no_data = no_data;
         this.no_data_color = no_data_color;
         for (let i = 0; i <= this.ranges.length; i++) {
-            const r = this.start_color[0] + (this.end_color[0] - this.start_color[0]) * i / this.ranges.length;
-            const g = this.start_color[1] + (this.end_color[1] - this.start_color[1]) * i / this.ranges.length;
-            const b = this.start_color[2] + (this.end_color[2] - this.start_color[2]) * i / this.ranges.length;
-            const a = this.start_color[3] + (this.end_color[3] - this.start_color[3]) * i / this.ranges.length;
+            const r = Math.floor(this.start_color[0] + (this.end_color[0] - this.start_color[0]) * i / this.ranges.length);
+            const g = Math.floor(this.start_color[1] + (this.end_color[1] - this.start_color[1]) * i / this.ranges.length);
+            const b = Math.floor(this.start_color[2] + (this.end_color[2] - this.start_color[2]) * i / this.ranges.length);
+            const a = Math.floor(this.start_color[3] + (this.end_color[3] - this.start_color[3]) * i / this.ranges.length);
 
             this.colors.push([r, g, b, a]);
         }

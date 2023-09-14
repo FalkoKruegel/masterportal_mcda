@@ -39,36 +39,15 @@ export default {
 <template lang="html">
     <div>
         <div>
-            <p>
-                Bitte wählen Sie eine Versorgungsebene aus:
-            </p>
+            <p>Bitte wählen Sie eine Versorgungsebene aus:</p>
             <BootstrapCheckbox
-                id="Checkbox_2_1"
-                text="Hausärztliche Versorgung - Versorgungsebene 1"
-                :value="stepTwo.supplyLevel === 'generalPhysician'"
-                :disabled="stepTwo.supplyLevel !== 'generalPhysician' && stepTwo.supplyLevel !== ''"
-                @input="e => e ? stepTwo.supplyLevel = 'generalPhysician' : stepTwo.supplyLevel = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_2_2"
-                text="Allgemeine fachärztliche Versorgung  - Versorgungsebene 2"
-                :value="stepTwo.supplyLevel === 'generalSpecialist'"
-                :disabled="stepTwo.supplyLevel !== 'generalSpecialist' && stepTwo.supplyLevel !== ''"
-                @input="e => e ? stepTwo.supplyLevel = 'generalSpecialist' : stepTwo.supplyLevel = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_2_3"
-                text="Spezialisierte fachärztliche Versorgung - Versorgungsebene 3"
-                :value="stepTwo.supplyLevel === 'specializedSpecialist'"
-                :disabled="stepTwo.supplyLevel !== 'specializedSpecialist' && stepTwo.supplyLevel !== ''"
-                @input="e => e ? stepTwo.supplyLevel = 'specializedSpecialist' : stepTwo.supplyLevel = ''"
-            />
-            <BootstrapCheckbox
-                id="Checkbox_2_4"
-                text="Niedersachsen - Versorgungsebene / KV-Bezirk"
-                :value="stepTwo.supplyLevel === 'lowerSaxony'"
-                :disabled="stepTwo.supplyLevel !== 'lowerSaxony' && stepTwo.supplyLevel !== ''"
-                @input="e => e ? stepTwo.supplyLevel = 'lowerSaxony' : stepTwo.supplyLevel = ''"
+                v-for="(item, name, index) in stepTwo.supplyLevels"
+                :id="`Checkbox_2_${index}`"
+                :key="index"
+                :text="item['text']"
+                :value="stepTwo.supplyLevel === name"
+                :disabled="stepTwo.supplyLevel !== name && stepTwo.supplyLevel !== ''"
+                @input="e => e ? stepTwo.supplyLevel = name : stepTwo.supplyLevel = ''"
             />
             <p />
         </div>
@@ -89,11 +68,11 @@ export default {
                         Bitte wählen...
                     </option>
                     <option
-                        v-for="item in stepTwo.physicianGroups[stepTwo.supplyLevel]"
-                        :key="item"
-                        :value="item"
+                        v-for="(item, name, index) in stepTwo.physicianGroups[stepTwo.supplyLevel]"
+                        :key="index"
+                        :value="name"
                     >
-                        {{ item }}
+                        {{ item["text"] }}
                     </option>
                 </select>
                 <p />
@@ -110,11 +89,11 @@ export default {
                         Bitte wählen...
                     </option>
                     <option
-                        v-for="item in stepTwo.planningAreas[stepTwo.supplyLevel]"
-                        :key="item"
-                        :value="item"
+                        v-for="(item, name, index) in stepTwo.planningAreas[stepTwo.supplyLevel]"
+                        :key="index"
+                        :value="name"
                     >
-                        {{ item }}
+                        {{ item["text"] }}
                     </option>
                     <option
                         value="Niedersachsen"

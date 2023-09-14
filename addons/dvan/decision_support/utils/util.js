@@ -12,25 +12,25 @@ function convertLayerName (name) {
             return "Supermärkte";
         case "discounter":
             return "Discounter";
-        case "others":
+        case "other_local_supply":
             return "sonstige Lebensmittelgeschäfte";
-        case "pharmacies":
+        case "pharmacy":
             return "Apotheken";
-        case "clinics":
+        case "clinic":
             return "Hochschulkliniken und Plankrankenhäuser";
         case "physicians":
             return "Ärzte";
         case "general_physicians":
             return "Hausärzte";
-        case "paediatricians":
+        case "paediatrician":
             return "Kinder- und Jugendärzte";
-        case "ophthalmologists":
+        case "ophthalmologist":
             return "Augenärzte";
-        case "surgeons":
+        case "surgeon":
             return "Chirurgen und Orthopäden";
-        case "gynaecologists":
+        case "gynaecologist":
             return "Frauenärzte";
-        case "dermatologists":
+        case "dermatologist":
             return "Hautärzte";
         case "otolaryngologist":
             return "HNO-Ärzte";
@@ -40,13 +40,13 @@ function convertLayerName (name) {
             return "Psychotherapeuten";
         case "urologists":
             return "Urologen";
-        case "nurseries":
+        case "nursery":
             return "Kindertagesstätten";
-        case "primary_schools":
+        case "primary_school":
             return "Primärschulen";
-        case "secondary_1":
+        case "secondary_school_1":
             return "Sekundarstufe Bereich 1 & 2; ohne (Fach)Hochschulreife";
-        case "secondary_2":
+        case "secondary_school_2":
             return "Sekundarstufe Bereich 1 & 2; mit (Fach)Hochschulreife";
         default:
             return "";

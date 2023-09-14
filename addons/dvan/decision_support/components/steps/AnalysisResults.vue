@@ -26,24 +26,17 @@ export default {
         checkedLayers () {
             const layers = ["multiCritera"];
 
-            for (const item in this.stepThree.local_supply) {
-                if (this.stepThree.local_supply[item] !== true) {
-                    continue;
+            for (const group in this.stepThree.selected_facilities) {
+                for (const item in this.stepThree.selected_facilities[group]) {
+                    const name = this.stepThree.selected_facilities[group][item];
+
+                    if (name === "") {
+                        continue;
+                    }
+                    layers.push(name);
                 }
-                layers.push(item);
             }
-            for (const item in this.stepThree.health) {
-                if (this.stepThree.health[item] !== true) {
-                    continue;
-                }
-                layers.push(item);
-            }
-            for (const item in this.stepThree.education) {
-                if (this.stepThree.education[item] !== true) {
-                    continue;
-                }
-                layers.push(item);
-            }
+
             return layers;
         }
     },
