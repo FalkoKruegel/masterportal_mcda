@@ -26,6 +26,16 @@ const Config = {
         infoText: "(weitere Objekte. Bitte zoomen.)"
     },
     addons: ["DecisionSupport", "SpatialAccess", "PhysicianSearch", "AccessibilitiesLgln", "DegreeOfSupply"],
+    portalLanguage: {
+        enabled: true,
+        debug: false,
+        languages: {
+            de: "Deutsch",
+            en: "English"
+        },
+        fallbackLanguage: "de",
+        changeLanguageOnStartWhen: ["querystring", "localStorage", "htmlTag"]
+    }
 };
 
 // conditional export to make config readable by e2e tests
