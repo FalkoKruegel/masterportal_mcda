@@ -89,7 +89,7 @@
 				}
 			},
 			"legend": {
-				"name": "translate#common:modules.legend.name",
+				"name": "common:modules.legend.name",
 				"showCollapseAllButton":true,
 				"showLegend": false
 			},
