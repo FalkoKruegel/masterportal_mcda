@@ -44,6 +44,7 @@
         },
         "wayToSchool": "Your way to school",
         "filter": "Filtering",
+        "spatialAnalysis": "Spatial Analysis",
         "tools": {
             "name": "More tools",
             "compareFeatures": "Compare features",
@@ -1017,7 +1018,8 @@
                 "addressHospitalBplan": "Search for Address/Hospital/B-Plan",
                 "addressTopicParcel": "Search address, district, topics, parcel",
                 "addressTopic": "Search address, district, topics",
-                "address": "Search for Address"
+                "address": "Search for Address",
+                "addressActiveWFS": "Search for: Address or active WFS"
             },
             "showAllResults": "Show all results",
             "locationFinder": {
