@@ -43,7 +43,7 @@
 				"icon": "bi-compass",
 				"children": {
 					"decisionSupport": {
-						"name": "Entscheidungsunterstützung"
+						"name": "translate#additional:modules.tools.decisionSupport.title"
 					},
 					"spatialAccess": {
 						"name": "Räumlicher Zugang"

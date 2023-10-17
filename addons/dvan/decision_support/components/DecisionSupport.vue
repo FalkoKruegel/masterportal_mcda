@@ -221,6 +221,20 @@ export default {
             a.href = window.URL.createObjectURL(blob);
             a.download = "settings.json";
             a.click();
+        },
+
+        /**
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -228,7 +242,7 @@ export default {
 
 <template lang="html">
     <ToolTemplate
-        :title="'Tool zu Entscheidungsunterstützung'"
+        :title="translate(name)"
         :icon="icon"
         :active="active"
         :render-to-window="renderToWindow"
@@ -242,7 +256,7 @@ export default {
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
-                    title="Schritt 1: Analyse starten oder bestehende Analyse laden"
+                    :title="translate('additional:modules.tools.decisionSupport.stepOne.title')"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"

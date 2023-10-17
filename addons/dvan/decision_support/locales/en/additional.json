@@ -1,0 +1,12 @@
+{
+    "modules": {
+        "tools": {
+            "decisionSupport": {
+                "title": "Decision Support",
+                "stepOne": {
+                    "title": "Step 1: Start analysis or load existing analysis"
+                }
+            }
+        }
+    }
+}
