@@ -4,7 +4,14 @@
             "decisionSupport": {
                 "title": "Decision Support",
                 "stepOne": {
-                    "title": "Step 1: Start analysis or load existing analysis"
+                    "title": "Step 1: Start analysis or load existing analysis",
+                    "loadAnalysisSettings": "Load analysis settings",
+                    "startNewAnalysis": "Start new analysis",
+                    "incorrectParameterFile": "The parmeter file you are using is corrupted. Please try again.",
+                    "text": {
+                        "textOne": "The 'Decision Support' tool considers the supply situation in services of general interest according to your self-selected criteria.",
+                        "textTwo": "As a result, you receive various layers on the supply situation. These can be used, for example, to assess the supply situation, analyze demand, and identify structural spatial differences."
+                    }
                 }
             }
         }

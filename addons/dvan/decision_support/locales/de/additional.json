@@ -4,7 +4,14 @@
             "decisionSupport": {
                 "title": "Entscheidungsunterstützung",
                 "stepOne": {
-                    "title": "Schritt 1: Analyse starten oder bestehende Analyse laden"
+                    "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
+                    "loadAnalysisSettings": "Analyseeinstellungen laden",
+                    "startNewAnalysis": "Neue Analyse durchführen",
+                    "incorrectParameterFile": "Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.",
+                    "text": {
+                        "textOne": "Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.",
+                        "textTwo": "Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden."
+                    }
                 }
             }
         }

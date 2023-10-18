@@ -41,6 +41,20 @@ export default {
                 }
             };
             reader.readAsText(files[0]);
+        },
+
+        /**
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -48,8 +62,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.</p>
-        <p>Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden.</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepOne.text.textOne') }}</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepOne.text.textTwo') }}</p>
         <!--container to adjust position of following buttons-->
         <div
             class="container"
@@ -67,7 +81,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="openAnalysis"
                     >
-                        Analyseeinstellung laden
+                        {{ translate('additional:modules.tools.decisionSupport.stepOne.loadAnalysisSettings') }}
                     </button>
                     <input
                         ref="layerDialog"
@@ -86,7 +100,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="$emit('startAnalysis')"
                     >
-                        Neue Analyse durchführen
+                        {{ translate('additional:modules.tools.decisionSupport.stepOne.startNewAnalysis') }}
                     </button>
                 </div>
             </div>
@@ -96,7 +110,7 @@ export default {
             v-if="loadFailed"
             class="callout-warning"
         >
-            Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.
+            {{ translate('additional:modules.tools.decisionSupport.stepOne.incorrectParameterFile') }}
         </div>
     </div>
 </template>
