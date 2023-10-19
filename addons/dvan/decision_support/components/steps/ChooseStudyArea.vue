@@ -83,6 +83,14 @@ export default {
                 this.stepTwo.ownAreaExtent = null;
                 this.removeInteraction(dragBox);
             }
+        },
+
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -91,19 +99,19 @@ export default {
 <template lang="html">
     <div>
         <p>
-            Bitte wählen Sie ein Analysegebiet aus einer der Listen.
+            {{ translate('additional:modules.tools.decisionSupport.stepTwo.text.textOne') }}
         </p>
         <BootstrapCheckbox
             id="Checkbox_2_1"
             v-model="stepTwo.wholeLowerSaxony"
-            text="Niedersachsenweite Analyse"
+            :text="translate('additional:modules.tools.decisionSupport.stepTwo.checkbox.checkbox2_1')"
             :disabled="stepTwo.ownArea"
         />
         <!--there must be a bounding box-tool which is connected with the following checkbox-->
         <BootstrapCheckbox
             id="Checkbox_2_2"
             :value="stepTwo.ownArea"
-            text="Eigene Gebietsselektion"
+            :text="translate('additional:modules.tools.decisionSupport.stepTwo.checkbox.checkbox2_2')"
             :disabled="stepTwo.wholeLowerSaxony"
             @input="e => activateOwnArea(e)"
         />
@@ -113,7 +121,7 @@ export default {
             id="Callout2_1"
             class="callout"
         >
-            Halten Sie die Strg-Taste gedrückt und ziehen Sie für die Gebietsselektion ein Kartenfenster auf!
+            {{ translate('additional:modules.tools.decisionSupport.stepTwo.callout.callout2_1') }}
         </div>
     </div>
 </template>

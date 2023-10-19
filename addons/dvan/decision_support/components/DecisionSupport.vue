@@ -266,7 +266,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 2: Untersuchungsgebiet wählen"
+                    :title="translate('additional:modules.tools.decisionSupport.stepTwo.title')"
                     :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"

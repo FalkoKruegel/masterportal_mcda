@@ -12,6 +12,19 @@
                         "textOne": "Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.",
                         "textTwo": "Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden."
                     }
+                },
+                "stepTwo": {
+                    "title": "Schritt 2: Untersuchungsgebiet wählen",
+                    "text": {
+                        "textOne": "Bitte wählen Sie ein Analysegebiet aus einer der Listen."
+                    },
+                    "checkbox": {
+                        "checkbox2_1": "Niedersachsenweite Analyse",
+                        "checkbox2_2": "Eigene Gebietsselektion"
+                    },
+                    "callout": {
+                        "callout2_1": "Halten Sie die Strg-Taste gedrückt und ziehen Sie für die Gebietsselektion ein Kartenfenster auf!"
+                    }
                 }
             }
         }

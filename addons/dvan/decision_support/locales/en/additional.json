@@ -12,6 +12,19 @@
                         "textOne": "The 'Decision Support' tool considers the supply situation in services of general interest according to your self-selected criteria.",
                         "textTwo": "As a result, you receive various layers on the supply situation. These can be used, for example, to assess the supply situation, analyze demand, and identify structural spatial differences."
                     }
+                },
+                "stepTwo": {
+                    "title": "Step 2: Choose study area",
+                    "text": {
+                        "textOne": "Please select a study area from one of the lists."
+                    },
+                    "checkbox": {
+                        "checkbox2_1": "Lower Saxony-wide analysis",
+                        "checkbox2_2": "Select own area"
+                    },
+                    "callout": {
+                        "callout2_1": "Hold down the Ctrl key and drag open a map window for the area selection!"
+                    }
                 }
             }
         }
