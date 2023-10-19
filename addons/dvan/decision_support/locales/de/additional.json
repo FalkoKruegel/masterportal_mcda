@@ -25,6 +25,52 @@
                     "callout": {
                         "callout2_1": "Halten Sie die Strg-Taste gedrückt und ziehen Sie für die Gebietsselektion ein Kartenfenster auf!"
                     }
+                },
+                "stepThree": {
+                    "title": "Schritt 3: Relevante Infrastrukturen",
+                    "text": {
+                        "textOne": "Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen wollen:"
+                    },
+                    "accordion": {
+                        "local_supply": {
+                            "text": "Nahversorgung",
+                            "supermarket": "Supermärkte",
+                            "discounter": "Discounter",
+                            "other_local_supply": "sonstige Lebensmittelgeschäfte"
+                        },
+                        "health": {
+                            "text": "Gesundheit",
+                            "pharmacy": "Apotheken",
+                            "clinic": "Hochschulkliniken und Plankrankenhäuser",
+                            "physicians": {
+                                "text": "Ärzte",
+                                "general_physicians": "Hausärzte",
+                                "paediatrician": "Kinder- und Jugendärzte",
+                                "ophthalmologist": "Augenärzte",
+                                "surgeon": "Chirurgen und Orthopäden",
+                                "gynaecologist": "Frauenärzte",
+                                "dermatologist": "Hautärzte",
+                                "otolaryngologist": "HNO-Ärzte",
+                                "neurologist": "Nervenärzte",
+                                "psychotherapists": "Psychotherapeuten",
+                                "urologists": "Urologen"
+                            }
+                        },
+                        "education": {
+                            "text": "Bildung",
+                            "nursery": "Kindertagesstätten",
+                            "primary_school": "Primärschulen",
+                            "secondary_school_1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
+                            "secondary_school_2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
+                        }
+                    },
+                    "callout": {
+                        "callout3_1": "Es kann nur eine Arztgruppe ausgewählt werden.",
+                        "callout3_2": {
+                            "firstPart": "Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem ",
+                            "secondPart": "abrufen."
+                        }
+                    }
                 }
             }
         }

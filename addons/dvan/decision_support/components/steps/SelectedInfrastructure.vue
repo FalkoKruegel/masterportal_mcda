@@ -34,6 +34,21 @@ export default {
                 }
             }
             return "default";
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -41,29 +56,32 @@ export default {
 
 <template lang="html">
     <div>
-        Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen<br> wollen:
+        {{ translate('additional:modules.tools.decisionSupport.stepThree.text.textOne') }}
         <BootstrapAccordion
             id="Accordion_3"
             body-padding-y="5px"
         >
+            <!-- Erik: When using the locales files, I think the group_item variable is no longer needed here. Please check.-->
             <BootstrapAccordionItem
                 v-for="(group_item, group_name, group_index) in stepThree.facilities"
                 :id="`Accordion_3_${group_index}`"
                 :key="group_index"
-                :text="group_item['text']"
+                :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.text`)"
                 :status="selectionStatus(stepThree.selected_facilities[group_name])"
             >
+                <!-- Erik: When using the locales files, I think the item variable is no longer needed here. Please check.-->
                 <div
                     v-for="(item, name, index) in group_item.items"
                     :key="index"
                 >
                     <div v-if="item.hasOwnProperty('isGroup')">
+                        <!-- Erik: When using the locales files, I think the inner_item variable is no longer needed here. Please check.-->
                         <BootstrapCheckbox
                             v-for="(inner_item, inner_name, inner_index) in item.items"
                             :id="`Checkbox_3_${group_index}_${index}_${inner_index}`"
                             :key="inner_index"
                             :value="stepThree.selected_facilities[group_name][name] === inner_name"
-                            :text="inner_item['text']"
+                            :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}.${inner_name}`)"
                             :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
                             :tooltip-text="inner_item['tooltip']"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
@@ -73,29 +91,30 @@ export default {
                         <BootstrapCheckbox
                             :id="`Checkbox_3_${group_index}_${index}`"
                             :value="stepThree.selected_facilities[group_name][name] === name"
-                            :text="item['text']"
+                            :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}`)"
                             :tooltip-text="item['tooltip']"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
                         />
                     </div>
                 </div>
+                <!-- Erik: sonst wurden callout IDs zumeist callout3_1 etc. genannt -->
                 <div
                     v-if="group_name === 'health' && stepThree.selected_facilities['health']['physicians'] !== ''"
                     id="Infotext_3_1"
                     class="callout"
                 >
-                    Es kann nur eine Arztgruppe ausgewählt werden
+                    {{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_1') }}
                 </div>
                 <div
                     v-if="group_name === 'education'"
                     id="Infotext_3_2"
                     class="callout"
                 >
-                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a
+                    {{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_2.firstPart') }}<a
                         href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html"
                         target="_blank"
                         rel="noopener noreferrer"
-                    >Link</a> abrufen.
+                    >Link</a>{{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_2.secondPart') }}
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

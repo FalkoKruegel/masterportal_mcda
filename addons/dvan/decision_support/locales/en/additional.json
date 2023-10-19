@@ -25,6 +25,52 @@
                     "callout": {
                         "callout2_1": "Hold down the Ctrl key and drag open a map window for the area selection!"
                     }
+                },
+                "stepThree": {
+                    "title": "Step 3: Relevant infrastructures",
+                    "text": {
+                        "textOne": "Please select infrastructures that you want to include in the analysis:"
+                    },
+                    "accordion": {
+                        "local_supply": {
+                            "text": "Local supply",
+                            "supermarket": "Supermarkets",
+                            "discounter": "Discounter",
+                            "other_local_supply": "Other grocery stores"
+                        },
+                        "health": {
+                            "text": "Health",
+                            "pharmacy": "Pharmacies",
+                            "clinic": "University hospitals and planned hospitals",
+                            "physicians": {
+                                "text": "Physicians",
+                                "general_physicians": "General Physicians",
+                                "paediatrician": "Paediatricians",
+                                "ophthalmologist": "Ophthalmologist",
+                                "surgeon": "Surgeons and orthopedists",
+                                "gynaecologist": "Gynaecologists",
+                                "dermatologist": "Dermatologists",
+                                "otolaryngologist": "Otolaryngologists",
+                                "neurologist": "Neurologists",
+                                "psychotherapists": "Psychotherapists",
+                                "urologists": "Urologists"
+                            }
+                        },
+                        "education": {
+                            "text": "Education",
+                            "nursery": "Nurseries",
+                            "primary_school": "Primary schools",
+                            "secondary_school_1": "Secondary level 1",
+                            "secondary_school_2": "Secondary level 2"
+                        }
+                    },
+                    "callout": {
+                        "callout3_1": "Only one doctor group can be selected.",
+                        "callout3_2": {
+                            "firstPart": "The school structures and the type of school in Lower Saxony can be found at the following ",
+                            "secondPart": "."
+                        }
+                    }
                 }
             }
         }

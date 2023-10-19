@@ -224,6 +224,7 @@ export default {
         },
 
         /**
+         * Function from populationRequest addon (original Masterportal)
          * translates the given key, checkes if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
@@ -278,7 +279,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 3: Relevante Infrastrukturen"
+                    :title="translate('additional:modules.tools.decisionSupport.stepThree.title')"
                     :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
