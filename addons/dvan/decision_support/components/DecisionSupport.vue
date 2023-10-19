@@ -291,7 +291,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
+                    :title="translate('additional:modules.tools.decisionSupport.stepFour.title')"
                     :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"

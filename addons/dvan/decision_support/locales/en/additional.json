@@ -71,6 +71,37 @@
                             "secondPart": "."
                         }
                     }
+                },
+                "stepFour": {
+                    "title": "Step 4: Select population's age group",
+                    "text": {
+                        "textOne": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
+                    },
+                    "accordion": {
+                        "accordion4_1": "Total population",
+                        "accordion4_2": "DVAN standard population groups",
+                        "accordion4_3": "DVAN population groups for daycare and schools"
+                    },
+                    "checkbox": {
+                        "checkbox4_1_1": "Consideration of the total population",
+                        "standardAgeGroups": {
+                            "std_00_09":"0-9 years",
+                            "std_10_19": "10-19 years",
+                            "std_20_39": "20-39 years",
+                            "std_40_59": "40-59 years",
+                            "std_60_79": "60-79 years",
+                            "std_80x": "ab 80 years"
+                        },
+                        "kidsAgeGroups": {
+                            "ksc_00_02": "0-2 years",
+                            "ksc_03_05": "3-5 years",
+                            "ksc_06_09": "6-9 years",
+                            "ksc_10_14": "10-14 years",
+                            "ksc_15_17": "15-17 years",
+                            "ksc_18_19": "18-19 years",
+                            "ksc_20x": "ab 20 years"
+                        }
+                    }
                 }
             }
         }

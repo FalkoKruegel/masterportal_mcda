@@ -89,6 +89,20 @@ export default {
             if (this.stepFour.selectedAgeGroups.length === 0) {
                 this.stepFour.populationType = "";
             }
+        },
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -96,7 +110,7 @@ export default {
 
 <template lang="html">
     <div>
-        Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:
+        {{ translate('additional:modules.tools.decisionSupport.stepFour.text.textOne') }}
         <BootstrapAccordion
             id="Accordion4"
             body-padding-y="5px"
@@ -105,13 +119,13 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion4_1"
                 parent-id="Accordion4"
-                text="Gesamte Bevölkerung"
+                :text="translate('additional:modules.tools.decisionSupport.stepFour.accordion.accordion4_1')"
                 :status="allStatus"
             >
                 <BootstrapCheckbox
                     id="Checkbox4_1_1"
                     :value="allActivated"
-                    text="Berücksichtigung der Gesamtbevölkerung"
+                    :text="translate('additional:modules.tools.decisionSupport.stepFour.checkbox.checkbox4_1_1')"
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>
@@ -120,14 +134,14 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion4_2"
                 parent-id="Accordion4"
-                text="DVAN-Standardbevölkerungsgruppen"
+                :text="translate('additional:modules.tools.decisionSupport.stepFour.accordion.accordion4_2')"
                 :status="standardStatus"
             >
                 <BootstrapCheckbox
                     v-for="(item, name, index) in stepFour.standardAgeGroups"
                     :id="`Checkbox_4_2_${index}`"
                     :key="index"
-                    :text="item['text']"
+                    :text="translate(`additional:modules.tools.decisionSupport.stepFour.checkbox.standardAgeGroups.${name}`)"
                     :value="stepFour.selectedAgeGroups.includes(name)"
                     @input="e => e ? activate('standard', name) : deactivate('standard', name)"
                 />
@@ -137,14 +151,14 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion4_3"
                 parent-id="Accordion4"
-                text="DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
+                :text="translate('additional:modules.tools.decisionSupport.stepFour.accordion.accordion4_3')"
                 :status="kitaStatus"
             >
                 <BootstrapCheckbox
                     v-for="(item, name, index) in stepFour.kidsAgeGroups"
                     :id="`Checkbox_4_3_${index}`"
                     :key="index"
-                    :text="item['text']"
+                    :text="translate(`additional:modules.tools.decisionSupport.stepFour.checkbox.kidsAgeGroups.${name}`)"
                     :value="stepFour.selectedAgeGroups.includes(name)"
                     @input="e => e ? activate('kids', name) : deactivate('kids', name)"
                 />
