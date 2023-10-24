@@ -138,6 +138,14 @@
                         "accordion5_1": "Erläuterung zur Anpassung der Reisezeiten",
                         "accordion5_2": "Transportmittel"
                     }
+                },
+                "stepSix": {
+                    "title": "Schritt 6: Gewichtung",
+                    "text": {
+                        "textOne": "Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.",
+                        "textTwo": "Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird."
+                    },
+                    "weighting": "Gewichtung"
                 }
             }
         }

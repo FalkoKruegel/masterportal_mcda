@@ -52,7 +52,7 @@
                                 "text": "Physicians",
                                 "general_physicians": "General Physicians",
                                 "paediatrician": "Paediatricians",
-                                "ophthalmologist": "Ophthalmologist",
+                                "ophthalmologist": "Ophthalmologists",
                                 "surgeon": "Surgeons and orthopedists",
                                 "gynaecologist": "Gynaecologists",
                                 "dermatologist": "Dermatologists",
@@ -138,6 +138,14 @@
                         "accordion5_1": "Explanation of the adjustment of travel times",
                         "accordion5_2": "Means of transportation"
                     }
+                },
+                "stepSix": {
+                    "title": "Step 6: Weighting",
+                    "text": {
+                        "textOne": "It is possible to assign individual weightings to determine how important each infrastructure should be in your analysis.",
+                        "textTwo": "You can assign values between 0 and 100 using the slider. Please note that a value of 0 means that the infrastructure is not included in the analysis."
+                    },
+                    "weighting": "Weighting"
                 }
             }
         }

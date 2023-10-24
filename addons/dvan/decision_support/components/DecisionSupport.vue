@@ -323,7 +323,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 6: Gewichtung"
+                    :title="translate('additional:modules.tools.decisionSupport.stepSix.title')"
                     :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"

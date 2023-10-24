@@ -52,23 +52,46 @@ export default {
         },
 
         getGroupName (name) {
-            return "Gewichtung " + this.stepThree.facilities[name].text;
+            // this method was modified to fit translation requirements
+            return this.translate("additional:modules.tools.decisionSupport.stepSix.weighting") + " " + this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${name}.text`);
         },
 
         getFacilityName (group, name, value) {
+            // this method was modified to fit translation requirements
+
+            // item stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
                 if (value === "") {
-                    return item.text;
+
+                    // return item.text
+                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.text`);
                 }
 
-                return item.items[value].text;
+                // return item.items[value].text;
+                return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.${value}`);
 
             }
 
-            return item.text;
+            // return item.text
+            return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
 
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -76,8 +99,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.</p>
-        <p>Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird.</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepSix.text.textOne') }}</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepSix.text.textTwo') }}</p>
         <BootstrapAccordion
             id="Accordion_3"
             body-padding-y="5px"
