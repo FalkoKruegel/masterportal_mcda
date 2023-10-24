@@ -3,6 +3,12 @@
         "tools": {
             "decisionSupport": {
                 "title": "Decision Support",
+                "accordionFooter": {
+                    "back": "Back",
+                    "next": "Next",
+                    "startAnalysis": "start analysis",
+                    "saveAnalysis": "save analysis"
+                },
                 "stepOne": {
                     "title": "Step 1: Start analysis or load existing analysis",
                     "loadAnalysisSettings": "Load analysis settings",

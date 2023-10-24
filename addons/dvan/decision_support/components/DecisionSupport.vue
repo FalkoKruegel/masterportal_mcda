@@ -274,6 +274,8 @@ export default {
                 >
                     <ChooseStudyArea />
                     <AccordionFooter
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
                     />
@@ -286,6 +288,8 @@ export default {
                 >
                     <SelectedInfrastructure />
                     <AccordionFooter
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
                     />
@@ -298,6 +302,8 @@ export default {
                 >
                     <SelectedPopulation />
                     <AccordionFooter
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
                     />
@@ -310,6 +316,8 @@ export default {
                 >
                     <AccessibilityMeasurement />
                     <AccordionFooter
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
                     />
@@ -322,6 +330,8 @@ export default {
                 >
                     <InfrastructureWeighting />
                     <AccordionFooter
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
                     />
@@ -334,7 +344,8 @@ export default {
                 >
                     <SettingsSummary />
                     <AccordionFooter
-                        forward-text="Analyse starten"
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.startAnalysis')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
                         @forwardClick="() => { openStep(7); runTest(); }"
@@ -348,7 +359,8 @@ export default {
                 >
                     <AnalysisResults />
                     <AccordionFooter
-                        forward-text="Analyse speichern"
+                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.saveAnalysis')"
+                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
                         @forwardClick="storeTest"
                         @backClick="openStep(6)"
                     />

@@ -3,6 +3,12 @@
         "tools": {
             "decisionSupport": {
                 "title": "Entscheidungsunterstützung",
+                "accordionFooter": {
+                    "back": "Zurück",
+                    "next": "Weiter",
+                    "startAnalysis": "Analyse starten",
+                    "saveAnalysis": "Analyse speichern"
+                },
                 "stepOne": {
                     "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
                     "loadAnalysisSettings": "Analyseeinstellungen laden",

@@ -35,6 +35,13 @@ export default {
         // if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
         forwardButton () {
             this.$emit("forwardClick");
+        },
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
