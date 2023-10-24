@@ -63,7 +63,7 @@ export default {
                 if (value === "") {
 
                     // return item.text
-                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
+                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.text`);
                 }
 
                 // return item.items[value].text;
