@@ -8,7 +8,7 @@ import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import AccessibilityMeasurement from "./steps/AccessibilityMeasurement.vue";
-import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
+import InfrastructureWeighting from "./steps/infrastructureweighting.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
 import AnalysisResults from "./steps/AnalysisResults.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
@@ -303,7 +303,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 5: Erreichbarkeitsberechnung"
+                    :title="translate('additional:modules.tools.decisionSupport.stepFive.title')"
                     :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"

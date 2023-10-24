@@ -49,22 +49,30 @@ export default {
         },
 
         getGroupName (name) {
-            return "Schwellwerte " + this.stepThree.facilities[name].text;
+            // this method was modified to fit translation requirements
+            return this.translate("additional:modules.tools.decisionSupport.stepFive.text.threshold_text") + " " + this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${name}.text`);
         },
 
         getFacilityName (group, name, value) {
+            // this method was modified to fit translation requirements
+
+            // item stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
                 if (value === "") {
-                    return item.text;
+
+                    // return item.text
+                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
                 }
 
-                return item.items[value].text;
+                // return item.items[value].text;
+                return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.${value}`);
 
             }
 
-            return item.text;
+            // return item.text
+            return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
 
         },
 
@@ -91,6 +99,14 @@ export default {
                 }
             }
             return new_arr;
+        },
+
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -98,36 +114,36 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.</p>
-        <p>Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textOne') }}</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textTwo') }}</p>
         <BootstrapAccordion
             id="Accordion5"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
                 id="Accordion5_1"
-                text="Erläuterung zur Anpassung der Reisezeiten"
+                :text="translate('additional:modules.tools.decisionSupport.stepFive.accordion.accordion5_1')"
                 status="valid"
             >
-                <p>Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:</p>
+                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textThree') }}</p>
                 <ul>
-                    <li>PKW</li>
-                    <li>ÖPNV</li>
-                    <li>Fuß</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.driving-car') }}</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.public-transit') }}</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.walking-foot') }}</li>
                 </ul>
-                <p>Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:</p>
+                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textFour') }}</p>
                 <ul>
-                    <li>Sehr gute Versorgungslage</li>
-                    <li>Gute Versorgungslage</li>
-                    <li>Ausreichende Versorgungslage</li>
-                    <li>Mangelhafte Versorgungslage</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.veryGood') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.good') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.sufficient') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.deficient') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
                 </ul>
-                <p>Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.</p>
+                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textFive') }}</p>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
                 id="Accordion5_2"
                 parent-id="Accordion5"
-                text="Transportmittel"
+                :text="translate('additional:modules.tools.decisionSupport.stepFive.accordion.accordion5_2')"
                 status="valid"
             >
                 <div class="container text-center">
@@ -152,7 +168,7 @@ export default {
                                 class="btn btn-outline-primary"
                                 :for="`Button_5_1_${index}`"
                             >
-                                {{ item["text"] }}
+                                {{ translate(`additional:modules.tools.decisionSupport.stepFive.travelModes.${name}`) }}
                             </label>
                         </div>
                     </div>
@@ -187,7 +203,7 @@ export default {
                                 :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
+                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.veryGood')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 0)"
                             />
                             <TimeInput
@@ -196,7 +212,7 @@ export default {
                                 :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Gute"
+                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.good')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 1)"
                             />
                             <TimeInput
@@ -205,7 +221,7 @@ export default {
                                 :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
+                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.sufficient')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 2)"
                             />
                             <TimeInput
@@ -214,7 +230,7 @@ export default {
                                 :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
+                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.deficient')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 3)"
                             />
                         </div>

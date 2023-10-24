@@ -102,6 +102,36 @@
                             "ksc_20x": "ab 20 years"
                         }
                     }
+                },
+                "stepFive": {
+                    "title": "Step 5: Accessibility Calculation",
+                    "text": {
+                        "textOne": "Minimum accessibility standards (travel distance/travel time) to facilities and services of general interest ensure nationwide supply coverage.",
+                        "textTwo": "If the corresponding threshold values are reached, it can be assumed that there is an undersupply. Likewise, the quality of supply increases the shorter the travel distance from the place of residence to the infrastructure. Recommended values are already stored for the selected infrastructures. They apply to accessibility by car. The preset travel times can be adjusted for demand-oriented simulations.",
+                        "textThree": "Please store which means of transport should apply to determine the travel time for your analysis. The following means of transport are available for the calculation:",
+                        "textFour": "In addition, for each of the selected infrastructures, store which supply situation should occur when a certain travel time is exceeded to reach this infrastructure from the demand location. The categories are divided as follows:",
+                        "textFive": "If the travel time from the demand location to the infrastructure exceeds the deficient supply threshold, no supply to the demand location is provided by the infrastructure.",
+                        "threshold_text": "Threshold"
+                    },
+                    "travelModes": {
+                        "driving-car": "car",
+                        "public-transit": "public transport",
+                        "walking-foot": "foot"
+                    },
+                    "timeInput": {
+                        "supply_situation": "supply situation",
+                        "till": "till",
+                        "time_zones": {
+                            "veryGood": "very good",
+                            "good": "good",
+                            "sufficient": "sufficient",
+                            "deficient": "deficient"
+                        }
+                    },
+                    "accordion": {
+                        "accordion5_1": "Explanation of the adjustment of travel times",
+                        "accordion5_2": "Means of transportation"
+                    }
                 }
             }
         }

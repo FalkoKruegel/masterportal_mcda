@@ -36,6 +36,13 @@ export default {
         "input"
     ],
     methods: {
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
+        }
     }
 };
 </script>
@@ -46,7 +53,7 @@ export default {
         class="row align-items-center"
     >
         <div class="col-7 text-start">
-            {{ supplyCategory }} Versorgungslage bis
+            {{ supplyCategory }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.till') }}
         </div>
         <div class="col-3 text-end">
             <label

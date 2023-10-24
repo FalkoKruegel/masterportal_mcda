@@ -102,6 +102,36 @@
                             "ksc_20x": "ab 20 Jahre"
                         }
                     }
+                },
+                "stepFive": {
+                    "title": "Schritt 5: Erreichbarkeitsberechnung",
+                    "text": {
+                        "textOne": "Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.",
+                        "textTwo": "Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.",
+                        "textThree": "Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:",
+                        "textFour": "Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:",
+                        "textFive": "Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.",
+                        "threshold_text": "Schwellwert"
+                    },
+                    "travelModes": {
+                        "driving-car": "PKW",
+                        "public-transit": "ÖPNV",
+                        "walking-foot": "Fuß"
+                    },
+                    "timeInput": {
+                        "supply_situation": "Versorgungslage",
+                        "till": "bis",
+                        "time_zones": {
+                            "veryGood": "Sehr gute",
+                            "good": "Gute",
+                            "sufficient": "Ausreichende",
+                            "deficient": "Mangelhafte"
+                        }
+                    },
+                    "accordion": {
+                        "accordion5_1": "Erläuterung zur Anpassung der Reisezeiten",
+                        "accordion5_2": "Transportmittel"
+                    }
                 }
             }
         }
