@@ -6,8 +6,8 @@
                 "accordionFooter": {
                     "back": "Back",
                     "next": "Next",
-                    "startAnalysis": "start analysis",
-                    "saveAnalysis": "save analysis"
+                    "startAnalysis": "Start analysis",
+                    "saveAnalysis": "Save analysis"
                 },
                 "stepOne": {
                     "title": "Step 1: Start analysis or load existing analysis",
@@ -146,6 +146,21 @@
                         "textTwo": "You can assign values between 0 and 100 using the slider. Please note that a value of 0 means that the infrastructure is not included in the analysis."
                     },
                     "weighting": "Weighting"
+                },
+                "stepSeven": {
+                    "title": "Step 7: Summary of input values",
+                    "text": {
+                        "textOne": "You have stored the following settings which are used for the calculation:",
+                        "textTwo": "Infrastructure",
+                        "textThree": "On/",
+                        "textFour": "Off",
+                        "textFive": "Weight",
+                        "textSix": "Click on",
+                        "textSeven": " to start the calculation or on",
+                        "textEight": " to adjust your settings.",
+                        "textNine": "The calculation is available after a few moments."
+                    },
+                    "summary": "Summary"
                 }
             }
         }

@@ -146,6 +146,21 @@
                         "textTwo": "Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird."
                     },
                     "weighting": "Gewichtung"
+                },
+                "stepSeven": {
+                    "title": "Schritt 7: Zusammenfassung der Eingabewerte",
+                    "text": {
+                        "textOne": "Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:",
+                        "textTwo": "Infrastruktur",
+                        "textThree": "An/",
+                        "textFour": "Aus",
+                        "textFive": "Gewicht",
+                        "textSix": "Klicken Sie auf",
+                        "textSeven": ", um die Berechnung zu starten oder auf",
+                        "textEight": ", um Ihre Einstellungen anzupassen.",
+                        "textNine": "Die Berechnung steht nach wenigen Momenten zur Verfügung."
+                    },
+                    "summary": "Zusammenfassung"
                 }
             }
         }

@@ -70,25 +70,46 @@ export default {
             }
             return "deactivated";
         },
-
         getGroupName (name) {
-            return "Zusammenfassung " + this.stepThree.facilities[name].text;
+            // this method was modified to fit translation requirements
+            return this.translate("additional:modules.tools.decisionSupport.stepSeven.summary") + " " + this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${name}.text`);
         },
 
         getFacilityName (group, name, value) {
+            // this method was modified to fit translation requirements
+
+            // item stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
                 if (value === "") {
-                    return item.text;
+
+                    // return item.text
+                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.text`);
                 }
 
-                return item.items[value].text;
+                // return item.items[value].text;
+                return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.${value}`);
 
             }
 
-            return item.text;
+            // return item.text
+            return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
 
+        },
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -96,7 +117,7 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textOne') }}</p>
         <BootstrapAccordion
             id="Accordion_7"
             body-padding-y="5px"
@@ -110,9 +131,9 @@ export default {
             >
                 <div class="card">
                     <div class="card-header">
-                        <span class="text">Infrastruktur</span>
-                        <span class="value">An/<br>Aus</span>
-                        <span class="value">Gewicht</span>
+                        <span class="text">{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textTwo') }}</span>
+                        <span class="value">{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textThree') }}<br>{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textFour') }}</span>
+                        <span class="value">{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textFive') }}</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li
@@ -132,8 +153,8 @@ export default {
             </BootstrapAccordionItem>
         </BootstrapAccordion>
         <br>
-        <p>Klicken Sie auf "Weiter" um die Berechnung zu starten oder auf "Zurück" um Einstellungen anzupassen</p>
-        <p>Die Berechnung steht nach wenigen Momenten zur Verfügung.</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textSix') }} "{{ translate('additional:modules.tools.decisionSupport.accordionFooter.startAnalysis') }}"{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textSeven') }} "{{ translate('additional:modules.tools.decisionSupport.accordionFooter.back') }}"{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textEight') }}</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepSeven.text.textNine') }}</p>
     </div>
 </template>
 

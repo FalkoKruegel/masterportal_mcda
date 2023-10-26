@@ -337,7 +337,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 7: Zusammenfassung der Eingabewerte"
+                    :title="translate('additional:modules.tools.decisionSupport.stepSeven.title')"
                     :status="statusStepSeven"
                     :opened="steps[6]"
                     @click="openStep(6)"
