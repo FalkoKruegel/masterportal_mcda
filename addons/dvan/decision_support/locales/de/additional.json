@@ -76,6 +76,13 @@
                             "firstPart": "Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem ",
                             "secondPart": "abrufen."
                         }
+                    },
+                    "tooltip": {
+                        "other_local_supply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
+                        "nursery": "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen.",
+                        "primary_school": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
+                        "secondary_school_1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
+                        "secondary_school_2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
                     }
                 },
                 "stepFour": {

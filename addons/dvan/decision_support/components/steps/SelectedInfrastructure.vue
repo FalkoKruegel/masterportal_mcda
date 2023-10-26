@@ -36,6 +36,21 @@ export default {
             return "default";
         },
 
+        getTooltipText (tooltipItem) {
+            // creating string with key for translation
+            const translationKey = "modules.tools.decisionSupport.stepThree.tooltip." + tooltipItem;
+            const translationString = "additional:" + translationKey;
+
+            // getting translation
+            const translation = this.translate(translationString);
+
+            // checking if key exists
+            if (translation === translationKey) {
+                return null;
+            }
+            return translation;
+        },
+
         /**
          * Function from populationRequest addon (original Masterportal)
          * translates the given key, checkes if the key exists and throws a console warning if not
@@ -83,7 +98,7 @@ export default {
                             :value="stepThree.selected_facilities[group_name][name] === inner_name"
                             :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}.${inner_name}`)"
                             :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
-                            :tooltip-text="inner_item['tooltip']"
+                            :tooltip-text="getTooltipText(inner_name)"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
                         />
                     </div>
@@ -92,7 +107,7 @@ export default {
                             :id="`Checkbox_3_${group_index}_${index}`"
                             :value="stepThree.selected_facilities[group_name][name] === name"
                             :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}`)"
-                            :tooltip-text="item['tooltip']"
+                            :tooltip-text="getTooltipText(name)"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
                         />
                     </div>
