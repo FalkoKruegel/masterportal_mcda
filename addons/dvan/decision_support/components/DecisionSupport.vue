@@ -352,7 +352,7 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 8: Ergebnisse"
+                    :title="translate('additional:modules.tools.decisionSupport.stepEight.title')"
                     :status="statusStepEight"
                     :opened="steps[7]"
                     @click="openStep(7)"

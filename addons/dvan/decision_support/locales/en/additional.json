@@ -161,6 +161,42 @@
                         "textNine": "The calculation is available after a few moments."
                     },
                     "summary": "Summary"
+                },
+                "stepEight": {
+                    "title": "Step 8: Results",
+                    "text": {
+                        "textOne": "You will get a map that shows a spatial coverage level of the settings you selected.",
+                        "textTwo": "For each selected infrastructure, you will receive a map layer that can be activated and that shows the accessibility according to the distance zones stored. You can select the map layers individually for a detailed analysis via the drop-down list.",
+                        "textThree": "The respective representation can be further weighted over the selected population groups and/or represented as a heat map map.",
+                        "textFour": "Add to map window:"
+                    },
+                    "callout": {
+                        "callout8_1": "Please start the calculation to get the results.",
+                        "callout8_2": "The result will be ready shortly..."
+                    },
+                    "checkbox": {
+                        "checkbox8_1": "Population weighted representation",
+                        "checkbox8_2": "Heatmap representation"
+                    },
+                    "accordion": {
+                        "title": "Methodological explanations",
+                        "accordion8_1_1": {
+                            "title": "General methodological explanations",
+                            "text": "Placeholder for general methodological explanations and illustrations for Multicriteria Analysis in relation to steps 1-7."
+                        },
+                        "accordion8_1_2": {
+                            "title": "Explanations on population weighting",
+                            "text": "Placeholder for methodological explanations on the consideration of population."
+                        },
+                        "accordion8_1_3": {
+                            "title": "Explanation of the display mode Heatmap",
+                            "text": "Placeholder for displaying and interpreting the heatmap."
+                        },
+                        "accordion8_1_4": {
+                            "title": "Formulary",
+                            "text": "Formulas used for calculation and referred to in the above accordions. The formulas are collected in one place, because the above accordions are more fluent readable for the majority of the addressees, if the derivation and textual description is not too mathematical. The formulas are referred to in the text."
+                        }
+                    }
                 }
             }
         }

@@ -68,6 +68,20 @@ export default {
 
         convert (name) {
             return convertLayerName(name);
+        },
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            if (key === "additional:" + this.$t(key)) {
+                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+            }
+
+            return this.$t(key, options);
         }
     }
 };
@@ -75,15 +89,16 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Sie erhalten eine Kartendarstellung die ein räumliches Versorgungsniveau der von Ihnen gewählten Einstelungen wiedergibt.</p>
-        <p>Entsprechend der ausgewählten relevanten Infrastrukturen, erhalten Sie für jede dieser Infrastrukturen einen aktivierbaren Kartenlayer der die Erreichbarkeiten entsprechend der hinterlegten Entfernungszonen darstellt. Sie können diese für eine detaillierte Analyse über die Drop-Down-Liste einzeln auswählen.</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textOne') }}</p>
+        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textTwo') }}</p>
 
         <div v-if="stepEight.status === 'unfinished'">
+            <!--other callouts had IDs like callout8_1-->
             <div
                 id="Infotext8_1"
                 class="callout"
             >
-                Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten.
+                {{ translate('additional:modules.tools.decisionSupport.stepEight.callout.callout8_1') }}
             </div>
         </div>
 
@@ -96,11 +111,12 @@ export default {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
+            <!--other callouts had IDs like callout8_2-->
             <div
                 id="Infotext8_2"
                 class="callout"
             >
-                Das Ergebnis steht in Kürze bereit...
+                {{ translate('additional:modules.tools.decisionSupport.stepEight.callout.callout8_2') }}
             </div>
         </div>
 
@@ -144,17 +160,17 @@ export default {
             </div>
             <br>
             <br>
-            <p>Die jeweilige Darstellungen lässt sich weiterhin über die ausgewählten Bevölkerungsgruppen gewichten und/ oder als Heatmapkarte darstellen.</p>
-            <p>Kartenfenster ergänzen um:</p>
+            <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textThree') }}</p>
+            <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textFour') }}</p>
 
             <BootstrapCheckbox
                 id="Checkbox8_1"
                 v-model="weighted"
-                text="Bevölkerungsgewichtete Darstellung"
+                :text="translate('additional:modules.tools.decisionSupport.stepEight.checkbox.checkbox8_1')"
             />
             <BootstrapCheckbox
                 id="Checkbox8_2"
-                text="Heatmap Darstellung"
+                :text="translate('additional:modules.tools.decisionSupport.stepEight.checkbox.checkbox8_2')"
             />
         </div>
         <br>
@@ -165,7 +181,7 @@ export default {
         >
             <BootstrapAccordionItem
                 id="Accordion8_1"
-                text="Methodische Erläuterungen"
+                :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.title')"
             >
                 <BootstrapAccordion
                     id="Accordion_8_1"
@@ -173,30 +189,30 @@ export default {
                 >
                     <BootstrapAccordionItem
                         id="Accordion8_1_1"
-                        text="allgemeine Methodische Erläuterungen"
+                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_1.title')"
                     >
-                        <p>Platzhalter für allgemeine methodische Erläuterungen und Abbildungen zur Multikriteriellen Analyse in Bezug auf die Schritte 1-7</p>
+                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_1.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_2"
-                        text="Erläuterungen zur Bevölkerungsgewichtung"
+                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_2.title')"
                     >
-                        <p>Platzhalter für methodische Erläuterungen zur Berücksichtigung der Bevölkerung.</p>
+                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_2.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_3"
-                        text="Erläuterungen zur Darstellungsweise Heatmap"
+                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_3.title')"
                     >
-                        <p>Platzhalter zur Darstellung und Interpretation der Heatmap.</p>
+                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_3.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_4"
-                        text="Formelsammlung"
+                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_4.title')"
                     >
-                        <p>Formeln, die zur Berechnung angewendet werden und auf die in den obigen Akkordeons verwiesen wird.Die Formeln werden an einer Stelle gesammelt, damit die obigen Akkordeons für den Großteil der Adressaten flüssiger lesbar ist,  wenn die Herleitung und textliche Beschreibung nicht allzu mathematisch erfolgt. Auf die Formeln wird im Text verwiesen.</p>
+                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_4.text') }}</p>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
             </BootstrapAccordionItem>
