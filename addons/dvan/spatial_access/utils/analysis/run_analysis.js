@@ -1,9 +1,11 @@
 import store from "/src/app-store";
 // import {RasterStyle} from "../../../share_utils/layers/raster_style";
-import {ContinousGridStyle} from "../../../share_utils/layers/grid/continuus_style";
-import {GridLayer} from "../../../share_utils/layers/grid_layer";
+// import { ContinousGridStyle } from "../../../share_utils/layers/grid/continuus_style";
+// import { GridLayer } from "../../../share_utils/layers/grid_layer";
 import {getMapView} from "../../../share_utils/map.js";
 import {LAYERS, getWMSLayer} from "./show_layers";
+import {initDeckLayer} from "../../../share_utils/deck.js";
+import {GridLayer, ContinousGridStyle} from "../../../share_utils/layers/deck_grid.js";
 
 /**
  * runs analysis and adds accessibility layer
@@ -84,6 +86,22 @@ async function runAnalysis () {
         //     -9999,
         //     [25, 25, 25, 100]
         // );
+        // const style = new ContinousGridStyle("accessibility",
+        //     [255, 0, 0, 180],
+        //     [0, 255, 0, 180],
+        //     geojson.min, geojson.max,
+        //     -9999,
+        //     [25, 25, 25, 100]
+        // );
+        // const layer = new GridLayer({
+        //     features: geojson.features,
+        //     extend: geojson.extend,
+        //     size: geojson.size,
+        //     projection: "EPSG:25832",
+        //     style: style
+        // });
+        // const ol_layer = layer.getOlLayer();
+
         const style = new ContinousGridStyle("accessibility",
             [255, 0, 0, 180],
             [0, 255, 0, 180],
@@ -91,32 +109,17 @@ async function runAnalysis () {
             -9999,
             [25, 25, 25, 100]
         );
-        const gfiAttributes = {
-            "accessibility": "Räumlicher Zugang"
-        };
+        const grid_layer = new GridLayer("spatial_access_accessibility", "Spatial Access", geojson.features, 100);
+        const ol_layer = initDeckLayer(grid_layer, style);
 
-        const layer = new GridLayer({
-            features: geojson.features,
-            extend: geojson.extend,
-            size: geojson.size,
-            projection: "EPSG:25832",
-            style: style
-        });
-        // const layer = new RemoteGridLayer({
-        //     url: geojson.url,
-        //     layer_id: geojson.id,
-        //     extend: geojson.extend,
-        //     projection: "EPSG:25832",
-        //     style: style
-        // });
-
-        const ol_layer = layer.getOlLayer();
         const attr = {
             type: "layer",
             typ: "GRID",
             id: "spatial_access_accessibility",
             name: "Spatial Access",
-            gfiAttributes: gfiAttributes,
+            gfiAttributes: {
+                "accessibility": "Räumlicher Zugang"
+            },
             isSelected: true,
             hitTolerance: 0,
             parentId: "SelectedLayer",
