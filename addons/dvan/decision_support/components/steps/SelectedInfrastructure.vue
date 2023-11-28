@@ -65,6 +65,7 @@ export default {
 
             if (completeKey === "additional:" + this.$t(completeKey)) {
                 console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+                return undefined;
             }
 
             return this.$t(completeKey, options);
@@ -85,7 +86,7 @@ export default {
                 v-for="(group_item, group_name, group_index) in stepThree.facilities"
                 :id="`Accordion_3_${group_index}`"
                 :key="group_index"
-                :text="translate(`stepThree.accordion.${group_name}.text`)"
+                :text="translate(group_item.text)"
                 :status="selectionStatus(stepThree.selected_facilities[group_name])"
             >
                 <!-- Erik: When using the locales files, I think the item variable is no longer needed here. Please check.-->
@@ -100,9 +101,9 @@ export default {
                             :id="`Checkbox_3_${group_index}_${index}_${inner_index}`"
                             :key="inner_index"
                             :value="stepThree.selected_facilities[group_name][name] === inner_name"
-                            :text="translate(`stepThree.accordion.${group_name}.${name}.${inner_name}`)"
+                            :text="translate(inner_item.text)"
                             :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
-                            :tooltip-text="getTooltipText(inner_name)"
+                            :tooltip-text="translate(inner_item.tooltip)"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
                         />
                     </div>
@@ -110,8 +111,8 @@ export default {
                         <BootstrapCheckbox
                             :id="`Checkbox_3_${group_index}_${index}`"
                             :value="stepThree.selected_facilities[group_name][name] === name"
-                            :text="translate(`stepThree.accordion.${group_name}.${name}`)"
-                            :tooltip-text="getTooltipText(name)"
+                            :text="translate(item.text)"
+                            :tooltip-text="translate(item['tooltip'])"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
                         />
                     </div>

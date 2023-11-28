@@ -9,6 +9,61 @@
                     "startAnalysis": "Analyse starten",
                     "saveAnalysis": "Analyse speichern"
                 },
+                "local_supply": {
+                    "text": "Nahversorgung",
+                    "supermarket": "Supermärkte",
+                    "discounter": "Discounter",
+                    "other_local_supply": "sonstige Lebensmittelgeschäfte"
+                },
+                "health": {
+                    "text": "Gesundheit",
+                    "pharmacy": "Apotheken",
+                    "clinic": "Hochschulkliniken und Plankrankenhäuser",
+                    "physicians": {
+                        "text": "Ärzte",
+                        "general_physicians": "Hausärzte",
+                        "paediatrician": "Kinder- und Jugendärzte",
+                        "ophthalmologist": "Augenärzte",
+                        "surgeon": "Chirurgen und Orthopäden",
+                        "gynaecologist": "Frauenärzte",
+                        "dermatologist": "Hautärzte",
+                        "otolaryngologist": "HNO-Ärzte",
+                        "neurologist": "Nervenärzte",
+                        "psychotherapists": "Psychotherapeuten",
+                        "urologists": "Urologen"
+                    }
+                },
+                "education": {
+                    "text": "Bildung",
+                    "nursery": "Kindertagesstätten",
+                    "primary_school": "Primärschulen",
+                    "secondary_school_1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
+                    "secondary_school_2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
+                },
+                "tooltip": {
+                    "other_local_supply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
+                    "nursery": "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen.",
+                    "primary_school": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
+                    "secondary_school_1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
+                    "secondary_school_2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
+                },
+                "standardAgeGroups": {
+                    "std_00_09":"0-9 Jahre",
+                    "std_10_19": "10-19 Jahre",
+                    "std_20_39": "20-39 Jahre",
+                    "std_40_59": "40-59 Jahre",
+                    "std_60_79": "60-79 Jahre",
+                    "std_80x": "ab 80 Jahre"
+                },
+                "kidsAgeGroups": {
+                    "ksc_00_02": "0-2 Jahre",
+                    "ksc_03_05": "3-5 Jahre",
+                    "ksc_06_09": "6-9 Jahre",
+                    "ksc_10_14": "10-14 Jahre",
+                    "ksc_15_17": "15-17 Jahre",
+                    "ksc_18_19": "18-19 Jahre",
+                    "ksc_20x": "ab 20 Jahre"
+                },
                 "stepOne": {
                     "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
                     "loadAnalysisSettings": "Analyseeinstellungen laden",
@@ -37,52 +92,12 @@
                     "text": {
                         "textOne": "Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen wollen:"
                     },
-                    "accordion": {
-                        "local_supply": {
-                            "text": "Nahversorgung",
-                            "supermarket": "Supermärkte",
-                            "discounter": "Discounter",
-                            "other_local_supply": "sonstige Lebensmittelgeschäfte"
-                        },
-                        "health": {
-                            "text": "Gesundheit",
-                            "pharmacy": "Apotheken",
-                            "clinic": "Hochschulkliniken und Plankrankenhäuser",
-                            "physicians": {
-                                "text": "Ärzte",
-                                "general_physicians": "Hausärzte",
-                                "paediatrician": "Kinder- und Jugendärzte",
-                                "ophthalmologist": "Augenärzte",
-                                "surgeon": "Chirurgen und Orthopäden",
-                                "gynaecologist": "Frauenärzte",
-                                "dermatologist": "Hautärzte",
-                                "otolaryngologist": "HNO-Ärzte",
-                                "neurologist": "Nervenärzte",
-                                "psychotherapists": "Psychotherapeuten",
-                                "urologists": "Urologen"
-                            }
-                        },
-                        "education": {
-                            "text": "Bildung",
-                            "nursery": "Kindertagesstätten",
-                            "primary_school": "Primärschulen",
-                            "secondary_school_1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
-                            "secondary_school_2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
-                        }
-                    },
                     "callout": {
                         "callout3_1": "Es kann nur eine Arztgruppe ausgewählt werden.",
                         "callout3_2": {
                             "firstPart": "Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem ",
                             "secondPart": "abrufen."
                         }
-                    },
-                    "tooltip": {
-                        "other_local_supply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
-                        "nursery": "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen.",
-                        "primary_school": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
-                        "secondary_school_1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
-                        "secondary_school_2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
                     }
                 },
                 "stepFour": {
@@ -96,24 +111,7 @@
                         "accordion4_3": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
                     },
                     "checkbox": {
-                        "checkbox4_1_1": "Berücksichtigung der Gesamtbevölkerung",
-                        "standardAgeGroups": {
-                            "std_00_09":"0-9 Jahre",
-                            "std_10_19": "10-19 Jahre",
-                            "std_20_39": "20-39 Jahre",
-                            "std_40_59": "40-59 Jahre",
-                            "std_60_79": "60-79 Jahre",
-                            "std_80x": "ab 80 Jahre"
-                        },
-                        "kidsAgeGroups": {
-                            "ksc_00_02": "0-2 Jahre",
-                            "ksc_03_05": "3-5 Jahre",
-                            "ksc_06_09": "6-9 Jahre",
-                            "ksc_10_14": "10-14 Jahre",
-                            "ksc_15_17": "15-17 Jahre",
-                            "ksc_18_19": "18-19 Jahre",
-                            "ksc_20x": "ab 20 Jahre"
-                        }
+                        "checkbox4_1_1": "Berücksichtigung der Gesamtbevölkerung"
                     }
                 },
                 "stepFive": {
@@ -134,6 +132,7 @@
                     "timeInput": {
                         "supply_situation": "Versorgungslage",
                         "till": "bis",
+                        "threshold": "Schwellwerte",
                         "time_zones": {
                             "veryGood": "Sehr gute",
                             "good": "Gute",

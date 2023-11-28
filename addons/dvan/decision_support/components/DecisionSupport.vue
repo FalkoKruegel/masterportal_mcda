@@ -247,7 +247,7 @@ export default {
 
 <template lang="html">
     <ToolTemplate
-        :title="translate(name)"
+        :title="translate('title')"
         :icon="icon"
         :active="active"
         :render-to-window="renderToWindow"

@@ -22,40 +22,40 @@ const state = {
         // posibile values
         facilities: {
             "local_supply": {
-                text: "Nahversorgung",
+                text: "local_supply.text",
                 items: {
-                    "supermarket": {text: "Supermärkte"},
-                    "discounter": {text: "Discounter"},
-                    "other_local_supply": {text: "sonstige Lebensmittelgeschäfte", tooltip: "Hierzu zählen Standorte des Lebensmittelhandwerkes<br> (Bäcker/Fleischer), Hof- und Bioläden und sonstige<br> Lebensmittelgeschäfte."}
+                    "supermarket": {text: "local_supply.supermarket"},
+                    "discounter": {text: "local_supply.discounter"},
+                    "other_local_supply": {text: "local_supply.other_local_supply", tooltip: "tooltip.other_local_supply"}
                 }
             },
             "health": {
-                text: "Gesundheit",
+                text: "health.text",
                 items: {
-                    "pharmacy": {text: "Apotheken"},
-                    "clinic": {text: "Hochschulkliniken und Plankrankenhäuser"},
-                    "physicians": {isGroup: true, text: "Ärzte", items: {
-                        "general_physicians": {text: "Hausärzte"},
-                        "paediatrician": {text: "Kinder- und Jugendärzte"},
-                        "ophthalmologist": {text: "Augenärzte"},
-                        "surgeon": {text: "Chirurgen und Orthopäden"},
-                        "gynaecologist": {text: "Frauenärzte"},
-                        "dermatologist": {text: "Hautärzte"},
-                        "otolaryngologist": {text: "HNO-Ärzte"},
-                        "neurologist": {text: "Nervenärzte"},
-                        "psychotherapists": {text: "Psychotherapeuten"},
-                        "urologists": {text: "Urologen"}
+                    "pharmacy": {text: "health.pharmacy"},
+                    "clinic": {text: "health.clinic"},
+                    "physicians": {isGroup: true, text: "health.physicians.text", items: {
+                        "general_physicians": {text: "health.physicians.general_physicians"},
+                        "paediatrician": {text: "health.physicians.paediatrician"},
+                        "ophthalmologist": {text: "health.physicians.ophthalmologist"},
+                        "surgeon": {text: "health.physicians.surgeon"},
+                        "gynaecologist": {text: "health.physicians.gynaecologist"},
+                        "dermatologist": {text: "health.physicians.dermatologist"},
+                        "otolaryngologist": {text: "health.physicians.otolaryngologist"},
+                        "neurologist": {text: "health.physicians.neurologist"},
+                        "psychotherapists": {text: "health.physicians.psychotherapists"},
+                        "urologists": {text: "health.physicians.urologists"}
                     }
                     }
                 }
             },
             "education": {
-                text: "Bildung",
+                text: "education.text",
                 items: {
-                    "nursery": {text: "Kindertagesstätten", tooltip: "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen."},
-                    "primary_school": {text: "Primärschulen", tooltip: "Primärbereich umfasst die 1. bis 4. Schuljahrgänge."},
-                    "secondary_school_1": {text: "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife", tooltip: "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife."},
-                    "secondary_school_2": {text: "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife", tooltip: "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."}
+                    "nursery": {text: "education.nursery", tooltip: "tooltip.nursery"},
+                    "primary_school": {text: "education.primary_school", tooltip: "tooltip.primary_school"},
+                    "secondary_school_1": {text: "education.secondary_school_1", tooltip: "tooltip.secondary_school_1"},
+                    "secondary_school_2": {text: "education.secondary_school_2", tooltip: "tooltip.secondary_school_2"}
                 }
             }
         },
@@ -85,21 +85,21 @@ const state = {
     stepFour: {
         // possibile values
         standardAgeGroups: {
-            "std_00_09": {text: "0-9 Jahre"},
-            "std_10_19": {text: "10-19 Jahre"},
-            "std_20_39": {text: "20-39 Jahre"},
-            "std_40_59": {text: "40-59 Jahre"},
-            "std_60_79": {text: "60-79 Jahre"},
-            "std_80x": {text: "ab 80 Jahre"}
+            "std_00_09": {text: "standardAgeGroups.std_00_09"},
+            "std_10_19": {text: "standardAgeGroups.std_10_19"},
+            "std_20_39": {text: "standardAgeGroups.std_20_39"},
+            "std_40_59": {text: "standardAgeGroups.std_40_59"},
+            "std_60_79": {text: "standardAgeGroups.std_60_79"},
+            "std_80x": {text: "standardAgeGroups.std_80x"}
         },
         kidsAgeGroups: {
-            "ksc_00_02": {text: "0-2 Jahre"},
-            "ksc_03_05": {text: "3-5 Jahre"},
-            "ksc_06_09": {text: "6-9 Jahre"},
-            "ksc_10_14": {text: "10-14 Jahre"},
-            "ksc_15_17": {text: "15-17 Jahre"},
-            "ksc_18_19": {text: "18-19 Jahre"},
-            "ksc_20x": {text: "ab 20 Jahre"}
+            "ksc_00_02": {text: "kidsAgeGroups.ksc_00_02"},
+            "ksc_03_05": {text: "kidsAgeGroups.ksc_03_05"},
+            "ksc_06_09": {text: "kidsAgeGroups.ksc_06_09"},
+            "ksc_10_14": {text: "kidsAgeGroups.ksc_10_14"},
+            "ksc_15_17": {text: "kidsAgeGroups.ksc_15_17"},
+            "ksc_18_19": {text: "kidsAgeGroups.ksc_18_19"},
+            "ksc_20x": {text: "kidsAgeGroups.ksc_20x"}
         },
         // selected values
         populationType: "",

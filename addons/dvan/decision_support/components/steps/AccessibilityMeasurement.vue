@@ -49,30 +49,26 @@ export default {
         },
 
         getGroupName (name) {
-            // this method was modified to fit translation requirements
-            return this.translate("stepFive.text.threshold_text") + " " + this.translate(`stepThree.accordion.${name}.text`);
+            return this.translate("stepFive.text.threshold_text") + " " + this.translate(this.stepThree.facilities[name].text);
         },
 
         getFacilityName (group, name, value) {
-            // this method was modified to fit translation requirements
 
-            // item stores values like "pharmacy", "clinic", "supermarket", etc.
+            // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
+                // this if-condition is applied to physicians
+                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
-
-                    // return item.text
-                    return this.translate(`stepThree.accordion.${group}.${name}.text`);
+                    return this.translate(item.text);
                 }
 
-                // return item.items[value].text;
-                return this.translate(`stepThree.accordion.${group}.${name}.${value}`);
+                return this.translate(item.items[value].text);
 
             }
 
-            // return item.text
-            return this.translate(`stepThree.accordion.${group}.${name}`);
+            return this.translate(item.text);
 
         },
 

@@ -145,7 +145,7 @@ export default {
                     v-for="(item, name, index) in stepFour.standardAgeGroups"
                     :id="`Checkbox_4_2_${index}`"
                     :key="index"
-                    :text="translate(`stepFour.checkbox.standardAgeGroups.${name}`)"
+                    :text="translate(item.text)"
                     :value="stepFour.selectedAgeGroups.includes(name)"
                     @input="e => e ? activate('standard', name) : deactivate('standard', name)"
                 />
@@ -162,7 +162,7 @@ export default {
                     v-for="(item, name, index) in stepFour.kidsAgeGroups"
                     :id="`Checkbox_4_3_${index}`"
                     :key="index"
-                    :text="translate(`stepFour.checkbox.kidsAgeGroups.${name}`)"
+                    :text="translate(item.text)"
                     :value="stepFour.selectedAgeGroups.includes(name)"
                     @input="e => e ? activate('kids', name) : deactivate('kids', name)"
                 />
