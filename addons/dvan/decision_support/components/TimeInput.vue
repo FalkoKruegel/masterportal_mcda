@@ -36,12 +36,23 @@ export default {
         "input"
     ],
     methods: {
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -53,7 +64,7 @@ export default {
         class="row align-items-center"
     >
         <div class="col-7 text-start">
-            {{ supplyCategory }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.till') }}
+            {{ supplyCategory }} {{ translate('stepFive.timeInput.supply_situation') }} {{ translate('stepFive.timeInput.till') }}
         </div>
         <div class="col-3 text-end">
             <label

@@ -59,11 +59,15 @@ export default {
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -71,7 +75,7 @@ export default {
 
 <template lang="html">
     <div>
-        {{ translate('additional:modules.tools.decisionSupport.stepThree.text.textOne') }}
+        {{ translate('stepThree.text.textOne') }}
         <BootstrapAccordion
             id="Accordion_3"
             body-padding-y="5px"
@@ -81,7 +85,7 @@ export default {
                 v-for="(group_item, group_name, group_index) in stepThree.facilities"
                 :id="`Accordion_3_${group_index}`"
                 :key="group_index"
-                :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.text`)"
+                :text="translate(`stepThree.accordion.${group_name}.text`)"
                 :status="selectionStatus(stepThree.selected_facilities[group_name])"
             >
                 <!-- Erik: When using the locales files, I think the item variable is no longer needed here. Please check.-->
@@ -96,7 +100,7 @@ export default {
                             :id="`Checkbox_3_${group_index}_${index}_${inner_index}`"
                             :key="inner_index"
                             :value="stepThree.selected_facilities[group_name][name] === inner_name"
-                            :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}.${inner_name}`)"
+                            :text="translate(`stepThree.accordion.${group_name}.${name}.${inner_name}`)"
                             :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
                             :tooltip-text="getTooltipText(inner_name)"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
@@ -106,7 +110,7 @@ export default {
                         <BootstrapCheckbox
                             :id="`Checkbox_3_${group_index}_${index}`"
                             :value="stepThree.selected_facilities[group_name][name] === name"
-                            :text="translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group_name}.${name}`)"
+                            :text="translate(`stepThree.accordion.${group_name}.${name}`)"
                             :tooltip-text="getTooltipText(name)"
                             @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
                         />
@@ -118,18 +122,18 @@ export default {
                     id="Infotext_3_1"
                     class="callout"
                 >
-                    {{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_1') }}
+                    {{ translate('stepThree.callout.callout3_1') }}
                 </div>
                 <div
                     v-if="group_name === 'education'"
                     id="Infotext_3_2"
                     class="callout"
                 >
-                    {{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_2.firstPart') }}<a
+                    {{ translate('stepThree.callout.callout3_2.firstPart') }}<a
                         href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html"
                         target="_blank"
                         rel="noopener noreferrer"
-                    >Link</a>{{ translate('additional:modules.tools.decisionSupport.stepThree.callout.callout3_2.secondPart') }}
+                    >Link</a>{{ translate('stepThree.callout.callout3_2.secondPart') }}
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

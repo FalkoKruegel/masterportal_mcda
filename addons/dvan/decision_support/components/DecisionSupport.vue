@@ -8,7 +8,7 @@ import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
 import SelectedPopulation from "./steps/SelectedPopulation.vue";
 import AccessibilityMeasurement from "./steps/AccessibilityMeasurement.vue";
-import InfrastructureWeighting from "./steps/infrastructureweighting.vue";
+import InfrastructureWeighting from "./steps/InfrastructureWeighting.vue";
 import SettingsSummary from "./steps/SettingsSummary.vue";
 import AnalysisResults from "./steps/AnalysisResults.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
@@ -231,11 +231,15 @@ export default {
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -257,7 +261,7 @@ export default {
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepOne.title')"
+                    :title="translate('stepOne.title')"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"
@@ -267,100 +271,100 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepTwo.title')"
+                    :title="translate('stepTwo.title')"
                     :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
                     <ChooseStudyArea />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepThree.title')"
+                    :title="translate('stepThree.title')"
                     :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
                     <SelectedInfrastructure />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepFour.title')"
+                    :title="translate('stepFour.title')"
                     :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
                     <SelectedPopulation />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepFive.title')"
+                    :title="translate('stepFive.title')"
                     :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
                     <AccessibilityMeasurement />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepSix.title')"
+                    :title="translate('stepSix.title')"
                     :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
                     <InfrastructureWeighting />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.next')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepSeven.title')"
+                    :title="translate('stepSeven.title')"
                     :status="statusStepSeven"
                     :opened="steps[6]"
                     @click="openStep(6)"
                 >
                     <SettingsSummary />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.startAnalysis')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.startAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
                         @forwardClick="() => { openStep(7); runTest(); }"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    :title="translate('additional:modules.tools.decisionSupport.stepEight.title')"
+                    :title="translate('stepEight.title')"
                     :status="statusStepEight"
                     :opened="steps[7]"
                     @click="openStep(7)"
                 >
                     <AnalysisResults />
                     <AccordionFooter
-                        :forward-text="translate('additional:modules.tools.decisionSupport.accordionFooter.saveAnalysis')"
-                        :back-text="translate('additional:modules.tools.decisionSupport.accordionFooter.back')"
+                        :forward-text="translate('accordionFooter.saveAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="storeTest"
                         @backClick="openStep(6)"
                     />

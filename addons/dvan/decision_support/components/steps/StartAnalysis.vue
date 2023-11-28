@@ -44,17 +44,22 @@ export default {
         },
 
         /**
+         * Function from populationRequest addon (original Masterportal)
          * translates the given key, checkes if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -62,8 +67,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepOne.text.textOne') }}</p>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepOne.text.textTwo') }}</p>
+        <p>{{ translate('stepOne.text.textOne') }}</p>
+        <p>{{ translate('stepOne.text.textTwo') }}</p>
         <!--container to adjust position of following buttons-->
         <div
             class="container"
@@ -81,7 +86,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="openAnalysis"
                     >
-                        {{ translate('additional:modules.tools.decisionSupport.stepOne.loadAnalysisSettings') }}
+                        {{ translate('stepOne.loadAnalysisSettings') }}
                     </button>
                     <input
                         ref="layerDialog"
@@ -100,7 +105,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="$emit('startAnalysis')"
                     >
-                        {{ translate('additional:modules.tools.decisionSupport.stepOne.startNewAnalysis') }}
+                        {{ translate('stepOne.startNewAnalysis') }}
                     </button>
                 </div>
             </div>
@@ -110,7 +115,7 @@ export default {
             v-if="loadFailed"
             class="callout-warning"
         >
-            {{ translate('additional:modules.tools.decisionSupport.stepOne.incorrectParameterFile') }}
+            {{ translate('stepOne.incorrectParameterFile') }}
         </div>
     </div>
 </template>

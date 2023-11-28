@@ -85,12 +85,23 @@ export default {
             }
         },
 
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -99,19 +110,19 @@ export default {
 <template lang="html">
     <div>
         <p>
-            {{ translate('additional:modules.tools.decisionSupport.stepTwo.text.textOne') }}
+            {{ translate('stepTwo.text.textOne') }}
         </p>
         <BootstrapCheckbox
             id="Checkbox_2_1"
             v-model="stepTwo.wholeLowerSaxony"
-            :text="translate('additional:modules.tools.decisionSupport.stepTwo.checkbox.checkbox2_1')"
+            :text="translate('stepTwo.checkbox.checkbox2_1')"
             :disabled="stepTwo.ownArea"
         />
         <!--there must be a bounding box-tool which is connected with the following checkbox-->
         <BootstrapCheckbox
             id="Checkbox_2_2"
             :value="stepTwo.ownArea"
-            :text="translate('additional:modules.tools.decisionSupport.stepTwo.checkbox.checkbox2_2')"
+            :text="translate('stepTwo.checkbox.checkbox2_2')"
             :disabled="stepTwo.wholeLowerSaxony"
             @input="e => activateOwnArea(e)"
         />
@@ -121,7 +132,7 @@ export default {
             id="Callout2_1"
             class="callout"
         >
-            {{ translate('additional:modules.tools.decisionSupport.stepTwo.callout.callout2_1') }}
+            {{ translate('stepTwo.callout.callout2_1') }}
         </div>
     </div>
 </template>

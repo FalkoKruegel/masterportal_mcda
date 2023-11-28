@@ -53,7 +53,7 @@ export default {
 
         getGroupName (name) {
             // this method was modified to fit translation requirements
-            return this.translate("additional:modules.tools.decisionSupport.stepSix.weighting") + " " + this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${name}.text`);
+            return this.translate("stepSix.weighting") + " " + this.translate(`stepThree.accordion.${name}.text`);
         },
 
         getFacilityName (group, name, value) {
@@ -66,16 +66,16 @@ export default {
                 if (value === "") {
 
                     // return item.text
-                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.text`);
+                    return this.translate(`stepThree.accordion.${group}.${name}.text`);
                 }
 
                 // return item.items[value].text;
-                return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.${value}`);
+                return this.translate(`stepThree.accordion.${group}.${name}.${value}`);
 
             }
 
             // return item.text
-            return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
+            return this.translate(`stepThree.accordion.${group}.${name}`);
 
         },
 
@@ -87,11 +87,15 @@ export default {
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -99,8 +103,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepSix.text.textOne') }}</p>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepSix.text.textTwo') }}</p>
+        <p>{{ translate('stepSix.text.textOne') }}</p>
+        <p>{{ translate('stepSix.text.textTwo') }}</p>
         <BootstrapAccordion
             id="Accordion_3"
             body-padding-y="5px"

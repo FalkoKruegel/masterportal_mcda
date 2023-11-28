@@ -50,7 +50,7 @@ export default {
 
         getGroupName (name) {
             // this method was modified to fit translation requirements
-            return this.translate("additional:modules.tools.decisionSupport.stepFive.text.threshold_text") + " " + this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${name}.text`);
+            return this.translate("stepFive.text.threshold_text") + " " + this.translate(`stepThree.accordion.${name}.text`);
         },
 
         getFacilityName (group, name, value) {
@@ -63,16 +63,16 @@ export default {
                 if (value === "") {
 
                     // return item.text
-                    return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.text`);
+                    return this.translate(`stepThree.accordion.${group}.${name}.text`);
                 }
 
                 // return item.items[value].text;
-                return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}.${value}`);
+                return this.translate(`stepThree.accordion.${group}.${name}.${value}`);
 
             }
 
             // return item.text
-            return this.translate(`additional:modules.tools.decisionSupport.stepThree.accordion.${group}.${name}`);
+            return this.translate(`stepThree.accordion.${group}.${name}`);
 
         },
 
@@ -101,12 +101,23 @@ export default {
             return new_arr;
         },
 
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checkes if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -114,36 +125,36 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textOne') }}</p>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textTwo') }}</p>
+        <p>{{ translate('stepFive.text.textOne') }}</p>
+        <p>{{ translate('stepFive.text.textTwo') }}</p>
         <BootstrapAccordion
             id="Accordion5"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
                 id="Accordion5_1"
-                :text="translate('additional:modules.tools.decisionSupport.stepFive.accordion.accordion5_1')"
+                :text="translate('stepFive.accordion.accordion5_1')"
                 status="valid"
             >
-                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textThree') }}</p>
+                <p>{{ translate('stepFive.text.textThree') }}</p>
                 <ul>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.driving-car') }}</li>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.public-transit') }}</li>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.travelModes.walking-foot') }}</li>
+                    <li>{{ translate('stepFive.travelModes.driving-car') }}</li>
+                    <li>{{ translate('stepFive.travelModes.public-transit') }}</li>
+                    <li>{{ translate('stepFive.travelModes.walking-foot') }}</li>
                 </ul>
-                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textFour') }}</p>
+                <p>{{ translate('stepFive.text.textFour') }}</p>
                 <ul>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.veryGood') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.good') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.sufficient') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.deficient') }} {{ translate('additional:modules.tools.decisionSupport.stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.time_zones.veryGood') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.time_zones.good') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.time_zones.sufficient') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.time_zones.deficient') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
                 </ul>
-                <p>{{ translate('additional:modules.tools.decisionSupport.stepFive.text.textFive') }}</p>
+                <p>{{ translate('stepFive.text.textFive') }}</p>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
                 id="Accordion5_2"
                 parent-id="Accordion5"
-                :text="translate('additional:modules.tools.decisionSupport.stepFive.accordion.accordion5_2')"
+                :text="translate('stepFive.accordion.accordion5_2')"
                 status="valid"
             >
                 <div class="container text-center">
@@ -168,7 +179,7 @@ export default {
                                 class="btn btn-outline-primary"
                                 :for="`Button_5_1_${index}`"
                             >
-                                {{ translate(`additional:modules.tools.decisionSupport.stepFive.travelModes.${name}`) }}
+                                {{ translate(`stepFive.travelModes.${name}`) }}
                             </label>
                         </div>
                     </div>
@@ -203,7 +214,7 @@ export default {
                                 :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.veryGood')"
+                                :supply-category="translate('stepFive.timeInput.time_zones.veryGood')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 0)"
                             />
                             <TimeInput
@@ -212,7 +223,7 @@ export default {
                                 :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.good')"
+                                :supply-category="translate('stepFive.timeInput.time_zones.good')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 1)"
                             />
                             <TimeInput
@@ -221,7 +232,7 @@ export default {
                                 :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.sufficient')"
+                                :supply-category="translate('stepFive.timeInput.time_zones.sufficient')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 2)"
                             />
                             <TimeInput
@@ -230,7 +241,7 @@ export default {
                                 :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('additional:modules.tools.decisionSupport.stepFive.timeInput.time_zones.deficient')"
+                                :supply-category="translate('stepFive.timeInput.time_zones.deficient')"
                                 @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 3)"
                             />
                         </div>

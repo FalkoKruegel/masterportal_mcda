@@ -77,11 +77,15 @@ export default {
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-            if (key === "additional:" + this.$t(key)) {
-                console.warn("the key " + JSON.stringify(key) + " is unknown to the additional translation");
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
 
-            return this.$t(key, options);
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -89,8 +93,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textOne') }}</p>
-        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textTwo') }}</p>
+        <p>{{ translate('stepEight.text.textOne') }}</p>
+        <p>{{ translate('stepEight.text.textTwo') }}</p>
 
         <div v-if="stepEight.status === 'unfinished'">
             <!--other callouts had IDs like callout8_1-->
@@ -98,7 +102,7 @@ export default {
                 id="Infotext8_1"
                 class="callout"
             >
-                {{ translate('additional:modules.tools.decisionSupport.stepEight.callout.callout8_1') }}
+                {{ translate('stepEight.callout.callout8_1') }}
             </div>
         </div>
 
@@ -116,7 +120,7 @@ export default {
                 id="Infotext8_2"
                 class="callout"
             >
-                {{ translate('additional:modules.tools.decisionSupport.stepEight.callout.callout8_2') }}
+                {{ translate('stepEight.callout.callout8_2') }}
             </div>
         </div>
 
@@ -160,17 +164,17 @@ export default {
             </div>
             <br>
             <br>
-            <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textThree') }}</p>
-            <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.text.textFour') }}</p>
+            <p>{{ translate('stepEight.text.textThree') }}</p>
+            <p>{{ translate('stepEight.text.textFour') }}</p>
 
             <BootstrapCheckbox
                 id="Checkbox8_1"
                 v-model="weighted"
-                :text="translate('additional:modules.tools.decisionSupport.stepEight.checkbox.checkbox8_1')"
+                :text="translate('stepEight.checkbox.checkbox8_1')"
             />
             <BootstrapCheckbox
                 id="Checkbox8_2"
-                :text="translate('additional:modules.tools.decisionSupport.stepEight.checkbox.checkbox8_2')"
+                :text="translate('stepEight.checkbox.checkbox8_2')"
             />
         </div>
         <br>
@@ -181,7 +185,7 @@ export default {
         >
             <BootstrapAccordionItem
                 id="Accordion8_1"
-                :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.title')"
+                :text="translate('stepEight.accordion.title')"
             >
                 <BootstrapAccordion
                     id="Accordion_8_1"
@@ -189,30 +193,30 @@ export default {
                 >
                     <BootstrapAccordionItem
                         id="Accordion8_1_1"
-                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_1.title')"
+                        :text="translate('stepEight.accordion.accordion8_1_1.title')"
                     >
-                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_1.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_2"
-                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_2.title')"
+                        :text="translate('stepEight.accordion.accordion8_1_2.title')"
                     >
-                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_2.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_2.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_3"
-                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_3.title')"
+                        :text="translate('stepEight.accordion.accordion8_1_3.title')"
                     >
-                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_3.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_3.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8_1_4"
-                        :text="translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_4.title')"
+                        :text="translate('stepEight.accordion.accordion8_1_4.title')"
                     >
-                        <p>{{ translate('additional:modules.tools.decisionSupport.stepEight.accordion.accordion8_1_4.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_4.text') }}</p>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
             </BootstrapAccordionItem>
