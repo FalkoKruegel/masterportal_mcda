@@ -21,12 +21,12 @@ const state = {
     stepThree: {
         // posibile values
         facilities: {
-            "local_supply": {
+            "localSupply": {
                 text: "localSupply.text",
                 items: {
                     "supermarket": {text: "localSupply.supermarket"},
                     "discounter": {text: "localSupply.discounter"},
-                    "other_local_supply": {text: "localSupply.otherLocalSupply", tooltip: "tooltip.otherLocalSupply"}
+                    "otherLocalSupply": {text: "localSupply.otherLocalSupply", tooltip: "tooltip.otherLocalSupply"}
                 }
             },
             "health": {
@@ -35,7 +35,7 @@ const state = {
                     "pharmacy": {text: "health.pharmacy"},
                     "clinic": {text: "health.clinic"},
                     "physicians": {isGroup: true, text: "health.physicians.text", items: {
-                        "general_physicians": {text: "health.physicians.generalPhysicians"},
+                        "generalPhysicians": {text: "health.physicians.generalPhysicians"},
                         "paediatrician": {text: "health.physicians.paediatrician"},
                         "ophthalmologist": {text: "health.physicians.ophthalmologist"},
                         "surgeon": {text: "health.physicians.surgeon"},
@@ -53,19 +53,19 @@ const state = {
                 text: "education.text",
                 items: {
                     "nursery": {text: "education.nursery", tooltip: "tooltip.nursery"},
-                    "primary_school": {text: "education.primarySchool", tooltip: "tooltip.primarySchool"},
-                    "secondary_school_1": {text: "education.secondarySchool1", tooltip: "tooltip.secondarySchool1"},
-                    "secondary_school_2": {text: "education.secondarySchool2", tooltip: "tooltip.secondarySchool2"}
+                    "primarySchool": {text: "education.primarySchool", tooltip: "tooltip.primarySchool"},
+                    "secondarySchool1": {text: "education.secondarySchool1", tooltip: "tooltip.secondarySchool1"},
+                    "secondarySchool2": {text: "education.secondarySchool2", tooltip: "tooltip.secondarySchool2"}
                 }
             }
         },
 
         // selected values
-        selected_facilities: {
-            "local_supply": {
+        selectedFacilities: {
+            "localSupply": {
                 "supermarket": "",
                 "discounter": "",
-                "other_local_supply": ""
+                "otherLocalSupply": ""
             },
             "health": {
                 "pharmacy": "",
@@ -74,9 +74,9 @@ const state = {
             },
             "education": {
                 "nursery": "",
-                "primary_school": "",
-                "secondary_school_1": "",
-                "secondary_school_2": ""
+                "primarySchool": "",
+                "secondarySchool1": "",
+                "secondarySchool2": ""
             }
         }
     },
@@ -121,11 +121,11 @@ const state = {
 
         // selected values
         transport: "driving-car",
-        time_zones: {
-            "local_supply": {
+        timeZones: {
+            "localSupply": {
                 "supermarket": [2, 5, 10, 20],
                 "discounter": [2, 5, 10, 20],
-                "other_local_supply": [2, 5, 10, 20]
+                "otherLocalSupply": [2, 5, 10, 20]
             },
             "health": {
                 "pharmacy": [2, 4, 8, 15],
@@ -134,9 +134,9 @@ const state = {
             },
             "education": {
                 "nursery": [2, 7, 15, 30],
-                "primary_school": [2, 5, 23, 45],
-                "secondary_school_1": [2, 15, 30, 60],
-                "secondary_school_2": [2, 15, 30, 60]
+                "primarySchool": [2, 5, 23, 45],
+                "secondarySchool1": [2, 15, 30, 60],
+                "secondarySchool2": [2, 15, 30, 60]
             }
         }
     },
@@ -144,11 +144,11 @@ const state = {
     // Select Infrastructure Weights
     stepSix: {
         // selected values
-        facility_weights: {
-            "local_supply": {
+        facilityWeights: {
+            "localSupply": {
                 "supermarket": 0,
                 "discounter": 0,
-                "other_local_supply": 0
+                "otherLocalSupply": 0
             },
             "health": {
                 "pharmacy": 0,
@@ -157,9 +157,9 @@ const state = {
             },
             "education": {
                 "nursery": 0,
-                "primary_school": 0,
-                "secondary_school_1": 0,
-                "secondary_school_2": 0
+                "primarySchool": 0,
+                "secondarySchool1": 0,
+                "secondarySchool2": 0
             }
         }
     },

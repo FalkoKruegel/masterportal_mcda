@@ -86,7 +86,7 @@ export default {
                 :id="`Accordion3-${groupIndex}`"
                 :key="groupIndex"
                 :text="translate(groupItem.text)"
-                :status="selectionStatus(stepThree.selected_facilities[groupName])"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <div
                     v-for="(item, name, index) in groupItem.items"
@@ -97,25 +97,25 @@ export default {
                             v-for="(innerItem, innerName, innerIndex) in item.items"
                             :id="`Checkbox3-${groupIndex}-${index}-${innerIndex}`"
                             :key="innerIndex"
-                            :value="stepThree.selected_facilities[groupName][name] === innerName"
+                            :value="stepThree.selectedFacilities[groupName][name] === innerName"
                             :text="translate(innerItem.text)"
-                            :disabled="stepThree.selected_facilities[groupName][name] !== innerName && stepThree.selected_facilities[groupName][name] !== ''"
+                            :disabled="stepThree.selectedFacilities[groupName][name] !== innerName && stepThree.selectedFacilities[groupName][name] !== ''"
                             :tooltip-text="translate(innerItem.tooltip)"
-                            @input="e => e === true ? stepThree.selected_facilities[groupName][name] = innerName : stepThree.selected_facilities[groupName][name] = ''"
+                            @input="e => e === true ? stepThree.selectedFacilities[groupName][name] = innerName : stepThree.selectedFacilities[groupName][name] = ''"
                         />
                     </div>
                     <div v-else>
                         <BootstrapCheckbox
                             :id="`Checkbox3-${groupIndex}-${index}`"
-                            :value="stepThree.selected_facilities[groupName][name] === name"
+                            :value="stepThree.selectedFacilities[groupName][name] === name"
                             :text="translate(item.text)"
                             :tooltip-text="translate(item['tooltip'])"
-                            @input="e => e === true ? stepThree.selected_facilities[groupName][name] = name : stepThree.selected_facilities[groupName][name] = ''"
+                            @input="e => e === true ? stepThree.selectedFacilities[groupName][name] = name : stepThree.selectedFacilities[groupName][name] = ''"
                         />
                     </div>
                 </div>
                 <div
-                    v-if="groupName === 'health' && stepThree.selected_facilities['health']['physicians'] !== ''"
+                    v-if="groupName === 'health' && stepThree.selectedFacilities['health']['physicians'] !== ''"
                     id="Callout3-1"
                     class="callout"
                 >

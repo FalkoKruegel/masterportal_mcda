@@ -26,9 +26,9 @@ export default {
         checkedLayers () {
             const layers = ["multiCritera"];
 
-            for (const group in this.stepThree.selected_facilities) {
-                for (const item in this.stepThree.selected_facilities[group]) {
-                    const name = this.stepThree.selected_facilities[group][item];
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const item in this.stepThree.selectedFacilities[group]) {
+                    const name = this.stepThree.selectedFacilities[group][item];
 
                     if (name === "") {
                         continue;

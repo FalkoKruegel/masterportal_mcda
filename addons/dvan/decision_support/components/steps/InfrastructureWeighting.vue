@@ -20,12 +20,12 @@ export default {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     watch: {
-        "stepThree.selected_facilities": {
+        "stepThree.selectedFacilities": {
             handler () {
-                for (const group in this.stepThree.selected_facilities) {
-                    for (const name in this.stepThree.selected_facilities[group]) {
-                        if (this.stepThree.selected_facilities[group][name] === "") {
-                            this.stepSix.facility_weights[group][name] = 0;
+                for (const group in this.stepThree.selectedFacilities) {
+                    for (const name in this.stepThree.selectedFacilities[group]) {
+                        if (this.stepThree.selectedFacilities[group][name] === "") {
+                            this.stepSix.facilityWeights[group][name] = 0;
                         }
                     }
                 }
@@ -106,21 +106,21 @@ export default {
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(groupItem, groupName, groupIndex) in stepSix.facility_weights"
+                v-for="(groupItem, groupName, groupIndex) in stepSix.facilityWeights"
                 :id="`Accordion6-${groupIndex}`"
                 :key="groupIndex"
                 :text="getGroupName(groupName)"
-                :status="selectionStatus(stepThree.selected_facilities[groupName])"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <BootstrapRangeSlider
                     v-for="(item, name, index) in groupItem"
                     :id="`Range6-${groupIndex}-${index}`"
                     :key="index"
-                    :value="stepSix.facility_weights[groupName][name]"
-                    :disabled="stepThree.selected_facilities[groupName][name] === ''"
-                    @input="e => stepSix.facility_weights[groupName][name] = e"
+                    :value="stepSix.facilityWeights[groupName][name]"
+                    :disabled="stepThree.selectedFacilities[groupName][name] === ''"
+                    @input="e => stepSix.facilityWeights[groupName][name] = e"
                 >
-                    {{ getFacilityName(groupName, name, stepThree.selected_facilities[groupName][name]) }}
+                    {{ getFacilityName(groupName, name, stepThree.selectedFacilities[groupName][name]) }}
                 </BootstrapRangeSlider>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

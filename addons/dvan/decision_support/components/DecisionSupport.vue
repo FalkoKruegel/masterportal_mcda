@@ -57,9 +57,9 @@ export default {
             return "invalid";
         },
         statusStepThree () {
-            for (const group in this.stepThree.selected_facilities) {
-                for (const name in this.stepThree.selected_facilities[group]) {
-                    if (this.stepThree.selected_facilities[group][name] !== "") {
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const name in this.stepThree.selectedFacilities[group]) {
+                    if (this.stepThree.selectedFacilities[group][name] !== "") {
                         return "valid";
                     }
                 }
@@ -73,18 +73,18 @@ export default {
             return "invalid";
         },
         statusStepFive () {
-            for (const group in this.stepFive.time_zones) {
-                for (const name in this.stepFive.time_zones[group]) {
+            for (const group in this.stepFive.timeZones) {
+                for (const name in this.stepFive.timeZones[group]) {
                     for (let i = 0; i < 4; i++) {
-                        if (this.stepFive.time_zones[group][name][i] < this.stepFive.minValue) {
+                        if (this.stepFive.timeZones[group][name][i] < this.stepFive.minValue) {
                             return "invalid";
                         }
-                        if (this.stepFive.time_zones[group][name][i] > this.stepFive.maxValue) {
+                        if (this.stepFive.timeZones[group][name][i] > this.stepFive.maxValue) {
                             return "invalid";
                         }
                     }
                     for (let i = 1; i < 4; i++) {
-                        if (this.stepFive.time_zones[group][name][i] <= this.stepFive.time_zones[group][name][i - 1]) {
+                        if (this.stepFive.timeZones[group][name][i] <= this.stepFive.timeZones[group][name][i - 1]) {
                             return "invalid";
                         }
                     }
@@ -93,9 +93,9 @@ export default {
             return "valid";
         },
         statusStepSix () {
-            for (const group in this.stepThree.selected_facilities) {
-                for (const name in this.stepThree.selected_facilities[group]) {
-                    if (this.stepSix.facility_weights[group][name] !== 0) {
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const name in this.stepThree.selectedFacilities[group]) {
+                    if (this.stepSix.facilityWeights[group][name] !== 0) {
                         return "valid";
                     }
                 }

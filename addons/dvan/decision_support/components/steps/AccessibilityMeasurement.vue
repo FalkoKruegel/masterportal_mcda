@@ -23,11 +23,11 @@ export default {
         // this watcher checks if the used physician infrastructure are general physicians.
         // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
         "stepThree.health.physicians": function () {
-            if (this.stepThree.selected_facilities.health.physicians === "general_physicians") {
-                this.stepFive.time_zones.health.physicians = [2, 5, 10, 20];
+            if (this.stepThree.selectedFacilities.health.physicians === "generalPhysicians") {
+                this.stepFive.timeZones.health.physicians = [2, 5, 10, 20];
             }
             else {
-                this.stepFive.time_zones.health.physicians = [3, 7, 13, 25];
+                this.stepFive.timeZones.health.physicians = [3, 7, 13, 25];
             }
         }
     },
@@ -182,12 +182,12 @@ export default {
                 </div>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                v-for="(groupItem, groupName, groupIndex) in stepThree.selected_facilities"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selectedFacilities"
                 :id="`Accordion5-${groupIndex+3}`"
                 :key="groupIndex"
                 parent-id="Accordion5"
                 :text="getGroupName(groupName)"
-                :status="selectionStatus(stepThree.selected_facilities[groupName])"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <BootstrapAccordion
                     :id="`Accordion5-${groupIndex+3}-1`"
@@ -199,46 +199,46 @@ export default {
                         :id="`Accordion5-${groupIndex+3}-1-${index}`"
                         :key="index"
                         :text="getFacilityName(groupName, name, item)"
-                        :status="stepThree.selected_facilities[groupName][name] === '' ? 'deactivated' : 'default'"
+                        :status="stepThree.selectedFacilities[groupName][name] === '' ? 'deactivated' : 'default'"
                     >
                         <div
                             class="container"
                         >
                             <TimeInput
                                 :id="`input5-${groupIndex+3}-1-${index}-1`"
-                                :value="stepFive.time_zones[groupName][name]"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 :supply-category="translate('stepFive.timeInput.timeZones.veryGood')"
-                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 0)"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 0)"
                             />
                             <TimeInput
                                 :id="`input5-${groupIndex+3}-1-${index}-2`"
-                                :value="stepFive.time_zones[groupName][name]"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 :supply-category="translate('stepFive.timeInput.timeZones.good')"
-                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 1)"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 1)"
                             />
                             <TimeInput
                                 :id="`input5-${groupIndex+3}-1-${index}-3`"
-                                :value="stepFive.time_zones[groupName][name]"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 :supply-category="translate('stepFive.timeInput.timeZones.sufficient')"
-                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 2)"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 2)"
                             />
                             <TimeInput
                                 :id="`input5-${groupIndex+3}-1-${index}-4`"
-                                :value="stepFive.time_zones[groupName][name]"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
                                 :supply-category="translate('stepFive.timeInput.timeZones.deficient')"
-                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 3)"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 3)"
                             />
                         </div>
                     </BootstrapAccordionItem>

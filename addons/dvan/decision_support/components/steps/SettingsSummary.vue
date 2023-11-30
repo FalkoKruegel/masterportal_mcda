@@ -123,11 +123,11 @@ export default {
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(groupItem, groupName, groupIndex) in stepThree.selected_facilities"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selectedFacilities"
                 :id="`Accordion7-${groupIndex}`"
                 :key="groupIndex"
                 :text="getGroupName(groupName)"
-                :status="selectionStatus(stepThree.selected_facilities[groupName])"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <div class="card">
                     <div class="card-header">
@@ -146,7 +146,7 @@ export default {
                                 class="icon"
                                 v-html="item !== '' ? checkIcon : xIcon"
                             />
-                            <span class="value">{{ stepSix.facility_weights[groupName][name] }}%</span>
+                            <span class="value">{{ stepSix.facilityWeights[groupName][name] }}%</span>
                         </li>
                     </ul>
                 </div>
