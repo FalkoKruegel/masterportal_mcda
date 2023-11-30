@@ -66,7 +66,7 @@
                 },
                 "stepOne": {
                     "title": "Step 1: Start analysis or load existing analysis",
-                    "loadAnalysisSettings": "Load analysis settings",
+                    "loadAnalysisSettings": "Load saved analysis",
                     "startNewAnalysis": "Start new analysis",
                     "incorrectParameterFile": "The parmeter file you are using is corrupted. Please try again.",
                     "text": {
@@ -115,7 +115,7 @@
                     }
                 },
                 "stepFive": {
-                    "title": "Step 5: Accessibility Calculation",
+                    "title": "Step 5: Accessibility calculation",
                     "text": {
                         "textOne": "Minimum accessibility standards (travel distance/travel time) to facilities and services of general interest ensure nationwide supply coverage.",
                         "textTwo": "If the corresponding threshold values are reached, it can be assumed that there is an undersupply. Likewise, the quality of supply increases the shorter the travel distance from the place of residence to the infrastructure. Recommended values are already stored for the selected infrastructures. They apply to accessibility by car. The preset travel times can be adjusted for demand-oriented simulations.",

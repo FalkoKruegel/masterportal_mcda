@@ -83,7 +83,7 @@ export default {
                     <button
                         id="button1_2"
                         type="button"
-                        class="btn btn-outline-primary btn-lg"
+                        class="btn btn-outline-primary btn-sm"
                         @click="openAnalysis"
                     >
                         {{ translate('stepOne.loadAnalysisSettings') }}
@@ -102,7 +102,7 @@ export default {
                     <button
                         id="button1_1"
                         type="button"
-                        class="btn btn-outline-primary btn-lg"
+                        class="btn btn-outline-primary btn-sm"
                         @click="$emit('startAnalysis')"
                     >
                         {{ translate('stepOne.startNewAnalysis') }}
