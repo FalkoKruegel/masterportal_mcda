@@ -1,5 +1,5 @@
 import {generateSimpleGetters} from "/src/app-store/utils/generators";
-import scaleSwitcherState from "./state";
+import decisionSupportState from "./state";
 
 const getters = {
     /**
@@ -11,7 +11,7 @@ const getters = {
      * @param {object} state state to generate getters for
      * @returns {object.<string, function>} object of getters
      */
-    ...generateSimpleGetters(scaleSwitcherState)
+    ...generateSimpleGetters(decisionSupportState)
 
 
 };
