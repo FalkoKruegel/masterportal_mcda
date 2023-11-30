@@ -1,8 +1,8 @@
 
 <script>
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
-import AccordionItem from "./AccordionItem.vue";
-import AccordionFooter from "./AccordionFooter.vue";
+import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
+import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
