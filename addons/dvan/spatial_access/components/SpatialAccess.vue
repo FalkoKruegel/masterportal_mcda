@@ -164,7 +164,7 @@ export default {
     >
         <template #toolBody>
             <div
-                id="decisionSupportAccordion"
+                id="spatialAccessAccordion"
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
