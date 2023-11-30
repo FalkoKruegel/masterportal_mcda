@@ -92,7 +92,7 @@ export default {
         },
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -114,36 +114,36 @@ export default {
 
 <template lang="html">
     <div>
-        {{ translate('stepFour.text.textOne') }}
+        {{ translate('stepFour.text.text1') }}
         <BootstrapAccordion
             id="Accordion4"
             body-padding-y="5px"
         >
-            <!-- Nahversorgungs Infrastrukturen -->
+            <!-- Local Supply Infrastructures -->
             <BootstrapAccordionItem
-                id="Accordion4_1"
+                id="Accordion4-1"
                 parent-id="Accordion4"
                 :text="translate('stepFour.accordion.accordion4_1')"
                 :status="allStatus"
             >
                 <BootstrapCheckbox
-                    id="Checkbox4_1_1"
+                    id="Checkbox4-1-1"
                     :value="allActivated"
                     :text="translate('stepFour.checkbox.checkbox4_1_1')"
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>
 
-            <!-- Gesundheits Infrastrukturen -->
+            <!-- Health Infrastructure -->
             <BootstrapAccordionItem
-                id="Accordion4_2"
+                id="Accordion4-2"
                 parent-id="Accordion4"
                 :text="translate('stepFour.accordion.accordion4_2')"
                 :status="standardStatus"
             >
                 <BootstrapCheckbox
                     v-for="(item, name, index) in stepFour.standardAgeGroups"
-                    :id="`Checkbox_4_2_${index}`"
+                    :id="`Checkbox4-2-${index}`"
                     :key="index"
                     :text="translate(item.text)"
                     :value="stepFour.selectedAgeGroups.includes(name)"
@@ -151,7 +151,7 @@ export default {
                 />
             </BootstrapAccordionItem>
 
-            <!-- Bildungs Infrastrukturen -->
+            <!-- Education Infrastructure -->
             <BootstrapAccordionItem
                 id="Accordion4_3"
                 parent-id="Accordion4"
@@ -160,7 +160,7 @@ export default {
             >
                 <BootstrapCheckbox
                     v-for="(item, name, index) in stepFour.kidsAgeGroups"
-                    :id="`Checkbox_4_3_${index}`"
+                    :id="`Checkbox4-3-${index}`"
                     :key="index"
                     :text="translate(item.text)"
                     :value="stepFour.selectedAgeGroups.includes(name)"

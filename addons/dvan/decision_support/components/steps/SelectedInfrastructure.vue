@@ -53,7 +53,7 @@ export default {
 
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -76,58 +76,54 @@ export default {
 
 <template lang="html">
     <div>
-        {{ translate('stepThree.text.textOne') }}
+        {{ translate('stepThree.text.text1') }}
         <BootstrapAccordion
-            id="Accordion_3"
+            id="Accordion3"
             body-padding-y="5px"
         >
-            <!-- Erik: When using the locales files, I think the group_item variable is no longer needed here. Please check.-->
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.facilities"
-                :id="`Accordion_3_${group_index}`"
-                :key="group_index"
-                :text="translate(group_item.text)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.facilities"
+                :id="`Accordion3-${groupIndex}`"
+                :key="groupIndex"
+                :text="translate(groupItem.text)"
+                :status="selectionStatus(stepThree.selected_facilities[groupName])"
             >
-                <!-- Erik: When using the locales files, I think the item variable is no longer needed here. Please check.-->
                 <div
-                    v-for="(item, name, index) in group_item.items"
+                    v-for="(item, name, index) in groupItem.items"
                     :key="index"
                 >
                     <div v-if="item.hasOwnProperty('isGroup')">
-                        <!-- Erik: When using the locales files, I think the inner_item variable is no longer needed here. Please check.-->
                         <BootstrapCheckbox
-                            v-for="(inner_item, inner_name, inner_index) in item.items"
-                            :id="`Checkbox_3_${group_index}_${index}_${inner_index}`"
-                            :key="inner_index"
-                            :value="stepThree.selected_facilities[group_name][name] === inner_name"
-                            :text="translate(inner_item.text)"
-                            :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
-                            :tooltip-text="translate(inner_item.tooltip)"
-                            @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
+                            v-for="(innerItem, innerName, innerIndex) in item.items"
+                            :id="`Checkbox3-${groupIndex}-${index}-${innerIndex}`"
+                            :key="innerIndex"
+                            :value="stepThree.selected_facilities[groupName][name] === innerName"
+                            :text="translate(innerItem.text)"
+                            :disabled="stepThree.selected_facilities[groupName][name] !== innerName && stepThree.selected_facilities[groupName][name] !== ''"
+                            :tooltip-text="translate(innerItem.tooltip)"
+                            @input="e => e === true ? stepThree.selected_facilities[groupName][name] = innerName : stepThree.selected_facilities[groupName][name] = ''"
                         />
                     </div>
                     <div v-else>
                         <BootstrapCheckbox
-                            :id="`Checkbox_3_${group_index}_${index}`"
-                            :value="stepThree.selected_facilities[group_name][name] === name"
+                            :id="`Checkbox3-${groupIndex}-${index}`"
+                            :value="stepThree.selected_facilities[groupName][name] === name"
                             :text="translate(item.text)"
                             :tooltip-text="translate(item['tooltip'])"
-                            @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
+                            @input="e => e === true ? stepThree.selected_facilities[groupName][name] = name : stepThree.selected_facilities[groupName][name] = ''"
                         />
                     </div>
                 </div>
-                <!-- Erik: sonst wurden callout IDs zumeist callout3_1 etc. genannt -->
                 <div
-                    v-if="group_name === 'health' && stepThree.selected_facilities['health']['physicians'] !== ''"
-                    id="Infotext_3_1"
+                    v-if="groupName === 'health' && stepThree.selected_facilities['health']['physicians'] !== ''"
+                    id="Callout3-1"
                     class="callout"
                 >
                     {{ translate('stepThree.callout.callout3_1') }}
                 </div>
                 <div
-                    v-if="group_name === 'education'"
-                    id="Infotext_3_2"
+                    v-if="groupName === 'education'"
+                    id="Callout3-2"
                     class="callout"
                 >
                     {{ translate('stepThree.callout.callout3_2.firstPart') }}<a

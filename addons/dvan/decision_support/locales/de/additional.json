@@ -9,11 +9,11 @@
                     "startAnalysis": "Analyse starten",
                     "saveAnalysis": "Analyse speichern"
                 },
-                "local_supply": {
+                "localSupply": {
                     "text": "Nahversorgung",
                     "supermarket": "Supermärkte",
                     "discounter": "Discounter",
-                    "other_local_supply": "sonstige Lebensmittelgeschäfte"
+                    "otherLocalSupply": "sonstige Lebensmittelgeschäfte"
                 },
                 "health": {
                     "text": "Gesundheit",
@@ -21,7 +21,7 @@
                     "clinic": "Hochschulkliniken und Plankrankenhäuser",
                     "physicians": {
                         "text": "Ärzte",
-                        "general_physicians": "Hausärzte",
+                        "generalPhysicians": "Hausärzte",
                         "paediatrician": "Kinder- und Jugendärzte",
                         "ophthalmologist": "Augenärzte",
                         "surgeon": "Chirurgen und Orthopäden",
@@ -36,16 +36,16 @@
                 "education": {
                     "text": "Bildung",
                     "nursery": "Kindertagesstätten",
-                    "primary_school": "Primärschulen",
-                    "secondary_school_1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
-                    "secondary_school_2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
+                    "primarySchool": "Primärschulen",
+                    "secondarySchool1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
+                    "secondarySchool2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
                 },
                 "tooltip": {
-                    "other_local_supply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
+                    "otherLocalSupply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
                     "nursery": "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen.",
-                    "primary_school": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
-                    "secondary_school_1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
-                    "secondary_school_2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
+                    "primarySchool": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
+                    "secondarySchool1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
+                    "secondarySchool2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
                 },
                 "standardAgeGroups": {
                     "std_00_09":"0-9 Jahre",
@@ -70,14 +70,14 @@
                     "startNewAnalysis": "Neue Analyse durchführen",
                     "incorrectParameterFile": "Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.",
                     "text": {
-                        "textOne": "Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.",
-                        "textTwo": "Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden."
+                        "text1": "Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.",
+                        "text2": "Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden."
                     }
                 },
                 "stepTwo": {
                     "title": "Schritt 2: Untersuchungsgebiet wählen",
                     "text": {
-                        "textOne": "Bitte wählen Sie ein Analysegebiet aus einer der Listen."
+                        "text1": "Bitte wählen Sie ein Analysegebiet aus einer der Listen."
                     },
                     "checkbox": {
                         "checkbox2_1": "Niedersachsenweite Analyse",
@@ -90,7 +90,7 @@
                 "stepThree": {
                     "title": "Schritt 3: Relevante Infrastrukturen",
                     "text": {
-                        "textOne": "Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen wollen:"
+                        "text1": "Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen wollen:"
                     },
                     "callout": {
                         "callout3_1": "Es kann nur eine Arztgruppe ausgewählt werden.",
@@ -103,7 +103,7 @@
                 "stepFour": {
                     "title": "Schritt 4: Altersgruppe der Bevölkerung auswählen",
                     "text": {
-                        "textOne": "Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:"
+                        "text1": "Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:"
                     },
                     "accordion": {
                         "accordion4_1": "Gesamte Bevölkerung",
@@ -117,12 +117,12 @@
                 "stepFive": {
                     "title": "Schritt 5: Erreichbarkeitsberechnung",
                     "text": {
-                        "textOne": "Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.",
-                        "textTwo": "Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.",
-                        "textThree": "Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:",
-                        "textFour": "Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:",
-                        "textFive": "Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.",
-                        "threshold_text": "Schwellwert"
+                        "text1": "Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.",
+                        "text2": "Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.",
+                        "text3": "Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:",
+                        "text4": "Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:",
+                        "text5": "Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.",
+                        "thresholdText": "Schwellwert"
                     },
                     "travelModes": {
                         "driving-car": "PKW",
@@ -130,10 +130,10 @@
                         "walking-foot": "Fuß"
                     },
                     "timeInput": {
-                        "supply_situation": "Versorgungslage",
+                        "supplySituation": "Versorgungslage",
                         "till": "bis",
                         "threshold": "Schwellwerte",
-                        "time_zones": {
+                        "timeZones": {
                             "veryGood": "Sehr gute",
                             "good": "Gute",
                             "sufficient": "Ausreichende",
@@ -148,33 +148,33 @@
                 "stepSix": {
                     "title": "Schritt 6: Gewichtung",
                     "text": {
-                        "textOne": "Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.",
-                        "textTwo": "Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird."
+                        "text1": "Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.",
+                        "text2": "Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird."
                     },
                     "weighting": "Gewichtung"
                 },
                 "stepSeven": {
                     "title": "Schritt 7: Zusammenfassung der Eingabewerte",
                     "text": {
-                        "textOne": "Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:",
-                        "textTwo": "Infrastruktur",
-                        "textThree": "An/",
-                        "textFour": "Aus",
-                        "textFive": "Gewicht",
-                        "textSix": "Klicken Sie auf",
-                        "textSeven": ", um die Berechnung zu starten oder auf",
-                        "textEight": ", um Ihre Einstellungen anzupassen.",
-                        "textNine": "Die Berechnung steht nach wenigen Momenten zur Verfügung."
+                        "text1": "Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:",
+                        "text2": "Infrastruktur",
+                        "text3": "An/",
+                        "text4": "Aus",
+                        "text5": "Gewicht",
+                        "text6": "Klicken Sie auf",
+                        "text7": ", um die Berechnung zu starten oder auf",
+                        "text8": ", um Ihre Einstellungen anzupassen.",
+                        "text9": "Die Berechnung steht nach wenigen Momenten zur Verfügung."
                     },
                     "summary": "Zusammenfassung"
                 },
                 "stepEight": {
                     "title": "Schritt 8: Ergebnisse",
                     "text": {
-                        "textOne": "Sie erhalten eine Kartendarstellung, die ein räumliches Versorgungsniveau der von Ihnen gewählten Einstellungen wiedergibt.",
-                        "textTwo": "Für jede ausgewählte Infrastruktur erhalten sie einen aktivierbaren Kartenlayer, welcher die Erreichbarkeiten entsprechend der hinterlegten Entfernungszonen darstellt. Sie können die Kartenlayer für eine detaillierte Analyse über die Drop-Down-Liste einzeln auswählen.",
-                        "textThree": "Die jeweilige Darstellungen lässt sich weiterhin über die ausgewählten Bevölkerungsgruppen gewichten und/ oder als Heatmapkarte darstellen.",
-                        "textFour": "Kartenfenster ergänzen um:"
+                        "text1": "Sie erhalten eine Kartendarstellung, die ein räumliches Versorgungsniveau der von Ihnen gewählten Einstellungen wiedergibt.",
+                        "text2": "Für jede ausgewählte Infrastruktur erhalten sie einen aktivierbaren Kartenlayer, welcher die Erreichbarkeiten entsprechend der hinterlegten Entfernungszonen darstellt. Sie können die Kartenlayer für eine detaillierte Analyse über die Drop-Down-Liste einzeln auswählen.",
+                        "text3": "Die jeweilige Darstellungen lässt sich weiterhin über die ausgewählten Bevölkerungsgruppen gewichten und/ oder als Heatmapkarte darstellen.",
+                        "text4": "Kartenfenster ergänzen um:"
                     },
                     "callout": {
                         "callout8_1": "Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten.",

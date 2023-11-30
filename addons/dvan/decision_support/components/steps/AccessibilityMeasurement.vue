@@ -49,7 +49,7 @@ export default {
         },
 
         getGroupName (name) {
-            return this.translate("stepFive.text.threshold_text") + " " + this.translate(this.stepThree.facilities[name].text);
+            return this.translate("stepFive.text.thresholdText") + " " + this.translate(this.stepThree.facilities[name].text);
         },
 
         getFacilityName (group, name, value) {
@@ -81,25 +81,25 @@ export default {
             else if (val >= this.stepFive.maxValue - 3 + index) {
                 val = this.stepFive.maxValue - 3 + index;
             }
-            const new_arr = [];
+            const newArray = [];
 
             for (let i = 0; i < 4; i++) {
                 if (i < index) {
-                    new_arr.push(Math.min(val - (index - i), arr[i]));
+                    newArray.push(Math.min(val - (index - i), arr[i]));
                 }
                 if (i === index) {
-                    new_arr.push(val);
+                    newArray.push(val);
                 }
                 if (i > index) {
-                    new_arr.push(Math.max(val + (i - index), arr[i]));
+                    newArray.push(Math.max(val + (i - index), arr[i]));
                 }
             }
-            return new_arr;
+            return newArray;
         },
 
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -121,34 +121,34 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('stepFive.text.textOne') }}</p>
-        <p>{{ translate('stepFive.text.textTwo') }}</p>
+        <p>{{ translate('stepFive.text.text1') }}</p>
+        <p>{{ translate('stepFive.text.text2') }}</p>
         <BootstrapAccordion
             id="Accordion5"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                id="Accordion5_1"
+                id="Accordion5-1"
                 :text="translate('stepFive.accordion.accordion5_1')"
                 status="valid"
             >
-                <p>{{ translate('stepFive.text.textThree') }}</p>
+                <p>{{ translate('stepFive.text.text3') }}</p>
                 <ul>
                     <li>{{ translate('stepFive.travelModes.driving-car') }}</li>
                     <li>{{ translate('stepFive.travelModes.public-transit') }}</li>
                     <li>{{ translate('stepFive.travelModes.walking-foot') }}</li>
                 </ul>
-                <p>{{ translate('stepFive.text.textFour') }}</p>
+                <p>{{ translate('stepFive.text.text4') }}</p>
                 <ul>
-                    <li>{{ translate('stepFive.timeInput.time_zones.veryGood') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('stepFive.timeInput.time_zones.good') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('stepFive.timeInput.time_zones.sufficient') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
-                    <li>{{ translate('stepFive.timeInput.time_zones.deficient') }} {{ translate('stepFive.timeInput.supply_situation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.veryGood') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.good') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.sufficient') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.deficient') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
                 </ul>
-                <p>{{ translate('stepFive.text.textFive') }}</p>
+                <p>{{ translate('stepFive.text.text5') }}</p>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                id="Accordion5_2"
+                id="Accordion5-2"
                 parent-id="Accordion5"
                 :text="translate('stepFive.accordion.accordion5_2')"
                 status="valid"
@@ -164,7 +164,7 @@ export default {
                             :key="index"
                         >
                             <input
-                                :id="`Button_5_1_${index}`"
+                                :id="`Button-5-1-${index}`"
                                 v-model="stepFive.transport"
                                 type="radio"
                                 class="btn-check"
@@ -173,7 +173,7 @@ export default {
                             >
                             <label
                                 class="btn btn-outline-primary"
-                                :for="`Button_5_1_${index}`"
+                                :for="`Button-5-1-${index}`"
                             >
                                 {{ translate(`stepFive.travelModes.${name}`) }}
                             </label>
@@ -182,63 +182,63 @@ export default {
                 </div>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
-                :id="`Accordion5_${group_index+3}`"
-                :key="group_index"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selected_facilities"
+                :id="`Accordion5-${groupIndex+3}`"
+                :key="groupIndex"
                 parent-id="Accordion5"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selected_facilities[groupName])"
             >
                 <BootstrapAccordion
-                    :id="`Accordion5_${group_index+3}_1`"
+                    :id="`Accordion5-${groupIndex+3}-1`"
                     body-padding-x="5px"
                     body-padding-y="5px"
                 >
                     <BootstrapAccordionItem
-                        v-for="(item, name, index) in group_item"
-                        :id="`Accordion5_${group_index+3}_1_${index}`"
+                        v-for="(item, name, index) in groupItem"
+                        :id="`Accordion5-${groupIndex+3}-1-${index}`"
                         :key="index"
-                        :text="getFacilityName(group_name, name, item)"
-                        :status="stepThree.selected_facilities[group_name][name] === '' ? 'deactivated' : 'default'"
+                        :text="getFacilityName(groupName, name, item)"
+                        :status="stepThree.selected_facilities[groupName][name] === '' ? 'deactivated' : 'default'"
                     >
                         <div
                             class="container"
                         >
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_1`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-1`"
+                                :value="stepFive.time_zones[groupName][name]"
                                 :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('stepFive.timeInput.time_zones.veryGood')"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 0)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.veryGood')"
+                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 0)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_2`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-2`"
+                                :value="stepFive.time_zones[groupName][name]"
                                 :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('stepFive.timeInput.time_zones.good')"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 1)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.good')"
+                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 1)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_3`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-3`"
+                                :value="stepFive.time_zones[groupName][name]"
                                 :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('stepFive.timeInput.time_zones.sufficient')"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 2)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.sufficient')"
+                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 2)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_4`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-4`"
+                                :value="stepFive.time_zones[groupName][name]"
                                 :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                :supply-category="translate('stepFive.timeInput.time_zones.deficient')"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 3)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.deficient')"
+                                @input="e => stepFive.time_zones[groupName][name] = setTimeZone(stepFive.time_zones[groupName][name], e, 3)"
                             />
                         </div>
                     </BootstrapAccordionItem>

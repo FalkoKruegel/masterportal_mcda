@@ -87,7 +87,7 @@ export default {
 
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -110,17 +110,16 @@ export default {
 <template lang="html">
     <div>
         <p>
-            {{ translate('stepTwo.text.textOne') }}
+            {{ translate('stepTwo.text.text1') }}
         </p>
         <BootstrapCheckbox
-            id="Checkbox_2_1"
+            id="Checkbox2-1"
             v-model="stepTwo.wholeLowerSaxony"
             :text="translate('stepTwo.checkbox.checkbox2_1')"
             :disabled="stepTwo.ownArea"
         />
-        <!--there must be a bounding box-tool which is connected with the following checkbox-->
         <BootstrapCheckbox
-            id="Checkbox_2_2"
+            id="Checkbox2-2"
             :value="stepTwo.ownArea"
             :text="translate('stepTwo.checkbox.checkbox2_2')"
             :disabled="stepTwo.wholeLowerSaxony"
@@ -129,7 +128,7 @@ export default {
         <!--following div will only be rendered if checkbox for own area (above) is checked-->
         <div
             v-if="stepTwo.ownArea"
-            id="Callout2_1"
+            id="Callout2-1"
             class="callout"
         >
             {{ translate('stepTwo.callout.callout2_1') }}

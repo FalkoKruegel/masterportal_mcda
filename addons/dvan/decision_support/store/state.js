@@ -22,11 +22,11 @@ const state = {
         // posibile values
         facilities: {
             "local_supply": {
-                text: "local_supply.text",
+                text: "localSupply.text",
                 items: {
-                    "supermarket": {text: "local_supply.supermarket"},
-                    "discounter": {text: "local_supply.discounter"},
-                    "other_local_supply": {text: "local_supply.other_local_supply", tooltip: "tooltip.other_local_supply"}
+                    "supermarket": {text: "localSupply.supermarket"},
+                    "discounter": {text: "localSupply.discounter"},
+                    "other_local_supply": {text: "localSupply.otherLocalSupply", tooltip: "tooltip.otherLocalSupply"}
                 }
             },
             "health": {
@@ -35,7 +35,7 @@ const state = {
                     "pharmacy": {text: "health.pharmacy"},
                     "clinic": {text: "health.clinic"},
                     "physicians": {isGroup: true, text: "health.physicians.text", items: {
-                        "general_physicians": {text: "health.physicians.general_physicians"},
+                        "general_physicians": {text: "health.physicians.generalPhysicians"},
                         "paediatrician": {text: "health.physicians.paediatrician"},
                         "ophthalmologist": {text: "health.physicians.ophthalmologist"},
                         "surgeon": {text: "health.physicians.surgeon"},
@@ -53,9 +53,9 @@ const state = {
                 text: "education.text",
                 items: {
                     "nursery": {text: "education.nursery", tooltip: "tooltip.nursery"},
-                    "primary_school": {text: "education.primary_school", tooltip: "tooltip.primary_school"},
-                    "secondary_school_1": {text: "education.secondary_school_1", tooltip: "tooltip.secondary_school_1"},
-                    "secondary_school_2": {text: "education.secondary_school_2", tooltip: "tooltip.secondary_school_2"}
+                    "primary_school": {text: "education.primarySchool", tooltip: "tooltip.primarySchool"},
+                    "secondary_school_1": {text: "education.secondarySchool1", tooltip: "tooltip.secondarySchool1"},
+                    "secondary_school_2": {text: "education.secondarySchool2", tooltip: "tooltip.secondarySchool2"}
                 }
             }
         },

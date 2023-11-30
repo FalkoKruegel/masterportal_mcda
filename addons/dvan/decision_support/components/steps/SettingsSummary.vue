@@ -81,7 +81,7 @@ export default {
 
             if (item.isGroup === true) {
                 // this if-condition is applied to physicians
-                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
+                // checks if a physician has been chosen in the infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
                     return this.translate(item.text);
                 }
@@ -95,7 +95,7 @@ export default {
         },
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -117,44 +117,44 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('stepSeven.text.textOne') }}</p>
+        <p>{{ translate('stepSeven.text.text1') }}</p>
         <BootstrapAccordion
-            id="Accordion_7"
+            id="Accordion7"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
-                :id="`Accordion7_${group_index}`"
-                :key="group_index"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selected_facilities"
+                :id="`Accordion7-${groupIndex}`"
+                :key="groupIndex"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selected_facilities[groupName])"
             >
                 <div class="card">
                     <div class="card-header">
-                        <span class="text">{{ translate('stepSeven.text.textTwo') }}</span>
-                        <span class="value">{{ translate('stepSeven.text.textThree') }}<br>{{ translate('stepSeven.text.textFour') }}</span>
-                        <span class="value">{{ translate('stepSeven.text.textFive') }}</span>
+                        <span class="text">{{ translate('stepSeven.text.text2') }}</span>
+                        <span class="value">{{ translate('stepSeven.text.text3') }}<br>{{ translate('stepSeven.text.text4') }}</span>
+                        <span class="value">{{ translate('stepSeven.text.text5') }}</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li
-                            v-for="(item, name, index) in group_item"
+                            v-for="(item, name, index) in groupItem"
                             :key="index"
                             class="list-group-item"
                         >
-                            <span class="text">{{ getFacilityName(group_name, name, item) }}</span>
+                            <span class="text">{{ getFacilityName(groupName, name, item) }}</span>
                             <span
                                 class="icon"
                                 v-html="item !== '' ? checkIcon : xIcon"
                             />
-                            <span class="value">{{ stepSix.facility_weights[group_name][name] }}%</span>
+                            <span class="value">{{ stepSix.facility_weights[groupName][name] }}%</span>
                         </li>
                     </ul>
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
         <br>
-        <p>{{ translate('stepSeven.text.textSix') }} "{{ translate('accordionFooter.startAnalysis') }}"{{ translate('stepSeven.text.textSeven') }} "{{ translate('accordionFooter.back') }}"{{ translate('stepSeven.text.textEight') }}</p>
-        <p>{{ translate('stepSeven.text.textNine') }}</p>
+        <p>{{ translate('stepSeven.text.text6') }} "{{ translate('accordionFooter.startAnalysis') }}"{{ translate('stepSeven.text.text7') }} "{{ translate('accordionFooter.back') }}"{{ translate('stepSeven.text.text8') }}</p>
+        <p>{{ translate('stepSeven.text.text9') }}</p>
     </div>
 </template>
 

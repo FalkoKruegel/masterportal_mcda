@@ -5,8 +5,6 @@ import {loadToolParams} from "../../utils/tool_params/load_params";
 export default {
     name: "StartAnalysis",
     emits: [
-        // emitted events for buttons
-        // there should be another one for loading older analysis
         "startAnalysis"
     ],
     data () {
@@ -45,7 +43,7 @@ export default {
 
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -67,8 +65,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('stepOne.text.textOne') }}</p>
-        <p>{{ translate('stepOne.text.textTwo') }}</p>
+        <p>{{ translate('stepOne.text.text1') }}</p>
+        <p>{{ translate('stepOne.text.text2') }}</p>
         <!--container to adjust position of following buttons-->
         <div
             class="container"
@@ -79,9 +77,8 @@ export default {
                 <div
                     class="col text-start"
                 >
-                    <!--in the future this button should emit an event which triggers a dialog to load older analysis-->
                     <button
-                        id="button1_2"
+                        id="button1-2"
                         type="button"
                         class="btn btn-outline-primary btn-sm"
                         @click="openAnalysis"
@@ -100,7 +97,7 @@ export default {
                     class="col text-end"
                 >
                     <button
-                        id="button1_1"
+                        id="button1-1"
                         type="button"
                         class="btn btn-outline-primary btn-sm"
                         @click="$emit('startAnalysis')"
@@ -110,7 +107,6 @@ export default {
                 </div>
             </div>
         </div>
-        <!--following div is an placeholder to remind that dialog for loading an older analysis has to be implemented in the future-->
         <div
             v-if="loadFailed"
             class="callout-warning"

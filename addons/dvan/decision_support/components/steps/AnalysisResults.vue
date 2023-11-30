@@ -71,7 +71,7 @@ export default {
         },
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -93,13 +93,12 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('stepEight.text.textOne') }}</p>
-        <p>{{ translate('stepEight.text.textTwo') }}</p>
+        <p>{{ translate('stepEight.text.text1') }}</p>
+        <p>{{ translate('stepEight.text.text2') }}</p>
 
         <div v-if="stepEight.status === 'unfinished'">
-            <!--other callouts had IDs like callout8_1-->
             <div
-                id="Infotext8_1"
+                id="Callout8-1"
                 class="callout"
             >
                 {{ translate('stepEight.callout.callout8_1') }}
@@ -115,9 +114,8 @@ export default {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            <!--other callouts had IDs like callout8_2-->
             <div
-                id="Infotext8_2"
+                id="Callout8-2"
                 class="callout"
             >
                 {{ translate('stepEight.callout.callout8_2') }}
@@ -164,56 +162,56 @@ export default {
             </div>
             <br>
             <br>
-            <p>{{ translate('stepEight.text.textThree') }}</p>
-            <p>{{ translate('stepEight.text.textFour') }}</p>
+            <p>{{ translate('stepEight.text.text3') }}</p>
+            <p>{{ translate('stepEight.text.text4') }}</p>
 
             <BootstrapCheckbox
-                id="Checkbox8_1"
+                id="Checkbox8-1"
                 v-model="weighted"
                 :text="translate('stepEight.checkbox.checkbox8_1')"
             />
             <BootstrapCheckbox
-                id="Checkbox8_2"
+                id="Checkbox8-2"
                 :text="translate('stepEight.checkbox.checkbox8_2')"
             />
         </div>
         <br>
 
         <BootstrapAccordion
-            id="Accordion_8"
+            id="Accordion8"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                id="Accordion8_1"
+                id="Accordion-Item8-1"
                 :text="translate('stepEight.accordion.title')"
             >
                 <BootstrapAccordion
-                    id="Accordion_8_1"
+                    id="Accordion8-1"
                     body-padding-y="5px"
                 >
                     <BootstrapAccordionItem
-                        id="Accordion8_1_1"
+                        id="Accordion8-1-1"
                         :text="translate('stepEight.accordion.accordion8_1_1.title')"
                     >
                         <p>{{ translate('stepEight.accordion.accordion8_1_1.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_2"
+                        id="Accordion8-1-2"
                         :text="translate('stepEight.accordion.accordion8_1_2.title')"
                     >
                         <p>{{ translate('stepEight.accordion.accordion8_1_2.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_3"
+                        id="Accordion8-1-3"
                         :text="translate('stepEight.accordion.accordion8_1_3.title')"
                     >
                         <p>{{ translate('stepEight.accordion.accordion8_1_3.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_4"
+                        id="Accordion8-1-4"
                         :text="translate('stepEight.accordion.accordion8_1_4.title')"
                     >
                         <p>{{ translate('stepEight.accordion.accordion8_1_4.text') }}</p>

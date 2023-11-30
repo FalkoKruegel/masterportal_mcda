@@ -77,7 +77,7 @@ export default {
 
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -99,28 +99,28 @@ export default {
 
 <template lang="html">
     <div>
-        <p>{{ translate('stepSix.text.textOne') }}</p>
-        <p>{{ translate('stepSix.text.textTwo') }}</p>
+        <p>{{ translate('stepSix.text.text1') }}</p>
+        <p>{{ translate('stepSix.text.text2') }}</p>
         <BootstrapAccordion
-            id="Accordion_3"
+            id="Accordion3"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepSix.facility_weights"
-                :id="`Accordion6_${group_index}`"
-                :key="group_index"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepSix.facility_weights"
+                :id="`Accordion6-${groupIndex}`"
+                :key="groupIndex"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selected_facilities[groupName])"
             >
                 <BootstrapRangeSlider
-                    v-for="(item, name, index) in group_item"
-                    :id="`Range6_${group_index}_${index}`"
+                    v-for="(item, name, index) in groupItem"
+                    :id="`Range6-${groupIndex}-${index}`"
                     :key="index"
-                    :value="stepSix.facility_weights[group_name][name]"
-                    :disabled="stepThree.selected_facilities[group_name][name] === ''"
-                    @input="e => stepSix.facility_weights[group_name][name] = e"
+                    :value="stepSix.facility_weights[groupName][name]"
+                    :disabled="stepThree.selected_facilities[groupName][name] === ''"
+                    @input="e => stepSix.facility_weights[groupName][name] = e"
                 >
-                    {{ getFacilityName(group_name, name, stepThree.selected_facilities[group_name][name]) }}
+                    {{ getFacilityName(groupName, name, stepThree.selected_facilities[groupName][name]) }}
                 </BootstrapRangeSlider>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

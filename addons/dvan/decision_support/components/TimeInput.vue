@@ -25,7 +25,6 @@ export default {
             type: Number,
             default: null
         },
-        // one of "Sehr gute", "Gute", "Ausreichende", "Mangelhafte"
         "supplyCategory": {
             type: String,
             default: ""
@@ -38,7 +37,7 @@ export default {
     methods: {
         /**
          * Function from populationRequest addon (original Masterportal)
-         * translates the given key, checkes if the key exists and throws a console warning if not
+         * translates the given key, checks if the key exists and throws a console warning if not
          * @param {String} key the key to translate
          * @param {Object} [options=null] for interpolation, formating and plurals
          * @returns {String} the translation or the key itself on error
@@ -64,7 +63,7 @@ export default {
         class="row align-items-center"
     >
         <div class="col-7 text-start">
-            {{ supplyCategory }} {{ translate('stepFive.timeInput.supply_situation') }} {{ translate('stepFive.timeInput.till') }}
+            {{ supplyCategory }} {{ translate('stepFive.timeInput.supplySituation') }} {{ translate('stepFive.timeInput.till') }}
         </div>
         <div class="col-3 text-end">
             <label

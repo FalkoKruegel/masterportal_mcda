@@ -9,11 +9,11 @@
                     "startAnalysis": "Start analysis",
                     "saveAnalysis": "Save analysis"
                 },
-                "local_supply": {
+                "localSupply": {
                     "text": "Local supply",
                     "supermarket": "Supermarkets",
                     "discounter": "Discounter",
-                    "other_local_supply": "Other grocery stores"
+                    "otherLocalSupply": "Other grocery stores"
                 },
                 "health": {
                     "text": "Health",
@@ -21,7 +21,7 @@
                     "clinic": "University hospitals and planned hospitals",
                     "physicians": {
                         "text": "Physicians",
-                        "general_physicians": "General Physicians",
+                        "generalPhysicians": "General Physicians",
                         "paediatrician": "Paediatricians",
                         "ophthalmologist": "Ophthalmologists",
                         "surgeon": "Surgeons and orthopedists",
@@ -36,16 +36,16 @@
                 "education": {
                     "text": "Education",
                     "nursery": "Nurseries",
-                    "primary_school": "Primary schools",
-                    "secondary_school_1": "Secondary level 1",
-                    "secondary_school_2": "Secondary level 2"
+                    "primarySchool": "Primary schools",
+                    "secondarySchool1": "Secondary level 1",
+                    "secondarySchool2": "Secondary level 2"
                 },
                 "tooltip": {
-                    "other_local_supply": "These include artisan grocery store locations (bakers/ butchers), farm and wholefood shops, and other grocery stores.",
+                    "otherLocalSupply": "These include artisan grocery store locations (bakers/ butchers), farm and wholefood shops, and other grocery stores.",
                     "nursery": "Institutions for the care of children until their sixth year of life. Without 'Hort'.",
-                    "primary_school": "Primary school covers the grades 1 until 4.",
-                    "secondary_school_1": "'Haupt'-, 'Real'-, 'Ober'- and 'Gesamtschulen' without the possibility to achieve the '(Fach)Hochschulreife'.",
-                    "secondary_school_2": "'Gesamtschulen' and grammar schools with the possibility to achieve the '(Fach)Hochschulreife'."
+                    "primarySchool": "Primary school covers the grades 1 until 4.",
+                    "secondarySchool1": "'Haupt'-, 'Real'-, 'Ober'- and 'Gesamtschulen' without the possibility to achieve the '(Fach)Hochschulreife'.",
+                    "secondarySchool2": "'Gesamtschulen' and grammar schools with the possibility to achieve the '(Fach)Hochschulreife'."
                 },
                 "standardAgeGroups": {
                     "std_00_09":"0-9 years",
@@ -70,14 +70,14 @@
                     "startNewAnalysis": "Start new analysis",
                     "incorrectParameterFile": "The parmeter file you are using is corrupted. Please try again.",
                     "text": {
-                        "textOne": "The 'Decision Support' tool considers the supply situation in services of general interest according to your self-selected criteria.",
-                        "textTwo": "As a result, you receive various layers on the supply situation. These can be used, for example, to assess the supply situation, analyze demand, and identify structural spatial differences."
+                        "text1": "The 'Decision Support' tool considers the supply situation in services of general interest according to your self-selected criteria.",
+                        "text2": "As a result, you receive various layers on the supply situation. These can be used, for example, to assess the supply situation, analyze demand, and identify structural spatial differences."
                     }
                 },
                 "stepTwo": {
                     "title": "Step 2: Choose study area",
                     "text": {
-                        "textOne": "Please select a study area from one of the lists."
+                        "text1": "Please select a study area from one of the lists."
                     },
                     "checkbox": {
                         "checkbox2_1": "Lower Saxony-wide analysis",
@@ -90,7 +90,7 @@
                 "stepThree": {
                     "title": "Step 3: Relevant infrastructures",
                     "text": {
-                        "textOne": "Please select infrastructures that you want to include in the analysis:"
+                        "text1": "Please select infrastructures that you want to include in the analysis:"
                     },
                     "callout": {
                         "callout3_1": "Only one doctor group can be selected.",
@@ -103,7 +103,7 @@
                 "stepFour": {
                     "title": "Step 4: Select population's age group",
                     "text": {
-                        "textOne": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
+                        "text1": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
                     },
                     "accordion": {
                         "accordion4_1": "Total population",
@@ -117,12 +117,12 @@
                 "stepFive": {
                     "title": "Step 5: Accessibility calculation",
                     "text": {
-                        "textOne": "Minimum accessibility standards (travel distance/travel time) to facilities and services of general interest ensure nationwide supply coverage.",
-                        "textTwo": "If the corresponding threshold values are reached, it can be assumed that there is an undersupply. Likewise, the quality of supply increases the shorter the travel distance from the place of residence to the infrastructure. Recommended values are already stored for the selected infrastructures. They apply to accessibility by car. The preset travel times can be adjusted for demand-oriented simulations.",
-                        "textThree": "Please store which means of transport should apply to determine the travel time for your analysis. The following means of transport are available for the calculation:",
-                        "textFour": "In addition, for each of the selected infrastructures, store which supply situation should occur when a certain travel time is exceeded to reach this infrastructure from the demand location. The categories are divided as follows:",
-                        "textFive": "If the travel time from the demand location to the infrastructure exceeds the deficient supply threshold, no supply to the demand location is provided by the infrastructure.",
-                        "threshold_text": "Threshold"
+                        "text1": "Minimum accessibility standards (travel distance/travel time) to facilities and services of general interest ensure nationwide supply coverage.",
+                        "text2": "If the corresponding threshold values are reached, it can be assumed that there is an undersupply. Likewise, the quality of supply increases the shorter the travel distance from the place of residence to the infrastructure. Recommended values are already stored for the selected infrastructures. They apply to accessibility by car. The preset travel times can be adjusted for demand-oriented simulations.",
+                        "text3": "Please store which means of transport should apply to determine the travel time for your analysis. The following means of transport are available for the calculation:",
+                        "text4": "In addition, for each of the selected infrastructures, store which supply situation should occur when a certain travel time is exceeded to reach this infrastructure from the demand location. The categories are divided as follows:",
+                        "text5": "If the travel time from the demand location to the infrastructure exceeds the deficient supply threshold, no supply to the demand location is provided by the infrastructure.",
+                        "thresholdText": "Threshold"
                     },
                     "travelModes": {
                         "driving-car": "car",
@@ -130,10 +130,10 @@
                         "walking-foot": "foot"
                     },
                     "timeInput": {
-                        "supply_situation": "supply situation",
+                        "supplySituation": "supply situation",
                         "till": "till",
                         "threshold": "thresholds",
-                        "time_zones": {
+                        "timeZones": {
                             "veryGood": "very good",
                             "good": "good",
                             "sufficient": "sufficient",
@@ -148,33 +148,33 @@
                 "stepSix": {
                     "title": "Step 6: Weighting",
                     "text": {
-                        "textOne": "It is possible to assign individual weightings to determine how important each infrastructure should be in your analysis.",
-                        "textTwo": "You can assign values between 0 and 100 using the slider. Please note that a value of 0 means that the infrastructure is not included in the analysis."
+                        "text1": "It is possible to assign individual weightings to determine how important each infrastructure should be in your analysis.",
+                        "text2": "You can assign values between 0 and 100 using the slider. Please note that a value of 0 means that the infrastructure is not included in the analysis."
                     },
                     "weighting": "Weighting"
                 },
                 "stepSeven": {
                     "title": "Step 7: Summary of input values",
                     "text": {
-                        "textOne": "You have stored the following settings which are used for the calculation:",
-                        "textTwo": "Infrastructure",
-                        "textThree": "On/",
-                        "textFour": "Off",
-                        "textFive": "Weight",
-                        "textSix": "Click on",
-                        "textSeven": " to start the calculation or on",
-                        "textEight": " to adjust your settings.",
-                        "textNine": "The calculation is available after a few moments."
+                        "text1": "You have stored the following settings which are used for the calculation:",
+                        "text2": "Infrastructure",
+                        "text3": "On/",
+                        "text4": "Off",
+                        "text5": "Weight",
+                        "text6": "Click on",
+                        "text7": " to start the calculation or on",
+                        "text8": " to adjust your settings.",
+                        "text9": "The calculation is available after a few moments."
                     },
                     "summary": "Summary"
                 },
                 "stepEight": {
                     "title": "Step 8: Results",
                     "text": {
-                        "textOne": "You will get a map that shows a spatial coverage level of the settings you selected.",
-                        "textTwo": "For each selected infrastructure, you will receive a map layer that can be activated and that shows the accessibility according to the distance zones stored. You can select the map layers individually for a detailed analysis via the drop-down list.",
-                        "textThree": "The respective representation can be further weighted over the selected population groups and/or represented as a heat map map.",
-                        "textFour": "Add to map window:"
+                        "text1": "You will get a map that shows a spatial coverage level of the settings you selected.",
+                        "text2": "For each selected infrastructure, you will receive a map layer that can be activated and that shows the accessibility according to the distance zones stored. You can select the map layers individually for a detailed analysis via the drop-down list.",
+                        "text3": "The respective representation can be further weighted over the selected population groups and/or represented as a heat map map.",
+                        "text4": "Add to map window:"
                     },
                     "callout": {
                         "callout8_1": "Please start the calculation to get the results.",
