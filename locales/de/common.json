@@ -44,6 +44,7 @@
         },
         "wayToSchool": "Schulweg-Routing",
         "filter": "Filter",
+        "spatialAnalysis": "Räumliche Analysen",
         "tools": {
             "name": "Werkzeuge",
             "compareFeatures": "Vergleichsliste",
@@ -1017,7 +1018,8 @@
                 "addressHospitalBplan": "Suche nach Adresse/Krankenhaus/B-Plan",
                 "addressTopicParcel": "Suche Adresse, Stadtteil, Themen, Flurstück",
                 "addressTopic": "Suche Adresse, Stadtteil, Themen",
-                "address": "Suche nach Adresse"
+                "address": "Suche nach Adresse",
+                "addressActiveWFS": "Suche nach: Adressen oder aktiven WFS"
             },
             "locationFinder": {
                 "unknownProjection": "Ergebnisse in unbekanntem Koordinatensystem",

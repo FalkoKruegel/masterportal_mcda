@@ -34,6 +34,41 @@ export default {
                 }
             }
             return "default";
+        },
+
+        getTooltipText (tooltipItem) {
+            // creating string with key for translation
+            const translationKey = "modules.tools.decisionSupport.stepThree.tooltip." + tooltipItem;
+            const translationString = "additional:" + translationKey;
+
+            // getting translation
+            const translation = this.translate(translationString);
+
+            // checking if key exists
+            if (translation === translationKey) {
+                return null;
+            }
+            return translation;
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+                return undefined;
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -41,61 +76,61 @@ export default {
 
 <template lang="html">
     <div>
-        Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen<br> wollen:
+        {{ translate('stepThree.text.text1') }}
         <BootstrapAccordion
-            id="Accordion_3"
+            id="Accordion3"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.facilities"
-                :id="`Accordion_3_${group_index}`"
-                :key="group_index"
-                :text="group_item['text']"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.facilities"
+                :id="`Accordion3-${groupIndex}`"
+                :key="groupIndex"
+                :text="translate(groupItem.text)"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <div
-                    v-for="(item, name, index) in group_item.items"
+                    v-for="(item, name, index) in groupItem.items"
                     :key="index"
                 >
                     <div v-if="item.hasOwnProperty('isGroup')">
                         <BootstrapCheckbox
-                            v-for="(inner_item, inner_name, inner_index) in item.items"
-                            :id="`Checkbox_3_${group_index}_${index}_${inner_index}`"
-                            :key="inner_index"
-                            :value="stepThree.selected_facilities[group_name][name] === inner_name"
-                            :text="inner_item['text']"
-                            :disabled="stepThree.selected_facilities[group_name][name] !== inner_name && stepThree.selected_facilities[group_name][name] !== ''"
-                            :tooltip-text="inner_item['tooltip']"
-                            @input="e => e === true ? stepThree.selected_facilities[group_name][name] = inner_name : stepThree.selected_facilities[group_name][name] = ''"
+                            v-for="(innerItem, innerName, innerIndex) in item.items"
+                            :id="`Checkbox3-${groupIndex}-${index}-${innerIndex}`"
+                            :key="innerIndex"
+                            :value="stepThree.selectedFacilities[groupName][name] === innerName"
+                            :text="translate(innerItem.text)"
+                            :disabled="stepThree.selectedFacilities[groupName][name] !== innerName && stepThree.selectedFacilities[groupName][name] !== ''"
+                            :tooltip-text="translate(innerItem.tooltip)"
+                            @input="e => e === true ? stepThree.selectedFacilities[groupName][name] = innerName : stepThree.selectedFacilities[groupName][name] = ''"
                         />
                     </div>
                     <div v-else>
                         <BootstrapCheckbox
-                            :id="`Checkbox_3_${group_index}_${index}`"
-                            :value="stepThree.selected_facilities[group_name][name] === name"
-                            :text="item['text']"
-                            :tooltip-text="item['tooltip']"
-                            @input="e => e === true ? stepThree.selected_facilities[group_name][name] = name : stepThree.selected_facilities[group_name][name] = ''"
+                            :id="`Checkbox3-${groupIndex}-${index}`"
+                            :value="stepThree.selectedFacilities[groupName][name] === name"
+                            :text="translate(item.text)"
+                            :tooltip-text="translate(item['tooltip'])"
+                            @input="e => e === true ? stepThree.selectedFacilities[groupName][name] = name : stepThree.selectedFacilities[groupName][name] = ''"
                         />
                     </div>
                 </div>
                 <div
-                    v-if="group_name === 'health' && stepThree.selected_facilities['health']['physicians'] !== ''"
-                    id="Infotext_3_1"
+                    v-if="groupName === 'health' && stepThree.selectedFacilities['health']['physicians'] !== ''"
+                    id="Callout3-1"
                     class="callout"
                 >
-                    Es kann nur eine Arztgruppe ausgewählt werden
+                    {{ translate('stepThree.callout.callout3_1') }}
                 </div>
                 <div
-                    v-if="group_name === 'education'"
-                    id="Infotext_3_2"
+                    v-if="groupName === 'education'"
+                    id="Callout3-2"
                     class="callout"
                 >
-                    Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem <a
+                    {{ translate('stepThree.callout.callout3_2.firstPart') }}<a
                         href="https://www.mk.niedersachsen.de/startseite/schule/unsere_schulen/unsere-schulen-6470.html"
                         target="_blank"
                         rel="noopener noreferrer"
-                    >Link</a> abrufen.
+                    >Link</a>{{ translate('stepThree.callout.callout3_2.secondPart') }}
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

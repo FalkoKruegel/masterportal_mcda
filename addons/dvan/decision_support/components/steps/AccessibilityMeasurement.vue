@@ -23,11 +23,11 @@ export default {
         // this watcher checks if the used physician infrastructure are general physicians.
         // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
         "stepThree.health.physicians": function () {
-            if (this.stepThree.selected_facilities.health.physicians === "general_physicians") {
-                this.stepFive.time_zones.health.physicians = [2, 5, 10, 20];
+            if (this.stepThree.selectedFacilities.health.physicians === "generalPhysicians") {
+                this.stepFive.timeZones.health.physicians = [2, 5, 10, 20];
             }
             else {
-                this.stepFive.time_zones.health.physicians = [3, 7, 13, 25];
+                this.stepFive.timeZones.health.physicians = [3, 7, 13, 25];
             }
         }
     },
@@ -49,22 +49,26 @@ export default {
         },
 
         getGroupName (name) {
-            return "Schwellwerte " + this.stepThree.facilities[name].text;
+            return this.translate("stepFive.text.thresholdText") + " " + this.translate(this.stepThree.facilities[name].text);
         },
 
         getFacilityName (group, name, value) {
+
+            // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
+                // this if-condition is applied to physicians
+                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
-                    return item.text;
+                    return this.translate(item.text);
                 }
 
-                return item.items[value].text;
+                return this.translate(item.items[value].text);
 
             }
 
-            return item.text;
+            return this.translate(item.text);
 
         },
 
@@ -77,20 +81,39 @@ export default {
             else if (val >= this.stepFive.maxValue - 3 + index) {
                 val = this.stepFive.maxValue - 3 + index;
             }
-            const new_arr = [];
+            const newArray = [];
 
             for (let i = 0; i < 4; i++) {
                 if (i < index) {
-                    new_arr.push(Math.min(val - (index - i), arr[i]));
+                    newArray.push(Math.min(val - (index - i), arr[i]));
                 }
                 if (i === index) {
-                    new_arr.push(val);
+                    newArray.push(val);
                 }
                 if (i > index) {
-                    new_arr.push(Math.max(val + (i - index), arr[i]));
+                    newArray.push(Math.max(val + (i - index), arr[i]));
                 }
             }
-            return new_arr;
+            return newArray;
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -98,36 +121,36 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.</p>
-        <p>Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.</p>
+        <p>{{ translate('stepFive.text.text1') }}</p>
+        <p>{{ translate('stepFive.text.text2') }}</p>
         <BootstrapAccordion
             id="Accordion5"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                id="Accordion5_1"
-                text="Erläuterung zur Anpassung der Reisezeiten"
+                id="Accordion5-1"
+                :text="translate('stepFive.accordion.accordion5_1')"
                 status="valid"
             >
-                <p>Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:</p>
+                <p>{{ translate('stepFive.text.text3') }}</p>
                 <ul>
-                    <li>PKW</li>
-                    <li>ÖPNV</li>
-                    <li>Fuß</li>
+                    <li>{{ translate('stepFive.travelModes.driving-car') }}</li>
+                    <li>{{ translate('stepFive.travelModes.public-transit') }}</li>
+                    <li>{{ translate('stepFive.travelModes.walking-foot') }}</li>
                 </ul>
-                <p>Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:</p>
+                <p>{{ translate('stepFive.text.text4') }}</p>
                 <ul>
-                    <li>Sehr gute Versorgungslage</li>
-                    <li>Gute Versorgungslage</li>
-                    <li>Ausreichende Versorgungslage</li>
-                    <li>Mangelhafte Versorgungslage</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.veryGood') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.good') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.sufficient') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
+                    <li>{{ translate('stepFive.timeInput.timeZones.deficient') }} {{ translate('stepFive.timeInput.supplySituation') }}</li>
                 </ul>
-                <p>Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.</p>
+                <p>{{ translate('stepFive.text.text5') }}</p>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                id="Accordion5_2"
+                id="Accordion5-2"
                 parent-id="Accordion5"
-                text="Transportmittel"
+                :text="translate('stepFive.accordion.accordion5_2')"
                 status="valid"
             >
                 <div class="container text-center">
@@ -141,7 +164,7 @@ export default {
                             :key="index"
                         >
                             <input
-                                :id="`Button_5_1_${index}`"
+                                :id="`Button-5-1-${index}`"
                                 v-model="stepFive.transport"
                                 type="radio"
                                 class="btn-check"
@@ -150,72 +173,72 @@ export default {
                             >
                             <label
                                 class="btn btn-outline-primary"
-                                :for="`Button_5_1_${index}`"
+                                :for="`Button-5-1-${index}`"
                             >
-                                {{ item["text"] }}
+                                {{ translate(`stepFive.travelModes.${name}`) }}
                             </label>
                         </div>
                     </div>
                 </div>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
-                :id="`Accordion5_${group_index+3}`"
-                :key="group_index"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selectedFacilities"
+                :id="`Accordion5-${groupIndex+3}`"
+                :key="groupIndex"
                 parent-id="Accordion5"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <BootstrapAccordion
-                    :id="`Accordion5_${group_index+3}_1`"
+                    :id="`Accordion5-${groupIndex+3}-1`"
                     body-padding-x="5px"
                     body-padding-y="5px"
                 >
                     <BootstrapAccordionItem
-                        v-for="(item, name, index) in group_item"
-                        :id="`Accordion5_${group_index+3}_1_${index}`"
+                        v-for="(item, name, index) in groupItem"
+                        :id="`Accordion5-${groupIndex+3}-1-${index}`"
                         :key="index"
-                        :text="getFacilityName(group_name, name, item)"
-                        :status="stepThree.selected_facilities[group_name][name] === '' ? 'deactivated' : 'default'"
+                        :text="getFacilityName(groupName, name, item)"
+                        :status="stepThree.selectedFacilities[groupName][name] === '' ? 'deactivated' : 'default'"
                     >
                         <div
                             class="container"
                         >
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_1`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-1`"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="0"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Sehr gute"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 0)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.veryGood')"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 0)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_2`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-2`"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="1"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Gute"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 1)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.good')"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 1)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_3`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-3`"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="2"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Ausreichende"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 2)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.sufficient')"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 2)"
                             />
                             <TimeInput
-                                :id="`input5_${group_index+3}_1_${index}_4`"
-                                :value="stepFive.time_zones[group_name][name]"
+                                :id="`input5-${groupIndex+3}-1-${index}-4`"
+                                :value="stepFive.timeZones[groupName][name]"
                                 :index="3"
                                 :max-time="stepFive.maxValue"
                                 :min-time="stepFive.minValue"
-                                supply-category="Mangelhafte"
-                                @input="e => stepFive.time_zones[group_name][name] = setTimeZone(stepFive.time_zones[group_name][name], e, 3)"
+                                :supply-category="translate('stepFive.timeInput.timeZones.deficient')"
+                                @input="e => stepFive.timeZones[groupName][name] = setTimeZone(stepFive.timeZones[groupName][name], e, 3)"
                             />
                         </div>
                     </BootstrapAccordionItem>

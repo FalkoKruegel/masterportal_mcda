@@ -25,7 +25,6 @@ export default {
             type: Number,
             default: null
         },
-        // one of "Sehr gute", "Gute", "Ausreichende", "Mangelhafte"
         "supplyCategory": {
             type: String,
             default: ""
@@ -36,6 +35,24 @@ export default {
         "input"
     ],
     methods: {
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
+        }
     }
 };
 </script>
@@ -46,7 +63,7 @@ export default {
         class="row align-items-center"
     >
         <div class="col-7 text-start">
-            {{ supplyCategory }} Versorgungslage bis
+            {{ supplyCategory }} {{ translate('stepFive.timeInput.supplySituation') }} {{ translate('stepFive.timeInput.till') }}
         </div>
         <div class="col-3 text-end">
             <label

@@ -5,8 +5,6 @@ import {loadToolParams} from "../../utils/tool_params/load_params";
 export default {
     name: "StartAnalysis",
     emits: [
-        // emitted events for buttons
-        // there should be another one for loading older analysis
         "startAnalysis"
     ],
     data () {
@@ -41,6 +39,25 @@ export default {
                 }
             };
             reader.readAsText(files[0]);
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -48,8 +65,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.</p>
-        <p>Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden.</p>
+        <p>{{ translate('stepOne.text.text1') }}</p>
+        <p>{{ translate('stepOne.text.text2') }}</p>
         <!--container to adjust position of following buttons-->
         <div
             class="container"
@@ -60,14 +77,13 @@ export default {
                 <div
                     class="col text-start"
                 >
-                    <!--in the future this button should emit an event which triggers a dialog to load older analysis-->
                     <button
-                        id="button1_2"
+                        id="button1-2"
                         type="button"
-                        class="btn btn-outline-primary btn-lg"
+                        class="btn btn-outline-primary btn-sm"
                         @click="openAnalysis"
                     >
-                        Analyseeinstellung laden
+                        {{ translate('stepOne.loadAnalysisSettings') }}
                     </button>
                     <input
                         ref="layerDialog"
@@ -81,22 +97,21 @@ export default {
                     class="col text-end"
                 >
                     <button
-                        id="button1_1"
+                        id="button1-1"
                         type="button"
-                        class="btn btn-outline-primary btn-lg"
+                        class="btn btn-outline-primary btn-sm"
                         @click="$emit('startAnalysis')"
                     >
-                        Neue Analyse durchführen
+                        {{ translate('stepOne.startNewAnalysis') }}
                     </button>
                 </div>
             </div>
         </div>
-        <!--following div is an placeholder to remind that dialog for loading an older analysis has to be implemented in the future-->
         <div
             v-if="loadFailed"
             class="callout-warning"
         >
-            Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.
+            {{ translate('stepOne.incorrectParameterFile') }}
         </div>
     </div>
 </template>

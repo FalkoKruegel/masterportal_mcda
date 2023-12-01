@@ -26,9 +26,9 @@ export default {
         checkedLayers () {
             const layers = ["multiCritera"];
 
-            for (const group in this.stepThree.selected_facilities) {
-                for (const item in this.stepThree.selected_facilities[group]) {
-                    const name = this.stepThree.selected_facilities[group][item];
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const item in this.stepThree.selectedFacilities[group]) {
+                    const name = this.stepThree.selectedFacilities[group][item];
 
                     if (name === "") {
                         continue;
@@ -68,6 +68,24 @@ export default {
 
         convert (name) {
             return convertLayerName(name);
+        },
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -75,15 +93,15 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Sie erhalten eine Kartendarstellung die ein räumliches Versorgungsniveau der von Ihnen gewählten Einstelungen wiedergibt.</p>
-        <p>Entsprechend der ausgewählten relevanten Infrastrukturen, erhalten Sie für jede dieser Infrastrukturen einen aktivierbaren Kartenlayer der die Erreichbarkeiten entsprechend der hinterlegten Entfernungszonen darstellt. Sie können diese für eine detaillierte Analyse über die Drop-Down-Liste einzeln auswählen.</p>
+        <p>{{ translate('stepEight.text.text1') }}</p>
+        <p>{{ translate('stepEight.text.text2') }}</p>
 
         <div v-if="stepEight.status === 'unfinished'">
             <div
-                id="Infotext8_1"
+                id="Callout8-1"
                 class="callout"
             >
-                Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten.
+                {{ translate('stepEight.callout.callout8_1') }}
             </div>
         </div>
 
@@ -97,10 +115,10 @@ export default {
                 </div>
             </div>
             <div
-                id="Infotext8_2"
+                id="Callout8-2"
                 class="callout"
             >
-                Das Ergebnis steht in Kürze bereit...
+                {{ translate('stepEight.callout.callout8_2') }}
             </div>
         </div>
 
@@ -144,59 +162,59 @@ export default {
             </div>
             <br>
             <br>
-            <p>Die jeweilige Darstellungen lässt sich weiterhin über die ausgewählten Bevölkerungsgruppen gewichten und/ oder als Heatmapkarte darstellen.</p>
-            <p>Kartenfenster ergänzen um:</p>
+            <p>{{ translate('stepEight.text.text3') }}</p>
+            <p>{{ translate('stepEight.text.text4') }}</p>
 
             <BootstrapCheckbox
-                id="Checkbox8_1"
+                id="Checkbox8-1"
                 v-model="weighted"
-                text="Bevölkerungsgewichtete Darstellung"
+                :text="translate('stepEight.checkbox.checkbox8_1')"
             />
             <BootstrapCheckbox
-                id="Checkbox8_2"
-                text="Heatmap Darstellung"
+                id="Checkbox8-2"
+                :text="translate('stepEight.checkbox.checkbox8_2')"
             />
         </div>
         <br>
 
         <BootstrapAccordion
-            id="Accordion_8"
+            id="Accordion8"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                id="Accordion8_1"
-                text="Methodische Erläuterungen"
+                id="Accordion-Item8-1"
+                :text="translate('stepEight.accordion.title')"
             >
                 <BootstrapAccordion
-                    id="Accordion_8_1"
+                    id="Accordion8-1"
                     body-padding-y="5px"
                 >
                     <BootstrapAccordionItem
-                        id="Accordion8_1_1"
-                        text="allgemeine Methodische Erläuterungen"
+                        id="Accordion8-1-1"
+                        :text="translate('stepEight.accordion.accordion8_1_1.title')"
                     >
-                        <p>Platzhalter für allgemeine methodische Erläuterungen und Abbildungen zur Multikriteriellen Analyse in Bezug auf die Schritte 1-7</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_2"
-                        text="Erläuterungen zur Bevölkerungsgewichtung"
+                        id="Accordion8-1-2"
+                        :text="translate('stepEight.accordion.accordion8_1_2.title')"
                     >
-                        <p>Platzhalter für methodische Erläuterungen zur Berücksichtigung der Bevölkerung.</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_2.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_3"
-                        text="Erläuterungen zur Darstellungsweise Heatmap"
+                        id="Accordion8-1-3"
+                        :text="translate('stepEight.accordion.accordion8_1_3.title')"
                     >
-                        <p>Platzhalter zur Darstellung und Interpretation der Heatmap.</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_3.text') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
-                        id="Accordion8_1_4"
-                        text="Formelsammlung"
+                        id="Accordion8-1-4"
+                        :text="translate('stepEight.accordion.accordion8_1_4.title')"
                     >
-                        <p>Formeln, die zur Berechnung angewendet werden und auf die in den obigen Akkordeons verwiesen wird.Die Formeln werden an einer Stelle gesammelt, damit die obigen Akkordeons für den Großteil der Adressaten flüssiger lesbar ist,  wenn die Herleitung und textliche Beschreibung nicht allzu mathematisch erfolgt. Auf die Formeln wird im Text verwiesen.</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_4.text') }}</p>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
             </BootstrapAccordionItem>

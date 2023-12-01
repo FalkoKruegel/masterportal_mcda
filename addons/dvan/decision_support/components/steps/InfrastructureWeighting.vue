@@ -20,12 +20,12 @@ export default {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     watch: {
-        "stepThree.selected_facilities": {
+        "stepThree.selectedFacilities": {
             handler () {
-                for (const group in this.stepThree.selected_facilities) {
-                    for (const name in this.stepThree.selected_facilities[group]) {
-                        if (this.stepThree.selected_facilities[group][name] === "") {
-                            this.stepSix.facility_weights[group][name] = 0;
+                for (const group in this.stepThree.selectedFacilities) {
+                    for (const name in this.stepThree.selectedFacilities[group]) {
+                        if (this.stepThree.selectedFacilities[group][name] === "") {
+                            this.stepSix.facilityWeights[group][name] = 0;
                         }
                     }
                 }
@@ -52,23 +52,46 @@ export default {
         },
 
         getGroupName (name) {
-            return "Gewichtung " + this.stepThree.facilities[name].text;
+            return this.translate("stepSix.weighting") + " " + this.translate(this.stepThree.facilities[name].text);
         },
 
         getFacilityName (group, name, value) {
+
+            // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
+                // this if-condition is applied to physicians
+                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
-                    return item.text;
+                    return this.translate(item.text);
                 }
 
-                return item.items[value].text;
+                return this.translate(item.items[value].text);
 
             }
 
-            return item.text;
+            return this.translate(item.text);
 
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -76,28 +99,28 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.</p>
-        <p>Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird.</p>
+        <p>{{ translate('stepSix.text.text1') }}</p>
+        <p>{{ translate('stepSix.text.text2') }}</p>
         <BootstrapAccordion
-            id="Accordion_3"
+            id="Accordion3"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepSix.facility_weights"
-                :id="`Accordion6_${group_index}`"
-                :key="group_index"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepSix.facilityWeights"
+                :id="`Accordion6-${groupIndex}`"
+                :key="groupIndex"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <BootstrapRangeSlider
-                    v-for="(item, name, index) in group_item"
-                    :id="`Range6_${group_index}_${index}`"
+                    v-for="(item, name, index) in groupItem"
+                    :id="`Range6-${groupIndex}-${index}`"
                     :key="index"
-                    :value="stepSix.facility_weights[group_name][name]"
-                    :disabled="stepThree.selected_facilities[group_name][name] === ''"
-                    @input="e => stepSix.facility_weights[group_name][name] = e"
+                    :value="stepSix.facilityWeights[groupName][name]"
+                    :disabled="stepThree.selectedFacilities[groupName][name] === ''"
+                    @input="e => stepSix.facilityWeights[groupName][name] = e"
                 >
-                    {{ getFacilityName(group_name, name, stepThree.selected_facilities[group_name][name]) }}
+                    {{ getFacilityName(groupName, name, stepThree.selectedFacilities[groupName][name]) }}
                 </BootstrapRangeSlider>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

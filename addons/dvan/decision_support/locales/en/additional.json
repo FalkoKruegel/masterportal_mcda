@@ -1,0 +1,210 @@
+{
+    "modules": {
+        "tools": {
+            "decisionSupport": {
+                "title": "Decision Support",
+                "accordionFooter": {
+                    "back": "Back",
+                    "next": "Next",
+                    "startAnalysis": "Start analysis",
+                    "saveAnalysis": "Save analysis"
+                },
+                "localSupply": {
+                    "text": "Local supply",
+                    "supermarket": "Supermarkets",
+                    "discounter": "Discounter",
+                    "otherLocalSupply": "Other grocery stores"
+                },
+                "health": {
+                    "text": "Health",
+                    "pharmacy": "Pharmacies",
+                    "clinic": "University hospitals and planned hospitals",
+                    "physicians": {
+                        "text": "Physicians",
+                        "generalPhysicians": "General Physicians",
+                        "paediatrician": "Paediatricians",
+                        "ophthalmologist": "Ophthalmologists",
+                        "surgeon": "Surgeons and orthopedists",
+                        "gynaecologist": "Gynaecologists",
+                        "dermatologist": "Dermatologists",
+                        "otolaryngologist": "Otolaryngologists",
+                        "neurologist": "Neurologists",
+                        "psychotherapists": "Psychotherapists",
+                        "urologists": "Urologists"
+                    }
+                },
+                "education": {
+                    "text": "Education",
+                    "nursery": "Nurseries",
+                    "primarySchool": "Primary schools",
+                    "secondarySchool1": "Secondary level 1",
+                    "secondarySchool2": "Secondary level 2"
+                },
+                "tooltip": {
+                    "otherLocalSupply": "These include artisan grocery store locations (bakers/ butchers), farm and wholefood shops, and other grocery stores.",
+                    "nursery": "Institutions for the care of children until their sixth year of life. Without 'Hort'.",
+                    "primarySchool": "Primary school covers the grades 1 until 4.",
+                    "secondarySchool1": "'Haupt'-, 'Real'-, 'Ober'- and 'Gesamtschulen' without the possibility to achieve the '(Fach)Hochschulreife'.",
+                    "secondarySchool2": "'Gesamtschulen' and grammar schools with the possibility to achieve the '(Fach)Hochschulreife'."
+                },
+                "standardAgeGroups": {
+                    "std_00_09":"0-9 years",
+                    "std_10_19": "10-19 years",
+                    "std_20_39": "20-39 years",
+                    "std_40_59": "40-59 years",
+                    "std_60_79": "60-79 years",
+                    "std_80x": "ab 80 years"
+                },
+                "kidsAgeGroups": {
+                    "ksc_00_02": "0-2 years",
+                    "ksc_03_05": "3-5 years",
+                    "ksc_06_09": "6-9 years",
+                    "ksc_10_14": "10-14 years",
+                    "ksc_15_17": "15-17 years",
+                    "ksc_18_19": "18-19 years",
+                    "ksc_20x": "ab 20 years"
+                },
+                "stepOne": {
+                    "title": "Step 1: Start analysis or load existing analysis",
+                    "loadAnalysisSettings": "Load saved analysis",
+                    "startNewAnalysis": "Start new analysis",
+                    "incorrectParameterFile": "The parmeter file you are using is corrupted. Please try again.",
+                    "text": {
+                        "text1": "The 'Decision Support' tool considers the supply situation in services of general interest according to your self-selected criteria.",
+                        "text2": "As a result, you receive various layers on the supply situation. These can be used, for example, to assess the supply situation, analyze demand, and identify structural spatial differences."
+                    }
+                },
+                "stepTwo": {
+                    "title": "Step 2: Choose study area",
+                    "text": {
+                        "text1": "Please select a study area from one of the lists."
+                    },
+                    "checkbox": {
+                        "checkbox2_1": "Lower Saxony-wide analysis",
+                        "checkbox2_2": "Select own area"
+                    },
+                    "callout": {
+                        "callout2_1": "Hold down the Ctrl key and drag open a map window for the area selection!"
+                    }
+                },
+                "stepThree": {
+                    "title": "Step 3: Relevant infrastructures",
+                    "text": {
+                        "text1": "Please select infrastructures that you want to include in the analysis:"
+                    },
+                    "callout": {
+                        "callout3_1": "Only one doctor group can be selected.",
+                        "callout3_2": {
+                            "firstPart": "The school structures and the type of school in Lower Saxony can be found at the following ",
+                            "secondPart": "."
+                        }
+                    }
+                },
+                "stepFour": {
+                    "title": "Step 4: Select population's age group",
+                    "text": {
+                        "text1": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
+                    },
+                    "accordion": {
+                        "accordion4_1": "Total population",
+                        "accordion4_2": "DVAN standard population groups",
+                        "accordion4_3": "DVAN population groups for daycare and schools"
+                    },
+                    "checkbox": {
+                        "checkbox4_1_1": "Consideration of the total population"
+                    }
+                },
+                "stepFive": {
+                    "title": "Step 5: Accessibility calculation",
+                    "text": {
+                        "text1": "Minimum accessibility standards (travel distance/travel time) to facilities and services of general interest ensure nationwide supply coverage.",
+                        "text2": "If the corresponding threshold values are reached, it can be assumed that there is an undersupply. Likewise, the quality of supply increases the shorter the travel distance from the place of residence to the infrastructure. Recommended values are already stored for the selected infrastructures. They apply to accessibility by car. The preset travel times can be adjusted for demand-oriented simulations.",
+                        "text3": "Please store which means of transport should apply to determine the travel time for your analysis. The following means of transport are available for the calculation:",
+                        "text4": "In addition, for each of the selected infrastructures, store which supply situation should occur when a certain travel time is exceeded to reach this infrastructure from the demand location. The categories are divided as follows:",
+                        "text5": "If the travel time from the demand location to the infrastructure exceeds the deficient supply threshold, no supply to the demand location is provided by the infrastructure.",
+                        "thresholdText": "Threshold"
+                    },
+                    "travelModes": {
+                        "driving-car": "car",
+                        "public-transit": "public transport",
+                        "walking-foot": "foot"
+                    },
+                    "timeInput": {
+                        "supplySituation": "supply situation",
+                        "till": "till",
+                        "threshold": "thresholds",
+                        "timeZones": {
+                            "veryGood": "very good",
+                            "good": "good",
+                            "sufficient": "sufficient",
+                            "deficient": "deficient"
+                        }
+                    },
+                    "accordion": {
+                        "accordion5_1": "Explanation of the adjustment of travel times",
+                        "accordion5_2": "Means of transportation"
+                    }
+                },
+                "stepSix": {
+                    "title": "Step 6: Weighting",
+                    "text": {
+                        "text1": "It is possible to assign individual weightings to determine how important each infrastructure should be in your analysis.",
+                        "text2": "You can assign values between 0 and 100 using the slider. Please note that a value of 0 means that the infrastructure is not included in the analysis."
+                    },
+                    "weighting": "Weighting"
+                },
+                "stepSeven": {
+                    "title": "Step 7: Summary of input values",
+                    "text": {
+                        "text1": "You have stored the following settings which are used for the calculation:",
+                        "text2": "Infrastructure",
+                        "text3": "On/",
+                        "text4": "Off",
+                        "text5": "Weight",
+                        "text6": "Click on",
+                        "text7": " to start the calculation or on",
+                        "text8": " to adjust your settings.",
+                        "text9": "The calculation is available after a few moments."
+                    },
+                    "summary": "Summary"
+                },
+                "stepEight": {
+                    "title": "Step 8: Results",
+                    "text": {
+                        "text1": "You will get a map that shows a spatial coverage level of the settings you selected.",
+                        "text2": "For each selected infrastructure, you will receive a map layer that can be activated and that shows the accessibility according to the distance zones stored. You can select the map layers individually for a detailed analysis via the drop-down list.",
+                        "text3": "The respective representation can be further weighted over the selected population groups and/or represented as a heat map map.",
+                        "text4": "Add to map window:"
+                    },
+                    "callout": {
+                        "callout8_1": "Please start the calculation to get the results.",
+                        "callout8_2": "The result will be ready shortly..."
+                    },
+                    "checkbox": {
+                        "checkbox8_1": "Population weighted representation",
+                        "checkbox8_2": "Heatmap representation"
+                    },
+                    "accordion": {
+                        "title": "Methodological explanations",
+                        "accordion8_1_1": {
+                            "title": "General methodological explanations",
+                            "text": "Placeholder for general methodological explanations and illustrations for Multicriteria Analysis in relation to steps 1-7."
+                        },
+                        "accordion8_1_2": {
+                            "title": "Explanations on population weighting",
+                            "text": "Placeholder for methodological explanations on the consideration of population."
+                        },
+                        "accordion8_1_3": {
+                            "title": "Explanation of the display mode Heatmap",
+                            "text": "Placeholder for displaying and interpreting the heatmap."
+                        },
+                        "accordion8_1_4": {
+                            "title": "Formulary",
+                            "text": "Formulas used for calculation and referred to in the above accordions. The formulas are collected in one place, because the above accordions are more fluent readable for the majority of the addressees, if the derivation and textual description is not too mathematical. The formulas are referred to in the text."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

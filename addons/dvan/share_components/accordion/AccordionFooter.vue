@@ -50,7 +50,6 @@ export default {
 
 <template lang="html">
     <!--following div contains two buttons which emit forward and back events to navigate between different items-->
-    <!--buttons are connected to firstLastItem attribute via v-if which only allows rendering if footer does not belong to the first or last item of an accordion-->
     <div
         class="container"
     >

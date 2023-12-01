@@ -1,0 +1,210 @@
+{
+    "modules": {
+        "tools": {
+            "decisionSupport": {
+                "title": "Entscheidungsunterstützung",
+                "accordionFooter": {
+                    "back": "Zurück",
+                    "next": "Weiter",
+                    "startAnalysis": "Analyse starten",
+                    "saveAnalysis": "Analyse speichern"
+                },
+                "localSupply": {
+                    "text": "Nahversorgung",
+                    "supermarket": "Supermärkte",
+                    "discounter": "Discounter",
+                    "otherLocalSupply": "sonstige Lebensmittelgeschäfte"
+                },
+                "health": {
+                    "text": "Gesundheit",
+                    "pharmacy": "Apotheken",
+                    "clinic": "Hochschulkliniken und Plankrankenhäuser",
+                    "physicians": {
+                        "text": "Ärzte",
+                        "generalPhysicians": "Hausärzte",
+                        "paediatrician": "Kinder- und Jugendärzte",
+                        "ophthalmologist": "Augenärzte",
+                        "surgeon": "Chirurgen und Orthopäden",
+                        "gynaecologist": "Frauenärzte",
+                        "dermatologist": "Hautärzte",
+                        "otolaryngologist": "HNO-Ärzte",
+                        "neurologist": "Nervenärzte",
+                        "psychotherapists": "Psychotherapeuten",
+                        "urologists": "Urologen"
+                    }
+                },
+                "education": {
+                    "text": "Bildung",
+                    "nursery": "Kindertagesstätten",
+                    "primarySchool": "Primärschulen",
+                    "secondarySchool1": "Sekundarstufe Bereich 1, ohne (Fach)Hochschulreife",
+                    "secondarySchool2": "Sekundarstufe Bereich 1 und 2, mit Möglichkeit zu Erwerb der (Fach)Hochschulreife"
+                },
+                "tooltip": {
+                    "otherLocalSupply": "Hierzu zählen Standorte des Lebensmittelhandwerkes (Bäcker/Fleischer), Hof- und Bioläden und sonstige Lebensmittelgeschäfte.",
+                    "nursery": "Einrichtungen zur Betreuung von Kindern  bis zum sechsten Lebensjahr. Ohne Horteinrichtungen.",
+                    "primarySchool": "Primärbereich umfasst die 1. bis 4. Schuljahrgänge.",
+                    "secondarySchool1": "Haupt-, Real-, Ober- und Gesamtschulen ohne Möglichkeit zum Erwerb der (Fach)Hochschulreife.",
+                    "secondarySchool2": "Gesamtschulen und Gymnasien mit Möglichkeiten zum Erwerb der (Fach)Hochschulreife."
+                },
+                "standardAgeGroups": {
+                    "std_00_09":"0-9 Jahre",
+                    "std_10_19": "10-19 Jahre",
+                    "std_20_39": "20-39 Jahre",
+                    "std_40_59": "40-59 Jahre",
+                    "std_60_79": "60-79 Jahre",
+                    "std_80x": "ab 80 Jahre"
+                },
+                "kidsAgeGroups": {
+                    "ksc_00_02": "0-2 Jahre",
+                    "ksc_03_05": "3-5 Jahre",
+                    "ksc_06_09": "6-9 Jahre",
+                    "ksc_10_14": "10-14 Jahre",
+                    "ksc_15_17": "15-17 Jahre",
+                    "ksc_18_19": "18-19 Jahre",
+                    "ksc_20x": "ab 20 Jahre"
+                },
+                "stepOne": {
+                    "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
+                    "loadAnalysisSettings": "Analyseeinstellungen laden",
+                    "startNewAnalysis": "Neue Analyse durchführen",
+                    "incorrectParameterFile": "Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.",
+                    "text": {
+                        "text1": "Das Tool „Entscheidungsunterstützung“ betrachtet die Versorgungssituation in der Daseinsvorsorge entsprechend ihrer selbstgewählten Kriterien.",
+                        "text2": "Im Ergebnis erhalten Sie verschiedene Layer zur Versorgungslage. Diese können beispielsweise für die Einschätzung der Versorgungssituation, Bedarfsanalyse sowie Identifizierung struktureller räumlicher Unterschiede genutzt werden."
+                    }
+                },
+                "stepTwo": {
+                    "title": "Schritt 2: Untersuchungsgebiet wählen",
+                    "text": {
+                        "text1": "Bitte wählen Sie ein Analysegebiet aus einer der Listen."
+                    },
+                    "checkbox": {
+                        "checkbox2_1": "Niedersachsenweite Analyse",
+                        "checkbox2_2": "Eigene Gebietsselektion"
+                    },
+                    "callout": {
+                        "callout2_1": "Halten Sie die Strg-Taste gedrückt und ziehen Sie für die Gebietsselektion ein Kartenfenster auf!"
+                    }
+                },
+                "stepThree": {
+                    "title": "Schritt 3: Relevante Infrastrukturen",
+                    "text": {
+                        "text1": "Bitte wählen Sie Infrastrukturen, die Sie in die Analyse einbeziehen wollen:"
+                    },
+                    "callout": {
+                        "callout3_1": "Es kann nur eine Arztgruppe ausgewählt werden.",
+                        "callout3_2": {
+                            "firstPart": "Die niedersächsischen Schulstrukturen und die Schulform lassen sich unter folgendem ",
+                            "secondPart": "abrufen."
+                        }
+                    }
+                },
+                "stepFour": {
+                    "title": "Schritt 4: Altersgruppe der Bevölkerung auswählen",
+                    "text": {
+                        "text1": "Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:"
+                    },
+                    "accordion": {
+                        "accordion4_1": "Gesamte Bevölkerung",
+                        "accordion4_2": "DVAN-Standardbevölkerungsgruppen",
+                        "accordion4_3": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
+                    },
+                    "checkbox": {
+                        "checkbox4_1_1": "Berücksichtigung der Gesamtbevölkerung"
+                    }
+                },
+                "stepFive": {
+                    "title": "Schritt 5: Erreichbarkeitsberechnung",
+                    "text": {
+                        "text1": "Über Mindeststandards in der Erreichbarkeit (Reiseweg / Reisezeit) zu Einrichtungen und Dienstleistungen der Daseinsvorsorge wird die flächendeckende Versorgung gewährleistet.",
+                        "text2": "Werden entsprechende Grenzwerte erreicht, kann von einer Unterversorgung ausgegangen werden. Ebenso steigt die Versorgungsqualität je geringer die Reisewege vom Wohnstandort zur Infrastruktur ist. Zu den ausgewählten Infrastrukturen sind bereits empfohlene Werte hinterlegt. Sie gelten für die Erreichbarkeit über PKW. Für bedarfsgrechte Simulationen können die voreingestellten Reisezeiten angepasst werden.",
+                        "text3": "Bitte hinterlegen Sie, welches Transportmittel zur Ermittlung der Reisezeit für Ihre Analyse gelten soll. Folgende Transportmittel sind für die Berechnung verfübar:",
+                        "text4": "Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:",
+                        "text5": "Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.",
+                        "thresholdText": "Schwellwert"
+                    },
+                    "travelModes": {
+                        "driving-car": "PKW",
+                        "public-transit": "ÖPNV",
+                        "walking-foot": "Fuß"
+                    },
+                    "timeInput": {
+                        "supplySituation": "Versorgungslage",
+                        "till": "bis",
+                        "threshold": "Schwellwerte",
+                        "timeZones": {
+                            "veryGood": "Sehr gute",
+                            "good": "Gute",
+                            "sufficient": "Ausreichende",
+                            "deficient": "Mangelhafte"
+                        }
+                    },
+                    "accordion": {
+                        "accordion5_1": "Erläuterung zur Anpassung der Reisezeiten",
+                        "accordion5_2": "Transportmittel"
+                    }
+                },
+                "stepSix": {
+                    "title": "Schritt 6: Gewichtung",
+                    "text": {
+                        "text1": "Sie haben die Möglichkeit, individuelle Gewichtungen zuzuweisen, um zu bestimmen, wie wichtig jede Infrastruktur in Ihrer Analyse sein soll.",
+                        "text2": "Sie können Werte zwischen 0 und 100  über den Schieberegler vergeben. Bitte beachten Sie, dass ein Wert von 0 bedeutet, dass die Infrastruktur in der Analyse nicht berücksichtigt wird."
+                    },
+                    "weighting": "Gewichtung"
+                },
+                "stepSeven": {
+                    "title": "Schritt 7: Zusammenfassung der Eingabewerte",
+                    "text": {
+                        "text1": "Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:",
+                        "text2": "Infrastruktur",
+                        "text3": "An/",
+                        "text4": "Aus",
+                        "text5": "Gewicht",
+                        "text6": "Klicken Sie auf",
+                        "text7": ", um die Berechnung zu starten oder auf",
+                        "text8": ", um Ihre Einstellungen anzupassen.",
+                        "text9": "Die Berechnung steht nach wenigen Momenten zur Verfügung."
+                    },
+                    "summary": "Zusammenfassung"
+                },
+                "stepEight": {
+                    "title": "Schritt 8: Ergebnisse",
+                    "text": {
+                        "text1": "Sie erhalten eine Kartendarstellung, die ein räumliches Versorgungsniveau der von Ihnen gewählten Einstellungen wiedergibt.",
+                        "text2": "Für jede ausgewählte Infrastruktur erhalten sie einen aktivierbaren Kartenlayer, welcher die Erreichbarkeiten entsprechend der hinterlegten Entfernungszonen darstellt. Sie können die Kartenlayer für eine detaillierte Analyse über die Drop-Down-Liste einzeln auswählen.",
+                        "text3": "Die jeweilige Darstellungen lässt sich weiterhin über die ausgewählten Bevölkerungsgruppen gewichten und/ oder als Heatmapkarte darstellen.",
+                        "text4": "Kartenfenster ergänzen um:"
+                    },
+                    "callout": {
+                        "callout8_1": "Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten.",
+                        "callout8_2": "Das Ergebnis steht in Kürze bereit..."
+                    },
+                    "checkbox": {
+                        "checkbox8_1": "Bevölkerungsgewichtete Darstellung",
+                        "checkbox8_2": "Heatmap Darstellung"
+                    },
+                    "accordion": {
+                        "title": "Methodische Erläuterungen",
+                        "accordion8_1_1": {
+                            "title": "Allgemeine Methodische Erläuterungen",
+                            "text": "Platzhalter für allgemeine methodische Erläuterungen und Abbildungen zur Multikriteriellen Analyse in Bezug auf die Schritte 1-7"
+                        },
+                        "accordion8_1_2": {
+                            "title": "Erläuterungen zur Bevölkerungsgewichtung",
+                            "text": "Platzhalter für methodische Erläuterungen zur Berücksichtigung der Bevölkerung."
+                        },
+                        "accordion8_1_3": {
+                            "title": "Erläuterungen zur Darstellungsweise Heatmap",
+                            "text": "Platzhalter zur Darstellung und Interpretation der Heatmap."
+                        },
+                        "accordion8_1_4": {
+                            "title": "Formelsammlung",
+                            "text": "Formeln, die zur Berechnung angewendet werden und auf die in den obigen Akkordeons verwiesen wird. Die Formeln werden an einer Stelle gesammelt, weil die obigen Akkordeons für den Großteil der Adressaten flüssiger lesbar sind,  wenn die Herleitung und textliche Beschreibung nicht allzu mathematisch erfolgt. Auf die Formeln wird im Text verwiesen."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

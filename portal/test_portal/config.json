@@ -14,7 +14,7 @@
       "visibleVector": {},
       "tree": {},
 			"startZoomLevel": 9,
-			"placeholder": "Suche nach: Adressen oder aktiven WFS"
+			"placeholder": "translate#common:modules.searchbar.placeholder.addressActiveWFS"
 		},
 		"mapView": {
 			"backgroundImage": "./resources/img/backgroundCanvas.jpeg",
@@ -36,14 +36,14 @@
 		},
 		"menu": {
 			"tree": {
-				"name": "Themen"
+				"name": "translate#common:menu.topics"
 			},
 			"utilities": {
-				"name": "Räumliche Analysen",
+				"name": "translate#common:menu.spatialAnalysis",
 				"icon": "bi-compass",
 				"children": {
 					"decisionSupport": {
-						"name": "Entscheidungsunterstützung"
+						"name": "translate#additional:modules.tools.decisionSupport.title"
 					},
 					"spatialAccess": {
 						"name": "Räumlicher Zugang"
@@ -60,10 +60,10 @@
 				}
 			},
 			"tools": {
-				"name": "Werkzeuge",
+				"name": "translate#common:menu.tools.name",
 				"children": {
 					"gfi": {
-						"name": "Informationen abfragen",
+						"name": "translate#common:menu.tools.getInfos",
 						"active": true
 					},	
 					"scaleSwitcher": {
@@ -72,29 +72,29 @@
 						"renderToWindow": true
 					},
 					"coordToolkit": {
-						"name": "Koordinaten"
+						"name": "translate#common:menu.tools.coordToolkit"
 					},
 					"measure": {
-						"name": "Strecke / Fläche messen"
+						"name": "translate#common:menu.tools.measure"
 					},
 					"draw": {
-						"name": "Zeichnen / Schreiben"
+						"name": "translate#common:menu.tools.draw"
 					},
 					"fileImport": {
-            			"name": "Datei Import"
+            			"name": "translate#common:menu.tools.fileImport"
 					},
 					"saveSelection": {
-						"name": "Auswahl speichern"
+						"name": "translate#common:menu.tools.saveSelection"
 					}
 				}
 			},
 			"legend": {
-				"name": "Legende",
+				"name": "common:modules.legend.name",
 				"showCollapseAllButton":true,
 				"showLegend": false
 			},
 			"info": {
-				"name": "Informationen",
+				"name": "translate#common:menu.info",
 				"children": {
 					"staticlinks": [
 						{

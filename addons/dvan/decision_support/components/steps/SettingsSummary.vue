@@ -70,25 +70,46 @@ export default {
             }
             return "deactivated";
         },
-
         getGroupName (name) {
-            return "Zusammenfassung " + this.stepThree.facilities[name].text;
+            return this.translate("stepSeven.summary") + " " + this.translate(this.stepThree.facilities[name].text);
         },
 
         getFacilityName (group, name, value) {
+
+            // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
+                // this if-condition is applied to physicians
+                // checks if a physician has been chosen in the infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
-                    return item.text;
+                    return this.translate(item.text);
                 }
 
-                return item.items[value].text;
+                return this.translate(item.items[value].text);
 
             }
 
-            return item.text;
+            return this.translate(item.text);
 
+        },
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -96,44 +117,44 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Folgende Einstellungen haben Sie hinterlegt und werden zur Berechnung verwendet:</p>
+        <p>{{ translate('stepSeven.text.text1') }}</p>
         <BootstrapAccordion
-            id="Accordion_7"
+            id="Accordion7"
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
-                v-for="(group_item, group_name, group_index) in stepThree.selected_facilities"
-                :id="`Accordion7_${group_index}`"
-                :key="group_index"
-                :text="getGroupName(group_name)"
-                :status="selectionStatus(stepThree.selected_facilities[group_name])"
+                v-for="(groupItem, groupName, groupIndex) in stepThree.selectedFacilities"
+                :id="`Accordion7-${groupIndex}`"
+                :key="groupIndex"
+                :text="getGroupName(groupName)"
+                :status="selectionStatus(stepThree.selectedFacilities[groupName])"
             >
                 <div class="card">
                     <div class="card-header">
-                        <span class="text">Infrastruktur</span>
-                        <span class="value">An/<br>Aus</span>
-                        <span class="value">Gewicht</span>
+                        <span class="text">{{ translate('stepSeven.text.text2') }}</span>
+                        <span class="value">{{ translate('stepSeven.text.text3') }}<br>{{ translate('stepSeven.text.text4') }}</span>
+                        <span class="value">{{ translate('stepSeven.text.text5') }}</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li
-                            v-for="(item, name, index) in group_item"
+                            v-for="(item, name, index) in groupItem"
                             :key="index"
                             class="list-group-item"
                         >
-                            <span class="text">{{ getFacilityName(group_name, name, item) }}</span>
+                            <span class="text">{{ getFacilityName(groupName, name, item) }}</span>
                             <span
                                 class="icon"
                                 v-html="item !== '' ? checkIcon : xIcon"
                             />
-                            <span class="value">{{ stepSix.facility_weights[group_name][name] }}%</span>
+                            <span class="value">{{ stepSix.facilityWeights[groupName][name] }}%</span>
                         </li>
                     </ul>
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>
         <br>
-        <p>Klicken Sie auf "Weiter" um die Berechnung zu starten oder auf "Zurück" um Einstellungen anzupassen</p>
-        <p>Die Berechnung steht nach wenigen Momenten zur Verfügung.</p>
+        <p>{{ translate('stepSeven.text.text6') }} "{{ translate('accordionFooter.startAnalysis') }}"{{ translate('stepSeven.text.text7') }} "{{ translate('accordionFooter.back') }}"{{ translate('stepSeven.text.text8') }}</p>
+        <p>{{ translate('stepSeven.text.text9') }}</p>
     </div>
 </template>
 

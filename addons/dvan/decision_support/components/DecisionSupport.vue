@@ -1,8 +1,8 @@
 
 <script>
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
-import AccordionItem from "./AccordionItem.vue";
-import AccordionFooter from "./AccordionFooter.vue";
+import AccordionItem from "../../share_components/accordion/AccordionItem.vue";
+import AccordionFooter from "../../share_components/accordion/AccordionFooter.vue";
 import StartAnalysis from "./steps/StartAnalysis.vue";
 import ChooseStudyArea from "./steps/ChooseStudyArea.vue";
 import SelectedInfrastructure from "./steps/SelectedInfrastructure.vue";
@@ -57,9 +57,9 @@ export default {
             return "invalid";
         },
         statusStepThree () {
-            for (const group in this.stepThree.selected_facilities) {
-                for (const name in this.stepThree.selected_facilities[group]) {
-                    if (this.stepThree.selected_facilities[group][name] !== "") {
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const name in this.stepThree.selectedFacilities[group]) {
+                    if (this.stepThree.selectedFacilities[group][name] !== "") {
                         return "valid";
                     }
                 }
@@ -73,18 +73,18 @@ export default {
             return "invalid";
         },
         statusStepFive () {
-            for (const group in this.stepFive.time_zones) {
-                for (const name in this.stepFive.time_zones[group]) {
+            for (const group in this.stepFive.timeZones) {
+                for (const name in this.stepFive.timeZones[group]) {
                     for (let i = 0; i < 4; i++) {
-                        if (this.stepFive.time_zones[group][name][i] < this.stepFive.minValue) {
+                        if (this.stepFive.timeZones[group][name][i] < this.stepFive.minValue) {
                             return "invalid";
                         }
-                        if (this.stepFive.time_zones[group][name][i] > this.stepFive.maxValue) {
+                        if (this.stepFive.timeZones[group][name][i] > this.stepFive.maxValue) {
                             return "invalid";
                         }
                     }
                     for (let i = 1; i < 4; i++) {
-                        if (this.stepFive.time_zones[group][name][i] <= this.stepFive.time_zones[group][name][i - 1]) {
+                        if (this.stepFive.timeZones[group][name][i] <= this.stepFive.timeZones[group][name][i - 1]) {
                             return "invalid";
                         }
                     }
@@ -93,9 +93,9 @@ export default {
             return "valid";
         },
         statusStepSix () {
-            for (const group in this.stepThree.selected_facilities) {
-                for (const name in this.stepThree.selected_facilities[group]) {
-                    if (this.stepSix.facility_weights[group][name] !== 0) {
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const name in this.stepThree.selectedFacilities[group]) {
+                    if (this.stepSix.facilityWeights[group][name] !== 0) {
                         return "valid";
                     }
                 }
@@ -221,6 +221,25 @@ export default {
             a.href = window.URL.createObjectURL(blob);
             a.download = "settings.json";
             a.click();
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -228,7 +247,7 @@ export default {
 
 <template lang="html">
     <ToolTemplate
-        :title="'Tool zu Entscheidungsunterstützung'"
+        :title="translate('title')"
         :icon="icon"
         :active="active"
         :render-to-window="renderToWindow"
@@ -242,7 +261,7 @@ export default {
                 class="accordion accordion-flush full-window"
             >
                 <AccordionItem
-                    title="Schritt 1: Analyse starten oder bestehende Analyse laden"
+                    :title="translate('stepOne.title')"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"
@@ -252,88 +271,100 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 2: Untersuchungsgebiet wählen"
+                    :title="translate('stepTwo.title')"
                     :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
                     <ChooseStudyArea />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 3: Relevante Infrastrukturen"
+                    :title="translate('stepThree.title')"
                     :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
                     <SelectedInfrastructure />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
+                    :title="translate('stepFour.title')"
                     :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
                     <SelectedPopulation />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 5: Erreichbarkeitsberechnung"
+                    :title="translate('stepFive.title')"
                     :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
                     <AccessibilityMeasurement />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(3)"
                         @forwardClick="openStep(5)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 6: Gewichtung"
+                    :title="translate('stepSix.title')"
                     :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
                     <InfrastructureWeighting />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(4)"
                         @forwardClick="openStep(6)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 7: Zusammenfassung der Eingabewerte"
+                    :title="translate('stepSeven.title')"
                     :status="statusStepSeven"
                     :opened="steps[6]"
                     @click="openStep(6)"
                 >
                     <SettingsSummary />
                     <AccordionFooter
-                        forward-text="Analyse starten"
+                        :forward-text="translate('accordionFooter.startAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         :forward-active="statusStepSeven === 'valid'"
                         @backClick="openStep(5)"
                         @forwardClick="() => { openStep(7); runTest(); }"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 8: Ergebnisse"
+                    :title="translate('stepEight.title')"
                     :status="statusStepEight"
                     :opened="steps[7]"
                     @click="openStep(7)"
                 >
                     <AnalysisResults />
                     <AccordionFooter
-                        forward-text="Analyse speichern"
+                        :forward-text="translate('accordionFooter.saveAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="storeTest"
                         @backClick="openStep(6)"
                     />

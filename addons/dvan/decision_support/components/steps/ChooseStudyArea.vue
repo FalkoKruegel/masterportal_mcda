@@ -83,6 +83,25 @@ export default {
                 this.stepTwo.ownAreaExtent = null;
                 this.removeInteraction(dragBox);
             }
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.decisionSupport." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -91,29 +110,28 @@ export default {
 <template lang="html">
     <div>
         <p>
-            Bitte wählen Sie ein Analysegebiet aus einer der Listen.
+            {{ translate('stepTwo.text.text1') }}
         </p>
         <BootstrapCheckbox
-            id="Checkbox_2_1"
+            id="Checkbox2-1"
             v-model="stepTwo.wholeLowerSaxony"
-            text="Niedersachsenweite Analyse"
+            :text="translate('stepTwo.checkbox.checkbox2_1')"
             :disabled="stepTwo.ownArea"
         />
-        <!--there must be a bounding box-tool which is connected with the following checkbox-->
         <BootstrapCheckbox
-            id="Checkbox_2_2"
+            id="Checkbox2-2"
             :value="stepTwo.ownArea"
-            text="Eigene Gebietsselektion"
+            :text="translate('stepTwo.checkbox.checkbox2_2')"
             :disabled="stepTwo.wholeLowerSaxony"
             @input="e => activateOwnArea(e)"
         />
         <!--following div will only be rendered if checkbox for own area (above) is checked-->
         <div
             v-if="stepTwo.ownArea"
-            id="Callout2_1"
+            id="Callout2-1"
             class="callout"
         >
-            Halten Sie die Strg-Taste gedrückt und ziehen Sie für die Gebietsselektion ein Kartenfenster auf!
+            {{ translate('stepTwo.callout.callout2_1') }}
         </div>
     </div>
 </template>
