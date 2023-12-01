@@ -1,11 +1,9 @@
 import store from "/src/app-store";
-// import {RasterStyle} from "../../../share_utils/layers/raster_style";
-// import { ContinousGridStyle } from "../../../share_utils/layers/grid/continuus_style";
-// import { GridLayer } from "../../../share_utils/layers/grid_layer";
 import {getMapView} from "../../../share_utils/map.js";
 import {LAYERS, getWMSLayer} from "./show_layers";
 import {initDeckLayer} from "../../../share_utils/deck.js";
 import {GridLayer, ContinousGridStyle} from "../../../share_utils/layers/deck_grid.js";
+// import {HeatMapLayer, HeatMapStyle} from "../../../share_utils/layers/deck_heatmap.js";
 
 /**
  * runs analysis and adds accessibility layer
@@ -62,7 +60,7 @@ async function runAnalysis () {
     // run request
     try {
         // const start = new Date().getTime();
-        const response = await fetch("http://localhost:5000/v1/spatial_access/grid", {
+        const response = await fetch("http://localhost:5000/v1/spatial_access/grid4", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
@@ -79,29 +77,6 @@ async function runAnalysis () {
         // console.log("Succesfully finished in " + time + " ms");
         const geojson = await response.json();
 
-        // const style = new RasterStyle("accessibility",
-        //     [255, 0, 0, 180],
-        //     [0, 255, 0, 180],
-        //     get_ranges(geojson.min, geojson.max, 10),
-        //     -9999,
-        //     [25, 25, 25, 100]
-        // );
-        // const style = new ContinousGridStyle("accessibility",
-        //     [255, 0, 0, 180],
-        //     [0, 255, 0, 180],
-        //     geojson.min, geojson.max,
-        //     -9999,
-        //     [25, 25, 25, 100]
-        // );
-        // const layer = new GridLayer({
-        //     features: geojson.features,
-        //     extend: geojson.extend,
-        //     size: geojson.size,
-        //     projection: "EPSG:25832",
-        //     style: style
-        // });
-        // const ol_layer = layer.getOlLayer();
-
         const style = new ContinousGridStyle("accessibility",
             [255, 0, 0, 180],
             [0, 255, 0, 180],
@@ -111,6 +86,12 @@ async function runAnalysis () {
         );
         const grid_layer = new GridLayer("spatial_access_accessibility", "Spatial Access", geojson.features, 100);
         const ol_layer = initDeckLayer(grid_layer, style);
+        // const style = new HeatMapStyle("accessibility",
+        //     [255, 0, 0, 180],
+        //     [0, 255, 0, 180],
+        // );
+        // const heat_layer = new HeatMapLayer("spatial_access_accessibility", "Spatial Access", geojson.features);
+        // const ol_layer = initDeckLayer(heat_layer, style);
 
         const attr = {
             type: "layer",

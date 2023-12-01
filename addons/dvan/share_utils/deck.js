@@ -40,10 +40,11 @@ function initDeckLayer (layer, style) {
     });
     /**
      * needed for eslint config
+     * @param {boolean} update true if layer style changed from previous call
      * @returns {void}
      */
-    const updateDeck = () => {
-        deck_layer = layer.getLayer(props.style);
+    const updateDeck = (update) => {
+        deck_layer = layer.getLayer(props.style, update);
         deck.setProps({layers: [deck_layer]});
         deck.redraw();
     };
@@ -73,14 +74,14 @@ function initDeckLayer (layer, style) {
     };
     ol_layer.setVisible = (value) => {
         props.visibile = value;
-        updateDeck();
+        updateDeck(false);
     };
     ol_layer.getStyle = () => {
         return props.style;
     };
     ol_layer.setStyle = (style) => {
         props.style = style;
-        updateDeck();
+        updateDeck(true);
     };
     ol_layer.renderer_ = {};
     ol_layer.source_ = {};

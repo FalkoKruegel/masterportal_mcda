@@ -4,7 +4,7 @@ import BootstrapAccordionItem from "../../../share_components/accordion/Bootstra
 import BootstrapCheckbox from "../../../share_components/BootstrapCheckbox.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
-import {changeStyle} from "../../utils/analysis/run_analysis";
+import {changeLayer} from "../../utils/analysis/run_analysis";
 import {convertLayerName} from "../../utils/util";
 
 export default {
@@ -16,7 +16,8 @@ export default {
     },
     data () {
         return {
-            selected_layer: "multiCritera",
+            selected_layer: "grid",
+            selected_attr: "multiCritera",
             weighted: false
         };
     },
@@ -43,18 +44,26 @@ export default {
     watch: {
         selected_layer (newVal) {
             if (this.weighted) {
-                changeStyle(newVal + "_weighted");
+                changeLayer(newVal, this.selected_attr + "_weighted");
             }
             else {
-                changeStyle(newVal);
+                changeLayer(newVal, this.selected_attr);
+            }
+        },
+        selected_attr (newVal) {
+            if (this.weighted) {
+                changeLayer(this.selected_layer, newVal + "_weighted");
+            }
+            else {
+                changeLayer(this.selected_layer, newVal);
             }
         },
         weighted (newVal) {
             if (newVal) {
-                changeStyle(this.selected_layer + "_weighted");
+                changeLayer(this.selected_layer, this.selected_attr + "_weighted");
             }
             else {
-                changeStyle(this.selected_layer);
+                changeLayer(this.selected_layer, this.selected_attr);
             }
         }
     },
@@ -128,7 +137,7 @@ export default {
                     class="btn btn-outline-primary btn-sm"
                     type="button"
                 >
-                    {{ convert(selected_layer) }}
+                    {{ convert(selected_attr) }}
                 </button>
                 <button
                     type="button"
@@ -155,7 +164,7 @@ export default {
                         <a
                             class="dropdown-item"
                             href="#"
-                            @click="selected_layer = layer"
+                            @click="selected_attr = layer"
                         >{{ convert(layer) }}</a>
                     </li>
                 </ul>
@@ -172,7 +181,9 @@ export default {
             />
             <BootstrapCheckbox
                 id="Checkbox8-2"
+                :value="selected_layer === 'heatmap'"
                 :text="translate('stepEight.checkbox.checkbox8_2')"
+                @input="e => e ? selected_layer = 'heatmap' : selected_layer = 'grid'"
             />
         </div>
         <br>

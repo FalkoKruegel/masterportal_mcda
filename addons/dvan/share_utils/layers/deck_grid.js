@@ -9,6 +9,7 @@ class GridLayer {
     name;
     features;
     cell_size;
+    changed;
 
     /**
      * creates a GridLayer
@@ -22,6 +23,7 @@ class GridLayer {
         this.name = name;
         this.features = features;
         this.cell_size = cell_size;
+        this.changed = {counter: 0};
     }
 
     /**
@@ -59,9 +61,13 @@ class GridLayer {
     /**
      * creates a deck-gl layer instance
      * @param {any} style style object
+     * @param {boolean} update true if layer style changed from previous call
      * @returns {any} deck-gl layer instance
      */
-    getLayer (style) {
+    getLayer (style, update) {
+        if (update) {
+            this.changed = {counter: this.changed.counter + 1};
+        }
         return new GridCellLayer({
             id: this.id,
             data: this.features,
@@ -72,7 +78,11 @@ class GridLayer {
             getFillColor: d => style.getColor(d.properties),
             elevationScale: 0,
             getElevation: 0,
-            coordinateSystem: COORDINATE_SYSTEM.CARTESIAN
+            coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
+
+            updateTriggers: {
+                getFillColor: this.changed
+            }
         });
     }
 }
