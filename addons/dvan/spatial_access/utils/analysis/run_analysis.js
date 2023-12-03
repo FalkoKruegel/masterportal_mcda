@@ -60,7 +60,7 @@ async function runAnalysis () {
     // run request
     try {
         // const start = new Date().getTime();
-        const response = await fetch("http://localhost:5000/v1/spatial_access/grid4", {
+        const response = await fetch("http://localhost:5000/v1/spatial_access/grid", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
