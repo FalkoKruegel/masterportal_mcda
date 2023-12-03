@@ -26,7 +26,7 @@ const state = {
                 items: {
                     "supermarket": {text: "localSupply.supermarket"},
                     "discounter": {text: "localSupply.discounter"},
-                    "otherLocalSupply": {text: "localSupply.otherLocalSupply", tooltip: "tooltip.otherLocalSupply"}
+                    "other_local_supply": {text: "localSupply.otherLocalSupply", tooltip: "tooltip.otherLocalSupply"}
                 }
             },
             "health": {
@@ -35,7 +35,7 @@ const state = {
                     "pharmacy": {text: "health.pharmacy"},
                     "clinic": {text: "health.clinic"},
                     "physicians": {isGroup: true, text: "health.physicians.text", items: {
-                        "generalPhysicians": {text: "health.physicians.generalPhysicians"},
+                        "general_physician": {text: "health.physicians.generalPhysicians"},
                         "paediatrician": {text: "health.physicians.paediatrician"},
                         "ophthalmologist": {text: "health.physicians.ophthalmologist"},
                         "surgeon": {text: "health.physicians.surgeon"},
@@ -43,8 +43,8 @@ const state = {
                         "dermatologist": {text: "health.physicians.dermatologist"},
                         "otolaryngologist": {text: "health.physicians.otolaryngologist"},
                         "neurologist": {text: "health.physicians.neurologist"},
-                        "psychotherapists": {text: "health.physicians.psychotherapists"},
-                        "urologists": {text: "health.physicians.urologists"}
+                        "psychotherapist": {text: "health.physicians.psychotherapists"},
+                        "urologist": {text: "health.physicians.urologists"}
                     }
                     }
                 }
@@ -53,9 +53,9 @@ const state = {
                 text: "education.text",
                 items: {
                     "nursery": {text: "education.nursery", tooltip: "tooltip.nursery"},
-                    "primarySchool": {text: "education.primarySchool", tooltip: "tooltip.primarySchool"},
-                    "secondarySchool1": {text: "education.secondarySchool1", tooltip: "tooltip.secondarySchool1"},
-                    "secondarySchool2": {text: "education.secondarySchool2", tooltip: "tooltip.secondarySchool2"}
+                    "primary_school": {text: "education.primarySchool", tooltip: "tooltip.primarySchool"},
+                    "secondary_school_1": {text: "education.secondarySchool1", tooltip: "tooltip.secondarySchool1"},
+                    "secondary_school_2": {text: "education.secondarySchool2", tooltip: "tooltip.secondarySchool2"}
                 }
             }
         },
@@ -65,7 +65,7 @@ const state = {
             "localSupply": {
                 "supermarket": "",
                 "discounter": "",
-                "otherLocalSupply": ""
+                "other_local_supply": ""
             },
             "health": {
                 "pharmacy": "",
@@ -74,9 +74,9 @@ const state = {
             },
             "education": {
                 "nursery": "",
-                "primarySchool": "",
-                "secondarySchool1": "",
-                "secondarySchool2": ""
+                "primary_school": "",
+                "secondary_school_1": "",
+                "secondary_school_2": ""
             }
         }
     },
@@ -125,7 +125,7 @@ const state = {
             "localSupply": {
                 "supermarket": [2, 5, 10, 20],
                 "discounter": [2, 5, 10, 20],
-                "otherLocalSupply": [2, 5, 10, 20]
+                "other_local_supply": [2, 5, 10, 20]
             },
             "health": {
                 "pharmacy": [2, 4, 8, 15],
@@ -134,9 +134,9 @@ const state = {
             },
             "education": {
                 "nursery": [2, 7, 15, 30],
-                "primarySchool": [2, 5, 23, 45],
-                "secondarySchool1": [2, 15, 30, 60],
-                "secondarySchool2": [2, 15, 30, 60]
+                "primary_school": [2, 5, 23, 45],
+                "secondary_school_1": [2, 15, 30, 60],
+                "secondary_school_2": [2, 15, 30, 60]
             }
         }
     },
@@ -148,7 +148,7 @@ const state = {
             "localSupply": {
                 "supermarket": 0,
                 "discounter": 0,
-                "otherLocalSupply": 0
+                "other_local_supply": 0
             },
             "health": {
                 "pharmacy": 0,
@@ -157,9 +157,9 @@ const state = {
             },
             "education": {
                 "nursery": 0,
-                "primarySchool": 0,
-                "secondarySchool1": 0,
-                "secondarySchool2": 0
+                "primary_school": 0,
+                "secondary_school_1": 0,
+                "secondary_school_2": 0
             }
         }
     },

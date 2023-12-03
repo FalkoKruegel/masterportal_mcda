@@ -1,32 +1,56 @@
 import store from "/src/app-store";
 import {toLonLat, get as getProjection} from "ol/proj";
-import {ContinousGridStyle} from "../../../share_utils/layers/grid/continuus_style";
-import {GridLayer} from "../../../share_utils/layers/grid_layer";
 import {addLayer, removeLayer} from "../../../share_utils/map.js";
 import {convertLayerName} from "../util";
+import {initDeckLayer} from "../../../share_utils/deck.js";
+import {GridLayer, ContinousGridStyle} from "../../../share_utils/layers/deck_grid.js";
+import {HeatMapLayer, HeatMapStyle} from "../../../share_utils/layers/deck_heatmap.js";
 
 
 const LAYERS = {};
 
 /**
  * changes style of accessibility layer
- * @param {string} new_style attribute name for new style
+ * @param {string} layer_key layer-key (one of [grid, heatmap]) to show
+ * @param {string} new_style_attr attribute name for new style
  * @returns {void}
  */
-function changeStyle (new_style) {
-    const layer = LAYERS.accessibility;
-
-    if (layer === undefined) {
+function changeLayer (layer_key, new_style_attr) {
+    if (!["grid", "heatmap"].includes(layer_key)) {
         return;
     }
-    const [min, max] = computeMinMax(layer.features.getAllNodes(), new_style, -9999);
-    const newStyle = layer.getStyle();
 
-    newStyle.attribute = new_style;
-    newStyle.start = min;
-    newStyle.end = max;
+    const layer_obj = LAYERS[layer_key];
 
-    layer.setStyle(newStyle);
+    if (!layer_obj.is_active) {
+        for (const key in LAYERS) {
+            const obj = LAYERS[key];
+
+            removeLayer(obj.name);
+            obj.is_active = false;
+        }
+        layer_obj.is_active = true;
+        addLayer(layer_obj.ol_layer, () => {
+            removeLayer(layer_obj.name);
+            layer_obj.is_active = false;
+        });
+    }
+
+    if (layer_key === "grid") {
+        const style = layer_obj.ol_layer.getStyle();
+        const [min, max] = computeMinMax(layer_obj.features, new_style_attr, -9999);
+
+        style.attribute = new_style_attr;
+        style.start = min;
+        style.end = max;
+        layer_obj.ol_layer.setStyle(style);
+    }
+    if (layer_key === "heatmap") {
+        const style = layer_obj.ol_layer.getStyle();
+
+        style.attribute = new_style_attr;
+        layer_obj.ol_layer.setStyle(style);
+    }
 }
 
 /**
@@ -78,17 +102,17 @@ async function runAnalysis () {
     const factors = [1.0, 0.6, 0.4, 0.2];
 
     request.infrastructures = {};
-    for (const group in stepThree.selected_facilities) {
-        for (const item in stepThree.selected_facilities[group]) {
-            const name = stepThree.selected_facilities[group][item];
+    for (const group in stepThree.selectedFacilities) {
+        for (const item in stepThree.selectedFacilities[group]) {
+            const name = stepThree.selectedFacilities[group][item];
 
             if (name === "") {
                 continue;
             }
             request.infrastructures[name] = {
-                "infrastructure_weight": stepSix.facility_weights[group][item],
+                "infrastructure_weight": stepSix.facilityWeights[group][item],
                 "range_factors": factors,
-                "ranges": stepFive.time_zones[group][item].map(item => item * 60),
+                "ranges": stepFive.timeZones[group][item].map(item => item * 60),
                 "facility_type": name
             };
         }
@@ -118,13 +142,6 @@ async function runAnalysis () {
 
         const geojson = await response.json();
 
-        // const style = new RasterStyle("multiCritera",
-        //     [255, 0, 0, 180],
-        //     [0, 255, 0, 180],
-        //     [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        //     -9999,
-        //     [25, 25, 25, 100],
-        // );
         const [min, max] = computeMinMax(geojson.features, "multiCritera", -9999);
         const style = new ContinousGridStyle("multiCritera",
             [255, 0, 0, 180],
@@ -133,14 +150,15 @@ async function runAnalysis () {
             -9999,
             [25, 25, 25, 100]
         );
-        const layer = new GridLayer({
-            features: geojson.features,
-            extend: geojson.extend,
-            size: geojson.size,
-            projection: "EPSG:25832",
-            style: style
-        });
-        const ol_layer = layer.getOlLayer();
+        const grid_layer = new GridLayer("decision_support_accessibility", "Accessibility", geojson.features, 100);
+        const ol_layer = initDeckLayer(grid_layer, style);
+
+        const heat_style = new HeatMapStyle("multiCritera",
+            [255, 0, 0, 180],
+            [0, 255, 0, 180]
+        );
+        const heat_layer = new HeatMapLayer("decision_support_heatmap", "Accessibility (Heat-Map)", geojson.features);
+        const ol_heat_layer = initDeckLayer(heat_layer, heat_style);
 
         const gfiAttributes = {
             "multiCritera": convertLayerName("multiCritera"),
@@ -154,7 +172,7 @@ async function runAnalysis () {
         const attrs = {
             type: "layer",
             typ: "GRID",
-            id: "accessibility",
+            id: "decision_support_accessibility",
             name: "Accessibility",
             gfiAttributes: gfiAttributes,
             isSelected: true,
@@ -174,13 +192,25 @@ async function runAnalysis () {
 
         for (const key in attrs) {
             ol_layer.set(key, attrs[key]);
+            ol_heat_layer.set(key, attrs[key]);
         }
 
-        LAYERS.accessibility = layer;
+        LAYERS.grid = {
+            name: "decision_support_accessibility",
+            layer: grid_layer,
+            features: geojson.features,
+            ol_layer: ol_layer,
+            is_active: false
+        };
+        LAYERS.heatmap = {
+            name: "decision_support_heatmap",
+            layer: heat_layer,
+            features: geojson.features,
+            ol_layer: ol_heat_layer,
+            is_active: false
+        };
 
-        addLayer(ol_layer, () => {
-            removeLayer("accessibility");
-        });
+        changeLayer("grid", "multiCritera");
 
         stepEight.status = "finished";
     }
@@ -201,7 +231,7 @@ function computeMinMax (features, attr, no_data) {
     let max = -10000000000;
 
     for (const feature of features) {
-        const val = feature.value[attr];
+        const val = feature.properties[attr];
 
         if (val === no_data) {
             continue;
@@ -216,4 +246,4 @@ function computeMinMax (features, attr, no_data) {
     return [min, max];
 }
 
-export {runAnalysis, changeStyle};
+export {runAnalysis, changeLayer};

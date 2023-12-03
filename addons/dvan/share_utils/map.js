@@ -1,5 +1,6 @@
 import store from "/src/app-store";
 import * as bridge from "/src/core/layers/RadioBridge.js";
+import mapCollection from "/src/core/maps/mapCollection.js";
 import {addTreeEntry, closeTreeEntry} from "./tree_entry.js";
 import {addLegendEntry, closeLegendEntry} from "./legend_entry.js";
 
@@ -16,6 +17,10 @@ function addLayer (layer, close_handler) {
 
     store.dispatch("Maps/addLayer", layer);
 
+    if (layer !== null && layer !== undefined) {
+        layer.dispatchEvent("add");
+    }
+
     addLegendEntry(layer.get("id"), layer.get("name"), layer.get("legend"));
 
     addTreeEntry(layer.get("id"), layer.get("name"), {
@@ -27,7 +32,9 @@ function addLayer (layer, close_handler) {
         onZIndex: (value) => layer.setZIndex(value),
         onVisibile: (value) => layer.setVisible(value),
         onClose: () => {
-            close_handler();
+            if (close_handler) {
+                close_handler();
+            }
             removeLayer(layer.get("id"));
         }
     });
@@ -43,6 +50,10 @@ function removeLayer (id) {
     closeLegendEntry(id);
 
     const layer = getLayerById(id);
+
+    if (layer !== null && layer !== undefined) {
+        layer.dispatchEvent("remove");
+    }
 
     store.commit("Maps/removeLayerFromMap", layer);
 }
@@ -84,6 +95,14 @@ function getVisibleLayers () {
  */
 function getMapView () {
     return store.getters["Maps/getView"];
+}
+
+/**
+ * returns the current ol-map instance
+ * @returns {any} ol-map
+ */
+function getBaseMap () {
+    return mapCollection.getMap("2D");
 }
 
 /**
@@ -182,4 +201,4 @@ Radio.channel("ModelList").on({
     }
 });
 
-export {addLayerModel, removeLayerModel, addLayer, getLayerById, removeLayer, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener};
+export {addLayerModel, removeLayerModel, addLayer, getLayerById, removeLayer, getMapLayers, getVisibleLayers, getMapView, getStyleModelById, addEventListener, removeEventListener, getBaseMap};
