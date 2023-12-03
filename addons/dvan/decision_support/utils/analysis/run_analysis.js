@@ -102,17 +102,17 @@ async function runAnalysis () {
     const factors = [1.0, 0.6, 0.4, 0.2];
 
     request.infrastructures = {};
-    for (const group in stepThree.selected_facilities) {
-        for (const item in stepThree.selected_facilities[group]) {
-            const name = stepThree.selected_facilities[group][item];
+    for (const group in stepThree.selectedFacilities) {
+        for (const item in stepThree.selectedFacilities[group]) {
+            const name = stepThree.selectedFacilities[group][item];
 
             if (name === "") {
                 continue;
             }
             request.infrastructures[name] = {
-                "infrastructure_weight": stepSix.facility_weights[group][item],
+                "infrastructure_weight": stepSix.facilityWeights[group][item],
                 "range_factors": factors,
-                "ranges": stepFive.time_zones[group][item].map(item => item * 60),
+                "ranges": stepFive.timeZones[group][item].map(item => item * 60),
                 "facility_type": name
             };
         }

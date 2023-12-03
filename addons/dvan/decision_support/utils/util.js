@@ -20,7 +20,7 @@ function convertLayerName (name) {
             return "Hochschulkliniken und Plankrankenhäuser";
         case "physicians":
             return "Ärzte";
-        case "general_physicians":
+        case "general_physician":
             return "Hausärzte";
         case "paediatrician":
             return "Kinder- und Jugendärzte";
@@ -36,9 +36,9 @@ function convertLayerName (name) {
             return "HNO-Ärzte";
         case "neurologist":
             return "Nervenärzte";
-        case "psychotherapists":
+        case "psychotherapist":
             return "Psychotherapeuten";
-        case "urologists":
+        case "urologist":
             return "Urologen";
         case "nursery":
             return "Kindertagesstätten";
