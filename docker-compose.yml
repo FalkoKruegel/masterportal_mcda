@@ -1,0 +1,10 @@
+version: '2.4'
+services:
+  masterportal:
+    container_name: masterportal
+    ports:
+      - "5005:5005"
+    user: "${UID:-0}:${GID:-0}"
+    build:
+      context: ./
+      

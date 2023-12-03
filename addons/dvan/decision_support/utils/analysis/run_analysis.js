@@ -5,6 +5,7 @@ import {convertLayerName} from "../util";
 import {initDeckLayer} from "../../../share_utils/deck.js";
 import {GridLayer, ContinousGridStyle} from "../../../share_utils/layers/deck_grid.js";
 import {HeatMapLayer, HeatMapStyle} from "../../../share_utils/layers/deck_heatmap.js";
+import config from "../../../config.json";
 
 
 const LAYERS = {};
@@ -121,7 +122,7 @@ async function runAnalysis () {
     try {
         // const start = new Date().getTime();
 
-        const response = await fetch("http://localhost:5000/v1/decision_support/grid", {
+        const response = await fetch(config.backend_url + "/v1/decision_support/grid", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
