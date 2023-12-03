@@ -49,6 +49,7 @@ class ScatterLayer {
     /**
      * creates a deck-gl layer instance
      * @param {any} style style object
+     * @param {number} opacity opacity of layer (between 0 and 1)
      * @param {boolean} update true if layer style changed from previous call
      * @returns {any} deck-gl layer instance
      */

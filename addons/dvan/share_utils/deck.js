@@ -13,6 +13,7 @@ import GeoJSON from "ol/format/GeoJSON.js";
 function initDeckLayer (layer, style) {
     // const mapregion = document.getElementById("map");
     const canvas = document.createElement("canvas");
+
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.position = "absolute";
@@ -22,7 +23,7 @@ function initDeckLayer (layer, style) {
     const props = {
         visibile: true,
         style: style,
-        opacity: 1,
+        opacity: 1
     };
 
     let deck_layer = layer.getLayer(props.style, props.opacity, true);
@@ -36,7 +37,7 @@ function initDeckLayer (layer, style) {
         layers: [deck_layer],
         layerFilter: () => {
             return props.visibile;
-        },
+        }
     });
     /**
      * needed for eslint config
@@ -59,6 +60,7 @@ function initDeckLayer (layer, style) {
             const target = [viewState.center[0], viewState.center[1], 0];
             const zoom = -Math.log2(viewState.resolution);
             const deckViewState = {target: target, zoom: zoom};
+
             deck.setProps({width, height, viewState: deckViewState});
             deck.redraw();
             ol_layer.rendered = true;
