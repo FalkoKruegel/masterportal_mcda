@@ -64,7 +64,7 @@ class GridLayer {
      * @param {boolean} update true if layer style changed from previous call
      * @returns {any} deck-gl layer instance
      */
-    getLayer (style, update) {
+    getLayer (style, opacity, update) {
         if (update) {
             this.changed = {counter: this.changed.counter + 1};
         }
@@ -73,6 +73,7 @@ class GridLayer {
             data: this.features,
             pickable: true,
             extruded: false,
+            opacity: opacity,
             cellSize: this.cell_size,
             getPosition: d => d.coordinates,
             getFillColor: d => style.getColor(d.properties),
@@ -81,7 +82,8 @@ class GridLayer {
             coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
 
             updateTriggers: {
-                getFillColor: this.changed
+                getFillColor: this.changed,
+                opacity: this.changed,
             }
         });
     }

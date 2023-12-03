@@ -52,7 +52,7 @@ class ScatterLayer {
      * @param {boolean} update true if layer style changed from previous call
      * @returns {any} deck-gl layer instance
      */
-    getLayer (style, update) {
+    getLayer (style, opacity, update) {
         return new ScatterplotLayer({
             id: this.id,
             data: this.features,

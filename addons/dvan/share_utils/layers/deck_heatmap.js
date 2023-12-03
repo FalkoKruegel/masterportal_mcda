@@ -61,7 +61,7 @@ class HeatMapLayer {
      * @param {boolean} update true if layer style changed from previous call
      * @returns {any} deck-gl layer instance
      */
-    getLayer (style, update) {
+    getLayer (style, opacity, update) {
         if (update) {
             this.changed = {counter: this.changed.counter + 1};
         }
@@ -69,6 +69,7 @@ class HeatMapLayer {
             id: this.name,
             data: this.features,
             pickable: false,
+            opacity: opacity,
             getPosition: d => d.coordinates,
             getWeight: d => d.properties[style.getAttribute()],
             aggregation: "SUM",
@@ -80,7 +81,8 @@ class HeatMapLayer {
 
             updateTriggers: {
                 getWeight: this.changed,
-                colorRange: this.changed
+                colorRange: this.changed,
+                opacity: this.changed,
             }
         });
     }

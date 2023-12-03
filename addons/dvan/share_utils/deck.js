@@ -11,9 +11,8 @@ import GeoJSON from "ol/format/GeoJSON.js";
  * @returns {any} ol-layer
  */
 function initDeckLayer (layer, style) {
-    const mapregion = document.getElementById("map");
+    // const mapregion = document.getElementById("map");
     const canvas = document.createElement("canvas");
-
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.position = "absolute";
@@ -22,10 +21,11 @@ function initDeckLayer (layer, style) {
 
     const props = {
         visibile: true,
-        style: style
+        style: style,
+        opacity: 1,
     };
 
-    let deck_layer = layer.getLayer(props.style);
+    let deck_layer = layer.getLayer(props.style, props.opacity, true);
 
     const deck = new Deck({
         initialViewState: {target: [0, 0, 0], zoom: 1},
@@ -36,7 +36,7 @@ function initDeckLayer (layer, style) {
         layers: [deck_layer],
         layerFilter: () => {
             return props.visibile;
-        }
+        },
     });
     /**
      * needed for eslint config
@@ -44,7 +44,7 @@ function initDeckLayer (layer, style) {
      * @returns {void}
      */
     const updateDeck = (update) => {
-        deck_layer = layer.getLayer(props.style, update);
+        deck_layer = layer.getLayer(props.style, props.opacity, update);
         deck.setProps({layers: [deck_layer]});
         deck.redraw();
     };
@@ -59,22 +59,25 @@ function initDeckLayer (layer, style) {
             const target = [viewState.center[0], viewState.center[1], 0];
             const zoom = -Math.log2(viewState.resolution);
             const deckViewState = {target: target, zoom: zoom};
-
             deck.setProps({width, height, viewState: deckViewState});
             deck.redraw();
             ol_layer.rendered = true;
+
+            return canvas;
         },
         source: new Source({})
     });
 
-    ol_layer.setZIndex = (value) => {
-        canvas.style.zIndex = String(value);
-    };
+    // ol_layer.setZIndex = (value) => {
+    //     canvas.style.zIndex = String(value);
+    // };
+    // ol_layer.setVisible = (value) => {
+    //     props.visibile = value;
+    //     updateDeck(false);
+    // };
     ol_layer.setOpacity = (value) => {
-    };
-    ol_layer.setVisible = (value) => {
-        props.visibile = value;
-        updateDeck(false);
+        props.opacity = value;
+        updateDeck(true);
     };
     ol_layer.getStyle = () => {
         return props.style;
@@ -84,7 +87,6 @@ function initDeckLayer (layer, style) {
         updateDeck(true);
     };
     ol_layer.renderer_ = {};
-    ol_layer.source_ = {};
     ol_layer.getRenderer().forEachFeatureAtCoordinate = (coordinate, frameState, hitTolerance, callback, matches) => {
         const pixel = getBaseMap().getPixelFromCoordinate(coordinate);
         const ids = deck.pickMultipleObjects({x: pixel[0], y: pixel[1], layerIds: [deck_layer.id]});
@@ -102,10 +104,10 @@ function initDeckLayer (layer, style) {
     };
     ol_layer.set("visibile", true);
     ol_layer.on("remove", (event) => {
-        canvas.remove();
+        // canvas.remove();
     });
     ol_layer.on("add", (event) => {
-        mapregion.appendChild(canvas);
+        // mapregion.appendChild(canvas);
     });
 
     return ol_layer;
