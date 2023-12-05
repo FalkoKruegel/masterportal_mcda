@@ -66,7 +66,7 @@ export default {
                     :disabled="!backActive"
                     @click="backButton()"
                 >
-                    {{ backText }}
+                    <i class="bi bi-arrow-left-short" /> {{ backText }}
                 </button>
             </div>
             <div
@@ -79,7 +79,7 @@ export default {
                     :disabled="!forwardActive"
                     @click="forwardButton()"
                 >
-                    {{ forwardText }}
+                    {{ forwardText }} <i class="bi bi-arrow-right-short" />
                 </button>
             </div>
         </div>
