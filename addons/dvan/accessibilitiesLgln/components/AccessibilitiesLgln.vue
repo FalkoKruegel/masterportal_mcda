@@ -3,13 +3,11 @@
 import ToolTemplate from "/src/modules/tools/ToolTemplate.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../store/getters";
-import ApiAccess from "./ApiAccess.vue";
 
 export default {
     name: "AccessibilitiesLgln",
     components: {
-        ToolTemplate,
-        ApiAccess
+        ToolTemplate
     },
     computed: {
         ...mapGetters("Tools/AccessibilitiesLgln", Object.keys(getters))
@@ -70,9 +68,6 @@ export default {
                 id="vue-addon"
             >
                 {{ "Hier kann das Erreichbarkeiten-Tool des LGLN untergebracht werden." }}
-            </div>
-            <div>
-                <ApiAccess />
             </div>
         </template>
     </ToolTemplate>
