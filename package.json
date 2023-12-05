@@ -67,6 +67,9 @@
     }
   ],
   "dependencies": {
+    "@deck.gl/aggregation-layers": "^8.8.0",
+    "@deck.gl/core": "^8.9.32",
+    "@deck.gl/layers": "^8.8.0",
     "@masterportal/masterportalapi": "^2.7.0",
     "@panter/vue-i18next": "^0.15.2",
     "@popperjs/core": "^2.11.5",
@@ -101,10 +104,7 @@
     "vue-multiselect": "^2.1.6",
     "vue-template-compiler": "^2.7.8",
     "vue2-datepicker": "^3.11.0",
-    "vuex": "^3.6.2",
-    "@deck.gl/core": "^8.8.0",
-    "@deck.gl/layers": "^8.8.0",
-    "@deck.gl/aggregation-layers": "^8.8.0"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
