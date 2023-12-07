@@ -860,11 +860,35 @@
 								{
 								"id":"50",
 								"name":["Hausärztliche Planungsbereiche", "Versorgungsgrad ohne Ermächtigte"],
-								"styles":["Planungsbereiche_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"],
+								"styles":["Planungsbereiche_VE1_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"],
 								"legendURL":["ignore", ""]
 								}
 							]
-							}
+							},
+							{
+							"Titel":"Planungsbereiche Versorgungsebene 2",
+							"Layer":
+							[
+								{
+								"id":"51",
+								"name":["Planungsbereiche Versorgungsebene 2", "Versorgungsgrad ohne Ermächtigte"],
+								"styles":["Planungsbereiche_VE2_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"],
+								"legendURL":["ignore", ""]
+								}
+							]
+							},
+							{
+								"Titel":"Planungsbereiche Versorgungsebene 3",
+								"Layer":
+								[
+									{
+									"id":"52",
+									"name":["Planungsbereiche Versorgungsebene 3", "Versorgungsgrad ohne Ermächtigte"],
+									"styles":["Planungsbereiche_VE3_Standard", "Planungsbereiche_Versorgungsgrad_75_100_110"],
+									"legendURL":["ignore", ""]
+									}
+								]
+								}
 						]
 					}
 				]
