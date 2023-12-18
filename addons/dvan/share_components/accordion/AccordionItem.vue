@@ -53,6 +53,14 @@ export default {
                 return `height: ${this.height}px;`;
             }
             return "";
+        },
+        iconStyle () {
+            // creates String which represents bootstrap icon
+            const numberMatch = this.title.match(/(?:[1-9]|10+)/);
+            const iconNumber = numberMatch[0].toString();
+            const iconString = "bi bi-" + iconNumber + "-circle";
+
+            return iconString;
         }
     },
     watch: {
@@ -113,7 +121,8 @@ export default {
                 :disabled="status==='deactivated'"
                 @click="buttonClick()"
             >
-                {{ title }}
+                <!-- &nbsp; creates a blank between the icon and the title -->
+                <i :class="iconStyle" /> &nbsp; {{ title }}
             </button>
         </h2>
         <div
