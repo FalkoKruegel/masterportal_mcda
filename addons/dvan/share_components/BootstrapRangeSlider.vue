@@ -11,12 +11,10 @@ export default {
             type: Number,
             default: 0
         },
-        // unique id
         "id": {
             type: String,
             default: ""
         },
-        // true if slider disabled
         "disabled": {
             type: Boolean,
             default: false

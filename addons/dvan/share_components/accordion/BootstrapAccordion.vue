@@ -6,12 +6,11 @@ export default {
     components: {
     },
     props: {
-        // unique id
         "id": {
             type: String,
             default: ""
         },
-        // size of accordion buttons
+        // padding of accordion buttons
         "btnPaddingX": {
             type: String,
             default: "10px"
@@ -20,7 +19,7 @@ export default {
             type: String,
             default: "2px"
         },
-        // padding to accordion content
+        // padding of accordion content
         "bodyPaddingX": {
             type: String,
             default: "10px"

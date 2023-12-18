@@ -6,12 +6,11 @@ export default {
     components: {
     },
     props: {
-        // unique id
         "id": {
             type: String,
             default: ""
         },
-        // accordion id
+        // id of parent accordion
         "parentId": {
             type: String,
             default: "None"

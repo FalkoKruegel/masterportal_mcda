@@ -119,7 +119,6 @@ export default {
             id="Accordion4"
             body-padding-y="5px"
         >
-            <!-- Local Supply Infrastructures -->
             <BootstrapAccordionItem
                 id="Accordion4-1"
                 parent-id="Accordion4"
@@ -133,8 +132,6 @@ export default {
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>
-
-            <!-- Health Infrastructure -->
             <BootstrapAccordionItem
                 id="Accordion4-2"
                 parent-id="Accordion4"
@@ -150,8 +147,6 @@ export default {
                     @input="e => e ? activate('standard', name) : deactivate('standard', name)"
                 />
             </BootstrapAccordionItem>
-
-            <!-- Education Infrastructure -->
             <BootstrapAccordionItem
                 id="Accordion4_3"
                 parent-id="Accordion4"

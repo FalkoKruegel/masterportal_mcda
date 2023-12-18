@@ -76,22 +76,17 @@ export default {
 
         getFacilityName (group, name, value) {
 
-            // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
-                // this if-condition is applied to physicians
-                // checks if a physician has been chosen in the infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
+                // mainly applied to physicians
+                // checks if a certain physician has been chosen
                 if (value === "") {
                     return this.translate(item.text);
                 }
-
                 return this.translate(item.items[value].text);
-
             }
-
             return this.translate(item.text);
-
         },
         /**
          * Function from populationRequest addon (original Masterportal)

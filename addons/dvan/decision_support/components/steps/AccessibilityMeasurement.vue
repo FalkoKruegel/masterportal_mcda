@@ -20,10 +20,10 @@ export default {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters))
     },
     watch: {
-        // this watcher checks if the used physician infrastructure are general physicians.
-        // If the used physicians are general physicians, the watcher will change the state of step 5 in that way that the default values for general physicians are used.
+        // checks if used physician infrastructures are general physicians.
         "stepThree.health.physicians": function () {
             if (this.stepThree.selectedFacilities.health.physicians === "generalPhysicians") {
+                // change state to general physician standard values
                 this.stepFive.timeZones.health.physicians = [2, 5, 10, 20];
             }
             else {
@@ -58,18 +58,14 @@ export default {
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
-                // this if-condition is applied to physicians
-                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
+                // mainly applied to physicians
+                // checks if a certain physician has been chosen in the infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
                     return this.translate(item.text);
                 }
-
                 return this.translate(item.items[value].text);
-
             }
-
             return this.translate(item.text);
-
         },
 
         setTimeZone (arr, value, index) {

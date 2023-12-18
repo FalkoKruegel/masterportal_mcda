@@ -36,11 +36,11 @@ export default {
         "forwardClick"
     ],
     methods: {
-        // if back-Button is clicked, backClick will be emitted which should be handled in parent-Component
+        // backClick should be handled in parent-Component
         backButton () {
             this.$emit("backClick");
         },
-        // if forward-Button is clicked, forwardClick will be emitted which should be handled in parent-Component
+        // forwardClick should be handled in parent-Component
         forwardButton () {
             this.$emit("forwardClick");
         }
@@ -49,7 +49,6 @@ export default {
 </script>
 
 <template lang="html">
-    <!--following div contains two buttons which emit forward and back events to navigate between different items-->
     <div
         class="container"
     >

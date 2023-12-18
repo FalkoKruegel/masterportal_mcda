@@ -16,17 +16,14 @@ export default {
             type: String,
             default: ""
         },
-        // unique id
         "id": {
             type: String,
             default: ""
         },
-        // if set tooltip will be shown with String as HTML
         "tooltipText": {
             type: String,
             default: null
         },
-        // true if checkbox disabled
         "disabled": {
             type: Boolean,
             default: false

@@ -36,21 +36,6 @@ export default {
             return "default";
         },
 
-        getTooltipText (tooltipItem) {
-            // creating string with key for translation
-            const translationKey = "modules.tools.decisionSupport.stepThree.tooltip." + tooltipItem;
-            const translationString = "additional:" + translationKey;
-
-            // getting translation
-            const translation = this.translate(translationString);
-
-            // checking if key exists
-            if (translation === translationKey) {
-                return null;
-            }
-            return translation;
-        },
-
         /**
          * Function from populationRequest addon (original Masterportal)
          * translates the given key, checks if the key exists and throws a console warning if not

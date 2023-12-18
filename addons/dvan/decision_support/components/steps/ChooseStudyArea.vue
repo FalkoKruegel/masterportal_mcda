@@ -125,7 +125,6 @@ export default {
             :disabled="stepTwo.wholeLowerSaxony"
             @input="e => activateOwnArea(e)"
         />
-        <!--following div will only be rendered if checkbox for own area (above) is checked-->
         <div
             v-if="stepTwo.ownArea"
             id="Callout2-1"

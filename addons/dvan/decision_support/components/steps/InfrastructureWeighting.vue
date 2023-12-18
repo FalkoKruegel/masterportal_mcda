@@ -61,18 +61,14 @@ export default {
             const item = this.stepThree.facilities[group].items[name];
 
             if (item.isGroup === true) {
-                // this if-condition is applied to physicians
-                // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
+                // mainly applied to physicians
+                // checks if a certain physician has been chosen, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
                     return this.translate(item.text);
                 }
-
                 return this.translate(item.items[value].text);
-
             }
-
             return this.translate(item.text);
-
         },
 
         /**
