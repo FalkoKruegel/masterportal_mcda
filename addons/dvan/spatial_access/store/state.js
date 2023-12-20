@@ -116,22 +116,30 @@ const state = {
     // Select Population
     stepFour: {
         // possibile values
-        standardAgeGroups: {
-            "std_00_09": {text: "0-9 Jahre"},
-            "std_10_19": {text: "10-19 Jahre"},
-            "std_20_39": {text: "20-39 Jahre"},
-            "std_40_59": {text: "40-59 Jahre"},
-            "std_60_79": {text: "60-79 Jahre"},
-            "std_80x": {text: "ab 80 Jahre"}
-        },
-        kidsAgeGroups: {
-            "ksc_00_02": {text: "0-2 Jahre"},
-            "ksc_03_05": {text: "3-5 Jahre"},
-            "ksc_06_09": {text: "6-9 Jahre"},
-            "ksc_10_14": {text: "10-14 Jahre"},
-            "ksc_15_17": {text: "15-17 Jahre"},
-            "ksc_18_19": {text: "18-19 Jahre"},
-            "ksc_20x": {text: "ab 20 Jahre"}
+        population: {
+            standard: {
+                text: "stepFour.accordion.accordion4_2",
+                items: {
+                    "std_00_09": [0, 9],
+                    "std_10_19": [10, 19],
+                    "std_20_39": [20, 39],
+                    "std_40_59": [40, 59],
+                    "std_60_79": [60, 79],
+                    "std_80x": [80]
+                }
+            },
+            kids: {
+                text: "stepFour.accordion.accordion4_3",
+                items: {
+                    "ksc_00_02": [0, 2],
+                    "ksc_03_05": [3, 5],
+                    "ksc_06_09": [6, 9],
+                    "ksc_10_14": [10, 14],
+                    "ksc_15_17": [15, 17],
+                    "ksc_18_19": [18, 19],
+                    "ksc_20x": [20]
+                }
+            }
         },
         // selected values
         populationType: "",

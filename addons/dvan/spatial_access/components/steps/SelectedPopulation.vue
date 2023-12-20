@@ -21,39 +21,11 @@ export default {
 
         allActivated () {
             if (this.stepFour.populationType === "standard") {
-                if (this.stepFour.selectedAgeGroups.length === Object.keys(this.stepFour.standardAgeGroups).length) {
+                if (this.stepFour.selectedAgeGroups.length === Object.keys(this.stepFour.population.standard.items).length) {
                     return true;
                 }
             }
             return false;
-        },
-
-        allStatus () {
-            if (this.allActivated) {
-                return "valid";
-            }
-            if (this.stepFour.populationType === "kids") {
-                return "deactivated";
-            }
-            return "default";
-        },
-        standardStatus () {
-            if (this.stepFour.populationType === "standard") {
-                return "valid";
-            }
-            if (this.stepFour.populationType === "kids") {
-                return "deactivated";
-            }
-            return "default";
-        },
-        kitaStatus () {
-            if (this.stepFour.populationType === "kids") {
-                return "valid";
-            }
-            if (this.stepFour.populationType === "standard") {
-                return "deactivated";
-            }
-            return "default";
         }
     },
     methods: {
@@ -68,7 +40,7 @@ export default {
             this.stepFour.populationType = "standard";
             const vals = [];
 
-            for (const name in this.stepFour.standardAgeGroups) {
+            for (const name in this.stepFour.population.standard.items) {
                 vals.push(name);
             }
             this.stepFour.selectedAgeGroups = vals;
@@ -89,6 +61,43 @@ export default {
             if (this.stepFour.selectedAgeGroups.length === 0) {
                 this.stepFour.populationType = "";
             }
+        },
+        allStatus () {
+            if (this.allActivated) {
+                return "valid";
+            }
+            if (["standard", ""].includes(this.stepFour.populationType)) {
+                return "default";
+            }
+            return "deactivated";
+        },
+        groupStatus (name) {
+            if (this.stepFour.populationType === name) {
+                return "valid";
+            }
+            if (this.stepFour.populationType === "") {
+                return "default";
+            }
+            return "deactivated";
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -104,46 +113,35 @@ export default {
             body-padding-y="5px"
         >
             <BootstrapAccordionItem
+                v-if="'standard' in stepFour.population"
                 id="Accordion4_1"
                 parent-id="Accordion4"
-                text="Gesamte Bevölkerung"
-                :status="allStatus"
+                :text="translate('stepFour.accordion.accordion4_1')"
+                :status="allStatus()"
             >
                 <BootstrapCheckbox
                     id="Checkbox4_1_1"
                     :value="allActivated"
-                    text="Berücksichtigung der Gesamtbevölkerung"
+                    :text="translate('stepFour.checkbox.checkbox4_1_1')"
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>
+
             <BootstrapAccordionItem
-                id="Accordion4_2"
+                v-for="(group, group_name, group_index) in stepFour.population"
+                :id="`Accordion4-${group_index+2}`"
+                :key="group_index"
                 parent-id="Accordion4"
-                text="Altersgruppen (DVAN-Altersgruppen)"
-                :status="standardStatus"
+                :text="translate(group['text'])"
+                :status="groupStatus(group_name)"
             >
                 <BootstrapCheckbox
-                    v-for="(item, name, index) in stepFour.standardAgeGroups"
-                    :id="`Checkbox_4_2_${index}`"
+                    v-for="(item, name, index) in group['items']"
+                    :id="`Checkbox4-${group_index+2}-${index}`"
                     :key="index"
-                    :text="item['text']"
+                    :text="item.length > 1 ? translate('population.range', {start: item[0], end: item[1]}) : translate('population.end', {start: item[0]})"
                     :value="stepFour.selectedAgeGroups.includes(name)"
-                    @input="e => e ? activate('standard', name) : deactivate('standard', name)"
-                />
-            </BootstrapAccordionItem>
-            <BootstrapAccordionItem
-                id="Accordion4_3"
-                parent-id="Accordion4"
-                text="Kinderärztlich relevante Altergruppen"
-                :status="kitaStatus"
-            >
-                <BootstrapCheckbox
-                    v-for="(item, name, index) in stepFour.kidsAgeGroups"
-                    :id="`Checkbox_4_3_${index}`"
-                    :key="index"
-                    :text="item['text']"
-                    :value="stepFour.selectedAgeGroups.includes(name)"
-                    @input="e => e ? activate('kids', name) : deactivate('kids', name)"
+                    @input="e => e ? activate(group_name, name) : deactivate(group_name, name)"
                 />
             </BootstrapAccordionItem>
         </BootstrapAccordion>

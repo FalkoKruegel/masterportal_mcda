@@ -47,6 +47,10 @@
                     "secondarySchool1": "'Haupt'-, 'Real'-, 'Ober'- and 'Gesamtschulen' without the possibility to achieve the '(Fach)Hochschulreife'.",
                     "secondarySchool2": "'Gesamtschulen' and grammar schools with the possibility to achieve the '(Fach)Hochschulreife'."
                 },
+                "population": {
+                    "range": "{{start}}-{{end}} years",
+                    "end": "more than {{start}} years"
+                },
                 "standardAgeGroups": {
                     "std_00_09":"0-9 years",
                     "std_10_19": "10-19 years",

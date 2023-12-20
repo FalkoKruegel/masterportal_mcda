@@ -95,27 +95,17 @@ export default {
                     >
                         {{ item["text"] }}
                     </option>
-                    <option
-                        value="Niedersachsen"
-                    >
-                        Niedersachsen
-                    </option>
-                    <option
-                        value="KV-Bezirk"
-                    >
-                        KV-Bezirk
-                    </option>
                 </select>
                 <p />
                 <div
-                    v-if="!(stepTwo.planningArea==='Bitte wählen...') & !(stepTwo.planningArea==='KV-Bezirk') & !(stepTwo.planningArea==='Niedersachsen')"
+                    v-if="!(stepTwo.planningArea==='Bitte wählen...') & !(stepTwo.planningArea==='kv_bezirk') & !(stepTwo.planningArea==='niedersachsen')"
                     id="Callout2_1"
                     class="callout"
                 >
                     Neben dem von Ihnen ausgewählten Planugsbereich werden für eine verbesserte Interpretation von Mitversorgungseffekten die benachbarten Planungsbereiche in die Analyse und Darstellung einbezogen.
                 </div>
                 <div
-                    v-if="stepTwo.planningArea==='Niedersachsen' || stepTwo.planningArea==='KV-Bezirk'"
+                    v-if="stepTwo.planningArea==='niedersachsen' || stepTwo.planningArea==='kv_bezirk'"
                     id="Callout2_2"
                     class="callout callout-warn"
                 >

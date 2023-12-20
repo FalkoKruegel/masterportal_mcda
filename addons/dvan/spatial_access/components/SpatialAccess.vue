@@ -96,13 +96,14 @@ export default {
      */
     mounted () {
         this.initialize();
+        this.initState();
         if (this.isActive) {
             this.setActive(true);
         }
     },
     methods: {
         ...mapActions("Tools/SpatialAccess", [
-            "initialize"
+            "initialize", "initState"
         ]),
         ...mapMutations("Tools/SpatialAccess", [
             "setActive"

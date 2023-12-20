@@ -1,0 +1,26 @@
+{
+    "modules": {
+        "tools": {
+            "spatialAccess": {
+                "population": {
+                    "range": "{{start}}-{{end}} Jahre",
+                    "end": "ab {{start}} Jahre"
+                },
+                "stepFour": {
+                    "title": "Schritt 4: Altersgruppe der Bevölkerung auswählen",
+                    "text": {
+                        "text1": "Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:"
+                    },
+                    "accordion": {
+                        "accordion4_1": "Gesamte Bevölkerung",
+                        "accordion4_2": "DVAN-Standardbevölkerungsgruppen",
+                        "accordion4_3": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
+                    },
+                    "checkbox": {
+                        "checkbox4_1_1": "Berücksichtigung der Gesamtbevölkerung"
+                    }
+                }
+            }
+        }
+    }
+}

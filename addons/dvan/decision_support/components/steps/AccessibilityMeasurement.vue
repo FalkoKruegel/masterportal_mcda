@@ -57,7 +57,7 @@ export default {
             // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
-            if (item.isGroup === true) {
+            if ("items" in item) {
                 // this if-condition is applied to physicians
                 // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {

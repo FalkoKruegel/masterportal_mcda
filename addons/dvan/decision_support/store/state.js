@@ -34,7 +34,7 @@ const state = {
                 items: {
                     "pharmacy": {text: "health.pharmacy"},
                     "clinic": {text: "health.clinic"},
-                    "physicians": {isGroup: true, text: "health.physicians.text", items: {
+                    "physicians": {text: "health.physicians.text", items: {
                         "general_physician": {text: "health.physicians.generalPhysicians"},
                         "paediatrician": {text: "health.physicians.paediatrician"},
                         "ophthalmologist": {text: "health.physicians.ophthalmologist"},
@@ -84,22 +84,30 @@ const state = {
     // Select Population
     stepFour: {
         // possibile values
-        standardAgeGroups: {
-            "std_00_09": {text: "standardAgeGroups.std_00_09"},
-            "std_10_19": {text: "standardAgeGroups.std_10_19"},
-            "std_20_39": {text: "standardAgeGroups.std_20_39"},
-            "std_40_59": {text: "standardAgeGroups.std_40_59"},
-            "std_60_79": {text: "standardAgeGroups.std_60_79"},
-            "std_80x": {text: "standardAgeGroups.std_80x"}
-        },
-        kidsAgeGroups: {
-            "ksc_00_02": {text: "kidsAgeGroups.ksc_00_02"},
-            "ksc_03_05": {text: "kidsAgeGroups.ksc_03_05"},
-            "ksc_06_09": {text: "kidsAgeGroups.ksc_06_09"},
-            "ksc_10_14": {text: "kidsAgeGroups.ksc_10_14"},
-            "ksc_15_17": {text: "kidsAgeGroups.ksc_15_17"},
-            "ksc_18_19": {text: "kidsAgeGroups.ksc_18_19"},
-            "ksc_20x": {text: "kidsAgeGroups.ksc_20x"}
+        population: {
+            standard: {
+                text: "stepFour.accordion.accordion4_2",
+                items: {
+                    "std_00_09": [0, 9],
+                    "std_10_19": [10, 19],
+                    "std_20_39": [20, 39],
+                    "std_40_59": [40, 59],
+                    "std_60_79": [60, 79],
+                    "std_80x": [80]
+                }
+            },
+            kids: {
+                text: "stepFour.accordion.accordion4_3",
+                items: {
+                    "ksc_00_02": [0, 2],
+                    "ksc_03_05": [3, 5],
+                    "ksc_06_09": [6, 9],
+                    "ksc_10_14": [10, 14],
+                    "ksc_15_17": [15, 17],
+                    "ksc_18_19": [18, 19],
+                    "ksc_20x": [20]
+                }
+            }
         },
         // selected values
         populationType: "",

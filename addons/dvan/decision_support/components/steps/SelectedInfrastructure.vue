@@ -92,7 +92,7 @@ export default {
                     v-for="(item, name, index) in groupItem.items"
                     :key="index"
                 >
-                    <div v-if="item.hasOwnProperty('isGroup')">
+                    <div v-if="item.hasOwnProperty('items')">
                         <BootstrapCheckbox
                             v-for="(innerItem, innerName, innerIndex) in item.items"
                             :id="`Checkbox3-${groupIndex}-${index}-${innerIndex}`"

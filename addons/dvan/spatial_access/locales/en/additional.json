@@ -1,0 +1,26 @@
+{
+    "modules": {
+        "tools": {
+            "spatialAccess": {
+                "population": {
+                    "range": "{{start}}-{{end}} years",
+                    "end": "more than {{start}} years"
+                },
+                "stepFour": {
+                    "title": "Step 4: Select population's age group",
+                    "text": {
+                        "text1": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
+                    },
+                    "accordion": {
+                        "accordion4_1": "Total population",
+                        "accordion4_2": "DVAN standard population groups",
+                        "accordion4_3": "DVAN population groups for daycare and schools"
+                    },
+                    "checkbox": {
+                        "checkbox4_1_1": "Consideration of the total population"
+                    }
+                }
+            }
+        }
+    }
+}
