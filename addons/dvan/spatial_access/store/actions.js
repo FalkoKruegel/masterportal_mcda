@@ -1,3 +1,5 @@
+import config from "../../config.json";
+
 const actions = {
     initialize () {
         return 1;
@@ -6,17 +8,17 @@ const actions = {
     async initState ({state}) {
         // load planning-areas and physicans
         {
-            const response1 = await fetch("http://localhost:5000/v1/state/supply_levels");
+            const response1 = await fetch(config.backend_url + "/v1/state/supply_levels");
             const supply_levels = await response1.json();
 
             state.stepTwo.supplyLevels = supply_levels;
 
-            const response2 = await fetch("http://localhost:5000/v1/state/planning_areas");
+            const response2 = await fetch(config.backend_url + "/v1/state/planning_areas");
             const planning_areas = await response2.json();
 
             state.stepTwo.planningAreas = planning_areas;
 
-            const response3 = await fetch("http://localhost:5000/v1/state/physicians");
+            const response3 = await fetch(config.backend_url + "/v1/state/physicians");
             const physicians = await response3.json();
 
             state.stepTwo.physicianGroups = physicians;
@@ -27,19 +29,19 @@ const actions = {
         }
         // load population
         {
-            const response = await fetch("http://localhost:5000/v1/state/population");
+            const response = await fetch(config.backend_url + "/v1/state/population");
             const population = await response.json();
 
             state.stepFour.population = population;
         }
         // load travel parameters
         {
-            const response = await fetch("http://localhost:5000/v1/state/travel_modes");
+            const response = await fetch(config.backend_url + "/v1/state/travel_modes");
             const modes = await response.json();
 
             state.stepFive.travelModes = modes;
 
-            const response2 = await fetch("http://localhost:5000/v1/state/distance_decays");
+            const response2 = await fetch(config.backend_url + "/v1/state/distance_decays");
             const decays = await response2.json();
 
             state.stepFive.distanceDecays = decays;
@@ -65,7 +67,7 @@ const actions = {
                 const request = {
                     facilities: facilities
                 };
-                const response = await fetch("http://localhost:5000/v1/state/time_zones", {method: "POST", body: JSON.stringify(request)});
+                const response = await fetch(config.backend_url + "/v1/state/time_zones", {method: "POST", body: JSON.stringify(request)});
                 const group_obj = await response.json();
 
                 time_zones[group] = group_obj;

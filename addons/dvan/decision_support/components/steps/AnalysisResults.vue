@@ -17,7 +17,7 @@ export default {
     data () {
         return {
             selected_layer: "grid",
-            selected_attr: "multiCritera",
+            selected_attr: "multiCriteria",
             weighted: false
         };
     },
@@ -25,7 +25,7 @@ export default {
         ...mapGetters("Tools/DecisionSupport", Object.keys(getters)),
 
         checkedLayers () {
-            const layers = ["multiCritera"];
+            const layers = ["multiCriteria"];
 
             for (const group in this.stepThree.selectedFacilities) {
                 for (const item in this.stepThree.selectedFacilities[group]) {
