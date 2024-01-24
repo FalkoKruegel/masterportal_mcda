@@ -43,7 +43,7 @@ export default {
 
         statusStepTwo () {
             if (this.stepTwo.supplyLevel !== "") {
-                if (this.stepTwo.physicianGroup !== "Bitte wählen..." && this.stepTwo.planningArea !== "Bitte wählen...") {
+                if (this.stepTwo.physicianGroup !== "unselected" && this.stepTwo.planningArea !== "unselected") {
                     return "valid";
                 }
             }
@@ -148,6 +148,23 @@ export default {
             a.href = window.URL.createObjectURL(blob);
             a.download = "spatial_access_settings.json";
             a.click();
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -155,7 +172,7 @@ export default {
 
 <template lang="html">
     <ToolTemplate
-        :title="'Räumlicher Zugang'"
+        :title="translate('title')"
         :icon="icon"
         :active="active"
         :render-to-window="renderToWindow"
@@ -170,7 +187,7 @@ export default {
             >
                 <AccordionItem
                     id="Accordion1"
-                    title="Schritt 1: Analyse starten oder bestehende Analyse laden"
+                    :title="translate('stepOne.title')"
                     status="valid"
                     :opened="steps[0]"
                     @click="openStep(0)"
@@ -180,64 +197,72 @@ export default {
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 2: Facharztgruppe und Planungsbereich auswählen"
+                    :title="translate('stepTwo.title')"
                     :status="statusStepTwo"
                     :opened="steps[1]"
                     @click="openStep(1)"
                 >
                     <SelectedPhysicians />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(2)"
                         @backClick="openStep(0)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 3: Ärztlichen Teilnahmeumfang und Kapazitäten definieren"
+                    :title="translate('stepThree.title')"
                     :status="statusStepThree"
                     :opened="steps[2]"
                     @click="openStep(2)"
                 >
                     <PhysicianCapacity />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="openStep(3)"
                         @backClick="openStep(1)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 4: Altersgruppe der Bevölkerung auswählen"
+                    :title="translate('stepFour.title')"
                     :status="statusStepFour"
                     :opened="steps[3]"
                     @click="openStep(3)"
                 >
                     <SelectedPopulation />
                     <AccordionFooter
+                        :forward-text="translate('accordionFooter.next')"
+                        :back-text="translate('accordionFooter.back')"
                         @backClick="openStep(2)"
                         @forwardClick="openStep(4)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 5: Transportmittel und Entfernungsabgwichtung wählen"
+                    :title="translate('stepFive.title')"
                     :status="statusStepFive"
                     :opened="steps[4]"
                     @click="openStep(4)"
                 >
                     <SelectDistanceDecay />
                     <AccordionFooter
-                        forward-text="Analyse starten"
                         :forward-active="paramsReady"
+                        :forward-text="translate('accordionFooter.startAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="() => { openStep(5); runAnalysis(); }"
                         @backClick="openStep(3)"
                     />
                 </AccordionItem>
                 <AccordionItem
-                    title="Schritt 6: Zusammenfassung und Ergebnisse"
+                    :title="translate('stepSix.title')"
                     :status="statusStepSix"
                     :opened="steps[5]"
                     @click="openStep(5)"
                 >
                     <AnalysisResults />
                     <AccordionFooter
-                        forward-text="Analyse speichern"
+                        :forward-text="translate('accordionFooter.saveAnalysis')"
+                        :back-text="translate('accordionFooter.back')"
                         @forwardClick="storeParams()"
                         @backClick="openStep(4)"
                     />

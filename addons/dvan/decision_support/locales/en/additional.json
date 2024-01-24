@@ -49,24 +49,16 @@
                 },
                 "population": {
                     "range": "{{start}}-{{end}} years",
-                    "end": "more than {{start}} years"
+                    "end": "more than {{start}} years",
+                    "groups": {
+                        "standard": "DVAN standard population groups",
+                        "kitaSchul": "DVAN population groups for daycare and schools"
+                    }
                 },
-                "standardAgeGroups": {
-                    "std_00_09":"0-9 years",
-                    "std_10_19": "10-19 years",
-                    "std_20_39": "20-39 years",
-                    "std_40_59": "40-59 years",
-                    "std_60_79": "60-79 years",
-                    "std_80x": "ab 80 years"
-                },
-                "kidsAgeGroups": {
-                    "ksc_00_02": "0-2 years",
-                    "ksc_03_05": "3-5 years",
-                    "ksc_06_09": "6-9 years",
-                    "ksc_10_14": "10-14 years",
-                    "ksc_15_17": "15-17 years",
-                    "ksc_18_19": "18-19 years",
-                    "ksc_20x": "ab 20 years"
+                "travelModes": {
+                    "pkw": "car",
+                    "opnv": "public-transport",
+                    "fuss": "foot"
                 },
                 "stepOne": {
                     "title": "Step 1: Start analysis or load existing analysis",
@@ -109,14 +101,8 @@
                     "text": {
                         "text1": "Select the population's age groups at the place of residence that you want to consider for the analysis:"
                     },
-                    "accordion": {
-                        "accordion4_1": "Total population",
-                        "accordion4_2": "DVAN standard population groups",
-                        "accordion4_3": "DVAN population groups for daycare and schools"
-                    },
-                    "checkbox": {
-                        "checkbox4_1_1": "Consideration of the total population"
-                    }
+                    "all_group": "Total population",
+                    "all_checkbox": "Consideration of the total population"
                 },
                 "stepFive": {
                     "title": "Step 5: Accessibility calculation",
@@ -127,11 +113,6 @@
                         "text4": "In addition, for each of the selected infrastructures, store which supply situation should occur when a certain travel time is exceeded to reach this infrastructure from the demand location. The categories are divided as follows:",
                         "text5": "If the travel time from the demand location to the infrastructure exceeds the deficient supply threshold, no supply to the demand location is provided by the infrastructure.",
                         "thresholdText": "Threshold"
-                    },
-                    "travelModes": {
-                        "driving-car": "car",
-                        "public-transit": "public transport",
-                        "walking-foot": "foot"
                     },
                     "timeInput": {
                         "supplySituation": "supply situation",

@@ -86,7 +86,7 @@ const state = {
         // possibile values
         population: {
             standard: {
-                text: "stepFour.accordion.accordion4_2",
+                text: "population.groups.standard",
                 items: {
                     "std_00_09": [0, 9],
                     "std_10_19": [10, 19],
@@ -97,7 +97,7 @@ const state = {
                 }
             },
             kids: {
-                text: "stepFour.accordion.accordion4_3",
+                text: "population.groups.kitaSchul",
                 items: {
                     "ksc_00_02": [0, 2],
                     "ksc_03_05": [3, 5],
@@ -118,9 +118,9 @@ const state = {
     stepFive: {
         // possibile values
         travelModes: {
-            "driving-car": {text: "PKW", valid: true},
-            "public-transit": {text: "ÖPNV", valid: false},
-            "walking-foot": {text: "Fuß", valid: false}
+            "driving-car": {text: "travelModes.pkw", valid: true},
+            "public-transit": {text: "travelModes.opnv", valid: false},
+            "walking-foot": {text: "travelModes.fuss", valid: false}
         },
         // minimum value which is allowed in TimInputs of step 5
         minValue: 0,

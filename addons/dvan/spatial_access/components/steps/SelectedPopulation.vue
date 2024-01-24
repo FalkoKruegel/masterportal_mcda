@@ -89,14 +89,12 @@ export default {
          * @returns {String} the translation or the key itself on error
          */
         translate (key, options = null) {
-
             // creating completed key. This improves readability in template
             const completeKey = "additional:modules.tools.spatialAccess." + key;
 
             if (completeKey === "additional:" + this.$t(completeKey)) {
                 console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
             }
-
             return this.$t(completeKey, options);
         }
     }
@@ -106,7 +104,7 @@ export default {
 <template lang="html">
     <div>
         <p>
-            Abhängig von Ihrer Fragestellung und der gewählten Facharztgruppe, kann der räumliche Zugang nur für eine ausgewählte Bevölkerungsgruppe relevant sein. Wählen Sie die Altersgruppe, die Sie für die entsprechende Analyse einbeziehen möchten.
+            {{ translate('stepFour.text.text1') }}
         </p>
         <BootstrapAccordion
             id="Accordion4"
@@ -116,13 +114,13 @@ export default {
                 v-if="'standard' in stepFour.population"
                 id="Accordion4_1"
                 parent-id="Accordion4"
-                :text="translate('stepFour.accordion.accordion4_1')"
+                :text="translate('stepFour.all_group')"
                 :status="allStatus()"
             >
                 <BootstrapCheckbox
                     id="Checkbox4_1_1"
                     :value="allActivated"
-                    :text="translate('stepFour.checkbox.checkbox4_1_1')"
+                    :text="translate('stepFour.all_checkbox')"
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>

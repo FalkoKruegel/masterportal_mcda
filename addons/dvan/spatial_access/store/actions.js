@@ -24,8 +24,8 @@ const actions = {
             state.stepTwo.physicianGroups = physicians;
 
             state.stepTwo.supplyLevel = "";
-            state.stepTwo.physicianGroup = "Bitte wählen...";
-            state.stepTwo.planningArea = "Bitte wählen...";
+            state.stepTwo.physicianGroup = "unselected";
+            state.stepTwo.planningArea = "unselected";
         }
         // load population
         {

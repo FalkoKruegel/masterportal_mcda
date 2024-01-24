@@ -49,24 +49,16 @@
                 },
                 "population": {
                     "range": "{{start}}-{{end}} Jahre",
-                    "end": "ab {{start}} Jahre"
+                    "end": "ab {{start}} Jahre",
+                    "groups": {
+                        "standard": "DVAN-Standardbevölkerungsgruppen",
+                        "kitaSchul": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
+                    }
                 },
-                "standardAgeGroups": {
-                    "std_00_09":"0-9 Jahre",
-                    "std_10_19": "10-19 Jahre",
-                    "std_20_39": "20-39 Jahre",
-                    "std_40_59": "40-59 Jahre",
-                    "std_60_79": "60-79 Jahre",
-                    "std_80x": "ab 80 Jahre"
-                },
-                "kidsAgeGroups": {
-                    "ksc_00_02": "0-2 Jahre",
-                    "ksc_03_05": "3-5 Jahre",
-                    "ksc_06_09": "6-9 Jahre",
-                    "ksc_10_14": "10-14 Jahre",
-                    "ksc_15_17": "15-17 Jahre",
-                    "ksc_18_19": "18-19 Jahre",
-                    "ksc_20x": "ab 20 Jahre"
+                "travelModes": {
+                    "pkw": "PKW",
+                    "opnv": "ÖPNV",
+                    "fuss": "Fuß"
                 },
                 "stepOne": {
                     "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
@@ -109,14 +101,8 @@
                     "text": {
                         "text1": "Wählen Sie die Altersgruppen der Bevölkerung am Wohnort, die Sie für die Analyse berücksichtigen wollen:"
                     },
-                    "accordion": {
-                        "accordion4_1": "Gesamte Bevölkerung",
-                        "accordion4_2": "DVAN-Standardbevölkerungsgruppen",
-                        "accordion4_3": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
-                    },
-                    "checkbox": {
-                        "checkbox4_1_1": "Berücksichtigung der Gesamtbevölkerung"
-                    }
+                    "all_group": "Gesamte Bevölkerung",
+                    "all_checkbox": "Berücksichtigung der Gesamtbevölkerung"
                 },
                 "stepFive": {
                     "title": "Schritt 5: Erreichbarkeitsberechnung",
@@ -127,11 +113,6 @@
                         "text4": "Hinterlegen Sie zudem für jede der ausgewählten Infrastrukturen, welche Versorgungssituation eintreten soll, wenn eine gewisse Reisezeit überschritten wird, um diese Infrastruktur vom Nachfrageort zu erreichen. Die Kategorien sind wie folgt eingeteilt:",
                         "text5": "Wenn die Reisezeit vom Nachfrageort zur Infrastruktur den Schwellwert der mangelhaften Versorgungslage übersteigt, erfolgt keine Versorgung des Nachfrageortes durch die Infrastruktur.",
                         "thresholdText": "Schwellwert"
-                    },
-                    "travelModes": {
-                        "driving-car": "PKW",
-                        "public-transit": "ÖPNV",
-                        "walking-foot": "Fuß"
                     },
                     "timeInput": {
                         "supplySituation": "Versorgungslage",

@@ -18,9 +18,9 @@ export default {
     watch: {
         "stepTwo.supplyLevel": function () {
             if (this.stepTwo.supplyLevel === "") {
-                this.stepTwo.physicianGroup = "Bitte wählen...";
-                if (!["Bitte wählen...", "Niedersachsen", "KV-Bezirk"].includes(this.stepTwo.planningArea)) {
-                    this.stepTwo.planningArea = "Bitte wählen...";
+                this.stepTwo.physicianGroup = "unselected";
+                if (!["unselected", "niedersachsen", "kv_bezirk"].includes(this.stepTwo.planningArea)) {
+                    this.stepTwo.planningArea = "unselected";
                 }
             }
         }
@@ -31,7 +31,24 @@ export default {
         ]),
         ...mapMutations("Tools/SpatialAccess", [
             "setActive"
-        ])
+        ]),
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
+        }
     }
 };
 </script>
@@ -39,12 +56,12 @@ export default {
 <template lang="html">
     <div>
         <div>
-            <p>Bitte wählen Sie eine Versorgungsebene aus:</p>
+            <p>{{ translate('stepTwo.text.text1') }}</p>
             <BootstrapCheckbox
                 v-for="(item, name, index) in stepTwo.supplyLevels"
                 :id="`Checkbox_2_${index}`"
                 :key="index"
-                :text="item['text']"
+                :text="translate(item['text'])"
                 :value="stepTwo.supplyLevel === name"
                 :disabled="stepTwo.supplyLevel !== name && stepTwo.supplyLevel !== ''"
                 @input="e => e ? stepTwo.supplyLevel = name : stepTwo.supplyLevel = ''"
@@ -52,7 +69,7 @@ export default {
             <p />
         </div>
         <div>
-            <p>Bitte wählen Sie eine Facharztgruppe aus:</p>
+            <p>{{ translate('stepTwo.text.text2') }}</p>
             <div>
                 <select
                     id="Dropdown2_1"
@@ -63,53 +80,56 @@ export default {
                 >
                     <option
                         selected
-                        value="Bitte wählen..."
+                        value="unselected"
                     >
-                        Bitte wählen...
+                        {{ translate('stepTwo.unselected') }}
                     </option>
                     <option
                         v-for="(item, name, index) in stepTwo.physicianGroups[stepTwo.supplyLevel]"
                         :key="index"
                         :value="name"
                     >
-                        {{ item["text"] }}
+                        {{ translate(item["text"]) }}
                     </option>
                 </select>
                 <p />
             </div>
             <div>
-                <p>Bitte wählen Sie einen Planungsbereich aus:</p>
+                <p>{{ translate('stepTwo.text.text3') }}</p>
                 <select
                     id="Dropdown2_2"
                     v-model="stepTwo.planningArea"
                     class="form-select"
                     aria-label="DropdownArea"
                 >
-                    <option selected>
-                        Bitte wählen...
+                    <option
+                        selected
+                        value="unselected"
+                    >
+                        {{ translate('stepTwo.unselected') }}
                     </option>
                     <option
                         v-for="(item, name, index) in stepTwo.planningAreas[stepTwo.supplyLevel]"
                         :key="index"
                         :value="name"
                     >
-                        {{ item["text"] }}
+                        {{ translate(item["text"]) }}
                     </option>
                 </select>
                 <p />
                 <div
-                    v-if="!(stepTwo.planningArea==='Bitte wählen...') & !(stepTwo.planningArea==='kv_bezirk') & !(stepTwo.planningArea==='niedersachsen')"
+                    v-if="!(stepTwo.planningArea==='unselected') & !(stepTwo.planningArea==='kv_bezirk') & !(stepTwo.planningArea==='niedersachsen')"
                     id="Callout2_1"
                     class="callout"
                 >
-                    Neben dem von Ihnen ausgewählten Planugsbereich werden für eine verbesserte Interpretation von Mitversorgungseffekten die benachbarten Planungsbereiche in die Analyse und Darstellung einbezogen.
+                    {{ translate('stepTwo.callout.callout1') }}
                 </div>
                 <div
                     v-if="stepTwo.planningArea==='niedersachsen' || stepTwo.planningArea==='kv_bezirk'"
                     id="Callout2_2"
                     class="callout callout-warn"
                 >
-                    Sie haben sich für eine landesweite Analyse entschieden. Durch die hohen Anforderungen an die Berechnung werden alle weiteren Parameter voreingestellt und sind nicht änderbar. Sie können die Einstellungen in den folgenden Schritten einsehen und anschließend in Schritt 5 auf  "Analyse starten" klicken.
+                    {{ translate('stepTwo.callout.callout2') }}
                 </div>
             </div>
         </div>

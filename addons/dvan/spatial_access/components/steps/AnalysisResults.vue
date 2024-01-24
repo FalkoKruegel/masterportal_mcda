@@ -72,7 +72,24 @@ export default {
     },
     methods: {
         ...mapActions("Tools/SpatialAccess", ["initialize"]),
-        ...mapMutations("Tools/SpatialAccess", ["setActive"])
+        ...mapMutations("Tools/SpatialAccess", ["setActive"]),
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
+        }
     }
 };
 </script>
@@ -84,7 +101,7 @@ export default {
                 id="Infotext6_1"
                 class="callout"
             >
-                Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten.
+                {{ translate('stepSix.callout.callout1') }}
             </div>
         </div>
 
@@ -94,41 +111,41 @@ export default {
                     class="spinner-border"
                     role="status"
                 >
-                    <span class="visually-hidden">Loading...</span>
+                    <span class="visually-hidden">{{ translate('stepSix.text.text1') }}</span>
                 </div>
             </div>
             <div
                 id="Infotext6_2"
                 class="callout"
             >
-                Das Ergebnis steht in Kürze bereit...
+                {{ translate('stepSix.text.text2') }}
             </div>
         </div>
         <div v-if="stepSix.status === 'finished'">
             <BootstrapCheckbox
                 id="Checkbox6_1"
                 v-model="stepSix.show_locations"
-                text="Praxisstandorte anzeigen"
+                :text="translate('stepSix.layers.layer1')"
             />
             <BootstrapCheckbox
                 id="Checkbox6_2"
                 v-model="stepSix.show_scope"
-                text="Versorgungsumfang am Standort anzeigen"
+                :text="translate('stepSix.layers.layer2')"
             />
             <BootstrapCheckbox
                 id="Checkbox6_3"
                 v-model="stepSix.show_population"
-                text="Kleinräumliche Bevölkerungsdaten"
+                :text="translate('stepSix.layers.layer3')"
             />
             <BootstrapCheckbox
                 id="Checkbox6_4"
                 v-model="stepSix.show_accessibility"
-                text="Anzeige der Zugangsberechnung"
+                :text="translate('stepSix.layers.layer4')"
             />
             <p>
-                Die Analyseergebnisse bieten Ihnen Interpretationsmöglichkeiten zur kleinräumlichen zugangsbasierten Versorgungssituation.
+                {{ translate('stepSix.text.text3') }}
                 <br><br>
-                Bitte beachten Sie, dass die Darstellung keinen Hinweis auf formelle bedarfsplanerische Maßzahlen wie Unter- und Überversorgung gibt. Es ist ein ergänzendes Planungstool um Planern zu ermöglichen, unabhängig der Planungsgrenzen kleinräumliche Versorgung oder kleinräumlichen Zugang im Rahmen des Sicherstellungsauftrages zu bewerten.
+                {{ translate('stepSix.text.text4') }}
             </p>
         </div>
     </div>

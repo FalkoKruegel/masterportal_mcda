@@ -41,6 +41,23 @@ export default {
                 }
             };
             reader.readAsText(files[0]);
+        },
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
         }
     }
 };
@@ -48,8 +65,8 @@ export default {
 
 <template lang="html">
     <div>
-        <p>Dieses Instrument hilft Ihnen dabei, Schritt für Schritt den räumlichen Zugang für eine bestimmte Facharztgruppe zu analysieren. Der räumliche Zugang zu Facharztpraxen hängt von Faktoren wie der Verteilung der Praxen, dem ärztlichen Teilnahmeumfang, der Größe des Einzugsgebietes und weiteren Erreichbarkeitsparametern ab.</p>
-        <p>Sie können in diesem Analysetool die relevanten Faktoren selbst festlegen. Als Ergebnis erhalten Sie eine individuelle Darstellung des räumlichen Zugangs in einem 100 m x 100 m Raster, um die Versorgungssituation im Analysegebiet zu beurteilen.</p>
+        <p>{{ translate('stepOne.text.text1') }}</p>
+        <p>{{ translate('stepOne.text.text2') }}</p>
         <!--container to adjust position of following buttons-->
         <div
             class="container"
@@ -67,7 +84,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="openAnalysis"
                     >
-                        Analyseeinstellung laden
+                        {{ translate('stepOne.loadAnalysisSettings') }}
                     </button>
                     <input
                         ref="layerDialog"
@@ -86,7 +103,7 @@ export default {
                         class="btn btn-outline-primary btn-lg"
                         @click="$emit('startAnalysis')"
                     >
-                        Neue Analyse durchführen
+                        {{ translate('stepOne.startNewAnalysis') }}
                     </button>
                 </div>
             </div>
@@ -96,7 +113,7 @@ export default {
             v-if="loadFailed"
             class="callout-warning"
         >
-            Die verwendete Parameter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.
+            {{ translate('stepOne.incorrectParameterFile') }}
         </div>
     </div>
 </template>

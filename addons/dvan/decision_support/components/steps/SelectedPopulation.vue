@@ -115,13 +115,13 @@ export default {
                 v-if="'standard' in stepFour.population"
                 id="Accordion4-1"
                 parent-id="Accordion4"
-                :text="translate('stepFour.accordion.accordion4_1')"
+                :text="translate('stepFour.all_group')"
                 :status="allStatus()"
             >
                 <BootstrapCheckbox
                     id="Checkbox4-1-1"
                     :value="allActivated"
-                    :text="translate('stepFour.checkbox.checkbox4_1_1')"
+                    :text="translate('stepFour.all_checkbox')"
                     @input="e => e ? activateAll() : deactivateAll()"
                 />
             </BootstrapAccordionItem>

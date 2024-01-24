@@ -134,9 +134,12 @@ export default {
             >
                 <p>{{ translate('stepFive.text.text3') }}</p>
                 <ul>
-                    <li>{{ translate('stepFive.travelModes.driving-car') }}</li>
-                    <li>{{ translate('stepFive.travelModes.public-transit') }}</li>
-                    <li>{{ translate('stepFive.travelModes.walking-foot') }}</li>
+                    <li
+                        v-for="(item, name, index) in stepFive.travelModes"
+                        :key="index"
+                    >
+                        {{ translate(item['text']) }}
+                    </li>
                 </ul>
                 <p>{{ translate('stepFive.text.text4') }}</p>
                 <ul>
@@ -175,7 +178,7 @@ export default {
                                 class="btn btn-outline-primary"
                                 :for="`Button-5-1-${index}`"
                             >
-                                {{ translate(`stepFive.travelModes.${name}`) }}
+                                {{ translate(item['text']) }}
                             </label>
                         </div>
                     </div>
