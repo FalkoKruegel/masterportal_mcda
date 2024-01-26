@@ -6,7 +6,7 @@
  */
 function convertLayerName (name) {
     switch (name) {
-        case "multiCritera":
+        case "multiCriteria":
             return "Versorgungssituation";
         case "supermarket":
             return "Supermärkte";

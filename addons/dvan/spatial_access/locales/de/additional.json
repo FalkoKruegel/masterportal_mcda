@@ -1,0 +1,156 @@
+{
+    "modules": {
+        "tools": {
+            "spatialAccess": {
+                "title": "Räumlicher Zugang",
+                "accordionFooter": {
+                    "back": "Zurück",
+                    "next": "Weiter",
+                    "startAnalysis": "Analyse starten",
+                    "saveAnalysis": "Analyse speichern"
+                },
+                "supplyLevels": {
+                    "generalPhysician": "Hausärztliche Versorgung - Versorgungsebene 1",
+                    "generalSpecialist": "Allgemeine fachärztliche Versorgung  - Versorgungsebene 2",
+                    "specializedSpecialist": "Spezialisierte fachärztliche Versorgung - Versorgungsebene 3",
+                    "lowerSaxony": "Niedersachsen - Versorgungsebene / KV-Bezirk"
+                },
+                "physicians": {
+                    "generalPhysician": "Hausärzte",
+                    "augenarzte": "Augenärzte",
+                    "surgeon": "Chirurgen und Orthopäden",
+                    "frauenarzte": "Frauenärzte",
+                    "dermatologist": "Hautärzte",
+                    "hnoArzte": "HNO-Ärzte",
+                    "paediatrician": "Kinderärzte",
+                    "neurologist": "Nervenärzte",
+                    "psychotherapist": "Psychotherapeuten",
+                    "urologist": "Urologen",
+                    "internisten": "fachärztlich tätige Internisten",
+                    "jugendpsychiater": "Kinder- und Jugendpsychiater",
+                    "radiologen": "Radiologen",
+                    "anasthesisten": "Anästhesisten"
+                },
+                "planningAreas": {
+                    "niedersachsen": "Niedersachsen",
+                    "kv_bezirk": "KV-Bezirk",
+                    "aurich": "Aurich",
+                    "emden": "Emden",
+                    "jever": "Jever",
+                    "norden": "Norden",
+                    "varel": "Varel",
+                    "wilhelmshaven": "Wilhelmshaven",
+                    "wittmund": "Wittmund"
+                },
+                "physicianCapacities": {
+                    "facility": "Betriebsstättenbetrachtung",
+                    "physicianNumber": "Facharztzahl an der Betriebsstätte",
+                    "employmentVolume": "Beschäftigungsumfang der Fachärzte an den Betriebsstätten",
+                    "demandLimit": "Fallzahlabhängige Bedarfsgrenzen an den Betriebsstätten"
+                },
+                "population": {
+                    "range": "{{start}}-{{end}} Jahre",
+                    "end": "ab {{start}} Jahre",
+                    "groups": {
+                        "standard": "DVAN-Standardbevölkerungsgruppen",
+                        "kitaSchul": "DVAN-Bevölkerungsgruppen für Kita-/Schulbedarf"
+                    }
+                },
+                "travelModes": {
+                    "pkw": "PKW",
+                    "opnv": "ÖPNV",
+                    "fuss": "Fuß"
+                },
+                "distanceDecays": {
+                    "linear": "Linear",
+                    "patientBehavior": "KV-Abrechnungsdaten / Patientenverhalten",
+                    "minimumStandards": "Mindesterreichbarkeitsstandards"
+                },
+                "stepOne": {
+                    "title": "Schritt 1: Analyse starten oder bestehende Analyse laden",
+                    "loadAnalysisSettings": "Analyseeinstellungen laden",
+                    "startNewAnalysis": "Neue Analyse durchführen",
+                    "incorrectParameterFile": "Die verwendete Parmeter-Datei ist fehlerhaft. Bitte versuchen Sie es erneut.",
+                    "text": {
+                        "text1": "Dieses Instrument hilft Ihnen dabei, Schritt für Schritt den räumlichen Zugang für eine bestimmte Facharztgruppe zu analysieren. Der räumliche Zugang zu Facharztpraxen hängt von Faktoren wie der Verteilung der Praxen, dem ärztlichen Teilnahmeumfang, der Größe des Einzugsgebietes und weiteren Erreichbarkeitsparametern ab.",
+                        "text2": "Sie können in diesem Analysetool die relevanten Faktoren selbst festlegen. Als Ergebnis erhalten Sie eine individuelle Darstellung des räumlichen Zugangs in einem 100 m x 100 m Raster, um die Versorgungssituation im Analysegebiet zu beurteilen."
+                    }
+                },
+                "stepTwo": {
+                    "title": "Schritt 2: Facharztgruppe und Planungsbereich auswählen",
+                    "unselected": "Bitte wählen...",
+                    "text": {
+                        "text1": "Bitte wählen Sie eine Versorgungsebene aus:",
+                        "text2": "Bitte wählen Sie eine Facharztgruppe aus:",
+                        "text3": "Bitte wählen Sie einen Planungsbereich aus:"
+                    },
+                    "callout": {
+                        "callout1": "Neben dem von Ihnen ausgewählten Planugsbereich werden für eine verbesserte Interpretation von Mitversorgungseffekten die benachbarten Planungsbereiche in die Analyse und Darstellung einbezogen.",
+                        "callout2": "Sie haben sich für eine landesweite Analyse entschieden. Durch die hohen Anforderungen an die Berechnung werden alle weiteren Parameter voreingestellt und sind nicht änderbar. Sie können die Einstellungen in den folgenden Schritten einsehen und anschließend in Schritt 5 auf \"Analyse starten\" klicken."
+                    }
+                },
+                "stepThree": {
+                    "title": "Schritt 3: Ärztlichen Teilnahmeumfang und Kapazitäten definieren",
+                    "text": {
+                        "text1": "Bitte wählen Sie, wie Sie die ärztliche Verfügbarkeit in der Analyse berücksichtigen wollen."
+                    },
+                    "callout": {
+                        "callout1_1": "Analyseergebnis stärker durch die Sicht Erreichbarkeit dominiert",
+                        "callout1_2": "Sie haben sich für eine rein standortabhängie Betrachtung entschieden. Das Analyseergebnis wird grundsätzlich stärker durch die Dimension \"Erreichbarkeit\" der Versorgung als durch die Dimension \"Verfügbarkeit\" der Versorgung dominiert, da die Anzahl der Ärzte oder der Teilnahmeumfang an der vertragsärztlichen Versorgung am Standort nicht berücksichtig werden.",
+                        "callout2_1": "Analyseergebnis stärker durch die Sicht Versorgungssicherheit dominiert.",
+                        "callout2_2": "Mit der Auswahl wird der Beschäftigungsumfang der Ärzte am Standort berücksichtigt. Standorte mit hohen Arztzahlen tragen somit stärker zur Versorgung bei als Standorte mit niedrigen Arztzahlen. Berücksichtigen Sie bei der Interpretation der Analyseergebnisse, das dadurch die Dimension \"Verfügbarkeit\" stärker berücksichtigt wird. Das Ergebnis lässt sich dadurch im Sinne einer regionalen Versorgungssicherheit interpretieren.",
+                        "callout3_1": "Ausgewogene und realitätsnahe Ergebnisdarstellung der fachätztlichen Verfügbarkeit und Erreichbarkeit.",
+                        "callout3_2": "Das Analyseergebnis wird ausgewogen durch die Dimensionen \"Erreichbarkeit\" und \"Verfügbarkeit\" von fachärztlicher Versorgungsleistung dominiert.",
+                        "callout4_1": "KV-Spezifikation notwendig: Auslastungsabhängige Ergebnisdarstellung anhand der Fallzahlen der Betriebsstätte.",
+                        "callout4_2": "Dieses Instrument ist noch nicht verfügbar. Es sind kontextabhängige Spezifikationen, Daten und Absprachen mit Kassenärztlichen Vereinigungen notwendig."
+                    }
+                },
+                "stepFour": {
+                    "title": "Schritt 4: Altersgruppe der Bevölkerung auswählen",
+                    "all_group": "Gesamte Bevölkerung",
+                    "all_checkbox": "Berücksichtigung der Gesamtbevölkerung",
+                    "text": {
+                        "text1": "Abhängig von Ihrer Fragestellung und der gewählten Facharztgruppe, kann der räumliche Zugang nur für eine ausgewählte Bevölkerungsgruppe relevant sein. Wählen Sie die Altersgruppe, die Sie für die entsprechende Analyse einbeziehen möchten."
+                    }
+                },
+                "stepFive": {
+                    "title": "Schritt 5: Transportmittel und Entfernungsabgwichtung wählen",
+                    "headers": {
+                        "transport": "Transportmittel",
+                        "decay": "Entfernungsabgewichtung"
+                    },
+                    "text": {
+                        "text1": "Bitte wählen Sie, auf welches Transportmittel sich die Analyse beziehen soll:",
+                        "text2": "ÖPNV-Modus ist aktuell nicht verfügbar.",
+                        "text3": "Stellen Sie bitte auf PKW um."
+                    },
+                    "callout": {
+                        "callout1": "Lineare Entfernungsabgewichtung",
+                        "callout2_1": "Abgewichtung auf Grundlage der KV-Abrechnungsdaten.",
+                        "callout2_2": "Gravitationsbasierte Analyse (Text wird weiter ausgebaut).",
+                        "callout3_1": "Potenzielle Wegzeit unter Berücksichtigung von Mindesterreichbarkeitsstandards.",
+                        "callout3_2": "(Text wird weiter ausgebaut). Die Mindeststandards leiten sich aus verschiedenen Planungsdokumenten ab."
+                    }
+                },
+                "stepSix": {
+                    "title": "Schritt 6: Zusammenfassung und Ergebnisse",
+                    "layers": {
+                        "layer1": "Praxisstandorte anzeigen",
+                        "layer2": "Versorgungsumfang am Standort anzeigen",
+                        "layer3": "Kleinräumliche Bevölkerungsdaten",
+                        "layer4": "Anzeige der Zugangsberechnung"
+                    },
+                    "text": {
+                        "text1": "Loading...",
+                        "text2": "Das Ergebnis steht in Kürze bereit...",
+                        "text3": "Die Analyseergebnisse bieten Ihnen Interpretationsmöglichkeiten zur kleinräumlichen zugangsbasierten Versorgungssituation.",
+                        "text4": "Bitte beachten Sie, dass die Darstellung keinen Hinweis auf formelle bedarfsplanerische Maßzahlen wie Unter- und Überversorgung gibt. Es ist ein ergänzendes Planungstool um Planern zu ermöglichen, unabhängig der Planungsgrenzen kleinräumliche Versorgung oder kleinräumlichen Zugang im Rahmen des Sicherstellungsauftrages zu bewerten."
+                    },
+                    "callout": {
+                        "callout1": "Bitte starten Sie die Berechnung um die Ergebnisse zu erhalten."
+                    }
+                }
+            }
+        }
+    }
+}

@@ -57,7 +57,7 @@ export default {
             // stores values like "pharmacy", "clinic", "supermarket", etc.
             const item = this.stepThree.facilities[group].items[name];
 
-            if (item.isGroup === true) {
+            if ("items" in item) {
                 // this if-condition is applied to physicians
                 // checks if a physician has been chosen in th infrastructure selection, if not it only displays 'physicians' or 'Ärzte'
                 if (value === "") {
@@ -134,9 +134,12 @@ export default {
             >
                 <p>{{ translate('stepFive.text.text3') }}</p>
                 <ul>
-                    <li>{{ translate('stepFive.travelModes.driving-car') }}</li>
-                    <li>{{ translate('stepFive.travelModes.public-transit') }}</li>
-                    <li>{{ translate('stepFive.travelModes.walking-foot') }}</li>
+                    <li
+                        v-for="(item, name, index) in stepFive.travelModes"
+                        :key="index"
+                    >
+                        {{ translate(item['text']) }}
+                    </li>
                 </ul>
                 <p>{{ translate('stepFive.text.text4') }}</p>
                 <ul>
@@ -175,7 +178,7 @@ export default {
                                 class="btn btn-outline-primary"
                                 :for="`Button-5-1-${index}`"
                             >
-                                {{ translate(`stepFive.travelModes.${name}`) }}
+                                {{ translate(item['text']) }}
                             </label>
                         </div>
                     </div>
