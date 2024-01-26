@@ -170,54 +170,37 @@
 						[
 							{
 							"Titel": "Nahversorgung",
-							"Ordner": 
+							"Layer": 
 								[
 								{
-									"Titel": "Discounter",
-									"Layer": 
-										[
-										{
-											"id":"[Replace]",
-											"name":"Discounter"
-										}
-										]
+									"id":"120",
+									"name":["Discounter"],
+									"styles":["Infrastruktur_Discounter"]
 								},
 								{
-									"Titel": "Supermarkt",
-									"Layer": 
-										[
-										{
-											"id":"1[Replace]4",
-											"name":"Supermarkt"
-										}
-										]
+									"id":"121",
+									"name":["Supermärkte"],
+									"styles":["Infrastruktur_Supermarkt"]
 								},
 								{
-									"Titel": "Hof- und Bioladen",
-									"Layer": 
-										[
-										{
-											"id":"[Replace]",
-											"name":"Hof und Biolanden"
-										}
-										]
+									"id":"122",
+									"name":["Sonstige Lebensmittelgeschäfte"],
+									"styles":["Infrastruktur_Sonstige"]
 								}
 								]
 							},
 							{
-								"Titel": "Gesundheit",
-								"Ordner": 
+							"Titel": "Gesundheit",
+							"Layer":
 									[
 									{
-										"Titel": "Apotheken",
-										"Layer": 
-											[
-											{
-												"id":"[Replace]",
-												"name":"Kindertagesstätten"
-											}
-											]
-									},
+										"id":"116",
+										"name":["Apotheken"],
+										"styles":["Infrastruktur_Apotheke"]
+									}
+									],
+							"Ordner": 
+									[
 									{
 										"Titel": "Ambulante Versorgung",
 										"Ordner": 
@@ -244,11 +227,13 @@
 														[
 														{
 															"id":"72",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"73",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -258,11 +243,13 @@
 														[
 														{
 															"id":"74",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"75",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -272,11 +259,13 @@
 														[
 														{
 															"id":"76",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"77",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -286,11 +275,13 @@
 														[
 														{
 															"id":"78",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"79",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -300,11 +291,13 @@
 														[
 														{
 															"id":"80",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"81",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -314,11 +307,13 @@
 														[
 														{
 															"id":"82",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"83",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -328,11 +323,13 @@
 														[
 														{
 															"id":"84",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"85",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -342,11 +339,13 @@
 														[
 														{
 															"id":"86",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"87",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -356,11 +355,13 @@
 														[
 														{
 															"id":"88",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"89",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -370,11 +371,13 @@
 														[
 														{
 															"id":"90",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"91",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -384,11 +387,13 @@
 														[
 														{
 															"id":"92",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"93",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -398,11 +403,13 @@
 														[
 														{
 															"id":"94",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"95",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -412,11 +419,13 @@
 														[
 														{
 															"id":"96",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"97",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -426,11 +435,13 @@
 														[
 														{
 															"id":"98",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"99",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -440,11 +451,13 @@
 														[
 														{
 															"id":"100",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"101",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -454,11 +467,13 @@
 														[
 														{
 															"id":"102",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"103",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -468,11 +483,13 @@
 														[
 														{
 															"id":"104",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"105",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -482,11 +499,13 @@
 														[
 														{
 															"id":"106",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"107",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -496,11 +515,13 @@
 														[
 														{
 															"id":"108",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"109",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -510,11 +531,13 @@
 														[
 														{
 															"id":"110",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"111",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -524,11 +547,13 @@
 														[
 														{
 															"id":"112",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"113",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												},
@@ -538,11 +563,13 @@
 														[
 														{
 															"id":"114",
-															"name":["Praxisstandorte"]
+															"name":["Praxisstandorte"],
+															"styles":["infrastruktur_aerzte_standard"]
 														},
 														{
 															"id":"115",
-															"name":["Versorgungsumfang am Standort"]
+															"name":["Versorgungsumfang am Standort"],
+															"styles":["infrastruktur_aerzte_proportional"]
 														}
 														]
 												}
@@ -553,8 +580,9 @@
 											"Layer": 
 												[
 												{
-													"id":"[Replace]",
-													"name":"Krankenhäuser"
+													"id":"117",
+													"name":["Krankenhäuser"],
+													"styles":["Infrastruktur_Krankenhaus"]
 												}
 												]
 									}
@@ -569,18 +597,30 @@
 										"Layer": 
 											[
 											{
-												"id":"[Replace]",
-												"name":"Kindertagesstätten"
+												"id":"130",
+												"name":["Kindertagesstätten"],
+												"styles":["Infrastruktur_Kita"]
 											}
 											]
 									},
 									{
-										"Titel": "Schulbidung",
+										"Titel": "Schulbildung",
 										"Layer": 
 											[
 											{
-												"id":"[Replace]",
-												"name":"Primarschulen"
+												"id":"131",
+												"name":["Primärschulen"],
+												"styles":["Infrastruktur_Primarschule"]
+											},
+											{
+												"id":"132",
+												"name":["Sekundarstufe 1"],
+												"styles":["Infrastruktur_Sek1"]
+											},
+											{
+												"id":"133",
+												"name":["Sekundarstufe 2"],
+												"styles":["Infrastruktur_Sek2"]
 											}
 											]
 									}
