@@ -20,7 +20,24 @@ export default {
     },
     methods: {
         ...mapActions("Tools/SpatialAccess", ["initialize"]),
-        ...mapMutations("Tools/SpatialAccess", ["setActive"])
+        ...mapMutations("Tools/SpatialAccess", ["setActive"]),
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
+        }
     }
 };
 </script>
@@ -34,10 +51,10 @@ export default {
             <BootstrapAccordionItem
                 id="Accordion5_1"
                 parent-id="Accordion5"
-                text="Transportmittel"
+                :text="translate('stepFive.headers.transport')"
                 :status="stepFive.transport === '' ? 'default' : stepFive.travelModes[stepFive.transport]['valid'] ? 'valid' : 'invalid'"
             >
-                <p>Bitte wählen Sie, auf welches Transportmittel sich die Analyse beziehen soll:</p>
+                <p>{{ translate('stepFive.text.text1') }}</p>
                 <div class="container text-center">
                     <div
                         id="Buttonbar5_1"
@@ -61,7 +78,7 @@ export default {
                                 class="btn btn-outline-primary"
                                 :for="`Button_5_1_${index}`"
                             >
-                                {{ item['text'] }}
+                                {{ translate(item['text']) }}
                             </label>
                         </div>
                     </div>
@@ -71,14 +88,14 @@ export default {
                     id="Callout5_1"
                     class="callout-warning"
                 >
-                    <b>ÖPNV-Modus ist aktuell nicht verfügbar.</b>
-                    Stellen Sie bitte auf PKW um.
+                    <b>{{ translate('stepFive.text.text2') }}</b>
+                    {{ translate('stepFive.text.text3') }}
                 </div>
             </BootstrapAccordionItem>
             <BootstrapAccordionItem
                 id="Accordion5_2"
                 parent-id="Accordion5"
-                text="Entfernungsabgewichtung"
+                :text="translate('stepFive.headers.decay')"
                 :status="stepFive.distanceDecay !== '' ? 'valid' : 'default'"
             >
                 <BootstrapCheckbox
@@ -86,7 +103,7 @@ export default {
                     :id="`Checkbox5_2_${index}`"
                     :key="index"
                     :value="stepFive.distanceDecay === name"
-                    :text="item['text']"
+                    :text="translate(item['text'])"
                     @input="e => e ? stepFive.distanceDecay = name : stepFive.distanceDecay = ''"
                 />
                 <div
@@ -94,7 +111,7 @@ export default {
                     id="Callout5_2_1"
                     class="callout"
                 >
-                    <b>Lineare Entfernungsabgewichtung</b>
+                    <b>{{ translate('stepFive.callout.callout1') }}</b>
                     <br>
                     <div class="img-container">
                         <img
@@ -108,18 +125,18 @@ export default {
                     id="Callout5_2_2"
                     class="callout"
                 >
-                    <b>Abgewichtung auf Grundlage der KV-Abrechnungsdaten.</b>
+                    <b>{{ translate('stepFive.callout.callout2_1') }}</b>
                     <br>
-                    Gravitationsbasierte Analyse (Text wird weiter ausgebaut).
+                    {{ translate('stepFive.callout.callout2_2') }}
                 </div>
                 <div
                     v-if="stepFive.distanceDecay === 'minimum_standards'"
                     id="Callout5_2_3"
                     class="callout"
                 >
-                    <b>Potenzielle Wegzeit unter Berücksichtigung von Mindesterreichbarkeitsstandards.</b>
+                    <b>{{ translate('stepFive.callout.callout3_1') }}</b>
                     <br>
-                    (Text wird weiter ausgebaut). Die Mindeststandards leiten sich aus verschiedenen Planungsdokumenten ab.
+                    {{ translate('stepFive.callout.callout3_2') }}
                 </div>
             </BootstrapAccordionItem>
         </BootstrapAccordion>

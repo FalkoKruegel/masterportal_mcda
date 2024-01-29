@@ -1,0 +1,156 @@
+{
+    "modules": {
+        "tools": {
+            "spatialAccess": {
+                "title": "Spatial Access",
+                "accordionFooter": {
+                    "back": "Back",
+                    "next": "Next",
+                    "startAnalysis": "Start analysis",
+                    "saveAnalysis": "Save analysis"
+                },
+                "supplyLevels": {
+                    "generalPhysician": "General practitioner care - care level 1",
+                    "generalSpecialist": "General specialist care - care level 2",
+                    "specializedSpecialist": "Specialized specialist care - care level 3",
+                    "lowerSaxony": "Lower Saxony - care level / KV district"
+                },
+                "physicians": {
+                    "generalPhysician": "General practitioners",
+                    "augenarzte": "Ophthalmologists",
+                    "surgeon": "Surgeons and orthopaedists",
+                    "frauenarzte": "Gynecologists",
+                    "dermatologist": "Dermatologists",
+                    "hnoArzte": "ENT doctors",
+                    "paediatrician": "Pediatricians",
+                    "neurologist": "Neurologists",
+                    "psychotherapist": "Psychotherapists",
+                    "urologist": "Urologists",
+                    "internisten": "Specialist internists",
+                    "jugendpsychiater": "Child and adolescent psychiatrist",
+                    "radiologen": "Radiologists",
+                    "anasthesisten": "Anesthesiologists"
+                },
+                "planningAreas": {
+                    "niedersachsen": "Niedersachsen",
+                    "kv_bezirk": "KV-Bezirk",
+                    "aurich": "Aurich",
+                    "emden": "Emden",
+                    "jever": "Jever",
+                    "norden": "Norden",
+                    "varel": "Varel",
+                    "wilhelmshaven": "Wilhelmshaven",
+                    "wittmund": "Wittmund"
+                },
+                "physicianCapacities": {
+                    "facility": "Consideration of number of operating sites",
+                    "physicianNumber": "Number of specialists at the operating site",
+                    "employmentVolume": "Scope of employment of the specialists at the operating sites",
+                    "demandLimit": "Case number-dependent requirement limits at the operating sites"
+                },
+                "population": {
+                    "range": "{{start}}-{{end}} years",
+                    "end": "more than {{start}} years",
+                    "groups": {
+                        "standard": "DVAN standard population groups",
+                        "kitaSchul": "DVAN population groups for daycare and schools"
+                    }
+                },
+                "travelModes": {
+                    "pkw": "car",
+                    "opnv": "public-transport",
+                    "fuss": "foot"
+                },
+                "distanceDecays": {
+                    "linear": "Linear",
+                    "patientBehavior": "KV billing data / patient behavior",
+                    "minimumStandards": "Minimum accessibility standards"
+                },
+                "stepOne": {
+                    "title": "Step 1: Start analysis or load existing analysis",
+                    "loadAnalysisSettings": "Load analysis settings",
+                    "startNewAnalysis": "Perform new analysis",
+                    "incorrectParameterFile": "The parmeter file used is incorrect. Please try again.",
+                    "text": {
+                        "text1": "This tool helps you to analyze spatial access for a specific specialist group step by step. Spatial access to specialist practices depends on factors such as the distribution of practices, the extent of physician participation, the size of the catchment area and other accessibility parameters.",
+                        "text2": "You can define the relevant factors yourself in this analysis tool. As a result, you receive an individual representation of the spatial access in a 100 m x 100 m grid in order to assess the supply situation in the analysis area."
+                    }
+                },
+                "stepTwo": {
+                    "title": "Step 2: Select specialist group and planning area",
+                    "unselected": "Please select...",
+                    "text": {
+                        "text1": "Please select a supply level:",
+                        "text2": "Please select a specialist group:",
+                        "text3": "Please select a planning area:"
+                    },
+                    "callout": {
+                        "callout1": "In addition to the planning area you have selected, the neighboring planning areas are included in the analysis and presentation for an improved interpretation of co-supply effects.",
+                        "callout2": "You have opted for a nationwide analysis. Due to the high demands on the calculation, all other parameters are preset and cannot be changed. You can view the settings in the following steps and then click on \"Start analysis\" in step 5."
+                    }
+                },
+                "stepThree": {
+                    "title": "Step 3: Define the scope of physician participation and capacities",
+                    "text": {
+                        "text1": "Please select how you want to take into account medical availability in the analysis."
+                    },
+                    "callout": {
+                        "callout1_1": "Analysis result more strongly dominated by the accessibility view.",
+                        "callout1_2": "You have opted for a purely location-dependent approach. The result of the analysis is generally dominated more by the \"accessibility\" dimension of care than by the \"availability\" dimension of care, as the number of doctors or the extent of participation in SHI-accredited medical care at the location are not taken into account.",
+                        "callout2_1": "Analysis result more strongly dominated by the security of supply view.",
+                        "callout2_2": "The selection takes into account the number of doctors employed at the location. Locations with a high number of doctors therefore contribute more to care than locations with a low number of doctors. When interpreting the results of the analysis, please note that the \"availability\" dimension is given greater consideration. The result can thus be interpreted in terms of regional security of supply.",
+                        "callout3_1": "Balanced and realistic presentation of the results of subject-specific availability and accessibility.",
+                        "callout3_2": "The result of the analysis is dominated by the dimensions \"accessibility\" and \"availability\" of specialist care services.",
+                        "callout4_1": "CT specification necessary: Utilization-dependent presentation of results based on the number of cases at the facility.",
+                        "callout4_2": "This tool is not yet available. Context-dependent specifications, data and agreements with associations of statutory health insurance physicians are required."
+                    }
+                },
+                "stepFour": {
+                    "title": "Step 4: Select population's age group",
+                    "all_group": "Total population",
+                    "all_checkbox": "Consideration of the total population",
+                    "text": {
+                        "text1": "Depending on your question and the selected specialist group, spatial access may only be relevant for a selected population group. Select the age group you would like to include for the corresponding analysis."
+                    }
+                },
+                "stepFive": {
+                    "title": "Step 5: Select means of transportation and distance weighting",
+                    "headers": {
+                        "transport": "Means of transportation",
+                        "decay": "Distance decay"
+                    },
+                    "text": {
+                        "text1": "Please select the means of transportation to which the analysis should refer:",
+                        "text2": "Public transport mode is currently not available.",
+                        "text3": "Please switch to cars."
+                    },
+                    "callout": {
+                        "callout1": "Linear distance weighting",
+                        "callout2_1": "Weighting based on the KV billing data.",
+                        "callout2_2": "Gravity-based analysis (text will be expanded further).",
+                        "callout3_1": "Potential travel time taking into account minimum accessibility standards.",
+                        "callout3_2": "(Text will be expanded further). The minimum standards are derived from various planning documents."
+                    }
+                },
+                "stepSix": {
+                    "title": "Step 6: Summary and results",
+                    "layers": {
+                        "layer1": "Show practice locations",
+                        "layer2": "Show scope of supply at the location",
+                        "layer3": "Small-scale population data",
+                        "layer4": "Display of the access calculation"
+                    },
+                    "text": {
+                        "text1": "Loading...",
+                        "text2": "The result will be available shortly...",
+                        "text3": "The results of the analysis offer you options for interpreting the small-scale access-based supply situation.",
+                        "text4": "Please note that the diagram does not provide any indication of formal demand planning measures such as underuse and overuse. It is a supplementary planning tool to enable planners to assess small-scale supply or small-scale access as part of the safeguarding mandate, irrespective of planning boundaries."
+                    },
+                    "callout": {
+                        "callout1": "Please start the calculation to get the results."
+                    }
+                }
+            }
+        }
+    }
+}

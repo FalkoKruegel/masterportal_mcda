@@ -83,20 +83,20 @@ async function runAnalysis () {
     // set population information
     switch (stepFour.populationType) {
         case "standard":
-            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.standardAgeGroups).length) {
+            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.population.standard.items).length) {
                 request.population_type = "standard_all";
             }
             else {
-                request.population_type = "standard";
+                request.population_type = stepFour.populationType;
                 request.population_indizes = stepFour.selectedAgeGroups;
             }
             break;
-        case "kids":
-            request.population_type = "kita_schul";
+        case "":
+            throw Error("missing population selection");
+        default:
+            request.population_type = stepFour.populationType;
             request.population_indizes = stepFour.selectedAgeGroups;
             break;
-        default:
-            throw Error("missing population selection");
     }
 
     // set facility parameters
@@ -143,8 +143,8 @@ async function runAnalysis () {
 
         const geojson = await response.json();
 
-        const [min, max] = computeMinMax(geojson.features, "multiCritera", -9999);
-        const style = new ContinousGridStyle("multiCritera",
+        const [min, max] = computeMinMax(geojson.features, "multiCriteria", -9999);
+        const style = new ContinousGridStyle("multiCriteria",
             [255, 0, 0, 180],
             [0, 255, 0, 180],
             min, max,
@@ -154,7 +154,7 @@ async function runAnalysis () {
         const grid_layer = new GridLayer("decision_support_accessibility", "Accessibility", geojson.features, 100);
         const ol_layer = initDeckLayer(grid_layer, style);
 
-        const heat_style = new HeatMapStyle("multiCritera",
+        const heat_style = new HeatMapStyle("multiCriteria",
             [255, 0, 0, 180],
             [0, 255, 0, 180]
         );
@@ -162,8 +162,8 @@ async function runAnalysis () {
         const ol_heat_layer = initDeckLayer(heat_layer, heat_style);
 
         const gfiAttributes = {
-            "multiCritera": convertLayerName("multiCritera"),
-            "multiCritera_weighted": convertLayerName("multiCritera") + " (gewichtet)"
+            "multiCriteria": convertLayerName("multiCriteria"),
+            "multiCriteria_weighted": convertLayerName("multiCriteria") + " (gewichtet)"
         };
 
         for (const infra in request.infrastructures) {
@@ -211,7 +211,7 @@ async function runAnalysis () {
             is_active: false
         };
 
-        changeLayer("grid", "multiCritera");
+        changeLayer("grid", "multiCriteria");
 
         stepEight.status = "finished";
     }

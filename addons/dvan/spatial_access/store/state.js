@@ -14,100 +14,100 @@ const state = {
     stepTwo: {
         // possibile values
         supplyLevels: {
-            "generalPhysician": {text: "Hausärztliche Versorgung - Versorgungsebene 1"},
-            "generalSpecialist": {text: "Allgemeine fachärztliche Versorgung  - Versorgungsebene 2"},
-            "specializedSpecialist": {text: "Spezialisierte fachärztliche Versorgung - Versorgungsebene 3"},
-            "lowerSaxony": {text: "Niedersachsen - Versorgungsebene / KV-Bezirk"}
+            "generalPhysician": {text: "supplyLevels.generalPhysician"},
+            "generalSpecialist": {text: "supplyLevels.generalSpecialist"},
+            "specializedSpecialist": {text: "supplyLevels.specializedSpecialist"},
+            "lowerSaxony": {text: "supplyLevels.lowerSaxony"}
         },
         physicianGroups: {
             generalPhysician: {
-                "general_physician": {text: "Hausärzte"}
+                "general_physician": {text: "physicians.generalPhysician"}
             },
             generalSpecialist: {
-                "augenarzte": {text: "Augenärzte"},
-                "surgeon": {text: "Chirurgen und Orthopäden"},
-                "frauenarzte": {text: "Frauenärzte"},
-                "dermatologist": {text: "Hautärzte"},
-                "hno_arzte": {text: "HNO-Ärzte"},
-                "paediatrician": {text: "Kinderärzte"},
-                "neurologist": {text: "Nervenärzte"},
-                "psychotherapist": {text: "Psychotherapeuten"},
-                "urologist": {text: "Urologen"}
+                "augenarzte": {text: "physicians.augenarzte"},
+                "surgeon": {text: "physicians.surgeon"},
+                "frauenarzte": {text: "physicians.frauenarzte"},
+                "dermatologist": {text: "physicians.dermatologist"},
+                "hno_arzte": {text: "physicians.hnoArzte"},
+                "paediatrician": {text: "physicians.paediatrician"},
+                "neurologist": {text: "physicians.neurologist"},
+                "psychotherapist": {text: "physicians.psychotherapist"},
+                "urologist": {text: "physicians.urologist"}
             },
             specializedSpecialist: {
-                "internisten": {text: "fachärztlich tätige Internisten"},
-                "jugendpsychiater": {text: "Kinder- und Jugendpsychiater"},
-                "radiologen": {text: "Radiologen"},
-                "anasthesisten": {text: "Anästhesisten"}
+                "internisten": {text: "physicians.internisten"},
+                "jugendpsychiater": {text: "physicians.jugendpsychiater"},
+                "radiologen": {text: "physicians.radiologen"},
+                "anasthesisten": {text: "physicians.anasthesisten"}
             },
             lowerSaxony: {
-                "augenarzte": {text: "Augenärzte"},
-                "surgeon": {text: "Chirurgen und Orthopäden"},
-                "frauenarzte": {text: "Frauenärzte"},
-                "dermatologist": {text: "Hautärzte"},
-                "hno_arzte": {text: "HNO-Ärzte"},
-                "paediatrician": {text: "Kinderärzte"},
-                "neurologist": {text: "Nervenärzte"},
-                "psychotherapist": {text: "Psychotherapeuten"},
-                "urologist": {text: "Urologen"},
-                "internisten": {text: "fachärztlich tätige Internisten"},
-                "jugendpsychiater": {text: "Kinder- und Jugendpsychiater"},
-                "radiologen": {text: "Radiologen"},
-                "anasthesisten": {text: "Anästhesisten"}
+                "augenarzte": {text: "physicians.augenarzte"},
+                "surgeon": {text: "physicians.surgeon"},
+                "frauenarzte": {text: "physicians.frauenarzte"},
+                "dermatologist": {text: "physicians.dermatologist"},
+                "hno_arzte": {text: "physicians.hnoArzte"},
+                "paediatrician": {text: "physicians.paediatrician"},
+                "neurologist": {text: "physicians.neurologist"},
+                "psychotherapist": {text: "physicians.psychotherapist"},
+                "urologist": {text: "physicians.urologist"},
+                "internisten": {text: "physicians.internisten"},
+                "jugendpsychiater": {text: "physicians.jugendpsychiater"},
+                "radiologen": {text: "physicians.radiologen"},
+                "anasthesisten": {text: "physicians.anasthesisten"}
             }
         },
         planningAreas: {
             generalPhysician: {
-                "aurich": {text: "Aurich"},
-                "emden": {text: "Emden"},
-                "jever": {text: "Jever"},
-                "norden": {text: "Norden"},
-                "varel": {text: "Varel"},
-                "wilhelmshaven": {text: "Wilhelmshaven"},
-                "wittmund": {text: "Wittmund"}
+                "aurich": {text: "planningAreas.aurich"},
+                "emden": {text: "planningAreas.emden"},
+                "jever": {text: "planningAreas.jever"},
+                "norden": {text: "planningAreas.norden"},
+                "varel": {text: "planningAreas.varel"},
+                "wilhelmshaven": {text: "planningAreas.wilhelmshaven"},
+                "wittmund": {text: "planningAreas.wittmund"}
             },
             generalSpecialist: {
-                "aurich": {text: "Aurich"},
-                "emden": {text: "Emden"},
-                "jever": {text: "Jever"},
-                "norden": {text: "Norden"},
-                "varel": {text: "Varel"},
-                "wilhelmshaven": {text: "Wilhelmshaven"},
-                "wittmund": {text: "Wittmund"}
+                "aurich": {text: "planningAreas.aurich"},
+                "emden": {text: "planningAreas.emden"},
+                "jever": {text: "planningAreas.jever"},
+                "norden": {text: "planningAreas.norden"},
+                "varel": {text: "planningAreas.varel"},
+                "wilhelmshaven": {text: "planningAreas.wilhelmshaven"},
+                "wittmund": {text: "planningAreas.wittmund"}
             },
             specializedSpecialist: {
-                "aurich": {text: "Aurich"},
-                "emden": {text: "Emden"},
-                "jever": {text: "Jever"},
-                "norden": {text: "Norden"},
-                "varel": {text: "Varel"},
-                "wilhelmshaven": {text: "Wilhelmshaven"},
-                "wittmund": {text: "Wittmund"}
+                "aurich": {text: "planningAreas.aurich"},
+                "emden": {text: "planningAreas.emden"},
+                "jever": {text: "planningAreas.jever"},
+                "norden": {text: "planningAreas.norden"},
+                "varel": {text: "planningAreas.varel"},
+                "wilhelmshaven": {text: "planningAreas.wilhelmshaven"},
+                "wittmund": {text: "planningAreas.wittmund"}
             },
             lowerSaxony: {
-                "aurich": {text: "Aurich"},
-                "emden": {text: "Emden"},
-                "jever": {text: "Jever"},
-                "norden": {text: "Norden"},
-                "varel": {text: "Varel"},
-                "wilhelmshaven": {text: "Wilhelmshaven"},
-                "wittmund": {text: "Wittmund"}
+                "aurich": {text: "planningAreas.aurich"},
+                "emden": {text: "planningAreas.emden"},
+                "jever": {text: "planningAreas.jever"},
+                "norden": {text: "planningAreas.norden"},
+                "varel": {text: "planningAreas.varel"},
+                "wilhelmshaven": {text: "planningAreas.wilhelmshaven"},
+                "wittmund": {text: "planningAreas.wittmund"}
             }
         },
         // selected values
         supplyLevel: "",
-        physicianGroup: "Bitte wählen...",
-        planningArea: "Bitte wählen..."
+        physicianGroup: "unselected",
+        planningArea: "unselected"
     },
 
     // Select Physician Capacity
     stepThree: {
         // possibile values
         availabilityOptions: {
-            "facility": {text: "Betriebsstättenbetrachtung", valid: true},
-            "physicianNumber": {text: "Facharztzahl an der Betriebsstätte", valid: true},
-            "employmentVolume": {text: "Beschäftigungsumfang der Fachärzte an den Betriebsstätten", valid: true},
-            "demandLimit": {text: "Fallzahlabhängige Bedarfsgrenzen an den Betriebsstätten", valid: false}
+            "facility": {text: "physicianCapacities.facility", valid: true},
+            "physicianNumber": {text: "physicianCapacities.physicianNumber", valid: true},
+            "employmentVolume": {text: "physicianCapacities.employmentVolume", valid: true},
+            "demandLimit": {text: "physicianCapacities.demandLimit", valid: false}
         },
         // selected value
         physicianAvailability: ""
@@ -116,22 +116,30 @@ const state = {
     // Select Population
     stepFour: {
         // possibile values
-        standardAgeGroups: {
-            "std_00_09": {text: "0-9 Jahre"},
-            "std_10_19": {text: "10-19 Jahre"},
-            "std_20_39": {text: "20-39 Jahre"},
-            "std_40_59": {text: "40-59 Jahre"},
-            "std_60_79": {text: "60-79 Jahre"},
-            "std_80x": {text: "ab 80 Jahre"}
-        },
-        kidsAgeGroups: {
-            "ksc_00_02": {text: "0-2 Jahre"},
-            "ksc_03_05": {text: "3-5 Jahre"},
-            "ksc_06_09": {text: "6-9 Jahre"},
-            "ksc_10_14": {text: "10-14 Jahre"},
-            "ksc_15_17": {text: "15-17 Jahre"},
-            "ksc_18_19": {text: "18-19 Jahre"},
-            "ksc_20x": {text: "ab 20 Jahre"}
+        population: {
+            standard: {
+                text: "population.groups.standard",
+                items: {
+                    "std_00_09": [0, 9],
+                    "std_10_19": [10, 19],
+                    "std_20_39": [20, 39],
+                    "std_40_59": [40, 59],
+                    "std_60_79": [60, 79],
+                    "std_80x": [80]
+                }
+            },
+            kids: {
+                text: "population.groups.kitaSchul",
+                items: {
+                    "ksc_00_02": [0, 2],
+                    "ksc_03_05": [3, 5],
+                    "ksc_06_09": [6, 9],
+                    "ksc_10_14": [10, 14],
+                    "ksc_15_17": [15, 17],
+                    "ksc_18_19": [18, 19],
+                    "ksc_20x": [20]
+                }
+            }
         },
         // selected values
         populationType: "",
@@ -142,13 +150,13 @@ const state = {
     stepFive: {
         // possibile values
         travelModes: {
-            "driving-car": {text: "PKW", valid: true},
-            "public-transit": {text: "ÖPNV", valid: false}
+            "driving-car": {text: "travelModes.pkw", valid: true},
+            "public-transit": {text: "travelModes.opnv", valid: false}
         },
         distanceDecays: {
-            "linear": {text: "Linear"},
-            "patient_behavior": {text: "KV-Abrechnungsdaten / Patientenverhalten"},
-            "minimum_standards": {text: "Mindesterreichbarkeitsstandards"}
+            "linear": {text: "distanceDecays.linear"},
+            "patient_behavior": {text: "distanceDecays.patientBehavior"},
+            "minimum_standards": {text: "distanceDecays.minimumStandards"}
         },
         // selected values
         distanceDecay: "",

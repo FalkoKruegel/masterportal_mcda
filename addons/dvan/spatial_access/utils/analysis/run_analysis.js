@@ -42,20 +42,20 @@ async function runAnalysis () {
     // set population information
     switch (stepFour.populationType) {
         case "standard":
-            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.standardAgeGroups).length) {
+            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.population.standard.items).length) {
                 request.population_type = "standard_all";
             }
             else {
-                request.population_type = "standard";
+                request.population_type = stepFour.populationType;
                 request.population_indizes = stepFour.selectedAgeGroups;
             }
             break;
-        case "kids":
-            request.population_type = "kita_schul";
+        case "":
+            throw Error("missing population selection");
+        default:
+            request.population_type = stepFour.populationType;
             request.population_indizes = stepFour.selectedAgeGroups;
             break;
-        default:
-            throw Error("missing population selection");
     }
 
     // run request

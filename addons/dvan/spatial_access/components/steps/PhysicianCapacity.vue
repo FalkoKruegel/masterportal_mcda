@@ -21,7 +21,24 @@ export default {
         ]),
         ...mapMutations("Tools/SpatialAccess", [
             "setActive"
-        ])
+        ]),
+
+        /**
+         * Function from populationRequest addon (original Masterportal)
+         * translates the given key, checks if the key exists and throws a console warning if not
+         * @param {String} key the key to translate
+         * @param {Object} [options=null] for interpolation, formating and plurals
+         * @returns {String} the translation or the key itself on error
+         */
+        translate (key, options = null) {
+            // creating completed key. This improves readability in template
+            const completeKey = "additional:modules.tools.spatialAccess." + key;
+
+            if (completeKey === "additional:" + this.$t(completeKey)) {
+                console.warn("the key " + JSON.stringify(completeKey) + " is unknown to the additional translation");
+            }
+            return this.$t(completeKey, options);
+        }
     }
 };
 </script>
@@ -30,13 +47,13 @@ export default {
     <div>
         <div>
             <p>
-                Bitte wählen Sie, wie Sie die ärztliche Verfügbarkeit in der Analyse berücksichtigen wollen.
+                {{ translate('stepThree.text.text1') }}
             </p>
             <BootstrapCheckbox
                 v-for="(item, name, index) in stepThree.availabilityOptions"
                 :id="`Checkbox_3_${index}`"
                 :key="index"
-                :text="item['text']"
+                :text="translate(item['text'])"
                 :value="stepThree.physicianAvailability === name"
                 :disabled="stepThree.physicianAvailability !== name && stepThree.physicianAvailability !== ''"
                 @input="e => e ? stepThree.physicianAvailability = name : stepThree.physicianAvailability = ''"
@@ -51,11 +68,11 @@ export default {
             >
                 <p>
                     <b>
-                        Analyseergebnis stärker durch die Sicht Erreichbarkeit dominiert
+                        {{ translate('stepThree.callout.callout1_1') }}
                     </b>
                 </p>
                 <p>
-                    Sie haben sich für eine rein standortabhängie Betrachtung entschieden. Das Analyseergebnis wird grundsätzlich stärker durch die Dimension "Erreichbarkeit" der Versorgung als durch die Dimension "Verfügbarkeit" der Versorgung dominiert, da die Anzahl der Ärzte oder der Teilnahmeumfang an der vertragsärztlichen Versorgung am Standort nicht berücksichtig werden.
+                    {{ translate('stepThree.callout.callout1_2') }}
                 </p>
             </div>
             <div
@@ -65,11 +82,11 @@ export default {
             >
                 <p>
                     <b>
-                        Analyseergebnis stärker durch die Sicht Versorgungssicherheit dominiert.
+                        {{ translate('stepThree.callout.callout2_1') }}
                     </b>
                 </p>
                 <p>
-                    Mit der Auswahl wird der Beschäftigungsumfang der Ärzte am Standort berücksichtigt. Standorte mit hohen Arztzahlen tragen somit stärker zur Versorgung bei als Standorte mit niedrigen Arztzahlen. Berücksichtigen Sie bei der Interpretation der Analyseergebnisse, das dadurch die Dimension "Verfügbarkeit" stärker berücksichtigt wird. Das Ergebnis lässt sich dadurch im Sinne einer regionalen Versorgungssicherheit interpretieren.
+                    {{ translate('stepThree.callout.callout2_2') }}
                 </p>
             </div>
             <div
@@ -79,11 +96,11 @@ export default {
             >
                 <p>
                     <b>
-                        Ausgewogene und realitätsnahe Ergebnisdarstellung der fachätztlichen Verfügbarkeit und Erreichbarkeit.
+                        {{ translate('stepThree.callout.callout3_1') }}
                     </b>
                 </p>
                 <p>
-                    Das Analyseergebnis wird ausgewogen durch die Dimensionen "Erreichbarkeit" und "Verfügbarkeit" von fachärztlicher Versorgungsleistung dominiert.
+                    {{ translate('stepThree.callout.callout3_2') }}
                 </p>
             </div>
             <div
@@ -93,11 +110,11 @@ export default {
             >
                 <p>
                     <b>
-                        KV-Spezifikation notwendig: Auslastungsabhängige Ergebnisdarstellung anhand der Fallzahlen der Betriebsstätte.
+                        {{ translate('stepThree.callout.callout4_1') }}
                     </b>
                 </p>
                 <p>
-                    Dieses Instrument ist noch nicht verfügbar. Es sind kontextabhängige Spezifikationen, Daten und Absprachen mit Kassenärztlichen Vereinigungen notwendig.
+                    {{ translate('stepThree.callout.callout4_2') }}
                 </p>
             </div>
         </div>
