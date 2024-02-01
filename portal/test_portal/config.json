@@ -165,6 +165,55 @@
 						]
 					},
 					{
+						"Titel": "Zentrale Orte",
+						"Ordner":
+							[
+								{
+								"Titel":"Grundzentren",
+								"Layer":
+									[
+										{
+											"id":"150",
+											"name":["Grundzentren"],
+											"styles":["Grundzentrum"]
+										},
+										{
+											"id":"151",
+											"name":["Grundzentren mit mittelzentralen Teilfunktionen"],
+											"styles":["Grundzentrum mit mittelzentralen Teilfunktionen"]
+										}
+									]
+								},
+								{
+									"Titel":"Mittelzentren",
+									"Layer":
+										[
+											{
+												"id":"152",
+												"name":["Mittelzentren"],
+												"styles":["Mittelzentrum"]
+											},
+											{
+												"id":"153",
+												"name":["Mittelzentren mit oberzentralen Teilfunktionen"],
+												"styles":["Mittelzentrum mit oberzentralen Teilfunktionen"]
+											}
+										]
+									},
+									{
+										"Titel": "Oberzentren",
+										"Layer": 
+											[
+												{
+													"id":"154",
+													"name":["Oberzentren"],
+													"styles":["Oberzentrum"]
+												}
+											]
+									}
+							]
+						},
+					{
 					"Titel": "Daseinsvorsorgeeinrichtungen",
 					"Ordner": 
 						[
