@@ -173,19 +173,41 @@
                         "title": "Methodological explanations",
                         "accordion8_1_1": {
                             "title": "General methodological explanations",
-                            "text": "Placeholder for general methodological explanations and illustrations for Multicriteria Analysis in relation to steps 1-7."
+                            "text1": "You have carried out an analysis of the supply situation with services of general interest. This approach allows you to evaluate and compare decision alternatives based on several criteria or factors.",
+                            "text2": "With the help of this tool, you have combined spatial data and multi-criteria decision analysis techniques to derive well-founded, transparent and objective decisions.",
+                            "text3": "The results map for your study area is the product of an analysis based on several criteria. You have influenced the criteria used through the process steps above:",
+                            "text4": "This type of approach is particularly useful when decisions have to be made in complex spatial contexts, e.g. in land use planning, environmental management and urban planning.",
+                            "listItems": {
+                                "item1": "selected Types of infrastructure",
+                                "item2": "defined Population groups",
+                                "item3": "defined Supply situation by the accessibility of an infrastructure",
+                                "item4": "determined Importance of the infrastructure types to each other (weighting)",
+                                "item5": "determined Means of transportation"
+                            }
                         },
                         "accordion8_1_2": {
-                            "title": "Explanations on population weighting",
-                            "text": "Placeholder for methodological explanations on the consideration of population."
+                            "title": "Detailed methodological explanations",
+                            "text1": "The method used is based on scientific standards. For the first time, this implementation combines systems for spatial decision support in public services with a web-based approach that also uses distance weightings via a road network. You can find details of the calculation in our",
+                            "text2": "",
+                            "url": {
+                                "link" : "https://datashare.tu-dresden.de/s/HqQqj93XrgPBymL",
+                                "text" : "publication."
+                            }
                         },
                         "accordion8_1_3": {
-                            "title": "Explanation of the display mode Heatmap",
-                            "text": "Placeholder for displaying and interpreting the heatmap."
+                            "title": "Notes on interpreting the raster map",
+                            "text1": "The result is a cartographic overview of the suitability areas. The visualization shows the supply situation according to the selected infrastructures, parameters and restrictions in a colour ramp from green (good) to red (bad). By right-clicking, you can also derive and display a ranking (a value display) of the areas, in which the individual grid characteristics assume values from 0 to 100. The value 100 can only be reached in the results display for a cell if all selected infrastructures (step 3) from this cell have the best accessibility (step 5, very good supply situation till x min). You now have the option of checking your settings by readjusting parameters in the user interface and recalculating them with different values. In this way, you can evaluate whether there are criteria that significantly change your result.",
+                            "text2": "A look at the individual results, also known as criteria maps, via the drop-down button allows you to view the (individual) results in more detail."
                         },
                         "accordion8_1_4": {
-                            "title": "Formulary",
-                            "text": "Formulas used for calculation and referred to in the above accordions. The formulas are collected in one place, because the above accordions are more fluent readable for the majority of the addressees, if the derivation and textual description is not too mathematical. The formulas are referred to in the text."
+                            "title": "Notes on interpreting the Heatmap",
+                            "text1": "A heatmap visualizes the intensity or frequency of values in a two-dimensional space. This allows to identify spatial patterns, trends or hotspots in the data.",
+                            "text2": "A higher color intensity is equivalent to a higher value density. Green stands for a comparatively good supply situation, red for a poor one. However, a thorough interpretation requires knowledge of the specific contexts and parameters shown. We generally recommend using the heat map for an overview and to identify patterns, and choosing the grid view for a more detailed analysis."
+                        },
+                        "accordion8_1_5": {
+                            "title": "Explanations on population weighting",
+                            "text1": "These recommendations apply to both the heatmap and the raster display. Activating the population-weighted representation is useful if the effects of a particular supply situation on a large number of people are to be shown.",
+                            "text2": "The manner of presentation depends on technical requirements. As part of the research project, we have dispensed with further specifications at the request of the client. This functionality therefore serves as a placeholder, proves the functionality and can be subsequently adapted."
                         }
                     }
                 }
