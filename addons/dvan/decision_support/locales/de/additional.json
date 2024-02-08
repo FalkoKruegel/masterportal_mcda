@@ -172,20 +172,42 @@
                     "accordion": {
                         "title": "Methodische Erläuterungen",
                         "accordion8_1_1": {
-                            "title": "Allgemeine Methodische Erläuterungen",
-                            "text": "Platzhalter für allgemeine methodische Erläuterungen und Abbildungen zur Multikriteriellen Analyse in Bezug auf die Schritte 1-7"
+                            "title": "Allgemeine methodische Erläuterungen",
+                            "text1": "Sie haben eine Analyse der Versorgungssituation mit Daseinsvorsorgeeinrichtungen durchgeführt. Mit diesem Ansatz können Sie Entscheidungsalternativen auf der Grundlage mehrerer Kriterien oder Faktoren bewerten und vergleichen.",
+                            "text2": "Mithilfe dieses Instruments haben Sie räumliche Daten und multikriterielle Entscheidungsanalysetechniken kombiniert, um Entscheidungen fundiert, transparent und objektiv abzuleiten.",
+                            "text3": "Die Ergebniskarte für Ihr Untersuchungsgebiet ist das Produkt einer auf mehreren Kriterien beruhenden Analyse. Die angewendeten Kriterien haben Sie durch die obigen Prozessschritte beeinflusst:",
+                            "text4": "Diese Art von Vorgehen ist besonders nützlich, wenn Entscheidungen in komplexen räumlichen Zusammenhängen getroffen werden müssen, z. B. bei der Flächennutzungsplanung, dem Umweltmanagement und der Stadtentwicklung.",
+                            "listItems": {
+                                "item1": "Infrastrukturtypen ausgewählt",
+                                "item2": "Bevölkerungsgruppen definiert",
+                                "item3": "Versorgungslage über die Erreichbarkeit einer Infrastruktur definiert",
+                                "item4": "Bedeutung der Infrastrukturtypen zueinander bestimmt (Gewichtung)",
+                                "item5": "Fortbewegungsmittel festgelegt"
+                            }
                         },
                         "accordion8_1_2": {
-                            "title": "Erläuterungen zur Bevölkerungsgewichtung",
-                            "text": "Platzhalter für methodische Erläuterungen zur Berücksichtigung der Bevölkerung."
+                            "title": "Detaillierte methodische Erläuterungen",
+                            "text1": "Das angewendete Verfahren orientiert sich an wissenschaftlichen Standards. Diese Umsetzung kombiniert erstmals Systeme zur räumlichen Entscheidungsunterstützung in der Daseinsvorsorge mit einem Webbasierten Ansatz, bei dem auch Entfernungsabgewichtungen über ein Straßennetz zum Einsatz kommen. Sie können Details zu der Berechnung in unserer",
+                            "text2": "nachvollziehen.",
+                            "url": {
+                                "link" : "https://datashare.tu-dresden.de/s/HqQqj93XrgPBymL",
+                                "text" : "wissenschaftlichen Publikation"
+                            }
                         },
                         "accordion8_1_3": {
-                            "title": "Erläuterungen zur Darstellungsweise Heatmap",
-                            "text": "Platzhalter zur Darstellung und Interpretation der Heatmap."
+                            "title": "Hinweise zur Interpretation der Rasterkarte",
+                            "text1": "Als Ergebnis erhalten Sie einen kartographischen Überblick über die Eignungsgebiete. Die Visualisierung zeigt die Versorgungssituation entsprechend der gewählten Infrastrukturen, Parameter und Restriktionen in einer Farbrampe von grün (gut) bis rot (schlecht). Durch Rechtsklick können Sie auch ein Ranking (eine Werteanzeige) der Gebiete ableiten und anzeigen lassen, in dem die einzelnen Rastermerkmale Werte von 0 bis 100 annehmen. Der Wert 100 kann in der Ergebnisanzeige für eine Zelle nur dann erreicht werden, wenn alle ausgewählten Infrastrukturen (Schritt 3) aus dieser Zelle die beste Erreichbarkeit (Schritt 5, sehr gute Versorgungslage bis x min) aufweisen. Sie haben nun die Möglichkeit, durch Nachjustierung von Parametern in der Benutzeroberfläche Ihre Einstellungen zu überprüfen und mit anderen Werten neu zu berechnen. So können Sie evaluieren, ob es Kriterien gibt, die Ihr Ergebnis entscheidend verändern.",
+                            "text2": "Ein Blick in die Einzelergebnisse, auch Kriterienkarten genannt, über den Drop-Down Button ermöglicht Ihnen eine weitere detaillierte Betrachtung der (Einzel-)Ergebnisse."
                         },
                         "accordion8_1_4": {
-                            "title": "Formelsammlung",
-                            "text": "Formeln, die zur Berechnung angewendet werden und auf die in den obigen Akkordeons verwiesen wird. Die Formeln werden an einer Stelle gesammelt, weil die obigen Akkordeons für den Großteil der Adressaten flüssiger lesbar sind,  wenn die Herleitung und textliche Beschreibung nicht allzu mathematisch erfolgt. Auf die Formeln wird im Text verwiesen."
+                            "title": "Hinweise zur Interpretation der Heatmap",
+                            "text1": "Eine Heatmap visualisiert die Intensität oder Häufigkeit von Werten in einem zweidimensionalen Raum. Damit können räumliche Muster, Trends oder Hotspots in den Daten erkennbar gemacht werden.",
+                            "text2": "Eine höhere Farbintensität ist mit einer höheren Wertedichte gleichzusetzen. Grün steht dabei für eine vergleichsweise gute Versorgungslage, rot für eine schlechte. Eine gründliche Interpretation erfordert jedoch Kenntnisse der spezifischen Kontexte und dargestellten Parameter. Grundsätzlich empfehlen wir die Heatmap für den Überblick und zur Erkennung von Mustern zu nutzen und für eine genauere Analyse die Rasterdarstellung zu wählen."
+                        },
+                        "accordion8_1_5": {
+                            "title": "Hinweise zur Interpretation der bevölkerungsgewichteten Darstellung",
+                            "text1": "Diese Empfehlungen gelten sowohl für die Heatmap- als auch für die Rasterdarstellung. Die Aktivierung der bevölkerungsgewichteten Darstellung ist sinnvoll, wenn die Auswirkungen einer bestimmten Versorgungslage auf eine große Anzahl von Menschen dargestellt werden sollen.",
+                            "text2": "Die Art und Weise der Darstellung hängt von fachlichen Belangen ab. Im Rahmen des Forschungsprojektes haben wir auf Wunsch des Auftraggebers auf weitere Spezifikationen verzichtet. Die vorliegende Funktonalität dient daher als Platzhalter, beweist die Funktionalität und kann nachträglich angepasst werden."
                         }
                     }
                 }

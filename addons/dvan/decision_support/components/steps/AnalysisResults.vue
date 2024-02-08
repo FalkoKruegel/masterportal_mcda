@@ -204,28 +204,52 @@ export default {
                         id="Accordion8-1-1"
                         :text="translate('stepEight.accordion.accordion8_1_1.title')"
                     >
-                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text1') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text2') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text3') }}</p>
+                        <ul>
+                            <li> {{ translate('stepEight.accordion.accordion8_1_1.listItems.item1') }} </li>
+                            <li> {{ translate('stepEight.accordion.accordion8_1_1.listItems.item2') }} </li>
+                            <li> {{ translate('stepEight.accordion.accordion8_1_1.listItems.item3') }} </li>
+                            <li> {{ translate('stepEight.accordion.accordion8_1_1.listItems.item4') }} </li>
+                            <li> {{ translate('stepEight.accordion.accordion8_1_1.listItems.item5') }} </li>
+                        </ul>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_1.text4') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8-1-2"
                         :text="translate('stepEight.accordion.accordion8_1_2.title')"
                     >
-                        <p>{{ translate('stepEight.accordion.accordion8_1_2.text') }}</p>
+                        <p>
+                            {{ translate('stepEight.accordion.accordion8_1_2.text1') }}
+                            <a :href="translate('stepEight.accordion.accordion8_1_2.url.link')"> {{ translate('stepEight.accordion.accordion8_1_2.url.text') }} </a>
+                            {{ translate('stepEight.accordion.accordion8_1_2.text2') }}
+                        </p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8-1-3"
                         :text="translate('stepEight.accordion.accordion8_1_3.title')"
                     >
-                        <p>{{ translate('stepEight.accordion.accordion8_1_3.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_3.text1') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_3.text2') }}</p>
                     </BootstrapAccordionItem>
 
                     <BootstrapAccordionItem
                         id="Accordion8-1-4"
                         :text="translate('stepEight.accordion.accordion8_1_4.title')"
                     >
-                        <p>{{ translate('stepEight.accordion.accordion8_1_4.text') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_4.text1') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_4.text2') }}</p>
+                    </BootstrapAccordionItem>
+
+                    <BootstrapAccordionItem
+                        id="Accordion8-1-5"
+                        :text="translate('stepEight.accordion.accordion8_1_5.title')"
+                    >
+                        <p>{{ translate('stepEight.accordion.accordion8_1_5.text1') }}</p>
+                        <p>{{ translate('stepEight.accordion.accordion8_1_5.text2') }}</p>
                     </BootstrapAccordionItem>
                 </BootstrapAccordion>
             </BootstrapAccordionItem>
