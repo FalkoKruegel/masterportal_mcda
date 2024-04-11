@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from db import USERS
+from db import get_user, User
 from util import decode_token
 
 reusable_oauth = OAuth2PasswordBearer(
@@ -11,9 +11,9 @@ reusable_oauth = OAuth2PasswordBearer(
     scheme_name="JWT"
 )
 
-async def get_current_user(token: Annotated[str, Depends(reusable_oauth)]):
+async def get_current_user(token: Annotated[str, Depends(reusable_oauth)]) -> User:
     subject = decode_token(token)
-    if subject["name"] not in USERS:
+    user = get_user(subject["name"])
+    if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    user = USERS[subject["name"]]
     return user

@@ -1,5 +1,3 @@
-import hashlib
-import os
 from datetime import datetime, timedelta
 from typing import Any, Literal
 
@@ -8,12 +6,6 @@ import jwt
 from fastapi import HTTPException, status
 
 import config
-
-def get_hashed_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
-
-def verify_password(password: str, hashed_password: str) -> bool:
-    return get_hashed_password(password) == hashed_password
 
 def create_access_token(subject: Any) -> str:
     expires_delta = datetime.utcnow() + timedelta(seconds=config.ACCESS_TOKEN_EXPIRE_SECONDS)

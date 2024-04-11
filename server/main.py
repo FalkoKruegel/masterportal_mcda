@@ -10,8 +10,8 @@ from pydantic import BaseModel
 import uvicorn
 
 import config
-from util import create_access_token, create_refresh_token, verify_password, decode_token
-from db import USERS
+from util import create_access_token, create_refresh_token, decode_token
+from db import User, get_user
 from depends import get_current_user
 
 app = FastAPI()
@@ -30,7 +30,7 @@ def root() -> RedirectResponse:
 
 @app.get("/main.js")
 def root() -> RedirectResponse:
-    return FileResponse("./main.js", headers={"Content-Type": "text/javascript"})
+    return FileResponse("./app/main.js", headers={"Content-Type": "text/javascript"})
 
 class Login(BaseModel):
     username: str
@@ -41,16 +41,13 @@ class Token(BaseModel):
 
 @app.post("/login")
 async def login(data: Login, response: Response) -> Token:
-    if data.username not in USERS:
+    user = get_user(data.username)
+    if user is None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
-    user = USERS[data.username]
-    hashed_password = user["password"]
-    if not verify_password(data.password, hashed_password):
+    if not user.verify_password(data.password):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
-    username = data.username
-    useremail = user["email"]
-    access_token = create_access_token({"name": username, "email": useremail})
-    refresh_token = create_refresh_token({"name": username})
+    access_token = create_access_token({"name": user.get_name(), "email": user.get_email()})
+    refresh_token = create_refresh_token({"name": user.get_name()})
     response.set_cookie("refresh_token", refresh_token, httponly=True, samesite="strict")
     return {
         "token": access_token
@@ -71,8 +68,8 @@ async def is_logged_in(response: Response, refresh_token: Annotated[str | None, 
         return {
             "is_logged_in": False
         }
-    username = subject["name"]
-    if username not in USERS:
+    user = get_user(subject["name"])
+    if user is None:
         return {
             "is_logged_in": False
         }
@@ -80,26 +77,24 @@ async def is_logged_in(response: Response, refresh_token: Annotated[str | None, 
         "is_logged_in": True
     }
 
-@app.get("refresh_token")
+@app.get("/refresh_token")
 async def refresh_token(refresh_token: Annotated[str, Cookie()], response: Response) -> Token:
     subject = decode_token(refresh_token, "refresh")
-    username = subject["name"]
-    if username not in USERS:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username")
-    user = USERS[username]
-    useremail = user["email"]
-    access_token = create_access_token({"name": username, "email": useremail})
-    refresh_token = create_refresh_token({"name": username})
+    user = get_user(subject["name"])
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
+    access_token = create_access_token({"name": user.get_name(), "email": user.get_email()})
+    refresh_token = create_refresh_token({"name": user.get_name()})
     response.set_cookie("refresh_token", refresh_token, httponly=True, samesite="strict")
     return {
         "token": access_token
     }
 
 app.get("/user")
-async def get_user(user: Annotated[Any, Depends(get_current_user)]):
+async def get_me(user: Annotated[Any, Depends(get_current_user)]):
     return user
 
-app.mount("/", StaticFiles(directory="./", html = True))
+app.mount("/", StaticFiles(directory="app", html = True))
 
 if __name__ == '__main__':
     uvicorn.run(app, host=config.API_HOST, port=config.API_PORT)

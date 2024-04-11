@@ -1,4 +1,4 @@
-import config from "../config.json";
+const auth_url = window.location.origin;
 
 const tokens = {
     jwt: undefined
@@ -17,15 +17,23 @@ async function fetch_auth (path, options) {
     if (tokens.jwt === undefined) {
         location.reload();
     }
-    if (Object.hasOwn(options, "headers")) {
-        options.headers.Authorization = `Bearer ${tokens.jwt}`;
-    }
-    else {
-        options.headers = {
+    let opt = options;
+
+    if (opt === undefined) {
+        opt = {};
+        opt.headers = {
             "Authorization": `Bearer ${tokens.jwt}`
         };
     }
-    return fetch(path, options);
+    else if (Object.hasOwn(opt, "headers")) {
+        opt.headers.Authorization = `Bearer ${tokens.jwt}`;
+    }
+    else {
+        opt.headers = {
+            "Authorization": `Bearer ${tokens.jwt}`
+        };
+    }
+    return fetch(path, opt);
 }
 
 /**
@@ -34,7 +42,7 @@ async function fetch_auth (path, options) {
  */
 async function refreshToken () {
     tokens.jwt = undefined;
-    const response = await fetch(config.auth_url + "/refresh_token", {method: "GET"});
+    const response = await fetch(auth_url + "/refresh_token", {method: "GET"});
 
     if (response.status === 200) {
         const data = await response.json();
