@@ -12,6 +12,19 @@ const actions = {
             const facilities = await response.json();
 
             state.stepThree.facilities = facilities;
+
+            const selected = {};
+
+            for (const group in state.stepThree.facilities) {
+                const group_obj = {};
+                const items = state.stepThree.facilities[group].items;
+
+                for (const f in items) {
+                    group_obj[f] = "";
+                }
+                selected[group] = group_obj;
+            }
+            state.stepThree.selectedFacilities = selected;
         }
         // load population
         {

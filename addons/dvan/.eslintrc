@@ -5,6 +5,7 @@
         "no-empty-function": "off",
         "no-constant-condition": "off",
         "no-shadow": "off",
+        "require-atomic-updates": ["error", { "allowProperties": true }],
         "vuejs-accessibility/form-control-has-label": "off",
         "vue/no-static-inline-styles": "off",
         "callback-return": "off",
