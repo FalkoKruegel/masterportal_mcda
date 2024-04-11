@@ -1,4 +1,5 @@
 import config from "../../config.json";
+import {fetch_auth} from "../../share_utils/auth";
 
 const actions = {
     initialize () {
@@ -8,21 +9,21 @@ const actions = {
     async initState ({state}) {
         // load facilities
         {
-            const response = await fetch(config.backend_url + "/v1/state/facilities");
+            const response = await fetch_auth(config.backend_url + "/v1/state/facilities");
             const facilities = await response.json();
 
             state.stepThree.facilities = facilities;
         }
         // load population
         {
-            const response = await fetch(config.backend_url + "/v1/state/population");
+            const response = await fetch_auth(config.backend_url + "/v1/state/population");
             const population = await response.json();
 
             state.stepFour.population = population;
         }
         // load travel-modes
         {
-            const response = await fetch(config.backend_url + "/v1/state/travel_modes");
+            const response = await fetch_auth(config.backend_url + "/v1/state/travel_modes");
             const modes = await response.json();
 
             state.stepFive.travelModes = modes;
@@ -47,7 +48,7 @@ const actions = {
                 const request = {
                     facilities: facilities
                 };
-                const response = await fetch(config.backend_url + "/v1/state/time_zones", {method: "POST", body: JSON.stringify(request)});
+                const response = await fetch_auth(config.backend_url + "/v1/state/time_zones", {method: "POST", body: JSON.stringify(request)});
                 const group_obj = await response.json();
 
                 time_zones[group] = group_obj;
