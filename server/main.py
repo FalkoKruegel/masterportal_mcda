@@ -12,7 +12,6 @@ import uvicorn
 import config
 from util import create_access_token, create_refresh_token, decode_token
 from db import User, get_user
-from depends import get_current_user
 
 app = FastAPI()
 
@@ -46,8 +45,8 @@ async def login(data: Login, response: Response) -> Token:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
     if not user.verify_password(data.password):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
-    access_token = create_access_token({"name": user.get_name(), "email": user.get_email()})
-    refresh_token = create_refresh_token({"name": user.get_name()})
+    access_token = create_access_token({"id": user.get_name(), "group": user.get_group()})
+    refresh_token = create_refresh_token({"id": user.get_name()})
     response.set_cookie("refresh_token", refresh_token, httponly=True, samesite="strict")
     return {
         "token": access_token
@@ -68,7 +67,7 @@ async def is_logged_in(response: Response, refresh_token: Annotated[str | None, 
         return {
             "is_logged_in": False
         }
-    user = get_user(subject["name"])
+    user = get_user(subject["id"])
     if user is None:
         return {
             "is_logged_in": False
@@ -80,19 +79,15 @@ async def is_logged_in(response: Response, refresh_token: Annotated[str | None, 
 @app.get("/refresh_token")
 async def refresh_token(refresh_token: Annotated[str, Cookie()], response: Response) -> Token:
     subject = decode_token(refresh_token, "refresh")
-    user = get_user(subject["name"])
+    user = get_user(subject["id"])
     if user is None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
-    access_token = create_access_token({"name": user.get_name(), "email": user.get_email()})
-    refresh_token = create_refresh_token({"name": user.get_name()})
+    access_token = create_access_token({"id": user.get_name(), "group": user.get_group()})
+    refresh_token = create_refresh_token({"id": user.get_name()})
     response.set_cookie("refresh_token", refresh_token, httponly=True, samesite="strict")
     return {
         "token": access_token
     }
-
-app.get("/user")
-async def get_me(user: Annotated[Any, Depends(get_current_user)]):
-    return user
 
 app.mount("/", StaticFiles(directory="app", html = True))
 
