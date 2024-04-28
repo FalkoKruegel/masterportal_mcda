@@ -177,7 +177,33 @@ const state = {
         status: "changed"
     },
     stepEight: {
-        status: "unfinished"
+        status: "unfinished",
+
+        statistics: {
+            a: {
+                loading: false,
+                options: null,
+                data: null
+            },
+            b: {
+                loading: false,
+                facility: null,
+                options: null,
+                data: null
+            },
+            c: {
+                loading: false,
+                facility: null,
+                options: null,
+                data: null
+            }
+        },
+        hotspot: {
+            loading: false,
+            data: null,
+            options: null,
+            filter: null
+        }
     }
 };
 

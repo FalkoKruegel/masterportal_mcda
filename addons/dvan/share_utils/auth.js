@@ -1,7 +1,7 @@
 const auth_url = window.location.origin;
 
 const tokens = {
-    jwt: undefined
+    jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1Nzc5ODc2OTMsInN1YiI6eyJpZCI6ImFkbWluIiwiZ3JvdXAiOiJhZG1pbiJ9fQ.Hthk8xcIfhiKGghoSwH43wUMyQ2Btga2vMhr4BJZBRc"
 };
 
 /**

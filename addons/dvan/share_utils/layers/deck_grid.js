@@ -123,6 +123,33 @@ class ContinousGridStyle {
     }
 
     /**
+     * sets attribute
+     * @param {string} attr attribute
+     * @returns {void}
+     */
+    setAttribute (attr) {
+        this.attribute = attr;
+    }
+
+    /**
+     * sets start value
+     * @param {number} start start value
+     * @returns {void}
+     */
+    setStart (start) {
+        this.start = start;
+    }
+
+    /**
+     * sets end value
+     * @param {number} end end value
+     * @returns {void}
+     */
+    setEnd (end) {
+        this.end = end;
+    }
+
+    /**
      * computes color from properties
      * @param {any} props properties of current feature
      * @returns {number[]} color

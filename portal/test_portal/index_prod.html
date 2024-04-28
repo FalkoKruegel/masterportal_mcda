@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>Daseinsvorsorgeatlas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root" class="login-container" style="visibility: hidden;">
+        <img src="./img/TUD_Logo_Blau.svg" class="background-image">
+        <form id="login-form" class="login-form">
+            <div class="input-container">
+                <label for="user-input">Username:</label>
+                <input type="text" id="user-input" placeholder="Enter Username" required>
+            </div>
+            <div class="input-container">
+                <label for="password-input">Password:</label>
+                <input type="password" id="password-input" placeholder="Enter Password" required>
+            </div>
+            <button id="login-button" type="submit">Login</button>
+        </form>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,10 +1,14 @@
 <script>
 import BootstrapAccordion from "../../../share_components/accordion/BootstrapAccordion.vue";
 import BootstrapAccordionItem from "../../../share_components/accordion/BootstrapAccordionItem.vue";
+import AccordionItem from "../../../share_components/accordion/AccordionItem.vue";
 import BootstrapCheckbox from "../../../share_components/BootstrapCheckbox.vue";
+import StatisticChart from "../../../share_components/StatisticChart.vue";
+import BootstrapSelect from "../../../share_components/BootstrapSelect.vue";
 import {mapGetters, mapActions, mapMutations} from "vuex";
 import getters from "../../store/getters";
 import {changeLayer} from "../../utils/analysis/run_analysis";
+import {loadStatistic1, loadStatistic2, loadStatistic3, loadHotspot} from "../../utils/analysis/statistics";
 import {convertLayerName} from "../../utils/util";
 
 export default {
@@ -12,13 +16,24 @@ export default {
     components: {
         BootstrapAccordion,
         BootstrapAccordionItem,
-        BootstrapCheckbox
+        AccordionItem,
+        BootstrapCheckbox,
+        BootstrapSelect,
+        StatisticChart
     },
     data () {
         return {
             selected_layer: "grid",
             selected_attr: "multiCriteria",
-            weighted: false
+            weighted: false,
+            statistic: false,
+            statistics: {
+                0: false,
+                1: false,
+                2: false
+            },
+            hotspot: false,
+            filter: null
         };
     },
     computed: {
@@ -26,6 +41,23 @@ export default {
 
         checkedLayers () {
             const layers = ["multiCriteria"];
+
+            for (const group in this.stepThree.selectedFacilities) {
+                for (const item in this.stepThree.selectedFacilities[group]) {
+                    const name = this.stepThree.selectedFacilities[group][item];
+
+                    if (name === "") {
+                        continue;
+                    }
+                    layers.push(name);
+                }
+            }
+
+            return layers;
+        },
+
+        checkedLayers2 () {
+            const layers = [];
 
             for (const group in this.stepThree.selectedFacilities) {
                 for (const item in this.stepThree.selectedFacilities[group]) {
@@ -95,6 +127,74 @@ export default {
             }
 
             return this.$t(completeKey, options);
+        },
+
+        openStatistics (index) {
+            if (this.statistics[index] === true) {
+                this.statistics[index] = false;
+            }
+            else {
+                this.statistics[index] = true;
+                switch (index) {
+                    case 0:
+                        loadStatistic1();
+                        break;
+                    case 1:
+                        loadStatistic2();
+                        break;
+                    case 2:
+                        loadStatistic3();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        },
+        selectStatistic2Layer (layer) {
+            this.stepEight.statistics.b.facility = layer;
+            this.stepEight.statistics.b.options = null;
+            this.stepEight.statistics.b.data = null;
+            loadStatistic2();
+        },
+        selectStatistic3Layer (layer) {
+            this.stepEight.statistics.c.facility = layer;
+            this.stepEight.statistics.c.options = null;
+            this.stepEight.statistics.c.data = null;
+            loadStatistic3();
+        },
+        openStatistic () {
+            if (this.statistic === true) {
+                this.statistic = false;
+            }
+            else {
+                this.statistic = true;
+            }
+        },
+        openHotspot () {
+            if (this.hotspot === true) {
+                this.hotspot = false;
+                this.stepEight.hotspot.filter = null;
+            }
+            else {
+                this.hotspot = true;
+                loadHotspot();
+            }
+        },
+        setFilter (filter) {
+            this.stepEight.hotspot.filter = filter;
+            if (this.selected_layer === "grid" && this.selected_attr === "multiCriteria") {
+                changeLayer(this.selected_layer, this.selected_attr);
+            }
+            else {
+                this.selected_layer = "grid";
+                this.selected_attr = "multiCriteria";
+            }
+        },
+        setHotspotFocus (focus) {
+            if (focus === false) {
+                this.stepEight.hotspot.filter = null;
+                changeLayer(this.selected_layer, this.selected_attr);
+            }
         }
     }
 };
@@ -185,6 +285,144 @@ export default {
                 :text="translate('stepEight.checkbox.checkbox8_2')"
                 @input="e => e ? selected_layer = 'heatmap' : selected_layer = 'grid'"
             />
+
+            <br>
+
+            <BootstrapAccordion
+                id="Accordion9"
+                body-padding-y="5px"
+            >
+                <AccordionItem
+                    id="Accordion-Item9-1"
+                    title="Additional Statistics"
+                    :opened="statistic"
+                    @click="() => openStatistic()"
+                >
+                    <BootstrapAccordion
+                        id="Accordion9-1"
+                        body-padding-y="5px"
+                    >
+                        <AccordionItem
+                            id="Accordion9-1-1"
+                            title="Service Count per Population-Cell"
+                            :opened="statistics[0]"
+                            @click="() => openStatistics(0)"
+                        >
+                            <p>Anzahl der Versorgungseinrichtungen pro Bevölkerungszelle</p>
+                            <div
+                                v-if="stepEight.statistics.a.loading"
+                                class="d-flex justify-content-center"
+                            >
+                                <div
+                                    class="spinner-border"
+                                    role="status"
+                                />
+                            </div>
+                            <StatisticChart
+                                v-if="!stepEight.statistics.a.loading"
+                                id="Chart9-1-1"
+                                chart-type="bar"
+                                :chart-data="stepEight.statistics.a.data"
+                                :chart-options="stepEight.statistics.a.options"
+                            />
+                        </AccordionItem>
+                        <AccordionItem
+                            id="Accordion9-1-2"
+                            title="Service Quality per Infrastructure"
+                            :opened="statistics[1]"
+                            @click="() => openStatistics(1)"
+                        >
+                            <p>Anzahl der sehr gut, gut, usw. versorgten Bevölkerungszellen</p>
+                            <BootstrapSelect
+                                :values="checkedLayers2"
+                                default-text="Select Layer"
+                                :convert="convert"
+                                @input="selectStatistic2Layer"
+                            />
+                            <div
+                                v-if="stepEight.statistics.b.loading"
+                                class="d-flex justify-content-center"
+                            >
+                                <div
+                                    class="spinner-border"
+                                    role="status"
+                                />
+                            </div>
+                            <StatisticChart
+                                v-if="!stepEight.statistics.b.loading"
+                                id="Chart9-1-3"
+                                chart-type="bar"
+                                :chart-data="stepEight.statistics.b.data"
+                                :chart-options="stepEight.statistics.b.options"
+                            />
+                        </AccordionItem>
+                        <AccordionItem
+                            id="Accordion9-1-3"
+                            title="Service Count per Infrastructure"
+                            :opened="statistics[2]"
+                            @click="() => openStatistics(2)"
+                        >
+                            <p>Anzahl der Versorgungseinrichtungen pro Bevölkerungszelle</p>
+                            <BootstrapSelect
+                                :values="checkedLayers2"
+                                default-text="Select Layer"
+                                :convert="convert"
+                                @input="selectStatistic3Layer"
+                            />
+                            <div
+                                v-if="stepEight.statistics.c.loading"
+                                class="d-flex justify-content-center"
+                            >
+                                <div
+                                    class="spinner-border"
+                                    role="status"
+                                />
+                            </div>
+                            <StatisticChart
+                                v-if="!stepEight.statistics.c.loading"
+                                id="Chart9-1-3"
+                                chart-type="bar"
+                                :chart-data="stepEight.statistics.c.data"
+                                :chart-options="stepEight.statistics.c.options"
+                            />
+                        </AccordionItem>
+                    </BootstrapAccordion>
+                </AccordionItem>
+            </BootstrapAccordion>
+
+            <br>
+
+            <BootstrapAccordion
+                id="Accordion10"
+                body-padding-y="5px"
+            >
+                <AccordionItem
+                    id="Accordion-Item10-1"
+                    title="Identify Hotspots"
+                    :opened="hotspot"
+                    @click="() => openHotspot()"
+                >
+                    <p>Anzahl der Versorgungseinrichtungen pro Bevölkerungszelle</p>
+                    <div
+                        v-if="stepEight.hotspot.loading"
+                        class="d-flex justify-content-center"
+                    >
+                        <div
+                            class="spinner-border"
+                            role="status"
+                        />
+                    </div>
+                    <StatisticChart
+                        v-if="!stepEight.hotspot.loading"
+                        id="Chart9-1-3"
+                        chart-type="scatter"
+                        :chart-data="stepEight.hotspot.data"
+                        :chart-options="stepEight.hotspot.options"
+                        @selection="(e) => setFilter(e)"
+                        @focus="(e) => setHotspotFocus(e)"
+                    />
+                </AccordionItem>
+            </BootstrapAccordion>
         </div>
         <br>
 

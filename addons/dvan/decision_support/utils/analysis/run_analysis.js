@@ -4,6 +4,7 @@ import {addLayer, removeLayer} from "../../../share_utils/map.js";
 import {convertLayerName} from "../util";
 import {initDeckLayer} from "../../../share_utils/deck.js";
 import {GridLayer, ContinousGridStyle} from "../../../share_utils/layers/deck_grid.js";
+import {CustomStyle} from "./custom_style.js";
 import {HeatMapLayer, HeatMapStyle} from "../../../share_utils/layers/deck_heatmap.js";
 import config from "../../../config.json";
 import {fetch_auth} from "../../../share_utils/auth";
@@ -42,9 +43,21 @@ function changeLayer (layer_key, new_style_attr) {
         const style = layer_obj.ol_layer.getStyle();
         const [min, max] = computeMinMax(layer_obj.features, new_style_attr, -9999);
 
-        style.attribute = new_style_attr;
-        style.start = min;
-        style.end = max;
+        style.setAttribute(new_style_attr);
+        style.setStart(min);
+        style.setEnd(max);
+        const stepEight = store.getters["Tools/DecisionSupport/stepEight"];
+        const filter = stepEight.hotspot.filter;
+
+        if (filter !== null) {
+            if (new_style_attr === "multiCriteria") {
+                style.setRange(filter);
+                style.setFilter(true);
+            }
+        }
+        else {
+            style.setFilter(false);
+        }
         layer_obj.ol_layer.setStyle(style);
     }
     if (layer_key === "heatmap") {
@@ -64,6 +77,13 @@ async function runAnalysis () {
 
     stepEight.status = "running";
     removeLayer("accessibility");
+    for (const key in stepEight.statistics) {
+        stepEight.statistics[key].data = null;
+        stepEight.statistics[key].options = null;
+    }
+    stepEight.hotspot.data = null;
+    stepEight.hotspot.options = null;
+    stepEight.hotspot.filter = null;
 
     const stepTwo = store.getters["Tools/DecisionSupport/stepTwo"];
     const stepThree = store.getters["Tools/DecisionSupport/stepThree"];
@@ -145,13 +165,14 @@ async function runAnalysis () {
         const geojson = await response.json();
 
         const [min, max] = computeMinMax(geojson.features, "multiCriteria", -9999);
-        const style = new ContinousGridStyle("multiCriteria",
+        const c_style = new ContinousGridStyle("multiCriteria",
             [255, 0, 0, 180],
             [0, 255, 0, 180],
             min, max,
             -9999,
             [25, 25, 25, 100]
         );
+        const style = new CustomStyle(c_style);
         const grid_layer = new GridLayer("decision_support_accessibility", "Accessibility", geojson.features, 100);
         const ol_layer = initDeckLayer(grid_layer, style);
 
