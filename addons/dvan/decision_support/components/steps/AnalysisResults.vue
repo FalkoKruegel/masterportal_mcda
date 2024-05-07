@@ -174,11 +174,11 @@ export default {
             <p>{{ translate('stepEight.text.text3') }}</p>
             <p>{{ translate('stepEight.text.text4') }}</p>
 
-            <BootstrapCheckbox
+            <!-- <BootstrapCheckbox
                 id="Checkbox8-1"
                 v-model="weighted"
                 :text="translate('stepEight.checkbox.checkbox8_1')"
-            />
+            /> -->
             <BootstrapCheckbox
                 id="Checkbox8-2"
                 :value="selected_layer === 'heatmap'"

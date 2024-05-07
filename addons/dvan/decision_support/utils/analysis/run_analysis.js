@@ -40,11 +40,15 @@ function changeLayer (layer_key, new_style_attr) {
 
     if (layer_key === "grid") {
         const style = layer_obj.ol_layer.getStyle();
-        const [min, max] = computeMinMax(layer_obj.features, new_style_attr, -9999);
 
         style.attribute = new_style_attr;
-        style.start = min;
-        style.end = max;
+        style.start = 0;
+        if (new_style_attr === "multiCriteria") {
+            style.end = layer_obj.infra_sum;
+        }
+        else {
+            style.end = 1;
+        }
         layer_obj.ol_layer.setStyle(style);
     }
     if (layer_key === "heatmap") {
@@ -82,28 +86,18 @@ async function runAnalysis () {
     request.envelop = [ll[0], ll[1], ur[0], ur[1]];
 
     // set population information
-    switch (stepFour.populationType) {
-        case "standard":
-            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.population.standard.items).length) {
-                request.population_type = "standard_all";
-            }
-            else {
-                request.population_type = stepFour.populationType;
-                request.population_indizes = stepFour.selectedAgeGroups;
-            }
-            break;
-        case "":
-            throw Error("missing population selection");
-        default:
-            request.population_type = stepFour.populationType;
-            request.population_indizes = stepFour.selectedAgeGroups;
-            break;
+    if (stepFour.populationType === "") {
+        throw Error("missing population selection");
     }
+    request.population_type = stepFour.populationType;
+    request.population_indizes = stepFour.selectedAgeGroups;
 
     // set facility parameters
     const factors = [1.0, 0.6, 0.4, 0.2];
 
     request.infrastructures = {};
+    let infra_sum = 0;
+
     for (const group in stepThree.selectedFacilities) {
         for (const item in stepThree.selectedFacilities[group]) {
             const name = stepThree.selectedFacilities[group][item];
@@ -111,12 +105,15 @@ async function runAnalysis () {
             if (name === "") {
                 continue;
             }
+            const weight = stepSix.facilityWeights[group][item] / 100;
+
             request.infrastructures[name] = {
-                "infrastructure_weight": stepSix.facilityWeights[group][item],
+                "infrastructure_weight": weight,
                 "range_factors": factors,
                 "ranges": stepFive.timeZones[group][item].map(item => item * 60),
                 "facility_type": name
             };
+            infra_sum += weight;
         }
     }
 
@@ -144,11 +141,10 @@ async function runAnalysis () {
 
         const geojson = await response.json();
 
-        const [min, max] = computeMinMax(geojson.features, "multiCriteria", -9999);
         const style = new ContinousGridStyle("multiCriteria",
             [255, 0, 0, 180],
             [0, 255, 0, 180],
-            min, max,
+            0, infra_sum,
             -9999,
             [25, 25, 25, 100]
         );
@@ -163,13 +159,11 @@ async function runAnalysis () {
         const ol_heat_layer = initDeckLayer(heat_layer, heat_style);
 
         const gfiAttributes = {
-            "multiCriteria": convertLayerName("multiCriteria"),
-            "multiCriteria_weighted": convertLayerName("multiCriteria") + " (gewichtet)"
+            "multiCriteria": convertLayerName("multiCriteria")
         };
 
         for (const infra in request.infrastructures) {
             gfiAttributes[infra] = convertLayerName(infra);
-            gfiAttributes[infra + "_weighted"] = convertLayerName(infra) + " (gewichtet)";
         }
         const attrs = {
             type: "layer",
@@ -202,7 +196,8 @@ async function runAnalysis () {
             layer: grid_layer,
             features: geojson.features,
             ol_layer: ol_layer,
-            is_active: false
+            is_active: false,
+            infra_sum: infra_sum
         };
         LAYERS.heatmap = {
             name: "decision_support_heatmap",
@@ -219,33 +214,6 @@ async function runAnalysis () {
     catch (e) {
         stepEight.status = "unfinished";
     }
-}
-
-/**
- * computes min and max value of features
- * @param {any} features feature list
- * @param {string} attr attribute to compute min max for
- * @param {number} no_data no data value for attribute
- * @returns {number[]} tuple of [min, max]
- */
-function computeMinMax (features, attr, no_data) {
-    let min = 10000000000;
-    let max = -10000000000;
-
-    for (const feature of features) {
-        const val = feature.properties[attr];
-
-        if (val === no_data) {
-            continue;
-        }
-        if (val > max) {
-            max = val;
-        }
-        if (val < min) {
-            min = val;
-        }
-    }
-    return [min, max];
 }
 
 export {runAnalysis, changeLayer};

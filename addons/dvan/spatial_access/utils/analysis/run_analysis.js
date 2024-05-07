@@ -41,23 +41,11 @@ async function runAnalysis () {
     request.decay_type = stepFive.distanceDecay;
 
     // set population information
-    switch (stepFour.populationType) {
-        case "standard":
-            if (stepFour.selectedAgeGroups.length === Object.keys(stepFour.population.standard.items).length) {
-                request.population_type = "standard_all";
-            }
-            else {
-                request.population_type = stepFour.populationType;
-                request.population_indizes = stepFour.selectedAgeGroups;
-            }
-            break;
-        case "":
-            throw Error("missing population selection");
-        default:
-            request.population_type = stepFour.populationType;
-            request.population_indizes = stepFour.selectedAgeGroups;
-            break;
+    if (stepFour.populationType === "") {
+        throw Error("missing population selection");
     }
+    request.population_type = stepFour.populationType;
+    request.population_indizes = stepFour.selectedAgeGroups;
 
     // run request
     try {
